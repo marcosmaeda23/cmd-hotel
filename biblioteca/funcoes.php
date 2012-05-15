@@ -5,7 +5,7 @@ $erro_nome = '';
 
 
 /**
- * funcao qua sai da sessao
+ * função que sai da sessão
  */
 function deslogar(){
 	session_start();
@@ -14,25 +14,26 @@ function deslogar(){
 	return true;
 }
 
-
 /**
- * funcao que verifica se e numero
- * @param numero
- * @return bool
+ * metodo que muda a data de dd/mm/yyyy para yyyy-mm-dd e vice-versa
+ * @param data
+ * @return data formatada
  */
-function isNumero($numero){
+function formataData($data){
 	
 }
 /**
- * funcao que verifica se e string
- * @param string
- * @return bool
+ * metodo que verifica se a data é válida e moda para o formato do banco, yyyy-mm-dd
+ * @param data
+ * @return dataFormatada
  */
-function isString($string){
-
+function validaData($data){
+	
+	
 }
+
 /**
- * funcao que verifica se o email eh valido
+ * função que verifica se o email é válido
  * @param email
  * @return bool
  */

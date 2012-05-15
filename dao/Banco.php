@@ -5,7 +5,6 @@
  */
 class Banco {
 	
-	
 	/*
 	 * metodo para conectar no banco 
 	 * @return bool
