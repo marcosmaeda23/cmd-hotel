@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'Humanst521BTBold';
+    src: url('font_-_truetype_-_humanist_521_bold_bt-A90.eot');
+    src: url('font_-_truetype_-_humanist_521_bold_bt-A90.eot?#iefix') format('embedded-opentype'),
+         url('font_-_truetype_-_humanist_521_bold_bt-A90.woff') format('woff'),
+         url('font_-_truetype_-_humanist_521_bold_bt-A90.ttf') format('truetype'),
+         url('font_-_truetype_-_humanist_521_bold_bt-A90.svg#Humanst521BTBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'Humanst521BTRoman';
+    src: url('font_-_truetype_-_humanist_521_bt-A90.eot');
+    src: url('font_-_truetype_-_humanist_521_bt-A90.eot?#iefix') format('embedded-opentype'),
+         url('font_-_truetype_-_humanist_521_bt-A90.woff') format('woff'),
+         url('font_-_truetype_-_humanist_521_bt-A90.ttf') format('truetype'),
+         url('font_-_truetype_-_humanist_521_bt-A90.svg#Humanst521BTRoman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

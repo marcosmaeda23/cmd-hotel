@@ -1,0 +1,18 @@
+﻿@charset "utf-8";
+
+body {
+}
+
+#main {
+	width: 955px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*
+This is the div containing the slider. You can also specify these rules 
+directly within the .sw_container CSS class (classic_slider_bullets_skin.css).
+*/
+#imageSlideshow {
+	box-shadow: 0px 0px 3px #A3A4A5;
+}

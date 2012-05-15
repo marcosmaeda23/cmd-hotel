@@ -1,0 +1,48 @@
+@charset "iso-8859-1";
+/* CSS Document by Alex De Souza Porto*/
+/* Reset */
+* {
+	margin: 0;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+
+/* remember to define focus styles! */
+:focus {
+	outline: 0;
+}
+
+/* remember to highlight inserts somehow! */
+ins {
+	text-decoration: none;
+}
+del {
+	text-decoration: line-through;
+}
+
+
+/*clearfix */
+.clearfix:after { content: "."; display: block;clear: both;visibility: hidden;line-height: 0;height: 0; }
+.clearfix { display: inline-block; }
+html[xmlns] .clearfix { display: block; }
+* html .clearfix { height: 1%; }
+.clearfix:after, .cf:after {content:".";display:block;height:0;clear:both;visibility:hidden;}
+.clearfix, .cf {display:inline-block;}
+/* Hide from IE Mac \*/
+.clearfix, .cf {display:block;}
+/* End hide from IE Mac */
+.clearfix, .cf {display:block;} 
+html[xmlns] .clearfix, html[xmlns] .cf {display: block;}
+* html .clearfix, * html .cf {height: 1%;}

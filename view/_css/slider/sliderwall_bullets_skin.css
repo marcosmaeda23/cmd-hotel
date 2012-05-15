@@ -1,0 +1,378 @@
+@charset "utf-8";
+
+/*
+The slider container. You can set the size, color, position and other
+attributes here.
+*/
+.sw_container {
+	/* Set the slider size here. */
+	width: 955px;
+	height: 407px;
+	background-color: #FFFFFF;
+	/* Center the slider. */
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*
+The container for the title and description of the slide. It contains
+the background of the text and the text itself.
+*/
+.sw_infoComponent {
+	left: 32px;
+	bottom: 46px;
+	overflow: hidden;
+	width: 891px;
+}
+
+/*
+The background for the title and description displayed on the slides.
+*/
+.sw_text_background {
+	/*
+	By default, the slider automatically sets the width of the background to
+	be the same as the width of the infoComponent container. If you want to
+	overwrite the width value set by the slider, use the !important tag.
+	*/
+	width: 100% !important;		/* This attribute will not be overwritten by the slider. */
+	background-color: #000000;
+	opacity: 0.7;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The title of the slide.
+*/
+.sw_title {
+	color: #FFFFFF;
+    font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: bold;
+	margin-top: 10px;
+	margin-left: 14px;
+	margin-right: 14px;
+}
+
+/*
+The description of the slide.
+*/
+.sw_description {
+	color: #FFFFFF;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", Arial, sans-serif;
+	font-size: 12px;
+    font-style: normal;
+    font-weight: normal;
+	overflow: hidden;
+	margin-top: 5px;
+	margin-left: 14px;
+	margin-right: 14px;
+	margin-bottom: 15px;
+}
+
+/*
+The slide preloader. If you would like to change the preloader, simply replace the
+.gif file with one of your own and, if it is required, set its size and position
+from this CSS class.
+*/
+.sw_preloader {
+	background-image: url("../../_imagens/sliderwall_graphics/preloader.gif");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	left: 50%;
+	top: 50%;
+	margin-left: -17px;
+	margin-top: -17px;
+}
+
+/*
+The NORMAL state for the previous slide button. The button is vertically centered by
+the slider within the slider container if the top or bottom attributes are missing.
+If you want to vertically position the button use the top or bottom attributes with
+the !important tag (e.g. top: 40% !important;).
+*/
+.sw_previous_button {
+	width: 47px;
+	height: 48px;
+	left: 32px;
+	background-image: url("../../_imagens/sliderwall_graphics/btnPrev_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The HOVER state for the previous slide button.
+*/
+.sw_previous_button:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/btnPrev_hover.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The DISABLED state for the previous slide button. The buttons are disabled when the
+first or last slide are displayed and the loopContent property of the slider is set
+to false.
+*/
+.sw_previous_button_disabled {
+	background-image: url("../../_imagens/sliderwall_graphics/btnPrev_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: auto;
+	opacity: 0.7;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The hover state for the DISABLED previous slide button. It is the same as the disabled
+state so that it won't be confusing for users.
+*/
+.sw_previous_button_disabled:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/btnPrev_normal.png");	/* Overwrites the hover state of the normal button. */
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: auto;
+	opacity: 0.7;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The NORMAL state for the next slide button. The button is vertically centered by
+the slider within the slider container if the top or bottom attributes are missing.
+If you want to vertically position the button use the top or bottom attributes with
+the !important tag (e.g. top: 40% !important;).
+*/
+.sw_next_button {
+	width: 47px;
+	height: 48px;
+	right: 32px;
+	background-image: url("../../_imagens/sliderwall_graphics/btnNext_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The HOVER state for the next slide button.
+*/
+.sw_next_button:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/btnNext_hover.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The DISABLED state for the next slide button. The buttons are disabled when the
+first or last slide are displayed and the loopContent property of the slider is set
+to false.
+*/
+.sw_next_button_disabled {
+	background-image: url("../../_imagens/sliderwall_graphics/btnNext_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: auto;
+	opacity: 0.7;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The hover state for the DISABLED next slide button. It is the same as the disabled
+state so that it won't be confusing for users.
+*/
+.sw_next_button_disabled:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/btnNext_normal.png");	/* Overwrites the hover state of the normal button. */
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: auto;
+	opacity: 0.7;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The timer element. If the slider is not in auto-slideshow mode or showTimer is set
+to false the timer will not display.
+DO NOT set the width attribute because the slider uses it to resize the timer to
+the maximum width set.
+*/
+.sw_timer {
+	/*
+	This is the default position for the timer, so the slider will position it
+	above or below the control bar, according to the timerPosition parameter.
+	If you change the values for the top/left properties, the timer will be repositioned
+	and the timerPosition parameter of the slider will be ignored.
+	*/
+	top: -1px;		/* Leave this as it is if you do not want to reposition the timer. */
+	left: -1px;		/* Leave this as it is if you do not want to reposition the timer. */
+	/*
+	The maximum width of the timer (by default, it has the same width as the slider). If this
+	property is not specified, the timer will have the same width as the slider when timerPosition
+	is set to aboveControlBar or when the timerPosition is ignored (top/left values larger than -1px).
+
+	To specify a maximum width for the timer uncomment the next line.
+	*/
+	//max-width: 891px;
+	height: 2px;
+	background-color: #000000;
+	opacity: 0.40;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The control bar contains a list of graphical symbols (bullets),
+each symbol representing a slide. The slide symbols have three states:
+normal, hover and selected. The control bar also uses two buttons
+for page navigation (previous and next page buttons).
+*/
+.sw_controlBar {
+	width: 891px;
+	height: 38px;
+	margin-left: 31px;
+	margin-right: 0px;
+	margin-bottom: 0px;
+}
+
+/*
+The background for the entire control bar. The symbol thumbnails can have their
+own backgrounds which you can set separately. The size of the background is
+always overwritten by code and it is set to be the same size as the size of
+the control bar.
+*/
+.sw_controlBar_background {
+	background-image: url("../../_imagens/sliderwall_graphics/cbar_top_border.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The container for the slide's list of thumbnails (bullets).
+*/
+.sw_controlBar_thumbnail_container {
+	width: 100%;
+}
+
+/*
+The thumbnails have a normal, hover and selected state. This is the NORMAL
+state of the bullet thumbnail.
+*/
+.sw_controlBar_thumbnail {
+	margin-left: 7px;
+	margin-right: 7px;
+	width: 16px;
+	height: 15px;
+	background-image: url("../../_imagens/sliderwall_graphics/thumb_normal.png");
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The HOVER state of the bullet thumbnail.
+*/
+.sw_controlBar_thumbnail:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/thumb_hover.png");
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+}
+
+/*
+The normal state for the SELECTED bullet thumbnail.
+*/
+.sw_controlBar_thumbnail_selected {
+	background-image: url("../../_imagens/sliderwall_graphics/thumb_selected.png");
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The hover state for a SELECTED bullet thumbnail. It is the same as the normal selected
+state so that it won't be confusing for viewers.
+*/
+.sw_controlBar_thumbnail_selected:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/thumb_selected.png");
+	background-repeat: no-repeat;
+	overflow: hidden;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The NORMAL state for the next page button displayed in the control bar.
+*/
+.sw_controlBar_next_thumb_page_button {
+	width: 21px;
+	height: 21px;
+	margin-left: 5px;
+	background-image: url("../../_imagens/sliderwall_graphics/nextPage_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The HOVER state for the next page button displayed in the control bar.
+*/
+.sw_controlBar_next_thumb_page_button:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/nextPage_hover.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The NORMAL state for the previous page button displayed in the control bar.
+*/
+.sw_controlBar_previous_thumb_page_button {
+	width: 21px;
+	height: 21px;
+	margin-right: 5px;
+	background-image: url("../../_imagens/sliderwall_graphics/prevPage_normal.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+The HOVER state for the previous page button displayed in the control bar.
+*/
+.sw_controlBar_previous_thumb_page_button:hover {
+	background-image: url("../../_imagens/sliderwall_graphics/prevPage_hover.png");
+	background-repeat: no-repeat;
+	background-size: 100%;		/* Works only on CSS3 compatible browsers. */
+	cursor: pointer;
+	opacity: 1;		/* Works only on CSS3 compatible browsers. */
+}
+
+/*
+Styling rules for the container of the slides. You can set the size of
+the contaner and position it within the boundaries of the slider.
+*/
+.sw_slider_container {
+	float:left;
+	width: 100%;
+	height: 100%;
+}
+
+/*
+Styling rules for the content of the slides, only for those slides that
+have HTML content.
+*/
+.sw_slider_content {
+
+}
+
+.sw_digital_wm_42513{
+	height: 0px!important;
+	width: 0px!important;
+	overflow: hidden;
+}
