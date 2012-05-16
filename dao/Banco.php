@@ -10,11 +10,11 @@ class Banco {
 	 * @return bool
 	 */
 	public function conectar(){
-		$link = mysql_connect('localhost', 'root', 'root');
+		$link = mysql_connect('localhost', 'root', 'porto90');
 		if (!$link){	
 			die ('Erro na conexao com o servidor' . mysql_error());
 		}
-		$db_selected = mysql_select_db('trabalho' , $link);
+		$db_selected = mysql_select_db('hotel_v1' , $link);
 	
 		if (!$db_selected){
 			die('Erro ao selecionar o Banco de Dados' . mysql_error());
