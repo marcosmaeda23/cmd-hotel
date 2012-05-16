@@ -69,17 +69,17 @@ class UsuarioDao extends Entidade {
 	/**
 	 * metodo para setar a sessao
 	 */
-	public function setarSessao($id, $nome, $nivel){
-		session_start();
-		$_SESSION['usuario'] = (int)$id;
-		$_SESSION['nome'] =  $nome;
-		$_SESSION['nivel'] = $nivel;
-		$_SESSION['sistema'] = 'Hotel_cmd';
-	}
+    public function setarSessao($id, $nome, $nivel){
+        session_start();
+        $_SESSION['usuario'] = (int)$id;
+        $_SESSION['nome'] =  $nome;
+        $_SESSION['nivel'] = $nivel;
+        $_SESSION['sistema'] = 'Hotel_cmd';
+    }
 	/** 
 	 * metodo DAO de logar do usuario
 	 * @param $usuarioVo
-	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-n‹o localizado
+	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-nï¿½o localizado
 	 */
 	public function logar($usuarioVo){
 		
