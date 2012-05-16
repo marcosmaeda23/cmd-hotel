@@ -34,7 +34,11 @@ class UsuarioDao extends Entidade {
 														'email VARCHAR(100) NOT NULL',														
 														'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL', 
 														'documento VARCHAR(100) NOT NULL',
-														'login');
+														'login VARCHAR(100) NOT NULL',
+														'senha VARCHAR(20) NOT NULL',
+														'lembrete VARCHAR(150) NOT NULL',
+														'status BOOLEAN DEFAULT 1 NOT NULL',
+														'dataCadastro DATETIME DEFAULT NOW() NOT NULL');
 	
 	/**
 	 * desformata os dados para ser inserido no banco e faz a validacao, data no formato ('dd/mm/yyy') fica ('yyyy-mm-dd')
@@ -65,10 +69,11 @@ class UsuarioDao extends Entidade {
 	/**
 	 * metodo para setar a sessao
 	 */
-	public function setarSessao($usuario, $usuario_nome){
+	public function setarSessao($id, $nome, $nivel){
 		session_start();
-		$_SESSION['usuario'] = (int)$usuario;
-		$_SESSION['usuario_nome'] =$usuario_nome;
+		$_SESSION['usuario'] = (int)$id;
+		$_SESSION['nome'] =  $nome;
+		$_SESSION['nivel'] = $nivel;
 		$_SESSION['sistema'] = 'Hotel_cmd';
 	}
 	/** 
@@ -78,15 +83,15 @@ class UsuarioDao extends Entidade {
 	 */
 	public function logar($usuarioVo){
 		
-		$sql = 'SELECT usuario, usuario_nome, usuario_login, usuario_senha FROM usuario ';
-		$sql .= ' WHERE usuario_login = "'.$usuarioVo->getUsuarioLogin().'" ';
+		$sql = 'SELECT id, nome, login, senha, nivelId FROM usuario ';
+		$sql .= ' WHERE login = "'.$usuarioVo->getLogin().'" ';
 		$query = mysql_query($sql);
 		$qtde = mysql_affected_rows();	
 		
 		if($qtde > 0){
 			while($row =  mysql_fetch_object($query)){
-				if($row->senha == md5($usuarioVo->getUsuarioLogin())){
-					if($row->nome == $usuarioVo->getUsuarioNome()){
+				if($row->senha == md5($usuarioVo->getLogin())){
+					if($row->nome == $usuarioVo->getNome()){
 						return 0;
 					} else {
 						return 1;
@@ -94,10 +99,11 @@ class UsuarioDao extends Entidade {
 				} else {
 					return 2;
 				}
-				$usuario = $row->usuario;
-				$usuario_nome = $row->usuario_nome;
+				$id = $row->id;
+				$nome = $row->nome;
+				$nivel = $row->nivelId;
 			}
-			$this->setarSessao($usuario, $usuario_nome);
+			$this->setarSessao($id, $nome, $nivel);
 		} else {
 			return 3;
 		}
