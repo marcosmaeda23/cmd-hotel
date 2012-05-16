@@ -22,9 +22,9 @@ class UsuarioBpm extends BpmGenerico{
 	 * @param $usuarioVo
 	 * @return boolean
 	 */
-	public function verificaLogin($ususarioVo){
+	public function verificaLogin($usuarioVo){
 		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioVo -> verificaLogin($usuarioVo);
+		$sucesso = $usuarioDao -> verificaLogin($usuarioVo);
 		return $sucesso;
 	}
 }

@@ -97,7 +97,6 @@ class UsuarioDao extends Entidade {
 				$usuario_nome = $row->usuario_nome;
 			}
 			$this->setarSessao($usuario, $usuario_nome);
-			return true;
 		} else {
 			return 3;
 		}
