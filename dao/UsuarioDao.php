@@ -1,6 +1,6 @@
 <?php 
 //include('Entidade.php');
-/*
+/**
  * classe com o metodo exclusivo do usuario
  */
 class UsuarioDao extends Entidade {
@@ -33,7 +33,8 @@ class UsuarioDao extends Entidade {
 	protected $dadosBase						= array('nome VARCHAR(100) NOT NULL', 
 														'email VARCHAR(100) NOT NULL',														
 														'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL', 
-														'documento VARCHAR(100) NOT NULL');
+														'documento VARCHAR(100) NOT NULL',
+														'login');
 	
 	/**
 	 * desformata os dados para ser inserido no banco e faz a validacao, data no formato ('dd/mm/yyy') fica ('yyyy-mm-dd')
@@ -70,8 +71,8 @@ class UsuarioDao extends Entidade {
 		$_SESSION['usuario_nome'] =$usuario_nome;
 		$_SESSION['sistema'] = 'Hotel_cmd';
 	}
-	/**
-	 * metodo de login do usuario
+	/** 
+	 * metodo DAO de logar do usuario
 	 * @param $usuarioVo
 	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-n‹o localizado
 	 */

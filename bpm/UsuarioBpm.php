@@ -17,6 +17,7 @@ class UsuarioBpm extends BpmGenerico{
 		$resposta = $usuarioDao ->logar($usuarioVo);		
 		return $resposta;		
 	}	
+		
 	/**
 	 * metodo que verifica se o nome do usuario existe na basa de dados
 	 * @param $usuarioVo

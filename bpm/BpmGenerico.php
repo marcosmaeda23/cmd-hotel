@@ -5,9 +5,9 @@
 class BpmGenerico {
 	
 	/**
-	 * metodo que muda o sa
-	 * @param $usuarioVo
-	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-n‹o localizado
+	 * metodo que altera o status
+	 * @param Objeto e entidade
+	 * @return boolean
 	 */
 	public function alterarStatus($objeto, $entidade){
 		eval('$_objeto = new '.ucfirst($entidade).'Dao();');

@@ -6,7 +6,7 @@
  */
 class UsuarioVo {
 	 
-	private $id;
+	private $id;					
 	private $nome;
 	private $email;
 	private $documentoTipo;
@@ -17,8 +17,8 @@ class UsuarioVo {
 	private $status;
 	private $dataCadastro;
 	
-	private $telefoneVo;
-	private $nivelAcessoVo;
+	private $telefoneVo;    			// array
+	private $nivelAcessoVo;				// objeto
 	
 	public $usuarioObrigatorio = array('nome','email', 'documentoTipo', 'documento');
 	
@@ -27,6 +27,7 @@ class UsuarioVo {
 	/*
 	 * get e set dos atributos da tabela 
 	 */
+	
 	public function getId(){
 		return $this->id;
 	}
