@@ -1,27 +1,27 @@
 <?php
 /*
  * classe de metodos do banco
- *
+ * 
  */
 class Banco {
-
+	
 	/*
-	 * metodo para conectar no banco
+	 * metodo para conectar no banco 
 	 * @return bool
 	 */
 	public function conectar(){
 		$link = mysql_connect('localhost', 'root', 'root');
-		if (!$link){
+		if (!$link){	
 			die ('Erro na conexao com o servidor' . mysql_error());
 		}
-		$db_selected = mysql_select_db('hotel' , $link);
-
+		$db_selected = mysql_select_db('trabalho' , $link);
+	
 		if (!$db_selected){
 			die('Erro ao selecionar o Banco de Dados' . mysql_error());
 		}
 		return true;
 	}
-
+	
 	/*
 	 * fecha a conexao com o banco
 	 * @return bool
@@ -34,7 +34,7 @@ class Banco {
 	 * @return bool
 	 */
 	public function prepararBaseDados(){
-
+		
 	}
 
 }

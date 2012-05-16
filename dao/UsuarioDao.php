@@ -31,19 +31,10 @@ class UsuarioDao extends Entidade {
 	 * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
 	 */
 	protected $dadosBase						= array('nome VARCHAR(100) NOT NULL', 
-														'login VARCHAR(100) NOT NULL', 
-														'senha VARCHAR(100) NOT NULL',
-														'email VARCHAR(100) NOT NULL',
-														'lembrete TEXT NOT NULL');
-	/**
-	 * seta os dados que precisam ser obrigatorios e o campo que sera mostrada do campo
-	 * @example $atributosObrigatorios = array('usuario_nome' => 'nome do usuário', 'usuario_email' => 'email do usuário');
-	 */
-	protected $atributosObrigatorios			= array('usuario_nome' => 'nome do usuário', 
-														'usuario_login' => 'login do usuário', 
-														'usuario_senha' => 'senha do usuário', 
-														'usuario_email' => 'email do usuário', 
-														'usuario_lembrete' => 'lembrete da senha ');
+														'email VARCHAR(100) NOT NULL',														
+														'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL', 
+														'documento VARCHAR(100) NOT NULL');
+	
 	/**
 	 * desformata os dados para ser inserido no banco e faz a validacao, data no formato ('dd/mm/yyy') fica ('yyyy-mm-dd')
 	 * @param  data, preco, email, cpf, cnpj
@@ -69,62 +60,49 @@ class UsuarioDao extends Entidade {
 	// =================================================================
 	// METODOS =========================================================
 	// =================================================================
+	
 	/**
 	 * metodo para setar a sessao
-	* @return bool
-	*/
+	 */
 	public function setarSessao($usuario, $usuario_nome){
 		session_start();
 		$_SESSION['usuario'] = (int)$usuario;
 		$_SESSION['usuario_nome'] =$usuario_nome;
+		$_SESSION['sistema'] = 'Hotel_cmd';
 	}
 	/**
 	 * metodo de login do usuario
-	* @param login e senha
-	* @return bool
-	*/
+	 * @param $usuarioVo
+	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-n‹o localizado
+	 */
 	public function logar($usuarioVo){
 		
 		$sql = 'SELECT usuario, usuario_nome, usuario_login, usuario_senha FROM usuario ';
 		$sql .= ' WHERE usuario_login = "'.$usuarioVo->getUsuarioLogin().'" ';
-		$sql .= ' AND usuario_senha = "'.$usuarioVo->getUsuarioSenha().'" ';
 		$query = mysql_query($sql);
 		$qtde = mysql_affected_rows();	
 		
 		if($qtde > 0){
 			while($row =  mysql_fetch_object($query)){
+				if($row->senha == md5($usuarioVo->getUsuarioLogin())){
+					if($row->nome == $usuarioVo->getUsuarioNome()){
+						return 0;
+					} else {
+						return 1;
+					}
+				} else {
+					return 2;
+				}
 				$usuario = $row->usuario;
 				$usuario_nome = $row->usuario_nome;
 			}
 			$this->setarSessao($usuario, $usuario_nome);
 			return true;
 		} else {
-			return false;
+			return 3;
 		}
 	}
-	/**
-	 * metodo de login do usuario
-	 * @param email e lembrete
-	 * @return bool
-	 */
-	public function logarComLembrete($usuarioVo){
-		$SQL = 'SELECT usuario, usuario_nome, usuario_email, usuario_lembrete FROM usuario ';
-		$SQL .= ' WHERE usuario_email = "'.$usuarioVo->getUsuarioEmail().'" ';
-		$SQL .= ' AND usuario_lembrete = "'.$usuarioVo->getUsuarioLembrete().'" ';
-		$query = mysql_query($SQL);
-		$qtde = mysql_affected_rows();
 		
-		if($qtde == 1){
-			while($row =  mysql_fetch_object($query)){
-				$usuario = $row->usuario;
-				$usuario_nome = $row->usuario_nome;
-			}
-			$this->setarSessao($usuario, $usuario_nome);
-			return true;
-		} else {
-			return false;
-		}
-	}
 	/**
 	 * metodo que cadastra e loga o usuario
 	 * @param atributos e valores
@@ -168,6 +146,15 @@ class UsuarioDao extends Entidade {
 		} else {
 			return true;
 		}
+	}
+	/**
+	 * metodo para veidica se o login ja existe no banco
+	 * @param login
+	 * @return boolean 
+	 */
+	public function verificaLogin($usuario){
+		$sql = 'SELECT '.$usuario->getLogin().' , FROM ';
+		return true;
 	}
 	
 	

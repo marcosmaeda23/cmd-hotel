@@ -1,28 +1,32 @@
 <?php 
-//include('../../dao/UsuarioDao.php');
-class UsuarioBpm {
+
+
+/**
+ * classe bpm da classe do usuario
+ */
+
+class UsuarioBpm extends BpmGenerico{
+	
+	/**
+	 * metodo logar
+	 * @param $usuarioVo
+	 * @return 0-ok, 1-erro de login, 2-erro de senha, 3-n‹o localizado
+	 */
 	public function logar($usuarioVo){
 		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioDao ->logar($usuarioVo);		
-		return $sucesso;		
-	}
-	public function logarComLembrete($usuarioVo){
+		$resposta = $usuarioDao ->logar($usuarioVo);		
+		return $resposta;		
+	}	
+	/**
+	 * metodo que verifica se o nome do usuario existe na basa de dados
+	 * @param $usuarioVo
+	 * @return boolean
+	 */
+	public function verificaLogin($ususarioVo){
 		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioDao ->logarComLembrete($usuarioVo);		
-		return $sucesso;	
-	}
-	public function cadastrar($usuarioVo){
-		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioDao -> cadastrar($usuarioVo);
-		return $sucesso;
-	} 
-	public function verificarExistenciaEmail($usuarioVo){
-		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioDao -> verificarExistenciaEmail($usuarioVo);
+		$sucesso = $usuarioVo -> verificaLogin($usuarioVo);
 		return $sucesso;
 	}
-	
-
 }
 
 
