@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<?php 
-
-/**
- * classe nivel de acesso
- */
-class NivelAcessoVo {
-	
-	private $id;
-	private $nome;
-	
-	
-}
-
-=======
 <?php 
 
 /**
@@ -43,8 +28,5 @@ class NivelAcessoVo {
 		$this->nome = $nome;
 	}
 	
-	
 }
-
->>>>>>> criado pasta de docs
 ?>

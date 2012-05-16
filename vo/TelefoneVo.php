@@ -1,18 +1,3 @@
-<<<<<<< HEAD
-<?php
-
-class TelefoneVo{
-	
-	private $id;
-	private $ddd;
-	private $ddi;
-	private $numero;
-	
-	private $usuarioVo;
-	private $hotelVo;
-}
-
-=======
 <?php
 
 class TelefoneVo{
@@ -55,6 +40,4 @@ class TelefoneVo{
 		$this->numero = $numero;
 	}
 }
-
->>>>>>> criado pasta de docs
 ?>
