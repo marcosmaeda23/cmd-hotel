@@ -38,7 +38,7 @@ class UsuarioDao extends Entidade {
 														'senha VARCHAR(20) NOT NULL',
 														'lembrete VARCHAR(150) NOT NULL',
 														'status BOOLEAN DEFAULT 1 NOT NULL',
-														'dataCadastro DATETIME DEFAULT NOW() NOT NULL');
+														'dataCadastro DATETIME NOT NULL');
 	
 	/**
 	 * desformata os dados para ser inserido no banco e faz a validacao, data no formato ('dd/mm/yyy') fica ('yyyy-mm-dd')

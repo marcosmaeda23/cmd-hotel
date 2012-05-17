@@ -29,4 +29,8 @@ class NivelAcessoVo {
 	}
 	
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> sdfsd
 ?>
