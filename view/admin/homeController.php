@@ -24,7 +24,8 @@ if($_POST['acao'] == 'logar'){
 		$usuarioVo -> setLogin($_POST['login']) ;
 		$usuarioVo -> setSenha(md5($_POST['senha'])) ;
 		$resposta = $usuarioBpm -> logar($usuarioVo);
-
+		echo $resposta;
+		exit();
 		switch ($resposta) {
 			case 0 : $ERRO = false;		
 					break;

@@ -88,11 +88,14 @@ class UsuarioDao extends Entidade {
 		
 		$sql = 'SELECT id, nome, login, senha, nivelId FROM usuario ';
 		$sql .= ' WHERE login = "'.$usuarioVo->getLogin().'" ';
+		
 		$query = mysql_query($sql);
 		$qtde = mysql_affected_rows();	
-		
-		if($qtde > 0){
+		echo $usuarioVo->getSenha() .' - '.$row->senha;
+		//if($qtde > 0){
 			while($row =  mysql_fetch_object($query)){
+				echo $usuarioVo->getSenha() .' - '.$row->senha;
+				exit();
 				if($row->senha == $usuarioVo->getSenha()){
 					if($row->login == $usuarioVo->getLogin()){
 						$id = $row->id;
@@ -109,9 +112,9 @@ class UsuarioDao extends Entidade {
 				
 			}
 			
-		} else {
+		//} else {
 			return 3;
-		}
+	//	}
 	}
 		
 	/**
