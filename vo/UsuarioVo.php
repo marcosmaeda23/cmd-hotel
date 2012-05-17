@@ -10,6 +10,8 @@ class UsuarioVo {
 	private $email;
 	private $documentoTipo;
 	private $documento;
+	private $dataNascimento;
+	private $sexo;
 	private $login;
 	private $senha;
 	private $lembrete;
@@ -56,6 +58,18 @@ class UsuarioVo {
 	}
 	public function setDocumento($documento){
 		$this->documento = $documento;
+	}
+	public function getDataNascimento(){
+		return $this->dataNascimento;
+	}
+	public function setDataNascimento($dataNascimento){
+		$this->dataNascimento = $dataNascimento;
+	}
+	public function getSexo(){
+		return $this->sexo;
+	}
+	public function setSexo($sexo){
+		$this->sexo = $sexo;
 	}
 	public function getLogin(){
 		return $this->login;
