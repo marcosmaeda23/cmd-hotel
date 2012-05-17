@@ -10,7 +10,7 @@ class Banco {
 	 * @return bool
 	 */
 	public function conectar(){
-		$link = mysql_connect('localhost', 'root', 'porto90');
+		$link = mysql_connect('localhost', 'root', 'root');
 		if (!$link){	
 			die ('Erro na conexao com o servidor' . mysql_error());
 		}

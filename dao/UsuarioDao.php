@@ -1,5 +1,5 @@
 <?php 
-//include('Entidade.php');
+
 /**
  * classe com o metodo exclusivo do usuario
  */
@@ -35,7 +35,7 @@ class UsuarioDao extends Entidade {
 														'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL', 
 														'documento VARCHAR(100) NOT NULL',
 														'login VARCHAR(100) NOT NULL',
-														'senha VARCHAR(20) NOT NULL',
+														'senha VARCHAR(100) NOT NULL',
 														'lembrete VARCHAR(150) NOT NULL',
 														'status BOOLEAN DEFAULT 1 NOT NULL',
 														'dataCadastro DATETIME NOT NULL');
@@ -68,6 +68,8 @@ class UsuarioDao extends Entidade {
 	
 	/**
 	 * metodo para setar a sessao
+	 * @param id, nome, nivel
+	 * @return 0
 	 */
     public function setarSessao($id, $nome, $nivel){
         session_start();
@@ -75,6 +77,7 @@ class UsuarioDao extends Entidade {
         $_SESSION['nome'] =  $nome;
         $_SESSION['nivel'] = $nivel;
         $_SESSION['sistema'] = 'Hotel_cmd';
+        return 0;
     }
 	/** 
 	 * metodo DAO de logar do usuario
@@ -90,20 +93,22 @@ class UsuarioDao extends Entidade {
 		
 		if($qtde > 0){
 			while($row =  mysql_fetch_object($query)){
-				if($row->senha == md5($usuarioVo->getLogin())){
-					if($row->nome == $usuarioVo->getNome()){
-						return 0;
+				if($row->senha == $usuarioVo->getSenha()){
+					if($row->login == $usuarioVo->getLogin()){
+						$id = $row->id;
+						$nome = $row->nome;
+						$nivel = $row->nivelId;
+						$sucesso = $this->setarSessao($id, $nome, $nivel);
+						return $sucesso;
 					} else {
 						return 1;
 					}
 				} else {
 					return 2;
 				}
-				$id = $row->id;
-				$nome = $row->nome;
-				$nivel = $row->nivelId;
+				
 			}
-			$this->setarSessao($id, $nome, $nivel);
+			
 		} else {
 			return 3;
 		}

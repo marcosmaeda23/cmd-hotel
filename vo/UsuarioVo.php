@@ -5,7 +5,6 @@
  * atributos com get e set
  */
 class UsuarioVo {
-	 
 	private $id;					
 	private $nome;
 	private $email;

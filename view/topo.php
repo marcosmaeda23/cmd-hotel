@@ -1,10 +1,8 @@
 <?php
 session_start();
-include('../biblioteca/inicializacao_pagina.php');
+include('../../biblioteca/inicializacao_pagina.php');
 include('../biblioteca/config.php');
-//if($_SESSION['usuarioLogin']){
-//	header("Location: home.php");
-//	}
+
 ?>
 <html>
 <head>
@@ -19,9 +17,10 @@ include('../biblioteca/config.php');
     <div class="content">
         <div class="cf logo"><a href="index.php"> <?php echo $nome_site; ?></a></div>
         <div class="cf loginInicial">
-	        <form method="post" action="validaUsuario.php" class="formDefault">
-	            Usuário <input type="text" name="usuario" maxlength="50" />
-	            Senha <input type="password" name="senha" maxlength="50" />
+	        <form method="post" action="admin/homeController.php" class="formDefault">
+	        	<input type="hidden" name="acao" id="acao" value="logar"  />
+	            Usuário <input type="text" name="login" id='login' maxlength="50" />
+	            Senha <input type="password" name="senha" id='senha' maxlength="20" />
 	            <input type="submit" value="  Entrar  " />
 	        </form>
         </div>

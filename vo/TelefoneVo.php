@@ -40,8 +40,5 @@ class TelefoneVo{
 		$this->numero = $numero;
 	}
 }
-<<<<<<< HEAD
-=======
 
->>>>>>> sdfsd
 ?>
