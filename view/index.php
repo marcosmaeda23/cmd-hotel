@@ -77,6 +77,7 @@
                 <div class="cadastro_titulo"> Seu e-mail: <input type="text" name="email" maxlength="50" class="required"  /></div>
                 <div class="cadastro_titulo"> Usuário: <input type="text" name="login" maxlength="50" class="required"  /></div>
                 <div class="cadastro_titulo"> Senha: <input type="password" name="senha" maxlength="50" class="required"  /></div>
+                <div class="cadastro_titulo"> Lembrete: <input type="text" name="lembrete" id="lembrete" maxlength="50" class="required"  /></div>
                 <div class="cadastro_titulo"> Eu Sou: <select name="sexo" id="sexo" class="cadastro_selecao_especial" >
 									                        <option value=""> Selecione o gênero: </option>
 									                        <option value="feminino"> Feminino </option>
@@ -84,6 +85,7 @@
 									                    </select></div>
                 <div class="cadastro_titulo"> Data de nascimento:<input type="text" name="dataNascimento" id="name="dataNascimento" maxlength="50" class="required"  /></div>
                 <div class="cadastro_titulo"> Documento tipo: <input type="text" name="DocumentoTipo" id="DocumentoTipo" maxlength="50" class="required"  /></div>
+                <div class="cadastro_titulo"> Documento numero: <input type="text" name="documento" id="documento" maxlength="50" class="required"  /></div>
                 <div class="cadastro_titulo"> Documento numero: <input type="text" name="documento" id="documento" maxlength="50" class="required"  /></div>
 
             </div>
