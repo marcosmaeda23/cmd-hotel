@@ -11,6 +11,6 @@ include('../../bpm/UsuarioBpm.php');
 
 include('../../vo/UsuarioVo.php');
 
-include('../biblioteca/funcoes.php');
+include('../../biblioteca/funcoes.php');
 
 ?>
