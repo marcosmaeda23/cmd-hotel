@@ -10,3 +10,5 @@ if (empty($_SESSION['usuario_nome'])) {
 
 var_dump($_SESSION);
 ?>
+<a href=""
+Sair
