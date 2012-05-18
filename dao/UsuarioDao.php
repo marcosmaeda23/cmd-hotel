@@ -83,9 +83,9 @@ class UsuarioDao extends Entidade {
      */
     public function setarSessao($id, $nome, $nivel) {
         session_start();
-        $_SESSION['usuario'] = (int) $id;
-        $_SESSION['nome'] = $nome;
-        $_SESSION['nivel'] = $nivel;
+        $_SESSION['usuario_id'] = (int) $id;
+        $_SESSION['usuario_nome'] = $nome;
+        $_SESSION['usuario_nivel'] = $nivel;
         $_SESSION['sistema'] = 'Hotel_cmd';
         return 0;
     }

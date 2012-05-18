@@ -1,8 +1,12 @@
 <?php
 session_start();
-include('../../../biblioteca/inicializacao_pagina.php');
+if (empty($_SESSION['usuario_nome'])) {
+    session_start();
+    echo '<script language="JavaScript">' .
+    'alert("Realize seu Login");' .
+    'location.href="../";' .
+    '</script>';
+}
 
 var_dump($_SESSION);
-
-echo 'aqui';
-
+?>

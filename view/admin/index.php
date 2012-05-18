@@ -19,7 +19,7 @@ if (!empty($_SESSION['usuario_nome'])) {
         <div id='login'>
             <h2>Entrar no Sistema</h2>
             <div id='login_normal'>
-                <form name='logar' id='logar' action='homeController.php' onsubmit='return verificarCampos("logar")' method='post'>
+                <form name='logar' id='logar' action='inicialController.php' onsubmit='return verificarCampos("logar")' method='post'>
                     <input type='hidden' name='acao' id='acao' value='logar' />
                     <label for='usuario_login' class='label'>Login</label><br />
                     <input type='text' name='usuario_login' id='usuario_login' value='' class='input obrigatorio'><br />
@@ -33,7 +33,7 @@ if (!empty($_SESSION['usuario_nome'])) {
             </div>
 
             <div id='lembrete'>
-                <form name='logar_lembrete' id='logar_lembrete' action='homeController.php' onsubmit='return verificarCampos("logar_lembrete")' method='post'>
+                <form name='logar_lembrete' id='logar_lembrete' action='inicialController.php' onsubmit='return verificarCampos("logar_lembrete")' method='post'>
                     <input type='hidden' name='acao' id='acao' value='logar_lembrete' />
                     <label for='usuario_email'>Email do usuário</label><br />
                     <input type='text' name='usuario_email' id='usuario_email' value='' class='input obrigatorio'><br />

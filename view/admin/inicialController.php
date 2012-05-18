@@ -1,6 +1,11 @@
 <?php
 
-include('../../biblioteca/inicializacao_pagina.php');
+require_once '../../dao/Banco.php';
+require_once '../../dao/Entidade.php';
+require_once '../../dao/UsuarioDao.php';
+require_once '../../bpm/BpmGenerico.php';
+require_once '../../bpm/UsuarioBpm.php';
+require_once '../../vo/UsuarioVo.php';
 
 if ($_POST['acao'] == 'logar') {
     // verifica se os campos estao vazios

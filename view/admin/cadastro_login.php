@@ -1,5 +1,5 @@
 <?php
-include('../../biblioteca/inicializacao_pagina.php');
+include('config/iniciarDados.php');
 ?>
 <html>
     <head>

@@ -1,6 +1,8 @@
 <?php
 
-include('../../../biblioteca/inicializacao_pagina.php');
+require_once '../../dao/UsuarioDao.php';
+require_once '../../bpm/UsuarioBpm.php';
+require_once '../../vo/UsuarioVo.php';
 
 if($_POST['acao'] == 'sair'){
 	$sucesso = deslogar();
