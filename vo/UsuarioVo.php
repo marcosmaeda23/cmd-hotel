@@ -18,12 +18,30 @@ class UsuarioVo {
 	private $status;
 	private $dataCadastro;
 	
-	private $telefoneVo;    			// array
+	private $telefoneVo;		    	// array de objetos
 	private $nivelAcessoVo;				// objeto
+	private $cepVo;						// objeto
 	
-	public $usuarioObrigatorio = array('nome','email', 'documentoTipo', 'documento');
+	/**
+	 * atributos obrigatorios da classe
+	 */
+	public $usuarioObrigatorio 	= array('id' 				=> '',
+										'nome' 				=> 'obrigatorio',
+										'email' 			=> 'obrigatorio',
+										'documentoTipo' 	=> 'obrigatorio', 
+										'documento' 		=> 'obrigatorio',
+										'dataNascimento' 	=> 'obrigatorio', 
+										'sexo' 				=> 'obrigatorio',
+										'login' 			=> 'obrigatorio',
+										'senha' 			=> 'obrigatorio',
+										'lembrete' 			=> '',
+										'status' 			=> '');
 	
-	public $usuarioFormatado = array();
+	/**
+	 * atributos que precisam validacoes
+	 */
+	public $usuarioFormatado 	= array('dataNascimento' => 'data', 
+										'senha' => 'senha');
 	
 	/*
 	 * get e set dos atributos da tabela 
@@ -116,6 +134,12 @@ class UsuarioVo {
 	}
 	public function setNivelAcessoVo($nivelAcessoVo){
 		$this->nivelAcessoVo = $nivelAcessoVo;
+	}
+	public function getCepVo(){
+		return $this->cepVo;
+	}
+	public function setCepVo($cepVo){
+		$this->cepVo = $cepVo;
 	}
 }
 

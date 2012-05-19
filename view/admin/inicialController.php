@@ -6,16 +6,17 @@ require_once '../../dao/UsuarioDao.php';
 require_once '../../bpm/BpmGenerico.php';
 require_once '../../bpm/UsuarioBpm.php';
 require_once '../../vo/UsuarioVo.php';
+require_once '../../vo/TelefoneVo.php';
+require_once '../../biblioteca/funcoes.php';
 
 if ($_POST['acao'] == 'logar') {
     // verifica se os campos estao vazios
     foreach ($_POST AS $chave => $valor) {
         if (empty($valor)) {
-            $erro_nome = 'Você tem que preencher todos os campos obrigatórios';
+            $erro_nome = 'Você tem que preencher todos os campos obrigatórios.';
             $ERRO = true;
         }
     }
-
     if (!$ERRO) {
         // coloca \ de escape
         foreach ($_POST AS $chave => $valor) {
@@ -25,8 +26,8 @@ if ($_POST['acao'] == 'logar') {
         $usuarioVo = new UsuarioVo();
         $usuarioBpm = new UsuarioBpm();
 
-        $usuarioVo->setLogin($_POST['login']);
-        $usuarioVo->setSenha($_POST['senha']);
+        $usuarioVo->setLogin($_POST['usuarioLogin']);
+        $usuarioVo->setSenha($_POST['usuarioSenha']);
         $resposta = $usuarioBpm->logar($usuarioVo);
         switch ($resposta) {
             case 0 : $ERRO = false;
@@ -34,7 +35,7 @@ if ($_POST['acao'] == 'logar') {
             case 1 : $erro_nome = 'Nome do usuário incorreto.';
                 $ERRO = true;
                 break;
-            case 2 : $erro_nome = 'Senha do usuário incorreto';
+            case 2 : $erro_nome = 'Senha do usuário incorreto.';
                 $ERRO = true;
                 break;
             default: $erro_nome = 'Usuário não encontrado.';
@@ -57,47 +58,107 @@ if ($_POST['acao'] == 'logar') {
 }
 
 // para cadastrar
-if ($_POST['acao'] == 'cadastrar_usuario') {
+if ($_POST['acao'] == 'cadastrarUsuario') {
     $usuarioVo = new UsuarioVo();
+    $telefoneVo = new TelefoneVo();
+    $usuarioBpm = new UsuarioBpm();
+    
+	$_POST['nome'] = $_POST['nome'].' '. $_POST['sobrenome'];
+    var_dump($_POST);
 
-    // verificar confirmacao da senha
-    $sucesso = verificarConfirmacaoSenha($_POST['usuario_senha'], $_POST['confirmacao_senha']);
-    if (!$sucesso) {
-        $ERRO = true;
-        $erro_nome = 'A senha estÃ¡ diferente da confirmaÃ§Ã£o de senha';
-    }
-
-    // validar se o email e valido
-    if (!$ERRO) {
-        $sucesso = validaEmail($_POST['usuario_email']);
-        if (!$sucesso) {
-            $ERRO = true;
-            $erro_nome = 'O email nÃ£o Ã© vÃ¡lido';
-        }
-    }
-    if (!$ERRO) {
-        // verificar se email ja existe no banco
-        $usuarioBpm = new UsuarioBpm();
-        $usuarioVo->setUsuarioEmail($_POST['usuario_email']);
-        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo);
-        if (!$sucesso) {
-            $ERRO = true;
-            $erro_nome = 'O email ja esta cadastrado na base de dados.\Tente fazer o login com o lembrete da senha';
-        }
-    }
-    if (!$ERRO) {
-        // coloca nas veriaveis e depois faz o insert
-
-        $usuarioVo->setUsuarioNome($_POST['usuario_nome']);
-        $usuarioVo->setUsuarioLogin($_POST['usuario_login']);
-        $usuarioVo->setUsuarioSenha($_POST['usuario_senha']);
-        $usuarioVo->setUsuarioLembrete($_POST['usuario_lembrete']);
-        $sucesso = $usuarioBpm->cadastrar($usuarioVo);
-        if (!$sucesso) {
-            $ERRO = true;
-            $erro_nome = 'O ocorreu um erro ao cadastrar o usuario';
-        }
-    }
+	// verifica se os campos do usuario estao vazios
+	for ( $i = 0; $i < count($usuarioVo->usuarioObrigatorio); $i++ ) {		
+		// faz a validacao dos campos obrigatorios, setados na classe
+		if (empty($_POST[$usuarioVo->usuarioObrigatorio[$i]])){
+			$erro_nome = 'Preencha todos os campos do formulário.';
+			$ERRO = true;
+		} 	
+	}
+	// verifica se os campos do telefone estao vazios
+	for ( $i = 0; $i < count($telefoneVo->telefoneObrigatorio); $i++ ) {		
+		// faz a validacao dos campos obrigatorios, setados na classe
+		if (empty($_POST[$telefoneVo->telefoneObrigatorio[$i]])){
+			$erro_nome = 'Preencha todos os campos do formulário.';
+			$ERRO = true;
+		} 	
+	}
+ 	
+	if (!$ERRO){		
+		foreach ($_POST as $chave => $valor) {	
+			// validacoes
+			if ($chave == 'confirmacaoSenha') {
+				// verifica se a senha eh igual a verifirmacao da senha
+				$sucesso = verificarConfirmacaoSenha($_POST['senha'], $_POST['confirmacaoSenha']);
+			    if (!$sucesso) {
+			        $ERRO = true;
+			        $erro_nome .= 'A senha está diferente da confirmação da senha.';
+			    	break;
+			    }
+			}
+			if ($chave == 'login') {
+				// verifica se o login ja existe no banco
+				$usuarioVo->setLogin($valor);
+		        $sucesso = $usuarioBpm->verificarLogin($usuarioVo);
+			    if (!$sucesso) {
+			        $ERRO = true;
+			        $erro_nome .= 'O login já está cadastado no banco.';
+			    	break;
+			    }
+			}
+			if ($chave == 'email') {
+				// verifica se o email esta no formato valido
+				$sucesso = validarEmail($valor);
+		        if (!$sucesso) {
+		            $ERRO = true;
+		            $erro_nome .= 'O email não é válido.';
+		            break;
+		        }
+		        
+		        // verificar se email ja existe no banco	        
+		        $usuarioVo->setEmail($valor);
+		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo);
+		        if (!$sucesso) {
+		            $ERRO = true;
+		            $erro_nome .= 'O email já está cadastrado na base de dados.';
+		            break;
+		        }
+			}
+			
+			if ($chave == 'dataNascimento') {
+				// verifica se a data eh invalida, se for muda para a datado banco
+				$resposta = validarData($valor);
+		        if (!$resposta) {
+		            $ERRO = true;
+		            $erro_nome .= 'A data é inválida..';
+		            break;
+		        }
+		        else {
+		        	$valor = $resposta;
+		        }
+			}
+			if ($chave == 'senha') {
+				// insere \ para evitar o injection e md5
+				$valor = md5(addcslashes($valor));
+			}					
+		}		
+	}
+	if (!$ERRO) { 
+		// coloca o post no objeto
+		
+			if($chave <> 'sobrenome' && $chave <> 'confirmacaoSenha' &&  $chave <> 'acao') {
+				var_dump(ucfirst($chave));
+			eval('$usuarioVo->set').ucfirst($chave).'('.$valor.');';	
+			}
+			var_dump($usuarioVo);
+			$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
+	        if (!$sucesso) {
+	            $ERRO = true;
+	            $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
+	        }
+	}
+	echo $erro_nome;
+	exit(); 
+	
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';
@@ -106,9 +167,9 @@ if ($_POST['acao'] == 'cadastrar_usuario') {
     } else {
         echo '<script language="JavaScript">';
         echo 'alert("' . $erro_nome . '");';
-
+		echo 'location.href="../index.php";';
         echo '</script>';
-        include('cadastro_login.php');
+
     }
 }
 ?>

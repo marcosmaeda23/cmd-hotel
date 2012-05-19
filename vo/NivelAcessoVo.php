@@ -8,8 +8,14 @@ class NivelAcessoVo {
 	private $id;
 	private $nome;
 	
+	/**
+	 * atributos obrigatorios da classe
+	 */
 	public $usuarioObrigatorio = array('nome');
 	
+	/**
+	 * atributos que precisam validacoes
+	 */
 	public $usuarioFormatado = array();
 	
 	/*

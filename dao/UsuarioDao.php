@@ -9,7 +9,7 @@ class UsuarioDao extends Entidade {
     // SETANDO =========================================================
     // ================================================================= 
     /**
-     * nome da tabela e tbm de chave primaria
+     * nome da tabela 
      */
     protected $entidade = 'usuario';
 
@@ -26,39 +26,44 @@ class UsuarioDao extends Entidade {
     protected $onUpdate = array();
 
     /**
-     * se tiver a chave estrangeira setado arruma a relacao e defineo delete
+     * se tiver a chave estrangeira setado arruma a relacao e define o delete
      * @example $onUpdate = array('usuarioSistema' => 'set null');
      */
     protected $onDelete = array();
-
+	/**
+     * se tiver algum atributo como unique setado, inclui na tabela
+     * @deprecated id
+     * @example $uniqueKey = array('email', 'documento');
+     */
+    protected $uniqueKey = array('email', 'documento', 'login');
     /**
-     * seta a base de dados para fazer a atualizacao ou criacao, acrescenta o prefixo do nome da entidade
+     * seta a base de dados para fazer a atualizacao ou criacao
+     * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array('nome VARCHAR(100) NOT NULL',
-        'email VARCHAR(100) NOT NULL',
-        'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
-        'documento VARCHAR(100) NOT NULL',
-        'login VARCHAR(100) NOT NULL',
-        'senha VARCHAR(100) NOT NULL',
-        'lembrete VARCHAR(150) NOT NULL',
-        'status BOOLEAN DEFAULT 1 NOT NULL',
-        'dataCadastro DATETIME NOT NULL');
+						        'email VARCHAR(100) NOT NULL',
+						        'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
+						        'documento VARCHAR(100) NOT NULL',
+						        'login VARCHAR(100) NOT NULL',
+						        'senha VARCHAR(100) NOT NULL',
+						        'lembrete VARCHAR(150) NOT NULL');   
 
+	/**
+	 * Array contendo a ordem para salva no banco
+	 */
+	private $ordemBase	= array('usuario', 'telefone', 'cep');
     /**
-     * desformata os dados para ser inserido no banco e faz a validacao, data no formato ('dd/mm/yyy') fica ('yyyy-mm-dd')
-     * @param  data, preco, email, cpf, cnpj
-     * @example  $atributosFormatado = array('usuario_email' => 'email');
-     */
-    private $atributosFormatado = array('usuario_email' => 'email');
-
-    /**
-     * se true coloca um campo momento_cadastro com o prefixo nome da entidade
+     * se true coloca um campo dataCadastro na tabela
      */
     protected $momentoCadastro = true;
+    /**
+     *  se true coloca um campo status na tabela
+     */
+    protected $status = true;    
 
     /**
-     * deixa os dados ordenados, acrescenta um campo ordem com o prefixo nome da entidade
+     * deixa os dados ordenados, acrescenta um campo ordem na tabela
      */
     protected $ordenado = false;
 
@@ -70,7 +75,7 @@ class UsuarioDao extends Entidade {
     /**
      * se foto true , as fotos vao para esta pasta
      */
-    protected $fotoPasta = '../upload/';
+    protected $fotoPasta = '';
 
     // =================================================================
     // METODOS =========================================================
@@ -83,10 +88,10 @@ class UsuarioDao extends Entidade {
      */
     public function setarSessao($id, $nome, $nivel) {
         session_start();
-        $_SESSION['usuario_id'] = (int) $id;
-        $_SESSION['usuario_nome'] = $nome;
-        $_SESSION['usuario_nivel'] = $nivel;
-        $_SESSION['sistema'] = 'Hotel_cmd';
+        $_SESSION['ID'] = (int) $id;
+        $_SESSION['NOME'] = $nome;
+        $_SESSION['NIVEL'] = $nivel;
+        $_SESSION['SISTEMA'] = 'Hotel_cmd';
         return 0;
     }
 
@@ -98,11 +103,9 @@ class UsuarioDao extends Entidade {
     public function logar($usuarioVo) {
 
         $sql = 'SELECT id, nome, login, senha, nivelId FROM usuario ';
-        $sql .= ' WHERE login = "' . $usuarioVo->getLogin() . '" ';
-
+        $sql .= 'WHERE login = "'.$usuarioVo->getLogin().'"';
         $query = mysql_query($sql);
         $qtde = mysql_affected_rows();
-        $usuarioVo->getSenha() . ' - ' . $row->senha;
         if ($qtde > 0) {
             while ($row = mysql_fetch_object($query)) {
                 $usuarioVo->getSenha() . ' - ' . $row->senha;
@@ -132,6 +135,9 @@ class UsuarioDao extends Entidade {
      * @return bool
      */
     public function cadastrar($usuarioVo) {
+        $sucesso = entidade :: cadastrar($usuarioVo);
+    	return $sucesso;
+    	/*
         $atributos = '';
         $valores = '';
 
@@ -142,7 +148,6 @@ class UsuarioDao extends Entidade {
         $valores .= '"' . $usuarioVo->getUsuarioEmail() . '",';
         $valores .= '"' . $usuarioVo->getUsuarioLembrete() . '"';
 
-        $sucesso = entidade :: cadastrar($atributos, $valores);
         if (!$sucesso) {
             return false;
         } else {
@@ -152,6 +157,7 @@ class UsuarioDao extends Entidade {
             }
         }
         return true;
+        */
     }
 
     /**
@@ -160,7 +166,7 @@ class UsuarioDao extends Entidade {
      * @return bool
      */
     public function verificarExistenciaEmail($usuarioVo) {
-        $sql = 'SELECT usuario_email FROM usuario WHERE usuario_email = "' . $usuarioVo->getUsuarioEmail() . '"';
+        $sql = 'SELECT email FROM usuario WHERE email = "'.$usuarioVo->getEmail().'"';
         $query = mysql_query($sql);
         $qtde = mysql_affected_rows();
         if ($qtde == 1) {
@@ -171,13 +177,19 @@ class UsuarioDao extends Entidade {
     }
 
     /**
-     * metodo para veidica se o login ja existe no banco
+     * metodo para verifica se o login ja existe no banco
      * @param login
      * @return boolean 
      */
-    public function verificaLogin($usuario) {
-        $sql = 'SELECT ' . $usuario->getLogin() . ' , FROM ';
-        return true;
+    public function verificarLogin($usuarioVo) {
+        $sql = 'SELECT login FROM usuario WHERE login = "'.$usuarioVo->getLogin().' "';
+        $query = mysql_query($sql);
+        $qtde = mysql_affected_rows();
+        if ($qtde == 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
 }

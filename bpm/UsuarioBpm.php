@@ -19,14 +19,25 @@ class UsuarioBpm extends BpmGenerico{
 	}	
 		
 	/**
+	 * metodo que verifica se o email do usuario existe na basa de dados
+	 * @param $usuarioVo
+	 * @return boolean
+	 */
+	public function verificarExistenciaEmail($usuarioVo){
+		$usuarioDao = new UsuarioDao();
+		$sucesso = $usuarioDao -> verificarExistenciaEmail($usuarioVo);
+		return $sucesso;
+	}
+	/**
 	 * metodo que verifica se o nome do usuario existe na basa de dados
 	 * @param $usuarioVo
 	 * @return boolean
 	 */
-	public function verificaLogin($usuarioVo){
+	public function verificarLogin($usuarioVo){
 		$usuarioDao = new UsuarioDao();
-		$sucesso = $usuarioDao -> verificaLogin($usuarioVo);
+		$sucesso = $usuarioDao -> verificarLogin($usuarioVo);
 		return $sucesso;
+		
 	}
 }
 

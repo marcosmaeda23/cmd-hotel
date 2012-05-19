@@ -72,22 +72,47 @@
         <div class="conteudoMenu <?php echo $cor_principal; ?>">Cadastre-se </div>
         <form action="admin/inicialController.php" method="post" style="border:0; margin:0;" id="cadastroUser"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
             <div class="cadastro_titulo_container" >
-                <div class="cadastro_titulo"> Nome: <input type="text" name="nome" id="nome" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Sobrenome: <input type="text" name="sobrenome" id="sobrenome" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Seu e-mail: <input type="text" name="email" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Usuário: <input type="text" name="login" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Senha: <input type="password" name="senha" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Lembrete: <input type="text" name="lembrete" id="lembrete" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Eu Sou: <select name="sexo" id="sexo" class="cadastro_selecao_especial" >
+               <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" /><br />
+               <input type="hidden" name="status" id="status" maxlength="50" value="1" /><br />
+               
+               <!-- usuario -->
+               Nome: <input type="text" name="nome" id="nome" maxlength="50" class="required"  /><br />
+               Sobrenome: <input type="text" name="sobrenome" id="sobrenome" maxlength="50" class="required"  /><br />
+               Seu e-mail: <input type="text" name="email" id="email" maxlength="50" class="required"  /><br />
+               Usuário: <input type="text" name="login" id="login" maxlength="50" class="required"  /><br />
+               Senha: <input type="password" name="senha"id="senha" maxlength="50" class="required"  /><br />
+               confirmacao de senha: <input type="password" name="confirmacaoSenha" id="confirmacaoSenha"  maxlength="50" class="required"  /><br />
+               Lembrete: <input type="text" name="lembrete" id="lembrete" maxlength="50" /><br />
+               Eu Sou: <select name="sexo" id="sexo" class="cadastro_selecao_especial" >
                         <option value=""> Selecione o gênero: </option>
-                        <option value="feminino"> Feminino </option>
-                        <option value="masculino"> Masculino </option>
-                    </select></div>
-                <div class="cadastro_titulo"> Data de nascimento:<input type="text" name="dataNascimento" id="name="dataNascimento" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Documento tipo: <input type="text" name="DocumentoTipo" id="DocumentoTipo" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Documento numero: <input type="text" name="documento" id="documento" maxlength="50" class="required"  /></div>
-                <div class="cadastro_titulo"> Documento numero: <input type="text" name="documento" id="documento" maxlength="50" class="required"  /></div>
-
+                        <option value="f"> Feminino </option>
+                        <option value="m"> Masculino </option>
+                    </select><br />
+               Data de nascimento:<input type="text" name="dataNascimento" id="dataNascimento" maxlength="50" class="required"  /><br />
+				Documento tipo: <select name="documentoTipo" id="documentoTipo" class="cadastro_selecao_especial" >
+                        <option value=""> Selecione o tipo do documento: </option>
+                        <option value="cpf"> cpf </option>
+                        <option value="cnpj"> cnpj </option>
+                        <option value="passaporte"> passaporte </option>
+                    </select><br />
+               Documento numero: <input type="text" name="documento" id="documento" maxlength="50" class="required"  /><br />
+               
+               <!-- telefone -->
+               Telefone tipo: <select name="telefoneTipo" id="telefoneTipo" class="cadastro_selecao_especial" >
+                        <option value=""> Selecione o tipo do telefone: </option>
+                        <option value="residencial"> residencial </option>
+                        <option value="celular"> celular </option>
+                        <option value="comercial"> comercial </option>
+                    </select><br />
+               Ddi: <input type="text" name="ddi" id="ddi" maxlength="5" class="required"  /><br />
+               Ddd: <input type="text" name="ddd" id="ddd" maxlength="5" class="required"  /><br />
+               Telefone: <input type="text" name="numero" id="numero" maxlength="15" class="required"  /><br />
+               ramal: <input type="text" name="ramal" id="ramal" maxlength="5" class="required"  /><br />
+               recado: <input type="text" name="recado" id="recado" maxlength="100" /><br />
+               
+               <!-- cep -->
+               <input type="submit" value="Enviar"  /><br />
+               
             </div>
 
 
