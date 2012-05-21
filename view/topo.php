@@ -17,8 +17,8 @@ include('admin/config/iniciarDados.php');
                 <div class="cf loginInicial">
                     <form method="post" action="admin/inicialController.php" class="formDefault">
                         <input type="hidden" name="acao" id="acao" value="logar"  />
-                        Usuário <input type="text" name="usuarioLogin" id='usuarioLogin' maxlength="50" />
-                        Senha <input type="password" name="usuarioSenha" id='usuarioSenha' maxlength="20" />
+                        Usuário <input type="text" name="login" id='login' maxlength="50" />
+                        Senha <input type="password" name="senha" id='senha' maxlength="20" />
                         <input type="submit" value="  Entrar  " />
                     </form>
                 </div>

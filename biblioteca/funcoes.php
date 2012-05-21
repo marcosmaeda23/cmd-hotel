@@ -59,7 +59,7 @@ function validarData($data){
 	if (!$sucesso){	
 		return false;
 	} else {
-		$data_db = $y."-".$m."-".$d;
+		$data_db = "'".$y."-".$m."-".$d."'";
 		return $data_db;
 	}
 	
@@ -67,13 +67,14 @@ function validarData($data){
 
 /**
  * funcao para validar documento
- * @param documentoTipo(cpf, cnpj), numero
- * @return data YYYY-mm-dd ou false
+ * @param documentoTipo-'cpf','cnpj'-, documento: String
+ * @return boolean
  */
-function validarDocumento($documentoTipo, $numero){
+function validarDocumento($documentoTipo, $documento){
 	if ($documentoTipo == 'cpf') {
+		/*
 		// Verifiva se o número digitado contém todos os digitos
-		$cpf = str_pad(ereg_replace('[^0-9]', '', $cpf), 11, '0', STR_PAD_LEFT);
+		$cpf = str_pad(ereg_replace('[^0-9]', '', $documento), 11, '0', STR_PAD_LEFT);
 	
 		// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
 		if (strlen($cpf) != 11 || 
@@ -99,14 +100,14 @@ function validarDocumento($documentoTipo, $numero){
 	            }
 	        }	
 	        return true;
-		}
-	} else if ($documentoTipo == 'cnpj') {
+		}*/
 		
+		return true;
+	} else if ($documentoTipo == 'cnpj') {
+		return true;
 	} else if ($documentoTipo == 'iE') {
-	
-	}
-
-	
+		return true;
+	}	
 }
 
 /**

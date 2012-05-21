@@ -22,12 +22,11 @@ if ($_POST['acao'] == 'logar') {
         foreach ($_POST AS $chave => $valor) {
             $_POST[$chave] = addslashes($valor);
         }
-
         $usuarioVo = new UsuarioVo();
         $usuarioBpm = new UsuarioBpm();
-
-        $usuarioVo->setLogin($_POST['usuarioLogin']);
-        $usuarioVo->setSenha($_POST['usuarioSenha']);
+		// o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
+        $usuarioVo->setUsuarioLogin($_POST['Login']);
+        $usuarioVo->setUsuarioSenha($_POST['Senha']);
         $resposta = $usuarioBpm->logar($usuarioVo);
         switch ($resposta) {
             case 0 : $ERRO = false;
@@ -56,37 +55,42 @@ if ($_POST['acao'] == 'logar') {
         echo '</script>';
     }
 }
-
+// -------------------------------
 // para cadastrar
+// ------------------------------- 
 if ($_POST['acao'] == 'cadastrarUsuario') {
+	$_POST['nivelId'] = 4;
     $usuarioVo = new UsuarioVo();
     $telefoneVo = new TelefoneVo();
     $usuarioBpm = new UsuarioBpm();
-    
-	$_POST['nome'] = $_POST['nome'].' '. $_POST['sobrenome'];
-    var_dump($_POST);
-
-	// verifica se os campos do usuario estao vazios
-	for ( $i = 0; $i < count($usuarioVo->usuarioObrigatorio); $i++ ) {		
+   
+	// verifica se os campos do usuario estao vazios		
+	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
 		// faz a validacao dos campos obrigatorios, setados na classe
-		if (empty($_POST[$usuarioVo->usuarioObrigatorio[$i]])){
-			$erro_nome = 'Preencha todos os campos do formulário.';
-			$ERRO = true;
+		if ($valor == 'obrigatorio') {
+			if (empty($_POST[$chave])){
+				$erro_nome = 'Preencha todos os campos do formulário.';
+				$ERRO = true;
+			}
 		} 	
 	}
 	// verifica se os campos do telefone estao vazios
-	for ( $i = 0; $i < count($telefoneVo->telefoneObrigatorio); $i++ ) {		
+	foreach ( $usuarioVo->telefoneObrigatorio as $chave => $valor ) {		
 		// faz a validacao dos campos obrigatorios, setados na classe
-		if (empty($_POST[$telefoneVo->telefoneObrigatorio[$i]])){
-			$erro_nome = 'Preencha todos os campos do formulário.';
-			$ERRO = true;
+		if ($valor == 'obrigatorio') {
+			if (empty($_POST[$chave])){
+				$erro_nome = 'Preencha todos os campos do formulário.';
+				$ERRO = true;
+			} 	
 		} 	
 	}
+ 	// verifica se os campos do cep estao vazios
+ 	
  	
 	if (!$ERRO){		
 		foreach ($_POST as $chave => $valor) {	
 			// validacoes
-			if ($chave == 'confirmacaoSenha') {
+			if ($chave == 'usuarioConfirmacaoSenha') {
 				// verifica se a senha eh igual a verifirmacao da senha
 				$sucesso = verificarConfirmacaoSenha($_POST['senha'], $_POST['confirmacaoSenha']);
 			    if (!$sucesso) {
@@ -95,9 +99,9 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			    	break;
 			    }
 			}
-			if ($chave == 'login') {
+			if ($chave == 'usuarioLogin') {
 				// verifica se o login ja existe no banco
-				$usuarioVo->setLogin($valor);
+				$usuarioVo->setUsuarioLogin($valor);
 		        $sucesso = $usuarioBpm->verificarLogin($usuarioVo);
 			    if (!$sucesso) {
 			        $ERRO = true;
@@ -105,7 +109,16 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			    	break;
 			    }
 			}
-			if ($chave == 'email') {
+			if ($chave == 'usuarioDocumento') {
+				// verifica o documento do usuario
+		        $sucesso = validarDocumento($_POST['usuarioDocumentoTipo'], $_POST['usuarioDocumento']);
+			    if (!$sucesso) {
+			        $ERRO = true;
+			        $erro_nome .= 'O documento não é válido.';
+			    	break;
+			    }
+			}
+			if ($chave == 'usuarioEmail') {
 				// verifica se o email esta no formato valido
 				$sucesso = validarEmail($valor);
 		        if (!$sucesso) {
@@ -115,7 +128,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		        }
 		        
 		        // verificar se email ja existe no banco	        
-		        $usuarioVo->setEmail($valor);
+		        $usuarioVo->setUsuarioEmail($valor);
 		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo);
 		        if (!$sucesso) {
 		            $ERRO = true;
@@ -124,39 +137,42 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		        }
 			}
 			
-			if ($chave == 'dataNascimento') {
-				// verifica se a data eh invalida, se for muda para a datado banco
+			if ($chave == 'usuarioDataNascimento') {
+				// verifica se a data eh invalida, se for muda para a data do banco
 				$resposta = validarData($valor);
 		        if (!$resposta) {
 		            $ERRO = true;
-		            $erro_nome .= 'A data é inválida..';
+		            $erro_nome .= 'A data não é válida.';
 		            break;
 		        }
 		        else {
 		        	$valor = $resposta;
 		        }
 			}
-			if ($chave == 'senha') {
+			if ($chave == 'usuarioSenha') {
 				// insere \ para evitar o injection e md5
 				$valor = md5(addcslashes($valor));
-			}					
+			}
+			
+			// verifica qual o objeto e coloca nele
+			if (array_key_exists($chave, $usuarioVo->usuarioObrigatorio)) {
+				eval('$usuarioVo->set'.ucfirst($chave).'('.$valor.');');	
+			}
+			if (array_key_exists($chave, $telefoneVo->telefoneObrigatorio)) {
+				eval('$telefoneVo->set'.ucfirst($chave).'('.$valor.');');
+			}
 		}		
 	}
-	if (!$ERRO) { 
-		// coloca o post no objeto
-		
-			if($chave <> 'sobrenome' && $chave <> 'confirmacaoSenha' &&  $chave <> 'acao') {
-				var_dump(ucfirst($chave));
-			eval('$usuarioVo->set').ucfirst($chave).'('.$valor.');';	
-			}
-			var_dump($usuarioVo);
-			$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
-	        if (!$sucesso) {
-	            $ERRO = true;
-	            $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
-	        }
-	}
 	echo $erro_nome;
+	if (!$ERRO) { 		
+		$usuarioVo->setTelefoneVo($telefoneVo);	
+	//var_dump($usuarioVo);
+		$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
+        if (!$sucesso) {
+            $ERRO = true;
+            $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
+    	}
+	}
 	exit(); 
 	
     if (!$ERRO) {

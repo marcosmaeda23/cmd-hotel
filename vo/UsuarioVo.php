@@ -5,37 +5,40 @@
  * atributos com get e set
  */
 class UsuarioVo {
-	private $id;					
-	private $nome;
-	private $email;
-	private $documentoTipo;
-	private $documento;
-	private $dataNascimento;
-	private $sexo;
-	private $login;
-	private $senha;
-	private $lembrete;
-	private $status;
-	private $dataCadastro;
+	
+	private $usuarioId;					
+	private $nivelId;					
+	private $usuarioNome;
+	private $usuarioEmail;
+	private $usuarioDocumentoTipo;
+	private $usuarioDocumento;
+	private $usuarioDataNascimento;
+	private $usuarioSexo;
+	private $usuarioLogin;
+	private $usuarioSenha;
+	private $usuarioLembrete;
+	private $usuarioStatus;
+	private $usuarioDataCadastro;
 	
 	private $telefoneVo;		    	// array de objetos
-	private $nivelAcessoVo;				// objeto
 	private $cepVo;						// objeto
 	
 	/**
-	 * atributos obrigatorios da classe
+	 * define os atributos da classe e determina quais atributos serao obrigatorios
 	 */
-	public $usuarioObrigatorio 	= array('id' 				=> '',
-										'nome' 				=> 'obrigatorio',
-										'email' 			=> 'obrigatorio',
-										'documentoTipo' 	=> 'obrigatorio', 
-										'documento' 		=> 'obrigatorio',
-										'dataNascimento' 	=> 'obrigatorio', 
-										'sexo' 				=> 'obrigatorio',
-										'login' 			=> 'obrigatorio',
-										'senha' 			=> 'obrigatorio',
-										'lembrete' 			=> '',
-										'status' 			=> '');
+	public $usuarioObrigatorio 	= array('usuarioId' 			=> '',
+										'nivelId'	 			=> 'obrigatorio',
+										'usuarioNome' 			=> 'obrigatorio',
+										'usuarioEmail' 			=> 'obrigatorio',
+										'usuarioDocumentoTipo'	=> 'obrigatorio',
+										'usuarioDocumento' 		=> 'obrigatorio',
+										'usuarioDataNascimento' => 'obrigatorio',
+										'usuarioSexo' 			=> 'obrigatorio', 
+										'usuarioLogin' 			=> 'obrigatorio',
+										'usuarioSenha' 			=> 'obrigatorio',
+										'usuarioLembrete' 		=> '',
+										'usuarioStatus' 		=> '',
+										'usuarioDataCadastro' 	=> '');
 	
 	/**
 	 * atributos que precisam validacoes
@@ -47,77 +50,83 @@ class UsuarioVo {
 	 * get e set dos atributos da tabela 
 	 */
 	
-	public function getId(){
-		return $this->id;
+	public function getUsuarioId(){
+		return $this->usuarioId;
 	}
-	public function setId($id){
-		$this->id = $id;
+	public function setUsuarioId($usuarioId){
+		$this->usuarioId = $usuarioId;
 	}
-	public function getNome(){
-		return $this->nome;
+	public function getNivelId(){
+		return $this->nivelId;
 	}
-	public function setNome($nome){
-		$this->nome = $nome;
+	public function setNivelId($nivelId){
+		$this->nivelId = $nivelId;
 	}
-	public function getEmail(){
-		return $this->email;
+	public function getUsuarioNome(){
+		return $this->usuarioNome;
 	}
-	public function setEmail($email){
-		$this->email = $email;
+	public function setUsuarioNome($usuarioNome){
+		$this->usuarioNome = $usuarioNome;
 	}
-	public function getDocumentoTipo(){
-		return $this->documentoTipo;
+	public function getUsuarioEmail(){
+		return $this->usuarioEmail;
 	}
-	public function setDocumentoTipo($documentoTipo){
-		$this->documentoTipo = $documentoTipo;
+	public function setUsuarioEmail($usuarioEmail){
+		$this->usuarioEmail = $usuarioEmail;
 	}
-	public function getDocumento(){
-		return $this->documento;
+	public function getUsuarioDocumentoTipo(){
+		return $this->usuarioDocumentoTipo;
 	}
-	public function setDocumento($documento){
-		$this->documento = $documento;
+	public function setUsuarioDocumentoTipo($usuarioDocumentoTipo){
+		$this->usuarioDocumentoTipo = $usuarioDocumentoTipo;
 	}
-	public function getDataNascimento(){
-		return $this->dataNascimento;
+	public function getUsuarioDocumento(){
+		return $this->usuarioDocumento;
 	}
-	public function setDataNascimento($dataNascimento){
-		$this->dataNascimento = $dataNascimento;
+	public function setUsuarioDocumento($usuarioDocumento){
+		$this->usuarioDocumento = $usuarioDocumento;
 	}
-	public function getSexo(){
-		return $this->sexo;
+	public function getUsuarioDataNascimento(){
+		return $this->usuarioDataNascimento;
 	}
-	public function setSexo($sexo){
-		$this->sexo = $sexo;
+	public function setUsuarioDataNascimento($usuarioDataNascimento){
+		$this->usuarioDataNascimento = $usuarioDataNascimento;
 	}
-	public function getLogin(){
-		return $this->login;
+	public function getUsuarioSexo(){
+		return $this->usuarioSexo;
 	}
-	public function setLogin($login){
-		$this->login = $login;
+	public function setUsuarioSexo($usuarioSexo){
+		$this->usuarioSexo = $usuarioSexo;
 	}
-	public function getSenha(){
-		return $this->senha;
+	public function getUsuarioLogin(){
+		return $this->usuarioLogin;
 	}
-	public function setSenha($senha){
-		$this->senha = $senha;
+	public function setUsuarioLogin($usuarioLogin){
+		$this->usuarioLogin = $usuarioLogin;
 	}
-	public function getLembrete(){
-		return $this->lembrete;
+	public function getUsuarioSenha(){
+		return $this->usuarioSenha;
 	}
-	public function setLembrete($lembrete){
-		$this->lembrete = $lembrete;
+	public function setUsuarioSenha($usuarioSenha){
+		$this->usuarioSenha = $usuarioSenha;
 	}
-	public function getStatus(){
-		return $this->status;
+	public function getUsuarioLembrete(){
+		return $this->usuarioLembrete;
 	}
-	public function setStatus($status){
-		$this->status = $status;
+	public function setUsuarioLembrete($usuarioLembrete){
+		$this->usuarioLembrete = $usuarioLembrete;
 	}
-	public function getDataCadastro(){
-		return $this->dataCadastro;
+	public function getUsuarioStatus(){
+		return $this->usuarioStatus;
 	}
-	public function setDataCadastro($dataCadastro){
-		$this->dataCadastro = $dataCadastro;
+	public function setUsuarioStatus($usuarioStatus){
+		$this->usuarioStatus = $usuarioStatus;
+	}
+	public function getUsuarioDataCadastro(){
+		return $this->usuarioDataCadastro;
+	}
+	public function setUsuarioDataCadastro($usuarioDataCadastro){
+		$this->usuarioDataCadastro = $usuarioDataCadastro;
 	}
 	
 	/*
@@ -128,12 +137,6 @@ class UsuarioVo {
 	}
 	public function setTelefoneVo($telefoneVo){
 		$this->telefoneVo = $telefoneVo;
-	}
-	public function getNivelAcessoVo(){
-		return $this->nivelAcessoVo;
-	}
-	public function setNivelAcessoVo($nivelAcessoVo){
-		$this->nivelAcessoVo = $nivelAcessoVo;
 	}
 	public function getCepVo(){
 		return $this->cepVo;

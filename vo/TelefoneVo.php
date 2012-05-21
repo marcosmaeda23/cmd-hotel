@@ -5,18 +5,28 @@
  */
 class TelefoneVo{
 	
-	private $id;
+	private $telefoneId;
+	private $usuarioId;
+	private $hotelId;
 	private $telefoneTipo;
-	private $ddd;
-	private $ddi;
-	private $numero;
-	private $ramal;
-	private $recado;
+	private $telefoneDdd;
+	private $telefoneDdi;
+	private $telefoneNumero;
+	private $telefoneRamal;
+	private $telefoneRecado;
 	
 	/**
 	 * atributos obrigatorios da classe
 	 */
-	public $telefoneObrigatorio = array('telefoneTipo', 'ddd','numero');
+	public $telefoneObrigatorio = array('telefoneId'		=> '',
+										'usuarioId'			=> '', 
+										'hotelId'			=> '', 
+										'telefoneTipo'		=> 'obrigatorio', 
+										'telefoneDdd'		=> 'obrigatorio',
+										'telefoneDdi'		=> '',
+										'telefoneNumero'	=> 'obrigatorio',
+										'telefoneRamal'		=> '',
+										'telefoneRecado' 	=> '');
 	
 	/**
 	 * atributos que precisam validacoes
@@ -27,11 +37,23 @@ class TelefoneVo{
 	 * get e set dos atributos da tabela 
 	 */
 	
-	public function getId(){
-		return $this->id;
+	public function getTelefoneId(){
+		return $this->telefoneId;
 	}
-	public function setId($id){
-		$this->id = $id;
+	public function setTelefoneId($telefoneId){
+		$this->telefoneId = $telefoneId;
+	}
+	public function getUsuarioId(){
+		return $this->usuarioId;
+	}
+	public function setUsuarioId($usuarioId){
+		$this->usuarioId = $usuarioId;
+	}
+	public function getHotelId(){
+		return $this->hotelId;
+	}
+	public function setHotelId($hotelId){
+		$this->hotelId = $hotelId;
 	}
 	public function getTelefoneTipo(){
 		return $this->telefoneTipo;
@@ -39,35 +61,35 @@ class TelefoneVo{
 	public function setTelefoneTipo($telefoneTipo){
 		$this->telefoneTipo = $telefoneTipo;
 	}
-	public function getDdd(){
-		return $this->ddd;
+	public function getTelefoneDdd(){
+		return $this->telefoneDdd;
 	}
-	public function setDdd($ddd){
-		$this->ddd = $ddd;
+	public function setTelefoneDdd($telefoneDdd){
+		$this->telefoneDdd = $telefoneDdd;
 	}
-	public function getDdi(){
-		return $this->ddi;
+	public function getTelefoneDdi(){
+		return $this->telefoneDdi;
 	}
-	public function setDdi($ddi){
-		$this->ddi = $ddi;
+	public function setTelefoneDdi($telefoneDdi){
+		$this->telefoneDdi = $telefoneDdi;
 	}
-	public function getNumero(){
-		return $this->numero;
+	public function getTelefoneNumero(){
+		return $this->telefoneNumero;
 	}
-	public function setNumero($numero){
-		$this->numero = $numero;
+	public function setTelefoneNumero($telefoneNumero){
+		$this->telefoneNumero = $telefoneNumero;
 	}
-	public function getRamal(){
-		return $this->ramal;
+	public function getTelefoneRamal(){
+		return $this->telefoneRamal;
 	}
-	public function setRamal($ramal){
-		$this->ramal = $ramal;
+	public function setTelefoneRamal($telefoneRamal){
+		$this->telefoneRamal = $telefoneRamal;
 	}
-	public function getRecado(){
-		return $this->recado;
+	public function getTelefoneRecado(){
+		return $this->telefoneRecado;
 	}
-	public function setRecado($recado){
-		$this->recado = $recado;
+	public function setTelefoneRecado($telefoneRecado){
+		$this->telefoneRecado = $telefoneRecado;
 	}
 }
 

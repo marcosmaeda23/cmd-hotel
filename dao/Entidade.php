@@ -4,7 +4,7 @@
 
 class Entidade extends Banco{
 	/**
-	 * construtor que abre a conexao cxom o banco
+	 * construtor que abre a conexao com o banco
 	 */
 	public function __construct(){
 		$banco = new Banco();
@@ -29,49 +29,91 @@ class Entidade extends Banco{
 	 * se tiver o id junto com o objeto altera senao cadastra
 	 * @return bool
 	 */
-	public function cadastrar($objetoVo){
-		// pega os itens do array ordembase para ver qual ordem para salvar no banco
-		
-		for ( $i = 0;  $i < count($this->ordemBase); $i++ ) {
-			if ($i = 0){
-				$atributos = '';
-				$valores = '';
-				$sql = 'INSERT INTO '.$this->ordemBase[$i].'(';
-				for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
-					$_dadosBase = explode(' ', $this->dadosBase);
-					$atributos .= $_dadosBase[0];
-					if ($j + 1 <> count($this->dadosBase)){
-						$atributos .= ', ';
-					}
+	public function cadastrarAlterar($objetoVo){
+
+		// verifica se tiver o id dentro do objeto para salvar ou alterar
+		eval('$id = $objetoVo->get'.ucfirst($this->entidade).'Id();');
+		if (empty($id)) {
+			// nao tem o id dentro do objeto, insert
+			$sql = 'INSERT INTO '.$this->entidade.'( ';
+			// verifica as chaves estrangeiras
+			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
+				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
+				$sql .= $_dadosEstrangeiro[0];
+				if ($j + 1 == count($this->chaveEstrangeira)){
+					$sql .= ', ';
 				}
-				// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
-				if($this->momentoCadastro){
-					$atributos .= ', dataCadastro';
-				}	
-				$sql .= ') VALUES (';
-				for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
-					$_dadosBase = explode(' ', $this->dadosBase);
-					eval('$valores .= '.$this->ordemBase[$j].'Vo->get'.ucfirst($_dadosBase[0]).'Vo();');
-					if ($j+1 <> count($this->dadosBase)){
-						$valores .= ', ';
-					}
-				}
-				// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
-				if($this->momentoCadastro){
-					$valores .= ',"'.date('Y-m-d H:m:s').'"';
-				}
-				$sql .= ') ';
-				$query = mysql_query($sql);
-			} else { 
-				
-							
 			}			
+			for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
+				$_dadosBase = explode(' ', $this->dadosBase[$j]);
+				$sql .= $this->entidade.ucfirst($_dadosBase[0]);
+				if ($j + 1 <> count($this->dadosBase)){
+					$sql .= ', ';
+				}
+			}
+			// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
+			if($this->momentoCadastro){
+				$sql .= ', '.$this->entidade.'DataCadastro';
+			}	
+			if($this->status){
+				$sql .= ', '.ucfirst($this->entidade).'Status';
+			}	
+			$sql .= ' ) VALUES ( ';
+			//chave estrangeira
+			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
+				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
+				eval('$sql .= $objetoVo -> get'.ucfirst($_dadosEstrangeiro[0]).'();');
+				if ($j + 1 == count($this->chaveEstrangeira)){
+					$sql .= ', ';
+				}
+			}
+			for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
+				$_dadosBase = explode(' ', $this->dadosBase[$j]);
+				eval('$valor = $objetoVo -> get'.ucfirst($this->entidade).ucfirst($_dadosBase[0]).'();');
+				if (is_string($valor)){
+					$sql .= '"';
+				}
+				$sql .= $valor;
+				if (is_string($valor)){
+					$sql .= '"';
+				}
+				if ($j+1 <> count($this->dadosBase)){
+					$sql .= ', ';
+				}
+			}
+			// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
+			if($this->momentoCadastro){
+				$sql .= ',  "'.date('Y-m-d H:m:s').'"';
+			}
+			if($this->status){
+				$sql .= ', ';					
+				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
+			}
+			$sql .= ') ';
+			
+			echo $sql;
+			//var_dump($objetoVo);
+			//$query = mysql_query($sql);
+			//$_id = mysql_insert_id();
+			
+		} else {
+			// tem o id dentro do objeto, update
+			$sql = 'UPDATE '.$this->entidade. ' SET ( ';
+			
+			$sql .= ') WHERE '.$this->entidade.'Id = '.$id;
+			//var_dump($objetoVo);
+			//$query = mysql_query($sql);
+			//$_id = mysql_insert_id();
+			echo $sql;
 		}
+		
+				
+		exit();
 		
 		if(!$query){
 			return false;
 		} else {
-			return true;
+			return $_id;
 		}
 	}
 	
