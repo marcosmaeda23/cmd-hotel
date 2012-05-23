@@ -2,9 +2,9 @@
 
 
 /**
- * classe com o metodo exclusivo do telefone
+ * classe com o metodo exclusivo do cep
  */
-class TelefoneDao extends Entidade {
+class CepXedicaoDao extends Entidade {
 
     // =================================================================
     // SETANDO =========================================================
@@ -12,26 +12,27 @@ class TelefoneDao extends Entidade {
     /**
      * nome da tabela 
      */
-    protected $entidade = 'telefone';
+    protected $entidade = 'cepXedicao';
 
     /**
      * chave estrangeira
      * @example $chaveEstrangeira = array('usuarioSistema INT(11) NOT NULL')
      */
-    protected $chaveEstrangeira = array('usuario INT NULL',
-    									'hotel INT NULL');
+    protected $chaveEstrangeira = array('cepId INT NULL',
+    									'usuarioId INT NULL',
+    									'hotelId INT NULL');
 
     /**
      * se tiver a chave estrangeira setado arruma a relacao e defineo update 
      * @example $onUpdate = array('usuarioSistema' => 'cascade');
      */
-    protected $onUpdate = array('usuario' => 'cascade', 'hotel' => 'cascade');
+    protected $onUpdate = array('cepId' => 'cascade', 'usuarioId' => 'cascade', 'hotelId' => 'cascade');
 
     /**
      * se tiver a chave estrangeira setado arruma a relacao e define o delete
      * @example $onUpdate = array('usuarioSistema' => 'set null');
      */
-    protected $onDelete = array('usuario' => 'cascade', 'hotel' => 'cascade');
+    protected $onDelete = array('cepId' => 'cascade', 'usuarioId' => 'cascade', 'hotelId' => 'cascade');
 	/**
      * se tiver algum atributo como unique setado, inclui na tabela
      * @deprecated id
@@ -43,11 +44,9 @@ class TelefoneDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-    protected $dadosBase = array('ddd DECIMAL(5) NOT NULL',
-						        'ddi DECIMAL(5) NULL',
-						        'tipo ENUM(\'residencial\',\'celular\',\'comercial\') DEFAULT \'celular\' NOT NULL',
-						        'numero VARCHAR(15) NOT NULL',
-						        'ramal DECIMAL(5) NOT NULL');   
+    protected $dadosBase = array('numero VARCHAR(100) NOT NULL',
+						        'complemento VARCHAR(100) NULL',
+						        'tipo BOOLEAN NOT NULL');   
 
 	/**
 	 * Array contendo a ordem para salva no banco
@@ -56,7 +55,7 @@ class TelefoneDao extends Entidade {
     /**
      * se true coloca um campo dataCadastro na tabela
      */
-    protected $momentoCadastro = true;
+    protected $momentoCadastro = false;
     /**
      *  se true coloca um campo status na tabela
      */

@@ -5,6 +5,7 @@
 <script type="text/javascript" src="_js/slider/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-bullets-1.1.2.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-options.js"></script>
+<script type="text/javascript" src="admin/_js/index.js"></script>
 <div id="imageSlideshow">
     <div rel="slider_content" style="display: none;">
         <div rel="slide">
@@ -78,41 +79,8 @@
                <!-- usuario -->
                Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="required"  /><br />
                Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="required"  /><br />
-               Usuário: 				<input type="text" name="usuarioLogin" id="usuarioLogin" maxlength="50" class="required"  /><br />
-               Senha: 					<input type="password" name="usuarioSenha"id="usuarioSenha" maxlength="50" class="required"  /><br />
-               confirmacao de senha: 	<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha"  maxlength="50" class="required"  /><br />
-               Lembrete: 				<input type="text" name="usuarioLembrete" id="usuarioLembrete" maxlength="50" /><br />
-               Eu Sou: 					<select name="usuarioSexo" id="usuarioSexo" class="cadastro_selecao_especial" >
-                        					<option value=""> Selecione o gênero: </option>
-                       						<option value="f"> Feminino </option>
-                        					<option value="m"> Masculino </option>
-                    					</select><br />
-               Data de nascimento:		<input type="text" name="usuarioDataNascimento" id="usuarioDataNascimento" maxlength="50" class="required"  /><br />
-				Documento tipo: 		<select name="usuarioDocumentoTipo" id="usuarioDocumentoTipo" class="cadastro_selecao_especial" >
-                        					<option value=""> Selecione o tipo do documento: </option>
-                       						<option value="cpf"> cpf </option>
-                        					<option value="cnpj"> cnpj </option>
-                        					<option value="passaporte"> passaporte </option>
-                    					</select><br />
-               Documento numero: 		<input type="text" name="usuarioDocumento" id="usuarioDocumento" maxlength="50" class="required"  /><br />
-               
-               <!-- telefone -->
-               Telefone tipo: 			<select name="telefoneTipo" id="telefoneTipo" class="cadastro_selecao_especial" >
-                        					<option value=""> Selecione o tipo do telefone: </option>
-                        					<option value="residencial"> residencial </option>
-                       						<option value="celular"> celular </option>
-                        					<option value="comercial"> comercial </option>
-                   						</select><br />
-               Ddi: 					<input type="text" name="telefoneDdi" id="telefoneDdi" maxlength="5" class="required"  /><br />
-               Ddd: 					<input type="text" name="telefoneDdd" id="telefoneDdd" maxlength="5" class="required"  /><br />
-               Telefone: 				<input type="text" name="telefoneNumero" id="telefoneNumero" maxlength="15" class="required"  /><br />
-               ramal: 					<input type="text" name="telefoneRamal" id="telefoneRamal" maxlength="5" class="required"  /><br />
-               recado: 					<input type="text" name="telefoneRecado" id="telefoneRecado" maxlength="100" /><br />
-               
-               <!-- cep -->
+               		
                							
-               							
-               							<input type="submit" value="Enviar"  /><br />
                
             </div>
 

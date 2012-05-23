@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('#lembrete').hide();
 });	
+
 function  verificarCampos(_form){
 	var erro = false;
 	$('#'+_form).find('.obrigatorio').each(function(){	

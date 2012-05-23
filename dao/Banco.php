@@ -16,6 +16,7 @@ class Banco {
         if (!$link) {
             die('Erro na conexao com o servidor' . mysql_error());
         }
+
         $db_selected = mysql_select_db('hotel_v4', $link);
 
         if (!$db_selected) {

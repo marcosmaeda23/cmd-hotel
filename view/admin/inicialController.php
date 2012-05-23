@@ -22,10 +22,9 @@ if ($_POST['acao'] == 'logar') {
         $usuarioVo = new UsuarioVo();
         $usuarioBpm = new UsuarioBpm();
 
-        // o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
+		// o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
         $usuarioVo->setUsuarioLogin($_POST['login']);
         $usuarioVo->setUsuarioSenha(md5($_POST['senha']));
-        
         $resposta = $usuarioBpm->logar($usuarioVo);
         switch ($resposta) {
             case 0 : $ERRO = false;
@@ -60,8 +59,10 @@ if ($_POST['acao'] == 'logar') {
 if ($_POST['acao'] == 'cadastrarUsuario') {
 	$_POST['nivelId'] = 4;
     $usuarioVo = new UsuarioVo();
-    $telefoneVo = new TelefoneVo();
+    
+
     $usuarioBpm = new UsuarioBpm();
+   
    
 	// verifica se os campos do usuario estao vazios		
 	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
@@ -73,6 +74,8 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 		} 	
 	}
+	/*
+	*/
 	// verifica se os campos do telefone estao vazios
 	foreach ( $usuarioVo->telefoneObrigatorio as $chave => $valor ) {		
 		// faz a validacao dos campos obrigatorios, setados na classe
@@ -85,11 +88,15 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 	}
  	// verifica se os campos do cep estao vazios
  	
- 	
-	if (!$ERRO){		
+
+	if (!$ERRO){	
+		// loop para fazer as validacoes do post inteiro
 		foreach ($_POST as $chave => $valor) {	
 			// validacoes
+
 			if ($chave == 'usuarioConfirmacaoSenha') {
+
+
 				// verifica se a senha eh igual a verifirmacao da senha
 				$sucesso = verificarConfirmacaoSenha($_POST['senha'], $_POST['confirmacaoSenha']);
 			    if (!$sucesso) {
@@ -139,32 +146,50 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			if ($chave == 'usuarioDataNascimento') {
 				// verifica se a data eh invalida, se for muda para a data do banco
 				$resposta = validarData($valor);
-		        if (!$resposta) {
+		        if ($resposta == false) {
 		            $ERRO = true;
 		            $erro_nome .= 'A data não é válida.';
 		            break;
 		        }
 		        else {
-		        	$valor = $resposta;
+		        	$_POST[$chave] = $resposta;
 		        }
 			}
 			if ($chave == 'usuarioSenha') {
 				// insere \ para evitar o injection e md5
-				$valor = md5(addcslashes($valor));
-			}
-			
-			// verifica qual o objeto e coloca nele
-			if (array_key_exists($chave, $usuarioVo->usuarioObrigatorio)) {
-				eval('$usuarioVo->set'.ucfirst($chave).'('.$valor.');');	
-			}
-			if (array_key_exists($chave, $telefoneVo->telefoneObrigatorio)) {
-				eval('$telefoneVo->set'.ucfirst($chave).'('.$valor.');');
+				$_POST[$chave] = md5(addcslashes($valor));
 			}
 		}		
 	}
-	echo $erro_nome;
+	if (!$ERRO){
+		for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {
+	    	eval('$telefoneVo'.$j.' = new TelefoneVo();');
+	    }
+		// loop so para inserir os valores dentro dos objetos
+		foreach ( $_POST as $chave => $valor ) {      			
+			//var_dump($chave);
+			// verifica os atributos do ususario e insere dentro dele
+			if (array_key_exists($chave, $usuarioVo->usuarioObrigatorio)) {
+				eval('$usuarioVo->set'.ucfirst($chave).'("'.$valor.'");');	
+			}		
+			// inserindo manualmente pois não rolou colocar dinamico, telefone é array
+			for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {	
+				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneDdd('.$_POST["telefoneDdd"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneDdi('.$_POST["telefoneDdi"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneNumero('.$_POST["telefoneNumero"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneRamal('.$_POST["telefoneRamal"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
+				eval('$telefoneVo'.$j.' ->setTelefoneRecado('.$_POST["telefoneRecado"][$j].');');				
+			}
+		}
+	}
+	$telefone = array();
+	for ( $i = 0; $i < count($_POST['telefoneTipo']); $i++ ) {
+		 eval('$telefone[] = $telefoneVo'.$i.';');
+	}
 	if (!$ERRO) { 		
-		$usuarioVo->setTelefoneVo($telefoneVo);	
+		$usuarioVo->setTelefoneVo($telefone);	
 	//var_dump($usuarioVo);
 		$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
         if (!$sucesso) {

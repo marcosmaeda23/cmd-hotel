@@ -35,8 +35,69 @@ class Entidade extends Banco{
 		eval('$id = $objetoVo->get'.ucfirst($this->entidade).'Id();');
 		if (empty($id)) {
 			// nao tem o id dentro do objeto, insert
-			$sql = 'INSERT INTO '.$this->entidade.'( ';
+			$sql = 'INSERT INTO '.$this->entidade.' ( ';
 			// verifica as chaves estrangeiras
+			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
+				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
+				$sql .= $_dadosEstrangeiro[0];
+				if ($j + 1 == count($this->chaveEstrangeira)){
+					$sql .= ', ';
+				}
+			}			
+			for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
+				$_dadosBase = explode(' ', $this->dadosBase[$j]);
+				$sql .= $this->entidade.ucfirst($_dadosBase[0]);
+				if ($j + 1 <> count($this->dadosBase)){
+					$sql .= ', ';
+				}
+			}
+			// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
+			if($this->momentoCadastro){
+				$sql .= ', '.$this->entidade.'DataCadastro';
+			}	
+			if($this->status){
+				$sql .= ', '.$this->entidade.'Status';
+			}	
+			$sql .= ' ) VALUES ( ';
+			//chave estrangeira
+			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
+				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
+				eval('$sql .= $objetoVo -> get'.ucfirst($_dadosEstrangeiro[0]).'();');
+				if ($j + 1 == count($this->chaveEstrangeira)){
+					$sql .= ', ';
+				}
+			}
+			for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
+				$_dadosBase = explode(' ', $this->dadosBase[$j]);
+				eval('$valor = $objetoVo -> get'.ucfirst($this->entidade).ucfirst($_dadosBase[0]).'();');
+				if (is_string($valor)){
+					$sql .= "'";
+				}
+				$sql .= $valor;
+				if (is_string($valor)){
+					$sql .= "'";
+				}
+				if ($j+1 <> count($this->dadosBase)){
+					$sql .= ', ';
+				}
+			}
+			// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
+			if($this->momentoCadastro){
+				$sql .= ", '".date('Y-m-d H:m:s')."'";
+			}
+			if($this->status){
+				$sql .= ', ';					
+				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
+			}
+			$sql .= ' ) ';
+			$query = mysql_query($sql);
+			$_id = mysql_insert_id();
+			var_dump($query);
+			exit();
+			
+		} else {
+			// tem o id dentro do objeto, update
+			$sql = 'UPDATE '.$this->entidade. ' SET ( ';
 			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
 				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
 				$sql .= $_dadosEstrangeiro[0];
@@ -58,58 +119,13 @@ class Entidade extends Banco{
 			if($this->status){
 				$sql .= ', '.ucfirst($this->entidade).'Status';
 			}	
-			$sql .= ' ) VALUES ( ';
-			//chave estrangeira
-			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
-				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
-				eval('$sql .= $objetoVo -> get'.ucfirst($_dadosEstrangeiro[0]).'();');
-				if ($j + 1 == count($this->chaveEstrangeira)){
-					$sql .= ', ';
-				}
-			}
-			for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
-				$_dadosBase = explode(' ', $this->dadosBase[$j]);
-				eval('$valor = $objetoVo -> get'.ucfirst($this->entidade).ucfirst($_dadosBase[0]).'();');
-				if (is_string($valor)){
-					$sql .= '"';
-				}
-				$sql .= $valor;
-				if (is_string($valor)){
-					$sql .= '"';
-				}
-				if ($j+1 <> count($this->dadosBase)){
-					$sql .= ', ';
-				}
-			}
-			// se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
-			if($this->momentoCadastro){
-				$sql .= ',  "'.date('Y-m-d H:m:s').'"';
-			}
-			if($this->status){
-				$sql .= ', ';					
-				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
-			}
-			$sql .= ') ';
-			
-			echo $sql;
-			//var_dump($objetoVo);
-			//$query = mysql_query($sql);
-			//$_id = mysql_insert_id();
-			
-		} else {
-			// tem o id dentro do objeto, update
-			$sql = 'UPDATE '.$this->entidade. ' SET ( ';
-			
 			$sql .= ') WHERE '.$this->entidade.'Id = '.$id;
 			//var_dump($objetoVo);
 			//$query = mysql_query($sql);
 			//$_id = mysql_insert_id();
-			echo $sql;
-		}
-		
-				
-		exit();
-		
+		}		
+			
+			
 		if(!$query){
 			return false;
 		} else {
@@ -117,13 +133,6 @@ class Entidade extends Banco{
 		}
 	}
 	
-	/**
-	 * metodo que verifica os campos obrigatorios
-	 * @return array do campos obrigatorios
-	 */
-	public function camposObrigatorios(){		
-		return $this->atributosObrigatorios;		
-	}
 	/**
 	 * metodo para excluir 
 	 * @param id da entidade
@@ -141,7 +150,31 @@ class Entidade extends Banco{
 	public function selecionar(){
 		
 	}
+		
+	/**
+	 * metodo para veificar se o numenro do documento ja esta na basa de dados
+	 * @param objeto e o tipo do documento
+	 * @return boolean
+	 */
+	public function verificarExistenciaDocumento($objeto, $documentoTipo){
+		
+	}
 	
+    /**
+     * metodo que verifica a existencia do email na base de dados
+     * @param usuario_email
+     * @return boolean
+     */
+    public function verificarExistenciaEmail($objetoVo) {
+        $sql = 'SELECT '.$this->entidade.'Email FROM '.$this->entidade.' WHERE '.$this->entidade.'Email = "'.$objetoVo->getUsuarioEmail().'"';
+        $query = mysql_query($sql);
+        $qtde = mysql_affected_rows();
+        if ($qtde == 1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 }
 
 

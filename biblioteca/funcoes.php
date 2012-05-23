@@ -59,7 +59,7 @@ function validarData($data){
 	if (!$sucesso){	
 		return false;
 	} else {
-		$data_db = "'".$y."-".$m."-".$d."'";
+		$data_db = $y."-".$m."-".$d;
 		return $data_db;
 	}
 	

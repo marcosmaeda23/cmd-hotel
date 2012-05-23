@@ -69,7 +69,7 @@ class UsuarioDao extends Entidade {
 	/**
 	 * Array contendo a ordem para salvar no banco
 	 */
-	protected $ordemBase	= array('telefone', 'cep');
+	protected $ordemBase	= array('telefone', 'cepXedicao');
     /**
      * se true coloca um campo dataCadastro na tabela
      */
@@ -152,45 +152,35 @@ class UsuarioDao extends Entidade {
      */    
     public function cadastrarAlterar($usuarioVo) {
     	//var_dump($usuarioVo);
+    	/*
         $id = entidade :: cadastrarAlterar($usuarioVo);        
         if ($id === false){
         	return false;
         } else {
         	// verifica se tem setado a $ordemBase e cadastra o restante das tabelas
-		
-        	for ( $i = 0; $i < count($this->ordemBase); $i++ ) {
-				$_entidade = $this->ordemBase[$i];
-				if ($_entidade == 'telefone') {
-					eval('$_objeto = $usuarioVo -> get'.ucfirst($_entidade).'Vo();');
-					$_objeto->setUsuarioId($id);
-					var_dump($_objeto);
-					$sucesso = entidade :: cadastrarAlterar($_objeto); 
-					if ($sucesso === false){
-			        	return false;
-			        }
-				}
-				if ($_entidade == 'cep') {
-					
-				} 
-			}        	 
-        }       
-    }
+		exit();
+		*/
+    	for ( $i = 0; $i < count($this->ordemBase); $i++ ) {
+			$_entidade = $this->ordemBase[$i];
+			if ($_entidade == 'telefone') {
+				eval('$_objeto = $usuarioVo -> get'.ucfirst($_entidade).'Vo();');
+				$_objeto->setUsuarioId(2);
+				var_dump($_objeto);
+				$sucesso = entidade :: cadastrarAlterar($_objeto); 
+				if ($sucesso === false){
+		        	return false;
+		        }
+			}
+			if ($_entidade == 'cepXedicao') {
+				
+			} 
 
-    /**
-     * metodo que verifica a existencia do email na base de dados
-     * @param usuario_email
-     * @return bool
-     */
-    public function verificarExistenciaEmail($usuarioVo) {
-        $sql = 'SELECT usuarioEmail FROM usuario WHERE usuarioEmail = "'.$usuarioVo->getUsuarioEmail().'"';
-        $query = mysql_query($sql);
-        $qtde = mysql_affected_rows();
-        if ($qtde == 1) {
-            return false;
-        } else {
-            return true;
-        }
-    }
+		}        	 
+    }       
+       	 
+      
+
+    
 
     /**
      * metodo para verifica se o login ja existe no banco
