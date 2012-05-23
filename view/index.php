@@ -6,6 +6,7 @@
 <script type="text/javascript" src="_js/slider/sliderwall-bullets-1.1.2.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-options.js"></script>
 <script type="text/javascript" src="admin/_js/index.js"></script>
+<script type="text/javascript" src="_js/funcoes.js"></script>
 <div id="imageSlideshow">
     <div rel="slider_content" style="display: none;">
         <div rel="slide">
@@ -71,21 +72,17 @@
     </div>
     <div class="cadastro" style="padding-left:30px">
         <div class="conteudoMenu <?php echo $cor_principal; ?>">Cadastre-se </div>
-        <form action="admin/inicialController.php" method="post" style="border:0; margin:0;" id="cadastroUser"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
-            <div class="cadastro_titulo_container" >
-               <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" /><br />
-               <input type="hidden" name="usuarioStatus" id="usuarioStatus" value="1" /><br />
+        <form action="admin/usuario/index.php" method="post" id="cadastroUser"  class="formDefault"  onSubmit="return verificarCampos('cadastroUser');" >
+            <div class="cadastro_titulo_container" >           
                
                <!-- usuario -->
-               Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="required"  /><br />
-               Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="required"  /><br />
-               		
-               							
+               Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="obrigatorio"  /><br />
+               Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="obrigatorio"  /><br />
+               Pais:     				<input type="text" name="paisOrigem" id="paisOrigem" class="required"  /><br />
                
             </div>
 
-
-            <div class="cadastro_selecao"><input type="submit" name="cmdSalvar" value=" Cadastrar "  onClick="return cadastrar()" ></div>
+            <div class="cadastro_selecao"><input type="submit" name="cmdSalvar"></div>
         </form>
     </div>
     <?php require_once("rodape.php"); ?>
