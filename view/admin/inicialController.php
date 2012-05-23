@@ -1,9 +1,6 @@
 <?php
 
-require_once '../../dao/Banco.php';
-require_once '../../dao/Entidade.php';
 require_once '../../dao/UsuarioDao.php';
-require_once '../../bpm/BpmGenerico.php';
 require_once '../../bpm/UsuarioBpm.php';
 require_once '../../vo/UsuarioVo.php';
 require_once '../../vo/TelefoneVo.php';
@@ -24,9 +21,11 @@ if ($_POST['acao'] == 'logar') {
         }
         $usuarioVo = new UsuarioVo();
         $usuarioBpm = new UsuarioBpm();
-		// o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
-        $usuarioVo->setUsuarioLogin($_POST['Login']);
-        $usuarioVo->setUsuarioSenha($_POST['Senha']);
+
+        // o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
+        $usuarioVo->setUsuarioLogin($_POST['login']);
+        $usuarioVo->setUsuarioSenha(md5($_POST['senha']));
+        
         $resposta = $usuarioBpm->logar($usuarioVo);
         switch ($resposta) {
             case 0 : $ERRO = false;

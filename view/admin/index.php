@@ -22,9 +22,11 @@ if (!empty($_SESSION['usuario_nome'])) {
                 <form name='logar' id='logar' action='inicialController.php' onsubmit='return verificarCampos("logar")' method='post'>
                     <input type='hidden' name='acao' id='acao' value='logar' />
                     <label for='usuario_login' class='label'>Login</label><br />
-                    <input type='text' name='usuario_login' id='usuario_login' value='' class='input obrigatorio'><br />
+                    <input type='text' name='login' id='usuario_login' value='' 
+                           class='input obrigatorio'><br />
                     <label for='usuario_senha' class='label'>Senha</label><br />
-                    <input type='password' name='usuario_senha' id='usuario_senha' value='' class='input obrigatorio'><br /><br />
+                    <input type='password' name='senha' id='usuario_senha' value='' 
+                           class='input obrigatorio'><br /><br />
                     <a href='JavaScript:;' onclick='mostrarLembrete();'>Esqueci meu login e senha</a><br />
                     <a href='cadastro_login.php'>Não sou cadastrado</a>
                     <br />
