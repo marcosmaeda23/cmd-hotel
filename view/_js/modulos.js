@@ -8,13 +8,55 @@ dependencia jquery.maskedinput
  * pesquisa o cep na base de dados
  * mostra o resultado no campo 'resposta' caso nao ache 
  */
-function cepPesquisar(){
+function cepPesquisar(urlPesquisa){
 	var cep;
-	
 	// pega o cep digitado
-		cep = $('#cepPesquisa').val();
-		alert(cep);
-	// faz a busca ajax
+	cep = $('#cepPesquisa').val();
+	alert(cep);
+	$.ajax({
+		//definimos a url
+		url : urlPesquisa + '.php',
+		//definimos o tipo de requisicao, post ou get
+		type: 'post',
+		//definimos o tipo de retorno, xml, html, json, sjonp, script e text
+		dataType : 'json',
+		//colocamos os valores a serem enviados
+		data: "acao=pesquisarCep&cep="+cep,
+		//beforeSend : function(){},
+		//ao completar a requisicao tira o sinal de carregando
+		//complete : function(){},
+		//aqui colocamos o callback na div #retorno
+		
+		//veja se teve erros
+		error: function(jqXHR, exception) {
+            if (jqXHR.status === 0) {
+                alert('Not connect.\n Verify Network.');
+            } else if (jqXHR.status == 404) {
+                alert('Requested page not found. [404]');
+            } else if (jqXHR.status == 500) {
+                alert('Internal Server Error [500].');
+            } else if (exception === 'parsererror') {
+                alert('Requested JSON parse failed.');
+            } else if (exception === 'timeout') {
+                alert('Time out error.');
+            } else if (exception === 'abort') {
+                alert('Ajax request aborted.');
+            } else {
+                alert('Uncaught Error.\n' + jqXHR.responseText);
+            }
+        },		 
+		//colocamos o retorno na tela
+		success : function(resposta){
+			if(resposta == 'sucesso'){
+				alert('Foto excluida com sucesso.');
+				location.href="index.php";
+			} else {
+				alert('Ocorreu um erro ao excluir foto');
+			}
+		    	
+		    	
+		}
+	 });
 	// caso ache mostra a formulario 'cepVisulizacao' com os campos preenchidos e o formulario 'cepComplemento' setado o focus
 	// e coloca o cep da pesquisa no campo hidden 'cepId' e coloca o valor no campo 'cepXedicaoTipo' 1 - nao cadastrar novo cep	
 	
@@ -24,42 +66,51 @@ function cepPesquisar(){
 	
 }
 /**
- * mostra o formulario de busca e cadastro do cep
+ * mostra o formulario de busca 
+ * chama a funcao cepPesquisar
  */
-function mostrarCep(){
+function mostrarCep(urlPesquisa){
 	var _cep = '';
 	_cep += '<label for="cepPesquisa">Cep</label><br>';
-	_cep += '<input type="text" name="cepPesquisa" id="cepPesquisa" class="cep" onblur="cepPesquisar();" /><br />';
-	_cep += '<input type="hidden" name="cepCadastroPais" id="cepCadastroPais" /><br />';
-	_cep += '<input type="hidden" name="cepXedicaoTipo" id="cepXedicaoTipo" value=""  /><br />';
+	_cep += '<input type="text" 	name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar(\'usuarioController\');" /><br />';
+	_cep += '<input type="hidden" 	name="cepCadastroPais" 	id="cepCadastroPais" 	value="" />	<br />';
+	_cep += '<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		<br />';
 	_cep += '<div id="resposta"></div>';	
 	$('#cep').append(_cep);
 }
+/**
+ * mostra o formulario preenchido quando se faz a busca do cep e acha o endereco
+ */
 function mostrarCepPreenchido(){
 	var _cep = '';					 	
-	_cep += '<input type="hidden" name="cepId" id="cepId" maxlength="50" /><br />';
-	_cep += 'Logradouro: <input type="text" name="logradouro" id="logradouro" /><br />';
-	_cep += 'Bairro: <input type="text" name="bairro" id="cepbairro" /><br />';
-	_cep += 'Cidade: <input type="text" name="cidade" id="cidade" /><br />';
-	_cep += 'Estado: <input type="text" name="estado" id="estado" /><br />';
-	_cep += 'Pais: <input type="text" name="pais" id="pais" /><br />';
+	_cep += '				<input type="hidden" 	name="cepId" 		id="cepId" 		value="" />	<br />';
+	_cep += 'Logradouro: 	<input type="text" 		name="logradouro" 	id="logradouro" value="" />	<br />';
+	_cep += 'Bairro: 		<input type="text" 		name="bairro" 		id="cepbairro" 	value="" />	<br />';
+	_cep += 'Cidade: 		<input type="text" 		name="cidade" 		id="cidade" 	value="" />	<br />';
+	_cep += 'Estado: 		<input type="text" 		name="estado" 		id="estado" 	value="" />	<br />';
+	_cep += 'Pais: 			<input type="text" 		name="pais" 		id="pais" 		value="" />	<br />';
 	$('#cep').append(_cep);
 }
+/**
+ * mostra a parte do cadastro do cep, para salvar no banco
+ */
 function mostrarCepCadastro(){
 	var _cep = '';
-	_cep += '<input type="hidden" name="cepCadastroCep" id="cepCadastroCep" value="" /><br />';
-	_cep += 'Logradouro: <input type="text" name="cepCadastroLogradouro" id="cepCadastroLogradouro" maxlength="50" class="required"  /><br />';
-	_cep += 'Bairro: <input type="text" name="cepCadastroBairro" id="cepCadastroBairro" maxlength="50" class="required"  /><br />';
-	_cep += 'Cidade: <input type="text" name="cepCadastroCidade" id="cepCadastroCidade" maxlength="50" class="required"  /><br />';
-	_cep += 'Estado: <input type="text" name="cepCadastroEstado" id="cepCadastroEstado" maxlength="50" class="required"  /><br />';
-	_cep += '</div>';
+	_cep += '				<input type="hidden" 	name="cepCadastroCep" 			id="cepCadastroCep" 				value="" />	<br />';
+	_cep += 'Logradouro: 	<input type="text" 		name="cepCadastroLogradouro"	id="cepCadastroLogradouro" 	class="obrigatorio" /><br />';
+	_cep += 'Bairro: 		<input type="text" 		name="cepCadastroBairro" 		id="cepCadastroBairro" 		class="obrigatorio" /><br />';
+	_cep += 'Cidade: 		<input type="text" 		name="cepCadastroCidade" 		id="cepCadastroCidade" 		class="obrigatorio" /><br />';
+	_cep += 'Estado: 		<input type="text" 		name="cepCadastroEstado" 		id="cepCadastroEstado" 		class="obrigatorio" /><br />';
+
 	$('#cep').append(_cep);
 }
+/**
+ * mostra a parte do complemento do cep
+ */
 function mostrarCepComplemento(){
 	var _cep = '';
-	_cep += '<div id="cepComplemento" style="display:none;">';
-	_cep += 'Número: <input type="text" name="cepXedicaoNumero" id="cepXedicaoNumero" maxlength="50" class="required"  /><br />';
-	_cep += 'Complemento: <input type="text" name="cepXedicaoComplemento" id="cepXedicaoComplemento" maxlength="50" class="required"  /><br />';
+	_cep += 'Número: 		<input type="text" name="cepXedicaoNumero" 		id="cepXedicaoNumero" 		maxlength="50" class="obrigatorio" /><br />';
+	_cep += 'Complemento: 	<input type="text" name="cepXedicaoComplemento" id="cepXedicaoComplemento" 	maxlength="50" class="obrigatorio" /><br />';
 	$('#cep').append(_cep);
 }
 /**
@@ -67,17 +118,18 @@ function mostrarCepComplemento(){
  */
 function mostrarTelefone(){
 	var _telefone = '';
-	_telefone += 'Telefone tipo: <br /><select name="telefoneTipo[]" id="telefoneTipo" class="cadastro_selecao_especial" >';
-	_telefone += '<option value=""> Selecione o tipo do telefone: </option>';
-	_telefone += '<option value="residencial"> residencial </option>';
-	_telefone += '<option value="celular"> celular </option>';
-	_telefone += '<option value="comercial"> comercial </option>';
+	_telefone += 'Telefone tipo: <br />';
+	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo" class="obrigatorio" >';
+	_telefone += '	<option value=""> Selecione o tipo do telefone </option>';
+	_telefone += '	<option value="residencial"> 	Residencial </option>';
+	_telefone += '	<option value="celular"> 		Celular 	</option>';
+	_telefone += '	<option value="comercial"> 		Comercial 	</option>';
 	_telefone += '</select><br />';
-	_telefone += 'Ddi:<input type="text" name="telefoneDdi[]" id="telefoneDdi" maxlength="5" class="required"  /><br />';
-	_telefone += 'Ddd:<input type="text" name="telefoneDdd[]" id="telefoneDdd" maxlength="5" class="required"  /><br />';
-	_telefone += 'Telefone:<input type="text" name="telefoneNumero[]" id="telefoneNumero" maxlength="15" class="required"  /><br />';
-	_telefone += 'ramal:<input type="text" name="telefoneRamal[]" id="telefoneRamal" maxlength="5" class="required"  /><br />';
-	_telefone += 'recado:<input type="text" name="telefoneRecado[]" id="telefoneRecado" maxlength="100" /><br />';	
+	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero" maxlength="15" 	class="obrigatorio" /><br />';
+	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado" maxlength="100" />					  <br />';	
 	_telefone += '<a href="" onclick="mostrarTelefone()">+ telefone</a><br />';	
 	$('#telefone').append(_telefone);
 

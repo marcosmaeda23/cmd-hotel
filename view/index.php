@@ -5,7 +5,7 @@
 <script type="text/javascript" src="_js/slider/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-bullets-1.1.2.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-options.js"></script>
-<script type="text/javascript" src="admin/_js/index.js"></script>
+<script type="text/javascript" src="_js/index.js"></script>
 <script type="text/javascript" src="_js/funcoes.js"></script>
 <div id="imageSlideshow">
     <div rel="slider_content" style="display: none;">
@@ -52,7 +52,7 @@
 <div class="cf middleConteudo">
     <div class="cadastro" style="padding-right:30px">
         <div class="conteudoMenu <?php echo $cor_principal; ?>">Realize Sua Reserva</div>
-        <form action="frmUsuarioinserir.php" method="post" style="border:0; margin:0;" id="cadastroUser"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
+        <form action="frmUsuarioinserir.php" method="post" style="border:0; margin:0;" id="cadastro"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
 
             <!-- Datepicker -->
             <h2 class="demoHeaders">Data:</h2>
@@ -72,17 +72,17 @@
     </div>
     <div class="cadastro" style="padding-left:30px">
         <div class="conteudoMenu <?php echo $cor_principal; ?>">Cadastre-se </div>
-        <form action="admin/usuario/index.php" method="post" id="cadastroUser"  class="formDefault"  onSubmit="return verificarCampos('cadastroUser');" >
+        <form action="admin/usuario/index.php" method="post" id="cadastroUser" name="cadastroUser"  class="formDefault"  onsubmit='return verificarCampos("cadastroUser");' >
             <div class="cadastro_titulo_container" >           
                
                <!-- usuario -->
-               Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="obrigatorio"  /><br />
-               Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="obrigatorio"  /><br />
-               Pais:     				<input type="text" name="paisOrigem" id="paisOrigem" class="required"  /><br />
+               Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="obrigatorio" /><br />
+               Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="obrigatorio" /><br />
+               Pais:     				<input type="text" name="paisOrigem" id="paisOrigem" class="obrigatorio" /><br />
                
             </div>
 
-            <div class="cadastro_selecao"><input type="submit" name="cmdSalvar"></div>
+            <div class="cadastro_selecao"><input type="submit" value="cadastrar novo usuario" name="cmdSalvar"></div>
         </form>
     </div>
     <?php require_once("rodape.php"); ?>

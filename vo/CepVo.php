@@ -1,131 +1,115 @@
 <?php
 
 /**
- * classe do cep
+ * classe do cep 
  */
 class CepVo {
 	/*
-	 * atributos da tabela cepXedicao, cepCadastro
+	 * atributos da tabela cep
 	 */
-	private $cepXedicaoId;
-	private $cepId;
-	private $cepCadastroId;
-	private $hotelId;
-	private $usuarioId;
-	private $cepXedicaoNumero;
-	private $cepXedicaoComplemento;
-	private $cepXedicaoTipo;
+	private $cepId;	
+	private $cepNumero;
+	private $logradouroId;
+	private $logradouroNome;
+	private $logradouroBairro;
+	private $cidadeId;
+	private $cidadeNome;
+	private $estadoId;
+	private $estadoNome;
+	private $estadoUf;
+	private $paisId;
+	private $paisNome;
 	
-	private $cepCadastroCep;
-	private $cepCadastroLogradouro;
-	private $cepCadastroBairro;
-	private $cepCadastroCidade;
-	private $cepCadastroEstado;
-	private $cepCadastroPais;
-	
-	public $cepObrigatorio = array( 'cepXedicaoId'			=> '',
-									'cepId'					=> '',
-									'cepCadastroId'			=> '',
-									'hotelId'				=> '',
-									'usuarioId'				=> '',
-									'cepXedicaoNumero'		=> 'obrigaorio',
-									'cepXedicaoComplemento'	=> 'obrigaorio',
-									'cepXedicaoTipo'		=> 'obrigaorio',
-									
-									'cepCadastroCep'		=> '',
-									'cepCadastroLogradouro'	=> '',
-									'cepCadastroBairro'		=> '',
-									'cepCadastroCidade'		=> '',
-									'cepCadastroEstado'		=> '',
-									'cepCadastroPais'		=> '');
+	public $cepObrigatorio = array( 'cepId'				=> '',
+									'cepNumero'			=> '',
+									'logradouroId'		=> '',
+									'logradouroNome'	=> '',
+									'logradouroBairro'	=> '',
+									'cidadeId'			=> '',
+									'cidadeNome'		=> '',
+									'estadoId'			=> '',
+									'estadoNome'		=> '',
+									'estadoUf'			=> '',
+									'paisId'			=> '',
+									'paisNome'			=> '');
 									
 	/*
 	 * get e set da classe cepXedicao, cepCadastro
 	 */								
-	public function getCepXedicaoId(){
-		return $this -> cepXedicaoId;
-	}								
-	public function setCepXedicaoId($cepXedicaoId){
-		$this -> cepXedicaoId = $cepXedicaoId;
-	}								
-	public function getCepId(){
+	public function getcepId(){
 		return $this -> cepId;
 	}								
-	public function setCepId($cepId){
+	public function setcepId($cepId){
 		$this -> cepId = $cepId;
-	}								
-	public function getCepCadastroId(){
-		return $this -> cepCadastroId;
-	}								
-	public function setCepCadastroId($cepCadastroId){
-		$this -> cepCadastroId = $cepCadastroId;
 	}						
-	public function getHotelId(){
-		return $this->hotelId;
+	public function getCepNumero(){
+		return $this -> cepNumero;
+	}								
+	public function setCepNumero($cepNumero){
+		$this -> cepNumero = $cepNumero;
 	}
-	public function setHotelId($hotelId){
-		$this->hotelId = $hotelId;
+	public function getLogradouroId(){
+		return $this->logradouroId;
 	}
-	public function getUsuarioId(){
-		return $this->usuarioId;
+	public function setLogradouroId($logradouroId){
+		$this->logradouroId = $logradouroId;
 	}
-	public function setUsuarioId($usuarioId){
-		$this->usuarioId = $usuarioId;
+	public function getLogradouroNome(){
+		return $this->logradouroNome;
 	}
-	public function getCepXEdicaoNumero(){
-		return $this->cepXedicaoNumero;
+	public function setLogradouroNome($logradouroNome){
+		$this->logradouroNome = $logradouroNome;
 	}
-	public function setCepXdicaoNumero($cepXedicaoNumero){
-		$this->cepXedicaoNumero = $cepXedicaoNumero;
+	public function getLogradouroBairro(){
+		return $this->logradouroBairro;
 	}
-	public function getCepXedicaoComplemento(){
-		return $this->cepXedicaoComplemento;
+	public function setLogradouroBairro($logradouroBairro){
+		$this->logradouroBairro = $logradouroBairro;
 	}
-	public function setCepXedicaoComplemento($cepXedicaoComplemento){
-		$this->cepXedicaoComplemento = $cepXedicaoComplemento;
-	}	
-	public function getCepXedicaoTipo(){
-		return $this->cepXedicaoTipo;
+	public function getCidadeId(){
+		return $this->cidadeId;
 	}
-	public function setCepXedicaoTipo($cepXedicaoTipo){
-		$this->cepXedicaoTipo = $cepXedicaoTipo;
+	public function setCidadeId($cidadeId){
+		$this->cidadeId = $cidadeId;
 	}
-	// tabela cepCadastro
-	public function getCepCadastroCep(){
-		return $this->cepCadastroCep;
+	public function getCidadeNome(){
+		return $this->cidadeNome;
 	}
-	public function setCepCadastroCep($cepCadastroCep){
-		$this->cepCadastroCep = $cepCadastroCep;
+	public function setCidadeNome($cidadeNome){
+		$this->cidadeNome = $cidadeNome;
 	}
-	public function getCepCadastroLogradouro(){
-		return $this->cepCadastroLogradouro;
+	public function getEstadoId(){
+		return $this->estadoId;
 	}
-	public function setCepCadastroLogradouro($cepCadastroLogradouro){
-		$this->cepCadastroLogradouro = $cepCadastroLogradouro;
+	public function setEstadoId($estadoId){
+		$this->estadoId = $estadoId;
 	}
-	public function getCepCadastroBairro(){
-		return $this->cepCadastroBairro;
+	public function getEstadoNome(){
+		return $this->estadoNome;
 	}
-	public function setCepCadastroBairro($cepCadastroBairro){
-		$this->cepCadastroBairro = $cepCadastroBairro;
+	public function setEstadoNome($estadoNome){
+		$this->estadoNome = $estadoNome;
 	}
-	public function getCepCadastroCidade(){
-		return $this->cepCadastroCidade;
+	public function getEstadoUf(){
+		return $this->estadoUf;
 	}
-	public function setCepCadastroCidade($cepCadastroCidade){
-		$this->cepCadastroCidade = $cepCadastroCidade;
+	public function setEstadoUf($estadoUf){
+		$this->estadoUf = $estadoUf;
 	}
-	public function getCepCadastroEstado(){
-		return $this->cepCadastroEstado;
+	public function getPaisId(){
+		return $this->paisId;
 	}
-	public function setCepCadastroEstado($cepCadastroEstado){
-		$this->cepCadastroEstado = $cepCadastroEstado;
+	public function setPaisId($paisId){
+		$this->paisId = $paisId;
 	}
-	public function getCepCadastroPais(){
-		return $this->cepCadastroPais;
+	public function getPaisNome(){
+		return $this->paisNome;
 	}
-	public function setCepCadastroPais($cepCadastroPais){
-		$this->cepCadastroPais = $cepCadastroPais;
+	public function setPaisNome($paisNome){
+		$this->paisNome = $paisNome;
 	}
+	
+	
 }
+
 ?>

@@ -1,4 +1,20 @@
 <?php
+require_once '../../../dao/Banco.php';
+require_once '../../../dao/Entidade.php';
+require_once '../../../dao/UsuarioDao.php';
+require_once '../../../dao/TelefoneDao.php';
+require_once '../../../dao/CepDao.php';
+
+require_once '../../../bpm/BpmGenerico.php';
+require_once '../../../bpm/UsuarioBpm.php';
+require_once '../../../bpm/CepBpm.php';
+
+require_once '../../../vo/UsuarioVo.php';
+require_once '../../../vo/CepXedicaoVo.php';
+require_once '../../../vo/CepCadastroVo.php';
+require_once '../../../vo/TelefoneVo.php';
+
+require_once '../../../biblioteca/funcoes.php';
 
 // -------------------------------
 // para cadastrar
@@ -6,8 +22,6 @@
 if ($_POST['acao'] == 'cadastrarUsuario') {
 	$_POST['nivelId'] = 4;
     $usuarioVo = new UsuarioVo();
-    
-
     $usuarioBpm = new UsuarioBpm();
    
    
@@ -158,6 +172,23 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
         echo '</script>';
 
     }
+}
+
+// -------------------------------
+// para cadastrar
+// ------------------------------- 
+if ($_POST['acao'] == 'pesquisarCep'){
+	$cepBpm = new CepBpm();
+	// retirar a mascara do cep
+	$arrayParametros = array(	'entidade' => 'cep',
+								'cep' 		=> $_POST['cep']);
+	$resposta = $cepBpm -> pesquisar($arrayParametros, 'cepXedicaoDao');
+	if ($resposta === false) {
+		echo 'fracasso';
+	} else {
+		echo 'sucesso';
+	}
+ 	
 }
 
 ?>

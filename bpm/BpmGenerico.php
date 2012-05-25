@@ -48,7 +48,8 @@ class BpmGenerico {
 	/**
 	 * metodo pesquisar generico
 	 * @param Objeto, entidade
-	 * @return array de objetos
+  	 * @example 1 indice 'entidade' => 'cep'
+	 * @return array de parametros
 	 */
 	public function pesquisar($arrayParametros, $entidade){
 		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
