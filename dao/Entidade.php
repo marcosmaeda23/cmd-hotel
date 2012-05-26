@@ -143,6 +143,16 @@ class Entidade extends Banco{
 	} 
 		
 	/**
+	 * metodo para pesquisar
+	 * @param array da pesquisa
+	 * @example 1 array ('entidade' => 'cep')
+	 * @return array da pesquisa
+	 */
+	public function pesquisar($arrayParametros){
+		
+	}
+	
+	/**
 	 * metodo para selecionar a entidade
 	 * @param id da entidade
 	 * @return objeto da entidade
