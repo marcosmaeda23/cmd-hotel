@@ -19,13 +19,13 @@ class CepXedicaoVo {
 	private $cepVo;						// objeto
 	
 	
-	public $cepObrigatorio = array( 'cepXedicaoId'			=> '',
-									'cepId'					=> '',
-									'hotelId'				=> '',
-									'usuarioId'				=> '',
-									'cepXedicaoNumero'		=> 'obrigatorio',
-									'cepXedicaoComplemento'	=> 'obrigatorio',
-									'cepXedicaoTipo'		=> 'obrigatorio');									
+	public $cepXedicaoObrigatorio = array( 'cepXedicaoId'			=> '',
+											'cepId'					=> '',
+											'hotelId'				=> '',
+											'usuarioId'				=> '',
+											'cepXedicaoNumero'		=> 'obrigatorio',
+											'cepXedicaoComplemento'	=> '',
+											'cepXedicaoTipo'		=> 'obrigatorio');									
 	/*
 	 * get e set da classe cepXedicao, cepCadastro
 	 */								
@@ -56,7 +56,7 @@ class CepXedicaoVo {
 	public function getCepXEdicaoNumero(){
 		return $this->cepXedicaoNumero;
 	}
-	public function setCepXdicaoNumero($cepXedicaoNumero){
+	public function setCepXedicaoNumero($cepXedicaoNumero){
 		$this->cepXedicaoNumero = $cepXedicaoNumero;
 	}
 	public function getCepXedicaoComplemento(){

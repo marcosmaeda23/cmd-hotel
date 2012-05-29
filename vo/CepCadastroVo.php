@@ -15,14 +15,14 @@ class CepCadastroVo {
 	private $cepCadastroEstado;
 	private $cepCadastroPais;
 	
-	public $cepObrigatorio = array( 'cepXedicaoId'			=> '',
-									'cepCadastroId'			=> '',
-									'cepCadastroCep'		=> 'obrigatorio',
-									'cepCadastroLogradouro'	=> 'obrigatorio',
-									'cepCadastroBairro'		=> 'obrigatorio',
-									'cepCadastroCidade'		=> 'obrigatorio',
-									'cepCadastroEstado'		=> 'obrigatorio',
-									'cepCadastroPais'		=> 'obrigatorio');
+	public $cepCadastroObrigatorio = array( 'cepCadastroId'			=> '',
+											'cepXedicaoId'			=> '',
+											'cepCadastroCep'		=> 'obrigatorio',
+											'cepCadastroLogradouro'	=> 'obrigatorio',
+											'cepCadastroBairro'		=> 'obrigatorio',
+											'cepCadastroCidade'		=> 'obrigatorio',
+											'cepCadastroEstado'		=> 'obrigatorio',
+											'cepCadastroPais'		=> 'obrigatorio');
 									
 	/*
 	 * get e set da classe cepXedicao, cepCadastro

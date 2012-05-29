@@ -3,11 +3,13 @@ require_once '../../../dao/Banco.php';
 require_once '../../../dao/Entidade.php';
 require_once '../../../dao/UsuarioDao.php';
 require_once '../../../dao/TelefoneDao.php';
-require_once '../../../dao/CepDao.php';
+require_once '../../../dao/CepXedicaoDao.php';
+require_once '../../../dao/CepCadastroDao.php';
 
 require_once '../../../bpm/BpmGenerico.php';
 require_once '../../../bpm/UsuarioBpm.php';
 require_once '../../../bpm/CepBpm.php';
+require_once '../../../bpm/TelefoneBpm.php';
 
 require_once '../../../vo/UsuarioVo.php';
 require_once '../../../vo/CepXedicaoVo.php';
@@ -20,10 +22,10 @@ require_once '../../../biblioteca/funcoes.php';
 // para cadastrar
 // ------------------------------- 
 if ($_POST['acao'] == 'cadastrarUsuario') {
-	$_POST['nivelId'] = 4;
     $usuarioVo = new UsuarioVo();
     $usuarioBpm = new UsuarioBpm();
-   
+    $cepXedicaoVo = new CepXedicaoVo();
+    $cepCadastroVo = new CepCadastroVo();
    
 	// verifica se os campos do usuario estao vazios		
 	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
@@ -35,10 +37,21 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 		} 	
 	}
-	/*
-	*/
 	// verifica se os campos do telefone estao vazios
-	foreach ( $usuarioVo->telefoneObrigatorio as $chave => $valor ) {		
+ 	// verifica se os campos do cadastro do cep estao vazios
+ 	if (isset($_POST['cepCadastroLogradouro'])){
+		foreach ( $cepCadastroVo->cepCadastroObrigatorio as $chave => $valor ) {		
+			// faz a validacao dos campos obrigatorios, setados na classe
+			if ($valor == 'obrigatorio') {
+				if (empty($_POST[$chave])){
+					$erro_nome = 'Preencha todos os campos do formulário.';
+					$ERRO = true;
+				} 	
+			} 	
+		} 		
+ 	}
+	// verifica se os campos do CepXedicao estao completos
+	foreach ( $cepXedicao->$cepXedicaoObrigatorio as $chave => $valor ) {		
 		// faz a validacao dos campos obrigatorios, setados na classe
 		if ($valor == 'obrigatorio') {
 			if (empty($_POST[$chave])){
@@ -46,15 +59,14 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 				$ERRO = true;
 			} 	
 		} 	
-	}
- 	// verifica se os campos do cep estao vazios
- 	
+	} 	
 
+	// se não teve enhum erro de campos obrigatorios
 	if (!$ERRO){	
 		// loop para fazer as validacoes do post inteiro
+	/*
 		foreach ($_POST as $chave => $valor) {	
 			// validacoes
-
 			if ($chave == 'usuarioConfirmacaoSenha') {
 
 
@@ -120,8 +132,9 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 				// insere \ para evitar o injection e md5
 				$_POST[$chave] = md5(addcslashes($valor));
 			}
-		}		
+		}	*/	
 	}
+	// aqui insere dentro dos objetos respectivos
 	if (!$ERRO){
 		for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {
 	    	eval('$telefoneVo'.$j.' = new TelefoneVo();');
@@ -133,6 +146,17 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			if (array_key_exists($chave, $usuarioVo->usuarioObrigatorio)) {
 				eval('$usuarioVo->set'.ucfirst($chave).'("'.$valor.'");');	
 			}		
+			if (array_key_exists($chave, $cepXedicaoVo->cepXedicaoObrigatorio)) {
+				eval('$cepXedicaoVo->set'.ucfirst($chave).'("'.$valor.'");');	
+			}
+
+			if (array_key_exists($chave, $cepXedicao->cepXedicaoObrigatorio)) {
+				eval('$cepXedicaoVo->set'.ucfirst($chave).'('.$valor.');');	
+			}
+			if (array_key_exists($chave, $cepCadastroVo->cepCadastroObrigatorio)) {
+				eval('$cepCadastroVo->set'.ucfirst($chave).'('.$valor.');');	
+			}
+				
 			// inserindo manualmente pois não rolou colocar dinamico, telefone é array
 			for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {	
 				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
@@ -143,21 +167,30 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
 				eval('$telefoneVo'.$j.' ->setTelefoneRecado('.$_POST["telefoneRecado"][$j].');');				
 			}
+			//var_dump($valor);
+			
 		}
-	}
-	$telefone = array();
-	for ( $i = 0; $i < count($_POST['telefoneTipo']); $i++ ) {
-		 eval('$telefone[] = $telefoneVo'.$i.';');
+		
+		// coloca o objeto dantro do array
+		$telefone = array();
+		for ( $i = 0; $i < count($_POST['telefoneTipo']); $i++ ) {
+			 eval('$telefone[] = $telefoneVo'.$i.';');
+		}
+		$usuarioVo->setTelefoneVo($telefone);	
+		$usuarioVo->setCepXedicaoVo($cepXedicaoVo);	
+		$usuarioVo->setCepCadastroVo($cepCadastroVo);	
+		
+		
 	}
 	if (!$ERRO) { 		
-		$usuarioVo->setTelefoneVo($telefone);	
-	//var_dump($usuarioVo);
 		$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
         if (!$sucesso) {
             $ERRO = true;
             $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
     	}
 	}
+	//var_dump($usuarioVo);
+	echo $erro_nome;
 	exit(); 
 	
     if (!$ERRO) {
@@ -177,18 +210,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 // -------------------------------
 // para cadastrar
 // ------------------------------- 
-if ($_POST['acao'] == 'pesquisarCep'){
-	$cepBpm = new CepBpm();
-	// retirar a mascara do cep
-	$arrayParametros = array(	'entidade' => 'cep',
-								'cep' 		=> $_POST['cep']);
-	$resposta = $cepBpm -> pesquisar($arrayParametros, 'cepXedicaoDao');
-	if ($resposta === false) {
-		echo 'fracasso';
-	} else {
-		echo 'sucesso';
-	}
- 	
-}
+
 
 ?>

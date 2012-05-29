@@ -8,18 +8,26 @@ dependencia jquery.maskedinput
  * pesquisa o cep na base de dados
  * mostra o resultado no campo 'resposta' caso nao ache 
  */
-function cepPesquisar(urlPesquisa){
+function cepPesquisar(){
+	// antes de qualquer chamada apaga todos os campos menos o mostrarCep();
 	var cep;
 	// pega o cep digitado
 	cep = $('#cepPesquisa').val();
-	alert(cep);
+	if(cep.indexOf('_') != -1){
+		return;
+	}
+	if (cep == '__ ___-___') {
+		return;
+	}
+	$('#cep').empty();
+
 	$.ajax({
 		//definimos a url
-		url : urlPesquisa + '.php',
+		url : '../../modulos/modulosController.php',
 		//definimos o tipo de requisicao, post ou get
 		type: 'post',
 		//definimos o tipo de retorno, xml, html, json, sjonp, script e text
-		dataType : 'json',
+		dataType : 'text',
 		//colocamos os valores a serem enviados
 		data: "acao=pesquisarCep&cep="+cep,
 		//beforeSend : function(){},
@@ -47,32 +55,58 @@ function cepPesquisar(urlPesquisa){
         },		 
 		//colocamos o retorno na tela
 		success : function(resposta){
-			if(resposta == 'sucesso'){
-				alert('Foto excluida com sucesso.');
-				location.href="index.php";
+			if(resposta == 'fracasso'){
+				alert('Cep não encontrado');
+				// mostra o botao para cadastrar o cep 
+				mostrarCepCadastro();
+				$('#cepXedicaoTipo').val(1);
+				$('#cepCadastroCep').val($('#cepPesquisa').val());
 			} else {
-				alert('Ocorreu um erro ao excluir foto');
-			}
-		    	
-		    	
+				alert('Foto excluida com sucesso.');
+				mostrarCepPreenchido();
+				// mostra os campos do cep com os valores preenchidos
+				$('#cepId').val();
+				$('#logradouro').val();
+				$('#bairro').val();
+				$('#cidade').val();
+				$('#estado').val();
+				$('#pais').val();
+				// seta o valor como 1 para nao gravar o cepCadastro no banco
+				$('#cepXedicaoTipo').val(2);
+				
+				// seta o focus
+				$('#cepXedicaoNumero').focus();		
+			}		    	
 		}
 	 });
-	// caso ache mostra a formulario 'cepVisulizacao' com os campos preenchidos e o formulario 'cepComplemento' setado o focus
-	// e coloca o cep da pesquisa no campo hidden 'cepId' e coloca o valor no campo 'cepXedicaoTipo' 1 - nao cadastrar novo cep	
+	// caso ache mostra a formulario 'mostrarCepPreenchido' com os campos preenchidos e o formulario 'cepComplemento' setado o focus
+	// e coloca o cep da pesquisa no campo hidden 'cepId' e coloca o valor no campo 'cepXedicaoTipo' 2 - nao cadastrar novo cep	
 	
 	// caso nao ache mostra uma mensagem no campo de resposta perguntando de deseja cadastrar o endereco
 	// caso clicar mostra o formulario 'cepCadastro' setado o focus e o formulario 'cepComplemento'
-	// e coloca o cep da pesquisa no campo hidden 'cepCadastroCep' e coloca o valor no campo 'cepXedicaoTipo' 0 - cadastrar novo cep
+	// e coloca o cep da pesquisa no campo hidden 'cepCadastroCep' e coloca o valor no campo 'cepXedicaoTipo' 1 - cadastrar novo cep
 	
 }
+
+/**
+ * mostra a parte da pergunta caso nao ache o cep
+ * 
+ */
+
+function mostrarPerguntaCep(){
+	var _cep = '';
+	_cep += '<a href="" onclick="mostrarCepCadastro();" >Cadastrar Cep</a>'
+	$('#resposta').append(_cep);
+}
+
 /**
  * mostra o formulario de busca 
  * chama a funcao cepPesquisar
  */
-function mostrarCep(urlPesquisa){
+function mostrarCep(){
 	var _cep = '';
 	_cep += '<label for="cepPesquisa">Cep</label><br>';
-	_cep += '<input type="text" 	name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar(\'usuarioController\');" /><br />';
+	_cep += '<input type="text" 	name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar();" /><br />';
 	_cep += '<input type="hidden" 	name="cepCadastroPais" 	id="cepCadastroPais" 	value="" />	<br />';
 	_cep += '<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		<br />';
 	_cep += '<div id="resposta"></div>';	
@@ -90,6 +124,7 @@ function mostrarCepPreenchido(){
 	_cep += 'Estado: 		<input type="text" 		name="estado" 		id="estado" 	value="" />	<br />';
 	_cep += 'Pais: 			<input type="text" 		name="pais" 		id="pais" 		value="" />	<br />';
 	$('#cep').append(_cep);
+	mostrarCepComplemento();
 }
 /**
  * mostra a parte do cadastro do cep, para salvar no banco
@@ -101,8 +136,10 @@ function mostrarCepCadastro(){
 	_cep += 'Bairro: 		<input type="text" 		name="cepCadastroBairro" 		id="cepCadastroBairro" 		class="obrigatorio" /><br />';
 	_cep += 'Cidade: 		<input type="text" 		name="cepCadastroCidade" 		id="cepCadastroCidade" 		class="obrigatorio" /><br />';
 	_cep += 'Estado: 		<input type="text" 		name="cepCadastroEstado" 		id="cepCadastroEstado" 		class="obrigatorio" /><br />';
-
+	_cep += 'Pais:	 		<input type="text" 		name="cepCadastroPais"	 		id="cepCadastroPais" 		class="obrigatorio" /><br />';
 	$('#cep').append(_cep);
+	mostrarCepComplemento();
+	$('#cepCadastroLogradouro').focus();
 }
 /**
  * mostra a parte do complemento do cep
@@ -130,7 +167,7 @@ function mostrarTelefone(){
 	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero" maxlength="15" 	class="obrigatorio" /><br />';
 	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal" 	maxlength="5" 	class="obrigatorio" /><br />';
 	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado" maxlength="100" />					  <br />';	
-	_telefone += '<a href="" onclick="mostrarTelefone()">+ telefone</a><br />';	
+		
 	$('#telefone').append(_telefone);
 
 }

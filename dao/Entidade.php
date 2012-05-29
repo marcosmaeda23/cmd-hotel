@@ -30,7 +30,7 @@ class Entidade extends Banco{
 	 * @return bool
 	 */
 	public function cadastrarAlterar($objetoVo){
-
+		
 		// verifica se tiver o id dentro do objeto para salvar ou alterar
 		eval('$id = $objetoVo->get'.ucfirst($this->entidade).'Id();');
 		if (empty($id)) {
@@ -40,7 +40,7 @@ class Entidade extends Banco{
 			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
 				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
 				$sql .= $_dadosEstrangeiro[0];
-				if ($j + 1 == count($this->chaveEstrangeira)){
+				if ($j + 1 <= count($this->chaveEstrangeira)){
 					$sql .= ', ';
 				}
 			}			
@@ -62,8 +62,13 @@ class Entidade extends Banco{
 			//chave estrangeira
 			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {
 				$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
-				eval('$sql .= $objetoVo -> get'.ucfirst($_dadosEstrangeiro[0]).'();');
-				if ($j + 1 == count($this->chaveEstrangeira)){
+				eval('$valor = $objetoVo -> get'.ucfirst($_dadosEstrangeiro[0]).'();');
+				if (empty($valor)) {
+					$sql .= 'null';
+				} else {
+					$sql .= $valor;
+				}
+				if ($j + 1 <= count($this->chaveEstrangeira)){
 					$sql .= ', ';
 				}
 			}
@@ -73,7 +78,11 @@ class Entidade extends Banco{
 				if (is_string($valor)){
 					$sql .= "'";
 				}
-				$sql .= $valor;
+				if (empty($valor)) {
+					$sql .= 'null';
+				} else {
+					$sql .= $valor;
+				}
 				if (is_string($valor)){
 					$sql .= "'";
 				}
@@ -89,12 +98,10 @@ class Entidade extends Banco{
 				$sql .= ', ';					
 				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
 			}
-			$sql .= ' ) ';
-			$query = mysql_query($sql);
-			$_id = mysql_insert_id();
-			var_dump($query);
-			exit();
-			
+			$sql .= ' ) ;';			
+			$query = mysql_query($sql);  
+			echo $sql;
+			$_id = mysql_insert_id();			
 		} else {
 			// tem o id dentro do objeto, update
 			$sql = 'UPDATE '.$this->entidade. ' SET ( ';

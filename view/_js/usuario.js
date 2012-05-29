@@ -3,7 +3,7 @@ $(document).ready(function(){
 	var pais = $('#paisOrigem').val();
 	
 	mostrarTelefone();
-	mostrarCep();
+	//mostrarCep();
 	aplicarMascara(pais);
 });	
 /**

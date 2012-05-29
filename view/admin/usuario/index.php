@@ -1,6 +1,13 @@
 <?php 
 // verificar a sessao
+session_start();
 
+if(isset($_SESSION['NOME'])){
+	if ($_SESSION['NIVEL'] == 4){
+		// buscar usuario para mostrar nos campos
+	} 
+	
+}
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
 
@@ -30,7 +37,7 @@
 			<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
 			<input type="hidden" name="usuarioStatus" id="usuarioStatus" value="1" />			
 			
-			<input type="text" name="paisOrigem" id="paisOrigem" value="<?php echo $_POST['paisOrigem'] ? $_POST['paisOrigem']: 'brasil'; ?>" />
+			<input type="hidden" name="paisOrigem" id="paisOrigem" value="<?php echo $_POST['paisOrigem'] ? $_POST['paisOrigem']: 'brasil'; ?>" />
 
 			
 			<div id="usuario" >
@@ -40,13 +47,24 @@
 				Seu e-mail:<br />
 				<input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail']: ''; ?>" maxlength="50" class="obrigatorio"  /><br />
 				Usuário: 	<br />
-				<input type="text" name="usuarioLogin" id="usuarioLogin" maxlength="50" class="obrigatorio"  /><br />
+				<input type="text" name="usuarioLogin" id="usuarioLogin" value=" " maxlength="50" class="obrigatorio"  /><br />
 				Senha: 	<br />
-				<input type="password" name="usuarioSenha"id="usuarioSenha" maxlength="50" class="obrigatorio senha"  /><br />
+				<input type="password" name="usuarioSenha"id="usuarioSenha" value=" " maxlength="50" class="obrigatorio senha"  /><br />
 				Confirmacao de senha: 	<br />
-				<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha"  maxlength="50" class="obrigatorio senha"  /><br />
+				<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />
 				Lembrete:<br />
-				<input type="text" name="usuarioLembrete" id="usuarioLembrete" maxlength="50" /><br />
+				<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />
+				
+				<?php if($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?>
+				Nivel:<br />
+				<select name="nivelId" id="nivelId" class="obrigatorio" >
+					<option value=""> Selecione o Nivel: </option>
+					<option value="2"> Gerente </option>
+					<option value="3"> Recepcionista </option>
+				</select><br />
+				<?php } else { ?>
+						<input type="hidden" name="nivelId" id="nivelId" value="4" />
+				<?php } ?>
 				Eu Sou:<br />
 				<select name="usuarioSexo" id="usuarioSexo" class="obrigatorio" >
 					<option value=""> Selecione o gênero: </option>
@@ -54,7 +72,7 @@
 					<option value="f"> Feminino </option>
 				</select><br />
 				Data de nascimento:	<br />
-				<input type="text" name="usuarioDataNascimento" id="usuarioDataNascimento" maxlength="50" class="obrigatorio data"  /><br />
+				<input type="text" name="usuarioDataNascimento" id="usuarioDataNascimento" value="" maxlength="50" class="obrigatorio data"  /><br />
 				Documento tipo: 	<br />
 				<select name="usuarioDocumentoTipo" id="usuarioDocumentoTipo" onchange="mudaMascara(this.value);" class="obrigatorio" >
 					<option value=""> Selecione o tipo do documento: </option>
@@ -63,18 +81,22 @@
 					<option value="passaporte"> passaporte </option>
 				</select><br />
 	           Documento numero: 	<br />
-	           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" maxlength="50" class="obrigatorio"  /><br />
+	           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="" maxlength="50" class="obrigatorio"  /><br />
 			</div> 	
 		
 		        
 			<div id='telefone'>
 				<!-- telefone -->
 			</div>
+			<a onclick="mostrarTelefone()">+ telefone</a><br />
 			           							
+			<label for="cepPesquisa">Cep</label><br>
+			<input type="text" 	name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar();" /><br />
+			<input type="hidden" 	name="cepCadastroPais" 	id="cepCadastroPais" 	value="" />	<br />
+			<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		<br />       
 			<div id='cep'>
 				<!-- cep -->   
 			</div>				
-			           
 			
 			
 			<input type="submit" name="cmdSalvar" value=" Cadastrar " />
@@ -85,7 +107,7 @@
 	<script type="text/javascript" src="../../_js/slider/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="../../_js/plugin/jquery.maskedinput-1.3.min.js"></script>
 	<script type="text/javascript" src="../../_js/funcoes.js"></script>
-	<script type="text/javascript" src="../../_js/modulos.js"></script>
+	<script type="text/javascript" src="../../modulos/modulos.js"></script>
 	<script type="text/javascript" src="../../_js/usuario.js"></script>
 	<script type="text/javascript">
 		<?php if (isset($_POST['paisOrigem'])){ ?>

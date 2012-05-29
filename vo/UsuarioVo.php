@@ -21,7 +21,8 @@ class UsuarioVo {
 	private $usuarioDataCadastro;
 	
 	private $telefoneVo;		    	// array de objetos
-	private $cepVo;						// objeto
+	private $cepXedicaoVo;						// objeto
+	private $cepCadastroVo;						// objeto
 	
 	/**
 	 * define os atributos da classe e determina quais atributos serao obrigatorios
@@ -138,11 +139,17 @@ class UsuarioVo {
 	public function setTelefoneVo($telefoneVo){
 		$this->telefoneVo = $telefoneVo;
 	}
-	public function getCepVo(){
-		return $this->cepVo;
+	public function getCepXedicaoVo(){
+		return $this->cepXedicaoVo;
 	}
-	public function setCepVo($cepVo){
-		$this->cepVo = $cepVo;
+	public function setCepXedicaoVo($cepXedicaoVo){
+		$this->cepXedicaoVo = $cepXedicaoVo;
+	}
+	public function getCepCadastroVo(){
+		return $this->cepCadastroVo;
+	}
+	public function setCepCadastroVo($cepCadastroVo){
+		$this->cepCadastroVo = $cepCadastroVo;
 	}
 }
 

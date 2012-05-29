@@ -36,10 +36,10 @@ class CepVo {
 	/*
 	 * get e set da classe cepXedicao, cepCadastro
 	 */								
-	public function getcepId(){
+	public function getCepId(){
 		return $this -> cepId;
 	}								
-	public function setcepId($cepId){
+	public function setCepId($cepId){
 		$this -> cepId = $cepId;
 	}						
 	public function getCepNumero(){
