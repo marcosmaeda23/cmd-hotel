@@ -21,9 +21,11 @@ require_once '../../../biblioteca/funcoes.php';
 // -------------------------------
 // para cadastrar ou alterar
 // ------------------------------- 
+
 if ($_POST['acao'] == 'cadastrarUsuario') {
     $usuarioVo = new UsuarioVo();
     $usuarioBpm = new UsuarioBpm();
+    $telefoneVo = new TelefoneVo();
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
     
@@ -38,11 +40,11 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		} 	
 	}
 	// verifica se os campos do telefone estao vazios na posicao 0		
-	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
+	foreach ( $telefoneVo->telefoneObrigatorio as $chave => $valor ) {
 		// faz a validacao dos campos obrigatorios, setados na classe
 		if ($valor == 'obrigatorio') {
-			if (empty($_POST[$chave])){
-				$erro_nome = 'Preencha todos os campos do formulário.';
+			if (empty($_POST[$chave][0])){
+				$erro_nome = 'do formulário.';
 				$ERRO = true;
 			}
 		} 	

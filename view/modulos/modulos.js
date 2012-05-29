@@ -61,11 +61,10 @@ function cepPesquisar(){
 				mostrarCepCadastro();
 				// seta o valor com 1 para cadastrar 
 				$('#cepXedicaoTipo').val(1);
-				alert($('#cepPesquisa').val());
-				alert($('#cepCadastroCep').val($('#cepPesquisa').val()));
+				
+				$('#cepCadastroCep').val($('#cepPesquisa').val());
 				
 			} else {
-				alert('Foto excluida com sucesso.');
 				mostrarCepPreenchido();
 				// mostra os campos do cep com os valores preenchidos
 				$('#cepId').val();
