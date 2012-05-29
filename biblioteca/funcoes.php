@@ -46,6 +46,17 @@ function deslogar(){
 }
 
 /**
+ * funcao que envia o email para o cliente apos ser cadastrado
+ * @param nome, email, login, senha
+ * @return boolean 
+ */
+function enviarEmail($nome, $email, $login, $senha){
+	
+	
+}
+
+
+/**
  * funcao para validar a data e muda para a data do banco
  * @param data dd/mm/YYYY
  * @return data YYYY-mm-dd ou false

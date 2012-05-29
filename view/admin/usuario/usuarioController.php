@@ -37,7 +37,16 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 		} 	
 	}
-	// verifica se os campos do telefone estao vazios
+	// verifica se os campos do telefone estao vazios na posicao 0		
+	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
+		// faz a validacao dos campos obrigatorios, setados na classe
+		if ($valor == 'obrigatorio') {
+			if (empty($_POST[$chave])){
+				$erro_nome = 'Preencha todos os campos do formulário.';
+				$ERRO = true;
+			}
+		} 	
+	}
  	// verifica se os campos do cadastro do cep estao vazios
  	if (isset($_POST['cepCadastroLogradouro'])){
 		foreach ( $cepCadastroVo->cepCadastroObrigatorio as $chave => $valor ) {		
@@ -64,7 +73,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 	// se não teve enhum erro de campos obrigatorios
 	if (!$ERRO){	
 		// loop para fazer as validacoes do post inteiro
-	/*
+	
 		foreach ($_POST as $chave => $valor) {	
 			// validacoes
 			if ($chave == 'usuarioConfirmacaoSenha') {
@@ -128,7 +137,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 				// insere \ para evitar o injection e md5
 				$_POST[$chave] = md5(addcslashes($valor));
 			}
-		}	*/	
+		}		
 	}
 	// aqui insere dentro dos objetos respectivos
 	if (!$ERRO){
