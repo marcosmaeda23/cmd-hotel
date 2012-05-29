@@ -47,9 +47,9 @@ if(isset($_SESSION['NOME'])){
 				Seu e-mail:<br />
 				<input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail']: ''; ?>" maxlength="50" class="obrigatorio"  /><br />
 				Usuário: 	<br />
-				<input type="text" name="usuarioLogin" id="usuarioLogin" value=" " maxlength="50" class="obrigatorio"  /><br />
+				<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"  /><br />
 				Senha: 	<br />
-				<input type="password" name="usuarioSenha"id="usuarioSenha" value=" " maxlength="50" class="obrigatorio senha"  /><br />
+				<input type="password" name="usuarioSenha"id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />
 				Confirmacao de senha: 	<br />
 				<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />
 				Lembrete:<br />

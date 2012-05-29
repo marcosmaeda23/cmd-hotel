@@ -69,7 +69,7 @@ class UsuarioDao extends Entidade {
 	/**
 	 * Array contendo a ordem para salvar no banco
 	 */
-	protected $ordemBase	= array('telefone', 'cepXedicao');
+	protected $ordemBase	= array('telefone', 'cepXedicao', 'cepCadastro');
     /**
      * se true coloca um campo dataCadastro na tabela
      */
@@ -146,23 +146,17 @@ class UsuarioDao extends Entidade {
 
     /**
      * metodo que cadastra chamando a cadastroAlterar da entidade
-     * @param atributos e valores
+     * @param objeto
      * @see Entidade::cadastrarAlterar()
-     * @return id 
+     * @return boolean 
      */    
     public function cadastrarAlterar($usuarioVo) {
-    	//var_dump($usuarioVo);
-    	
-        /*
+  		// cadastra o objeto principal retorna o id do usuario ou false
         $idUsuario = entidade :: cadastrarAlterar($usuarioVo);        
-        if ($id === false){
-        	//return false;
-        	echo 'usuario';
+        if ($idUsuario === false){
+        	return false;
         } else {
-        */
-        	$idUsuario = 5;
-        	// verifica se tem setado a $ordemBase e cadastra o restante das tabelas
-	
+        	// verifica se tem setado a $ordemBase e cadastra o restante das tabelas	
 	    	for ( $i = 0; $i < count($this->ordemBase); $i++ ) {
 				$_entidade = $this->ordemBase[$i];
 				if ($_entidade == 'telefone') {
@@ -171,37 +165,37 @@ class UsuarioDao extends Entidade {
 					for ( $j = 0; $j < count($_objeto); $j++ ) {
 						$_objeto[$j]->setUsuarioId($idUsuario);	
 					}
-					$sucesso = $telefoneDao -> cadastrarAlterar($_objeto); 
-						
-					if ($sucesso == false){
+					$sucesso = $telefoneDao -> cadastrarAlterar($_objeto); 						
+					if ($sucesso === false){
 			        	return false;
 			        }	
 				}
-				if ($_entidade == 'cepXedicao') {
+				if ($_entidade == 'cepXedicao') {					
 					eval('$_objeto = $usuarioVo -> get'.ucfirst($_entidade).'Vo();');
 					$_objeto -> setUsuarioId($idUsuario);
 					$cepXedicaoDao = new CepXedicaoDao();
-					var_dump($cepXedicaoDao);
-					$idCepXedicao = $cepXedicaoDao -> cadastrarAlterar($_objeto); 
-					if ($sucesso == false){
+					$idCepXedicao = $cepXedicaoDao -> cadastrarAlterar($_objeto);
+					// verifica se esta setado como 1 para gravar o cadastro cep
+					$cepCadastrar =  $_objeto ->getCepXedicaoTipo() == 1 ? true : false;
+					if ($idCepXedicao === false){
 			        	return false;
-			        } else {
-			        	// 1-cadastrar, 2-nao cadastrar
-						if($_objeto ->getCepXedicaoTipo() == 1){
-							$cepCadastroDao = new CepCadastroDao();
-							$_objeto -> setCepXedicaoId($idCepXedicao);
-							$sucesso = $cepCadastroDao -> cadastrarAlterar($_objeto); 
-							if ($sucesso === false){
-					        	//return false;
-						        	echo 'cepCadastro';
-					        }						
-						}
+			        } 
+				}
+				if ($_entidade == 'cepCadastro') {
+		        	// true - cadastra, false nao cadastra
+					if($cepCadastrar){
+			        	eval('$_objeto = $usuarioVo -> get'.ucfirst($_entidade).'Vo();');
+						$cepCadastroDao = new CepCadastroDao();
+						$_objeto -> setCepXedicaoId($idCepXedicao);
+						$sucesso = $cepCadastroDao -> cadastrarAlterar($_objeto); 
+						if ($sucesso === false){
+				        	return false;
+					    }						
 					}					
 				} 
 			}        	 
-		//}
-		echo $sucesso;
-		exit();
+		}
+		return true;
     }       
        	 
       

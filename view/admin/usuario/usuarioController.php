@@ -19,14 +19,14 @@ require_once '../../../vo/TelefoneVo.php';
 require_once '../../../biblioteca/funcoes.php';
 
 // -------------------------------
-// para cadastrar
+// para cadastrar ou alterar
 // ------------------------------- 
 if ($_POST['acao'] == 'cadastrarUsuario') {
     $usuarioVo = new UsuarioVo();
     $usuarioBpm = new UsuarioBpm();
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
-   
+    
 	// verifica se os campos do usuario estao vazios		
 	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
 		// faz a validacao dos campos obrigatorios, setados na classe
@@ -68,8 +68,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		foreach ($_POST as $chave => $valor) {	
 			// validacoes
 			if ($chave == 'usuarioConfirmacaoSenha') {
-
-
 				// verifica se a senha eh igual a verifirmacao da senha
 				$sucesso = verificarConfirmacaoSenha($_POST['senha'], $_POST['confirmacaoSenha']);
 			    if (!$sucesso) {
@@ -104,8 +102,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		            $ERRO = true;
 		            $erro_nome .= 'O email não é válido.';
 		            break;
-		        }
-		        
+		        }		        
 		        // verificar se email ja existe no banco	        
 		        $usuarioVo->setUsuarioEmail($valor);
 		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo);
@@ -114,8 +111,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		            $erro_nome .= 'O email já está cadastrado na base de dados.';
 		            break;
 		        }
-			}
-			
+			}			
 			if ($chave == 'usuarioDataNascimento') {
 				// verifica se a data eh invalida, se for muda para a data do banco
 				$resposta = validarData($valor);
@@ -145,18 +141,15 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			// verifica os atributos do ususario e insere dentro dele
 			if (array_key_exists($chave, $usuarioVo->usuarioObrigatorio)) {
 				eval('$usuarioVo->set'.ucfirst($chave).'("'.$valor.'");');	
-			}		
+			}
+			// verifica os atributos do cep edicao
 			if (array_key_exists($chave, $cepXedicaoVo->cepXedicaoObrigatorio)) {
 				eval('$cepXedicaoVo->set'.ucfirst($chave).'("'.$valor.'");');	
 			}
-
-			if (array_key_exists($chave, $cepXedicao->cepXedicaoObrigatorio)) {
-				eval('$cepXedicaoVo->set'.ucfirst($chave).'('.$valor.');');	
-			}
+			// verifica os atributos do cepCadastro
 			if (array_key_exists($chave, $cepCadastroVo->cepCadastroObrigatorio)) {
-				eval('$cepCadastroVo->set'.ucfirst($chave).'('.$valor.');');	
-			}
-				
+				eval('$cepCadastroVo->set'.ucfirst($chave).'("'.$valor.'");');	
+			}				
 			// inserindo manualmente pois não rolou colocar dinamico, telefone é array
 			for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {	
 				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
@@ -167,10 +160,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
 				eval('$telefoneVo'.$j.' ->setTelefoneRecado('.$_POST["telefoneRecado"][$j].');');				
 			}
-			//var_dump($valor);
-			
 		}
-		
 		// coloca o objeto dantro do array
 		$telefone = array();
 		for ( $i = 0; $i < count($_POST['telefoneTipo']); $i++ ) {
@@ -178,9 +168,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		}
 		$usuarioVo->setTelefoneVo($telefone);	
 		$usuarioVo->setCepXedicaoVo($cepXedicaoVo);	
-		$usuarioVo->setCepCadastroVo($cepCadastroVo);	
-		
-		
+		$usuarioVo->setCepCadastroVo($cepCadastroVo);
 	}
 	if (!$ERRO) { 		
 		$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
@@ -189,10 +177,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
             $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
     	}
 	}
-	//var_dump($usuarioVo);
-	echo $erro_nome;
-	exit(); 
-	
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';
@@ -206,10 +190,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 
     }
 }
-
-// -------------------------------
-// para cadastrar
-// ------------------------------- 
 
 
 ?>

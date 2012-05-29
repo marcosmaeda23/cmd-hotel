@@ -59,8 +59,11 @@ function cepPesquisar(){
 				alert('Cep não encontrado');
 				// mostra o botao para cadastrar o cep 
 				mostrarCepCadastro();
+				// seta o valor com 1 para cadastrar 
 				$('#cepXedicaoTipo').val(1);
-				$('#cepCadastroCep').val($('#cepPesquisa').val());
+				alert($('#cepPesquisa').val());
+				alert($('#cepCadastroCep').val($('#cepPesquisa').val()));
+				
 			} else {
 				alert('Foto excluida com sucesso.');
 				mostrarCepPreenchido();
@@ -71,7 +74,7 @@ function cepPesquisar(){
 				$('#cidade').val();
 				$('#estado').val();
 				$('#pais').val();
-				// seta o valor como 1 para nao gravar o cepCadastro no banco
+				// seta o valor como 2 para nao gravar o cepCadastro no banco
 				$('#cepXedicaoTipo').val(2);
 				
 				// seta o focus

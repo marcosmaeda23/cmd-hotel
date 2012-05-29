@@ -99,8 +99,7 @@ class Entidade extends Banco{
 				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
 			}
 			$sql .= ' ) ;';			
-			$query = mysql_query($sql);  
-			echo $sql;
+			$query = mysql_query($sql); 
 			$_id = mysql_insert_id();			
 		} else {
 			// tem o id dentro do objeto, update
