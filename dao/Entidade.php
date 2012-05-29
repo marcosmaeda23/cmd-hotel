@@ -159,11 +159,11 @@ class Entidade extends Banco{
 	}
 	
 	/**
-	 * metodo para selecionar a entidade
+	 * metodo para exibir os atributos do objeto
 	 * @param id da entidade
 	 * @return objeto da entidade
 	 */
-	public function selecionar(){
+	public function exibir(){
 		
 	}
 		

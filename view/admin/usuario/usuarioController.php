@@ -49,6 +49,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 		} 	
 	}
+	
  	// verifica se os campos do cadastro do cep estao vazios
  	if (isset($_POST['cepCadastroLogradouro'])){
 		foreach ( $cepCadastroVo->cepCadastroObrigatorio as $chave => $valor ) {		
