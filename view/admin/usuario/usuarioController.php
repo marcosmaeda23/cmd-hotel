@@ -192,7 +192,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';
-        echo 'location.href="exibirUsuario.php";';
+        echo 'location.href="../galeria/index.php";';
         echo '</script>';
     } else {
         echo '<script language="JavaScript">';

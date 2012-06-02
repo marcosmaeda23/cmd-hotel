@@ -9,6 +9,7 @@ require_once '../../vo/UsuarioVo.php';
 require_once '../../vo/TelefoneVo.php';
 require_once '../../biblioteca/funcoes.php';
 
+
 if ($_POST['acao'] == 'logar') {
     // verifica se os campos estao vazios
     foreach ($_POST AS $chave => $valor) {

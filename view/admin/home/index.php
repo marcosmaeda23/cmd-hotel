@@ -1,11 +1,10 @@
-<?php
-session_start();
-var_dump($_SESSION);
+<?php require_once '../topoAdmin.php'; ?>
+<br />
+<br />
+<br />
+Página inicial achar o que vai colocar aqui 
+<br />
+<br />
+<br />
 
-if (empty($_SESSION['NOME'])) {
-    echo '<script language="JavaScript">' .
-    'alert("Realize seu Login");' .
-    'location.href="../";' .
-    '</script>';
-}
-?>
+<?php require_once '../rodapeAdmin.php'; ?>

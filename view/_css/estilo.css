@@ -1,100 +1,139 @@
-
-* { margin: 0; padding: 0; z-index: 1; font-size:15px;}
-
-a:link{
-	text-decoration:none;
+* {
+	margin: 0;
+	padding: 0;
+	z-index: 1;
+	font-size: 15px;
 }
-a:visited{
-	text-decoration:none;
-}
-a:hover{
-	text-decoration:none;
-}
-a:actived{}
 
-.input, label, .textArea{
+a:link {
+	text-decoration: none;
+}
+
+a:visited {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+a:actived {
+	
+}
+
+.input,label,.textArea {
 	width: 200px;
-	margin-top:5px;
+	margin-top: 5px;
 }
 
-.obrigatorio{
+.obrigatorio {
 	background-color: #c0c0c0;
-	border:solid 1px #c0c0c0;
+	border: solid 1px #c0c0c0;
 }
-.obrigatorio_forte{
+
+.obrigatorio_forte {
 	background-color: #FCF88D;
 	border: solid 1px #FF0000;
 }
-.botao{
-	position:absolute;
-	float:right;
-	margin-right:30px;
-	
-}
-#login{
-	width:300px;
-	height:200px;
-	position: absolute; 
-	top: 50%; 
-	left: 50%; 	
-	margin-top: -100px;
-	margin-left:-150px;
-}
-#cadastro_login{
-	width:220px;
-	height:400px;
+
+.botao {
 	position: absolute;
-	top: 50%; 
-	left: 50%; 	
+	text-align: center;
+	float: center;
+	margin-right: 30px;
+	width: 200px;
+}
+
+.login {
+	width: 280px;
+	height: 320px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-top: -160px;
+	margin-left: -150px;
+	border: 1px #0187DE solid;
+}
+
+.login H2 {
+	font-size: 20px;
+	color: #FFF;
+	font-weight: bold;
+	padding: 15px;
+}
+
+.cadastro_login {
+	width: 250px;
+	height: 400px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
 	margin-top: -200px;
-	margin-left:-110px;
+	margin-left: -110px;
 }
-.conteudo{
-	position: absolute; 
-	width:960px;
-	height:750px;
-	top: 50%; 
-	left: 50%; 	
+
+.login_normal {
+	padding: 20px 30px;
+}
+
+.login_normal input {
+	height: 28px;
+	font-size: 16px;
+	color: #000;
+}
+
+.conteudo {
+	position: absolute;
+	width: 960px;
+	height: 750px;
+	top: 50%;
+	left: 50%;
 	margin-top: -375px;
-	margin-left:-480px;	
+	margin-left: -480px;
 }
-#foto{
-	display:block;
-	float:left;
-	width:400px;
-	height:350px;
-	border:solid 1px #c0c0c0;
+
+.foto {
+	display: block;
+	float: left;
+	width: 400px;
+	height: 350px;
+	border: solid 1px #c0c0c0;
 }
-#foto_familia{
-	display:block;
-	float:left;
-	width:400px;
-	height:350px;
-	border:solid 1px #c0c0c0;
+
+.foto_familia {
+	display: block;
+	float: left;
+	width: 400px;
+	height: 350px;
+	border: solid 1px #c0c0c0;
 }
-#contato{	
-	display:block;
-	float:left;
-	width:400px;
-	height:350px;
-	border:solid 1px #c0c0c0;
+
+.contato {
+	display: block;
+	float: left;
+	width: 400px;
+	height: 350px;
+	border: solid 1px #c0c0c0;
 }
-#mensagem{
-	display:block;
-	float:left;
-	width:400px;
-	height:350px;
-	border:solid 1px #c0c0c0;
+
+.mensagem {
+	display: block;
+	float: left;
+	width: 400px;
+	height: 350px;
+	border: solid 1px #c0c0c0;
 }
-#painel{ 	
-	display:block;
-	float:right;
-	margin-top:50px;
-	width:150px;
-	height:600px;	
+
+.painel {
+	display: block;
+	float: right;
+	margin-top: 50px;
+	width: 150px;
+	height: 600px;
 }
-#foto_interna,#foto_familia_interna,#contato_interna,#mensagem_interna{
-	width:360px;
-	height:310px;
+
+.foto_interna,#foto_familia_interna,#contato_interna,#mensagem_interna {
+	width: 360px;
+	height: 310px;
 	margin: 20px auto 0;
 }

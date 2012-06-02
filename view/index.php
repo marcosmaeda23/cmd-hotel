@@ -1,4 +1,3 @@
-
 <?php include('topo.php'); ?>
 <!-- #Slider -->
 <link rel="stylesheet" type="text/css" href="_css/slider/sliderwall_bullets_skin.css"/>
@@ -6,7 +5,7 @@
 <script type="text/javascript" src="_js/slider/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-bullets-1.1.2.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-options.js"></script>
-<script type="text/javascript" src="_js/index.js"></script>
+<script type="text/javascript" src="admin/_js/index.js"></script>
 <script type="text/javascript" src="_js/funcoes.js"></script>
 <div id="imageSlideshow">
     <div rel="slider_content" style="display: none;">
@@ -15,7 +14,7 @@
             <div rel="title">Titulo da Imagem 1</div>
             <div rel="description">Descrição da Imagem 1</div>
             <div rel="content">_imagens/hotel_fotos/hotel-01.jpg</div>
-            <div rel="target_url">http://www.cmd.com</div>
+            <div rel="target_url">#</div>
             <div rel="target_window">_blank</div>
         </div>
         <div rel="slide">
@@ -23,7 +22,7 @@
             <div rel="title">Titulo da Imagem 2</div>
             <div rel="description">Descrição da Imagem 2</div>
             <div rel="content">_imagens/hotel_fotos/hotel-02.jpg</div>
-            <div rel="target_url">http://www.cmd.com</div>
+            <div rel="target_url">#</div>
             <div rel="target_window">_blank</div>
         </div>
         <div rel="slide">
@@ -31,7 +30,7 @@
             <div rel="title">Titulo da Imagem 3</div>
             <div rel="description">Descrição da Imagem 3</div>
             <div rel="content">_imagens/hotel_fotos/hotel-03.jpg</div>
-            <div rel="target_url">http://www.cmd.com</div>
+            <div rel="target_url">#</div>
             <div rel="target_window">_blank</div>
         </div>
         <div rel="slide">

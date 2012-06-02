@@ -1,5 +1,74 @@
 *{outline-style: none;outline:none;padding:0px;margin:0px;}
 html{outline-style: none;outline:none;padding:0px;margin:0px;}
+body{margin:0px;padding:0px;font:12px verdana;outline-style: none; background-color: F2F2F2}
+a:active {outline:none;}
+a{ text-decoration:none;}
+
+/* TOPO */
+.topoInicial{height:95px;padding:10px 0;position: fixed;top: 0;vertical-align: top;width: 100%; z-index: 666;}
+.content {width:1000px; margin:0 auto; text-align:left;}
+.container{width:1000px; background-color:#FFF}
+.menu_admin{ font:14px Verdana, Geneva, sans-serif; color:#006;}
+.logo{ float:left; width:300px; height:70px; padding:0 0 0 20px}
+.logo a { font-family: 'JuliusBlackRegular', Helvetica, sans-serif; font-size:53px; color:#FFF; font-weight:bold;}
+.loginInicial { font-size:18px; color:#FFF; float:left; width:680px;padding-top:15px; text-align:right}
+.loginInicial a{ font-size:18px; color:#FFF; }
+.loginInicial .formDefault { font-size:18px; color:#FFF;text-align: right;}
+.loginInicial input{ height:26px;}
+.menuTopo{float:left;height:44px; width: 100%}
+
+.nav {height: 100%;font: normal 20px/1em Arial, Helvetica, sans-serif;}
+.nav li { float:left;  margin-right:1px;}
+.nav li a {  display: block; padding:8px 25px; color:#fff;}
+.nav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
+
+.middle{float:left; width:100%; padding-top:145px; background-color:#FFF}
+.middleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
+.conteudoMenu {font:24px Verdana, Geneva, sans-serif; color:#006;height: 30px; 
+              color: white; font-weight: bold; padding: 15px}
+.cadastro{float:left; width:310px;}
+.fotoInicial{float:left; width:610px;}
+.cadastro_titulo_container{float:left; width:80px; font-size:13px;padding-top:15px;}
+.cadastro_titulo{float:left; font-size:13px;padding-top:15px;  height:19px;}
+.cadastro_selecao{float:left; width:230px;padding-top:2px;}
+.cadastro_selecao_especial{float:left; height:30px;padding-top:1px; font-size:16px;}
+.cadastro_selecao_container{float:left; width:230px; font-size:13px;padding-top:15px}
+.cadastro_selecao input{width:200px; height:30px; font-size:16px; color:#333333}
+.cadastro_selecao option{height:30px}
+
+/* Formulários */
+#formFloat{margin-top:20px;padding:5px;border:0px solid red;}
+.formDefault .button{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #fff;}
+.formDefault .button:hover{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #f0f0f0;}
+.formDefault label{font:bold 11px verdana;padding:3px;padding-left:0px;margin:2px;margin-top:15px;color:#999;display: block;width:200px;border:0px solid blue;height:25px}
+.formDefault input{font:12px verdana;padding:6px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666; height:28px;}
+.formDefault .botao{font:12px verdana;padding:6px;margin:2px;width:150px;border:1px solid #b2b2b2;background-color: #333333;color:#FFF;}
+.formDefault select{font:12px verdana;padding:2px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666;}
+.formDefault option{font:11px verdana;padding:0px;margin:1px;border:0px solid #333;}
+.textarea textarea {height:100px; width:640px; font-size:16px; color:#666666}
+.frmText {color:#333333}
+.frmText input{height:30px; font-size:16px; color:#333333}
+.controls{padding-bottom: 10px;border-bottom:1px dashed #b2b2b2;}
+#validate_message{padding:5px;font: 11px verdana;color:red;border-bottom:0px dashed #b2b2b2;}
+.formDefault .invalid{border:1px solid red;}
+
+/* comentários */
+.comentario_botao{ color:#FFF; font-weight:bold; font-size:16px; height:100px; width:100px; padding:10px; text-align:center}
+.comentario_data{float:left; width:100%; padding-bottom:5px; font-size:14px}
+.comentario_texto{float:left; width:100%; padding-bottom:20px;  font-size:18px}
+
+/* Formulários */
+.titulo_editar{ font-size:26px; color:#000033;}
+
+/* Rodap�*/
+.rodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 520px; margin-top: 40px;}
+.rodape .rodape_nome{ float:left;width:330px;text-align: left; color:#FFFFFF}
+.rodape .rodape_mais{ float:left;width:650px; text-align:right; color:#FFFFFF}
+.rodape .rodape_mais a{ float:left;width:650px; text-align:right; color:#FFFFFF; margin-top: 40px;}
+/**
+
+*{outline-style: none;outline:none;padding:0px;margin:0px;}
+html{outline-style: none;outline:none;padding:0px;margin:0px;}
 body{margin:0px;padding:0px;font:11px verdana;outline-style: none;}
 a:active {outline:none;}
 :focus {-moz-outline-style:none;}
@@ -8,12 +77,22 @@ a:active {outline:none;}
 a{ text-decoration:none;}
 
 
-/* TOPO */
-#content {margin: 0 auto; text-align:center;}
-.container{width:760px; background-color:#FFF}
+/* TOPO /
+#contentAdmin {margin: 0 auto; text-align:center;}
+.containerAdmin{width:760px; background-color:#FFF}
 .menu_admin{ font:14px Verdana, Geneva, sans-serif; color:#006;}
 
-/* Formulários */
+/* admin /
+.adminNav {height: 100%;font: normal 20px/1em Arial, Helvetica, sans-serif;}
+.adminNav li { float:left;  margin-right:1px; padding-top: 10px;}
+.adminNav li a {  display: block; padding:8px 25px; color:#fff;}
+.adminNav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
+.adminMiddle{float:left; width:100%;  background-color:#FFF}
+.adminMiddleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
+.adminRodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 20px;}
+
+
+/* Formulários /
 #formFloat{margin-top:20px;padding:5px;border:0px solid red;}
 .formDefault .button{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #fff;}
 .formDefault .button:hover{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #f0f0f0;}
@@ -26,3 +105,4 @@ a{ text-decoration:none;}
 .formDefault .invalid{border:1px solid red;}
 
 .rodape{padding: 10px 0 10px 0; width:100%}
+*/
