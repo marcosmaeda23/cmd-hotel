@@ -163,8 +163,11 @@ class Entidade extends Banco{
 	 * @param id da entidade
 	 * @return objeto da entidade
 	 */
-	public function exibir(){
-		
+	public function exibir($objetoVo){
+		$sql = 'SELECT * FROM '.$this->entidade;
+
+		var_dump($sql);
+		exit();
 	}
 		
 	/**
@@ -172,7 +175,7 @@ class Entidade extends Banco{
 	 * @param objeto e o tipo do documento
 	 * @return boolean
 	 */
-	public function verificarExistenciaDocumento($objeto, $documentoTipo){
+	public function verificarExistenciaDocumento($objetoVo, $documentoTipo){
 		
 	}
 	
