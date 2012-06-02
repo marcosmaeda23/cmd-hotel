@@ -47,7 +47,6 @@ if ($_POST['acao'] == 'logar') {
 
     if (!$ERRO) {
         echo '<script language="JavaScript">';
-        echo 'alert("Bem vindo");';
         echo 'location.href="home/index.php";';
         echo '</script>';
     } else {
