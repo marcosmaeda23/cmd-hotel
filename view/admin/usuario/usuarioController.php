@@ -187,10 +187,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
         if (!$sucesso) {
             $ERRO = true;
             $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
-    	} else {
-    		// envia o email para o usuario
-    		
-    		
     	}
 	}
     if (!$ERRO) {

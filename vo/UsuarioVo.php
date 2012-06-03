@@ -20,7 +20,7 @@ class UsuarioVo {
 	private $usuarioStatus;
 	private $usuarioDataCadastro;
 	
-	private $telefoneVo;		 			   	// array de objetos
+	private $telefoneVo;		    	// array de objetos
 	private $cepXedicaoVo;						// objeto
 	private $cepCadastroVo;						// objeto
 	

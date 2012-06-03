@@ -1,16 +1,11 @@
 $(document).ready(function(){
 	// busca o campo paisOrigem no formulario do cliente para setar a mascara, default brasil
 	var pais = $('#paisOrigem').val();
-	preencheCamposTelefone(telefoneArray);	
-	//mostrarTelefone(qtde);
+	
+	mostrarTelefone();
 	//mostrarCep();
 	aplicarMascara(pais);
-	//chamarFuncaoTel(qtde1);
 });	
-
-function chamarFuncaoTel(){
-	mostrarTelefone();
-}
 /**
  * muda a mascara conforme o tipo que o usuario selecionou
  * @param documento tipo

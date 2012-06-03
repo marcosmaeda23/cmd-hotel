@@ -46,69 +46,13 @@ function deslogar(){
 }
 
 /**
- * funcao que envia o email para o cliente apos ser cadastrado, alteracao
+ * funcao que envia o email para o cliente apos ser cadastrado
  * @param nome, email, login, senha
  * @return boolean 
  */
 function enviarEmail($nome, $email, $login, $senha){
-		 
-	// Inclui o arquivo class.phpmailer.php localizado 
-	require("class.phpmailer.php");
 	
-	// Inicia a classe PHPMailer
 	
-	$phpMail = new PHPMailer();
-	
-	// Define os dados do servidor e tipo de conexão
-	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	$phpMail->IsSMTP(); // Define que a mensagem será SMTP
-	$phpMail->Host = "smtp.dominio.net"; // Endereço do servidor SMTP
-	//$phpMail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
-	//$phpMail->Username = 'seumail@dominio.net'; // Usuário do servidor SMTP
-	//$phpMail->Password = 'senha'; // Senha do servidor SMTP
-	
-	// Define o remetente
-	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	$phpMail->From = "seumail@dominio.net"; // Seu e-mail
-	$phpMail->FromName = "Joãozinho"; // Seu nome
-	
-	// Define os destinatário(s)
-	
-	//$phpMail->AddAddress('fulano@dominio.com.br', 'Fulano da Silva');
-	$phpMail->AddAddress($email);
-	//$phpMail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
-	//$phpMail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
-	
-	// Define os dados técnicos da Mensagem
-	
-	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-	$phpMail->IsHTML(true); // Define que o e-mail será enviado como HTML
-	//$phpMail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
-	
-	// Define a mensagem (Texto e Assunto)
-	$phpMail->Subject  = "Mensagem Teste"; // Assunto da mensagem
-	
-	$phpMail->Body = "Este [e o corpo] ";
-	
-	$phpMail->AltBody = "Este é o corpo da mensagem de teste ";
-	
-	// Define os anexos (opcional)	
-	//$phpMail->AddAttachment("c:/temp/documento.pdf", "novo_nome.pdf");  // Insere um anexo
-	
-	// Envia o e-mail	
-	$enviado = $phpMail->Send();
-	
-	// Limpa os destinatários e os anexos
-	$phpMail->ClearAllRecipients();
-	
-	$phpMail->ClearAttachments();
-	
-	// Exibe uma mensagem de resultado	
-	if ($enviado) {
-		return true;
-	} else {
-		return false;
-	}	
 }
 
 
@@ -205,6 +149,5 @@ function verificarConfirmacaoSenha($senha, $confirmacaoSenha){
 		return false;
 	}
 }
-
 
 ?>
