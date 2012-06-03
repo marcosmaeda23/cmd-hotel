@@ -1,8 +1,31 @@
 /*
 funcao de modulo de telefone, cep
 depois da funcao ser chamada executa a mascara
-dependencia jquery.maskedinput
+dependencia jquery.maskedinput 
+direciona para modulosController.php
 */
+/**
+ * funcao que preenche os campos do telefone
+ * @param telefone array associativo
+ */
+function preencheCamposTelefone(telefoneArray){
+	if(telefoneArray.length > 0){
+		// preenche o campo do telefone
+		for ( var i = 0; i < telefoneArray.length; i++) {
+			// mostra 
+			mostrarTelefone();
+			var qtde = $('#qtdeTelefone').val();
+			alert((qtde-1)+'inserindo');
+			for(description in telefoneArray[i]) {  // print out the bands with descriptions  
+				$('#'+description+(qtde-1)).val(telefoneArray[i][description]);
+				//alert(telefoneArray[i][description] + " == " + description);  			
+			} 			
+		}
+	}else {		
+		// mostra o campo do telefone vazio
+		mostrarTelefone();		
+	}	
+}
 
 /**
  * pesquisa o cep na base de dados
@@ -156,20 +179,29 @@ function mostrarCepComplemento(){
  * mostra o formulario do telefone
  */
 function mostrarTelefone(){
+	// pega o valor do campo do campo que ira ficar setado o valor da qtde de telefone
+	var i = $('#qtdeTelefone').val();
+	// variavel i para ser usado como sequencial para determinar o complemento do id para o js inserir os valores 
 	var _telefone = '';
+	_telefone += '<div id="telefone'+i+'">';
 	_telefone += 'Telefone tipo: <br />';
-	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo" class="obrigatorio" >';
+	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo'+i+'" class="obrigatorio" >';
 	_telefone += '	<option value=""> Selecione o tipo do telefone </option>';
 	_telefone += '	<option value="residencial"> 	Residencial </option>';
 	_telefone += '	<option value="celular"> 		Celular 	</option>';
 	_telefone += '	<option value="comercial"> 		Comercial 	</option>';
 	_telefone += '</select><br />';
-	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero" maxlength="15" 	class="obrigatorio" /><br />';
-	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado" maxlength="100" />					  <br />';	
-		
+	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi'+i+'" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" maxlength="15" 	class="obrigatorio" /><br />';
+	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" maxlength="100" />					  <br />';	
+	_telefone += '</div>';	
+	
+	// insere dentro da div telefone 
 	$('#telefone').append(_telefone);
+	// soma e insere o velor
+	i++ 
+	$('#qtdeTelefone').val(i);
 
 }
