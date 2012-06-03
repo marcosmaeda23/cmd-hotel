@@ -11,7 +11,4 @@
 <!-- JavaScript -->
 <script type="text/javascript" src="../../_js/jquery.js"></script>
 <script type="text/javascript" src="../../_js/menu.js"></script>
-<script type="text/javascript" src="../../_js/funcoes.js"></script>
-
-
 </html>
