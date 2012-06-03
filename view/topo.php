@@ -8,8 +8,6 @@
 	<link href="_css/reset.css" type="text/css" media="screen" rel="stylesheet" />
 	<link href="_css/A90.css" type="text/css" media="screen" rel="stylesheet" />
 	<link href="_css/style_container.css" type="text/css" media="screen" rel="stylesheet" />
-	<link rel="stylesheet" type="text/css" href="_css/slider/sliderwall_bullets_skin.css"/>
-	<link rel="stylesheet" type="text/css" href="_css/slider/slideshow_sample.css"/>
 </head>
 <body>
 	<div class="topoInicial <?php echo $cor_principal; ?>">
