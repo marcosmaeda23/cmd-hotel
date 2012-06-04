@@ -5,6 +5,29 @@ dependencia jquery.maskedinput
 */
 
 /**
+ * funcao que preenche os campos do telefone
+ * @param array associativo do telefone
+ */
+function preencheCamposTelefone(telefonearray){
+	// verifica se o array esta vazio
+	if(telefoneArray.length > 0){
+		
+		for ( var i = 0; i < telefoneArray.length; i++) {
+			// mosta o campo do telefone e insere os valores
+			mostrarTelefone();
+			var qtde = $('#qtdeTelefone').val();
+			for ( var description in telefoneArray[i]) {
+				$('#'+description+(qtde-1)).val(telefoneArray[i][description]);
+			}
+		}
+		
+	} else {
+		mostrarTelefone();
+	}
+	
+}
+
+/**
  * pesquisa o cep na base de dados
  * mostra o resultado no campo 'resposta' caso nao ache 
  */
@@ -156,20 +179,28 @@ function mostrarCepComplemento(){
  * mostra o formulario do telefone
  */
 function mostrarTelefone(){
+	// pega o valor do campo que ira ficar setado a qtde de telefone
+	var i = $('#qtdeTelefone').val();
+	
 	var _telefone = '';
+	_telefone += '<div id="telefone'+i+'">';
 	_telefone += 'Telefone tipo: <br />';
-	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo" class="obrigatorio" >';
+	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo'+i+'" class="obrigatorio" >';
 	_telefone += '	<option value=""> Selecione o tipo do telefone </option>';
 	_telefone += '	<option value="residencial"> 	Residencial </option>';
 	_telefone += '	<option value="celular"> 		Celular 	</option>';
 	_telefone += '	<option value="comercial"> 		Comercial 	</option>';
 	_telefone += '</select><br />';
-	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero" maxlength="15" 	class="obrigatorio" /><br />';
-	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal" 	maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado" maxlength="100" />					  <br />';	
+	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi'+i+'" 		maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 		maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="obrigatorio" /><br />';
+	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" 	maxlength="100" />					  <br />';	
+	_telefone += '</div>';
 		
 	$('#telefone').append(_telefone);
+	// soma e insere o valor de volta no campo
+	i++
+	$('#qtdeTelefone').val(i);
 
 }

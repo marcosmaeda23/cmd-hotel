@@ -21,7 +21,7 @@ require_once '../../../biblioteca/funcoes.php';
 
 // verificar a sessao
 session_start();
-var_dump($_SESSION);
+//var_dump($_SESSION);
 $buscUsuarioVo = new UsuarioVo();
 if(!empty($_SESSION['NOME'])){
 	if (!empty($_SESSION['ID'])){
@@ -32,7 +32,9 @@ if(!empty($_SESSION['NOME'])){
 		
 	}	
 }
-var_dump($buscaUsuarioVo);
+$telefoneArray = $usuarioVo->getTelefoneVo();
+
+//var_dump($buscaUsuarioVo);
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
 
@@ -114,10 +116,11 @@ var_dump($buscaUsuarioVo);
 			<div id='telefone'>
 				<!-- telefone -->
 			</div>
-			<a onclick="mostrarTelefone()">+ telefone</a><br />
+			<a onclick="chamarFuncaoTel()">+ telefone</a><br />
+			<input type='hidden' name="qtdeTelefone" id="qtdeTelefone" value="" />
 			           							
 			<label for="cepPesquisa">Cep</label><br>
-			<input type="text" 	name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar();" /><br />
+			<input type="text" 		name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar();" /><br />
 			<input type="hidden" 	name="cepCadastroPais" 	id="cepCadastroPais" 	value="" />	<br />
 			<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		<br />       
 			<div id='cep'>
@@ -134,8 +137,29 @@ var_dump($buscaUsuarioVo);
 	<script type="text/javascript" src="../../modulos/modulos.js"></script>
 	<script type="text/javascript" src="../../_js/usuario.js"></script>
 	<script type="text/javascript">
+		// seta o campo hidden como zero
+		$('#qtdeTelefone').val(0);
+	
+		telefoneArray = new Array();
+		<?php for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
+				var telefone = new Object(); 
+	
+				<?php foreach ( $telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
+				
+					telefone['<?php echo $chave;?>'] = '<?php eval('echo $telefoneArray['.$i.']->get'.ucfirst($chave).'();'); ?>';
+				<?php } ?>
+	
+	
+				telefoneArray[<?php echo $i;?>] = telefone;	     
+				<?php } ?>
+	
+	
+	
 		<?php if (isset($_POST['paisOrigem'])){ ?>
 			aplicarMascara(<?php $_POST['paisOrigem'];?>);
 		<?php } ?>
 	</script>
 </html>
+
+
+
