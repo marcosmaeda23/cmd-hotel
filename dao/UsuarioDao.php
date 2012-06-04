@@ -239,24 +239,25 @@ class UsuarioDao extends Entidade {
 						$_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
 						eval ('$objetoVo->set' . ucfirst($_dadosEstrangeiro[0]) . '($resposta->' . $_dadosEstrangeiro[0] . ');');
 					}
-				}
-				for ($j = 0; $j < count($this->dadosBase); $j++) {
-					$_dadosBase = explode(' ', $this->dadosBase[$j]);
-					eval ('$objetoVo->set' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '($resposta->' . $this->entidade . ucfirst($_dadosBase[0]) . ');');
-
-				}
-				if ($this->momentoCadastro) {
-					eval ('$objetoVo->set' . ucfirst($this->entidade) . 'DataCadastro($resposta->' . $this->entidade . 'DataCadastro);');
-				}
-				if ($this->status) {
-					eval ('$objetoVo->set' . ucfirst($this->entidade) . 'Status($resposta->' . $this->entidade . 'Status);');
-				}
-				foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $valor) {
-					//$_dadosBase = explode(' ', $this->dadosBase[$j]);
-					eval ('$cepXedicaoVo->set' . ucfirst($chave) . '($resposta->' . $chave . ');');
+					for ($j = 0; $j < count($this->dadosBase); $j++) {
+						$_dadosBase = explode(' ', $this->dadosBase[$j]);
+						eval ('$objetoVo->set' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '($resposta->' . $this->entidade . ucfirst($_dadosBase[0]) . ');');
+	
+					}
+					if ($this->momentoCadastro) {
+						eval ('$objetoVo->set' . ucfirst($this->entidade) . 'DataCadastro($resposta->' . $this->entidade . 'DataCadastro);');
+					}
+					if ($this->status) {
+						eval ('$objetoVo->set' . ucfirst($this->entidade) . 'Status($resposta->' . $this->entidade . 'Status);');
+					}
+					foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $valor) {
+						//$_dadosBase = explode(' ', $this->dadosBase[$j]);
+						eval ('$cepXedicaoVo->set' . ucfirst($chave) . '($resposta->' . $chave . ');');
+					}
 				}
 			}
 			$objetoVo->setCepXedicaoVo($cepXedicaoVo);
+			
 		} else {
 			// nao tem o cep cadastrado
 			$sql = 'SELECT * FROM usuario
@@ -300,12 +301,15 @@ class UsuarioDao extends Entidade {
 		}
 		// coloca o array de telefones dentro do objeto
 		$objetoVo->setTelefoneVo($telefoneArray);
+		
 		if ($qtde == 1) {
 			return $objetoVo;
 		} else {
 			return false;
 		}
-	}/**
+	}
+	
+	/**
 	 * metodo para verifica se o login ja existe no banco
 	 * @param login
 	 * @return boolean 
