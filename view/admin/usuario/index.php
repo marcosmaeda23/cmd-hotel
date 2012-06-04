@@ -25,15 +25,14 @@ require_once '../../../biblioteca/funcoes.php';
 session_start();
 
 $usuarioVo = new UsuarioVo();
-if(isset($_SESSION['NOME'])){
-	if ($_SESSION['NIVEL'] == 4){
-		// buscar usuario para mostrar nos campos
-		$usuarioVo -> setUsuarioId($_SESSION['ID']);
-		$resposta = $usuarioVo -> exibir($usuarioVo, 'usuario');
-		if($resposta === false){
-			
-		}
-	}	
+if(!empty($_SESSION['NOME'])){
+	// buscar usuario para mostrar nos campos
+	$usuarioVo -> setUsuarioId($_SESSION['ID']);
+	$resposta = $usuarioVo -> exibir($usuarioVo, 'usuario');
+	if($resposta === false){
+		
+	}
+		
 }
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
@@ -41,8 +40,8 @@ if(isset($_SESSION['NOME'])){
 // sessao de gerente mostrar nivel de acesso, apagar, alterar, cadastrar, nao mostrar campo de senha e sim um botao para enviar email para o cliente
 
 // sessao do recepcionista , cadastrar, alterar, nao mostrar campo de senha e sim um botao para enviar email pro cliente
-
-
+//var_dump($_SESSION);
+//var_dump($usuarioVo);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

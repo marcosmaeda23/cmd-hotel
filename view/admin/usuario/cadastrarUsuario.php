@@ -22,17 +22,17 @@ require_once '../../../biblioteca/funcoes.php';
 // verificar a sessao
 session_start();
 var_dump($_SESSION);
-$buscUsuarioVo = new UsuarioVo();
+$usuarioVo = new UsuarioVo();
 if(!empty($_SESSION['NOME'])){
 	if (!empty($_SESSION['ID'])){
 		$usuarioBpm = new UsuarioBpm();
 		// buscar usuario para mostrar nos campos
-		$buscUsuarioVo -> setUsuarioId($_SESSION['ID']);
-		$usuarioVo = $usuarioBpm -> exibir($buscUsuarioVo, 'usuario');
+		$usuarioVo -> setUsuarioId($_SESSION['ID']);
+		$usuarioVo = $usuarioBpm -> exibir($usuarioVo, 'usuario');
 		
 	}	
 }
-var_dump($buscaUsuarioVo);
+var_dump($usuarioVo);
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
 
@@ -139,3 +139,8 @@ var_dump($buscaUsuarioVo);
 		<?php } ?>
 	</script>
 </html>
+
+
+
+
+
