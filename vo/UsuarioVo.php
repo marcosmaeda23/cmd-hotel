@@ -26,25 +26,29 @@ class UsuarioVo {
     /**
      * define os atributos da classe e determina quais atributos serao obrigatorios
      */
-    public $usuarioObrigatorio = array('usuarioId' => '',
-        'nivelId' => 'obrigatorio',
-        'usuarioNome' => 'obrigatorio',
-        'usuarioEmail' => 'obrigatorio',
-        'usuarioDocumentoTipo' => 'obrigatorio',
-        'usuarioDocumento' => 'obrigatorio',
+    public $usuarioObrigatorio = array(
+        'usuarioId'             => '',
+        'nivelId'               => 'obrigatorio',
+        'usuarioNome'           => 'obrigatorio',
+        'usuarioEmail'          => 'obrigatorio',
+        'usuarioDocumentoTipo'  => 'obrigatorio',
+        'usuarioDocumento'      => 'obrigatorio',
         'usuarioDataNascimento' => 'obrigatorio',
-        'usuarioSexo' => 'obrigatorio',
-        'usuarioLogin' => 'obrigatorio',
-        'usuarioSenha' => 'obrigatorio',
-        'usuarioLembrete' => '',
-        'usuarioStatus' => '',
-        'usuarioDataCadastro' => '');
+        'usuarioSexo'           => 'obrigatorio',
+        'usuarioLogin'          => 'obrigatorio',
+        'usuarioSenha'          => 'obrigatorio',
+        'usuarioLembrete'       => '',
+        'usuarioStatus'         => '',
+        'usuarioDataCadastro'   => ''
+    );
 
     /**
      * atributos que precisam validacoes
      */
-    public $usuarioFormatado = array('dataNascimento' => 'data',
-        'senha' => 'senha');
+    public $usuarioFormatado = array(
+        'dataNascimento'    => 'data',
+        'senha'             => 'senha'
+    );
 
     /*
      * get e set dos atributos da tabela 
@@ -181,7 +185,5 @@ class UsuarioVo {
     public function setCepCadastroVo($cepCadastroVo) {
         $this->cepCadastroVo = $cepCadastroVo;
     }
-
 }
-
 ?>
