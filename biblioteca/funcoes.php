@@ -105,7 +105,7 @@ function enviarEmail($nome, $email, $login, $senha){
 	}	
 }
 /***
- * Transforma uma data no formato DD/MM/AAAA pra AAAA/MM/DD ou vice-versa
+ * Transforma uma data no formato DD/MM/AAAA pra AAAA-MM-DD ou vice-versa
  * @param string $data
  * @param boolean $resumido Antigo - n„o deve mais ser usado
  * @return string

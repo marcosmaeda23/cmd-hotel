@@ -143,9 +143,8 @@ class UsuarioDao extends Entidade {
         //var_dump($usuarioVo);
         // cadastra o objeto principal retorna o id do usuario ou false
         $idUsuario = entidade :: cadastrarAlterar($usuarioVo);
-
         if ($idUsuario === false) {
-            return false;
+           return false;
         } else {
             // verifica se tem setado a $ordemBase e cadastra o restante das tabelas	
             for ($i = 0; $i < count($this->ordemBase); $i++) {
@@ -158,7 +157,7 @@ class UsuarioDao extends Entidade {
                     }
                     $sucesso = $telefoneDao->cadastrarAlterar($_objeto);
                     if ($sucesso === false) {
-                        return false;
+                    	return false;
                     }
                 }
                 if ($_entidade == 'cepXedicao') {
@@ -169,7 +168,7 @@ class UsuarioDao extends Entidade {
                     // verifica se esta setado como 1 para gravar o cadastro cep
                     $cepCadastrar = $_objeto->getCepXedicaoTipo() == 1 ? true : false;
                     if ($idCepXedicao === false) {
-                        return false;
+                    	return false;
                     }
                 }
                 if ($_entidade == 'cepCadastro') {
@@ -180,12 +179,13 @@ class UsuarioDao extends Entidade {
                         $_objeto->setCepXedicaoId($idCepXedicao);
                         $sucesso = $cepCadastroDao->cadastrarAlterar($_objeto);
                         if ($sucesso === false) {
-                            return false;
+                         	return false;
                         }
                     }
                 }
             }
         }
+      
         return true;
     }
 
