@@ -52,12 +52,83 @@ function deslogar(){
  */
 function enviarEmail($nome, $email, $login, $senha){
 	
+	// Inclui o arquivo class.phpmailer.php localizado na pasta phpmailer
+	require_once("class.phpmailer.php");
 	
+	// Inicia a classe PHPMailer
+	$mail = new PHPMailer();
+	
+	// Define os dados do servidor e tipo de conexão
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	$mail->IsSMTP(); // Define que a mensagem será SMTP
+	$mail->Host = "smtp.dominio.net"; // Endereço do servidor SMTP
+	//$mail->SMTPAuth = true; // Usa autenticação SMTP? (opcional)
+	//$mail->Username = 'seumail@dominio.net'; // Usuário do servidor SMTP
+	//$mail->Password = 'senha'; // Senha do servidor SMTP
+	
+	// Define o remetente
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	$mail->From = "seumail@dominio.net"; // Seu e-mail
+	$mail->FromName = "Joãozinho"; // Seu nome
+	
+	// Define os destinatário(s)
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	$mail->AddAddress('fulano@dominio.com.br', 'Fulano da Silva');
+	$mail->AddAddress('ciclano@site.net');
+	//$mail->AddCC('ciclano@site.net', 'Ciclano'); // Copia
+	//$mail->AddBCC('fulano@dominio.com.br', 'Fulano da Silva'); // Cópia Oculta
+	
+	// Define os dados técnicos da Mensagem
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	$mail->IsHTML(true); // Define que o e-mail será enviado como HTML
+	//$mail->CharSet = 'iso-8859-1'; // Charset da mensagem (opcional)
+	
+	// Define a mensagem (Texto e Assunto)
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	$mail->Subject  = "Mensagem Teste"; // Assunto da mensagem
+	$mail->Body = "Este é o corpo da mensagem de teste, em <b>HTML</b>! <br />" ;
+	$mail->AltBody = "Este é o corpo da mensagem de teste, em Texto Plano!";
+	
+	// Define os anexos (opcional)
+	// =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+	//$mail->AddAttachment("c:/temp/documento.pdf", "novo_nome.pdf");  // Insere um anexo
+	
+	// Envia o e-mail
+	$enviado = $mail->Send();
+	
+	// Limpa os destinatários e os anexos
+	$mail->ClearAllRecipients();
+	$mail->ClearAttachments();
+	
+	// Exibe uma mensagem de resultado
+	if ($enviado) {
+		return true;
+	} else {
+		return false;
+	}	
+}
+/***
+ * Transforma uma data no formato DD/MM/AAAA pra AAAA/MM/DD ou vice-versa
+ * @param string $data
+ * @param boolean $resumido Antigo - n„o deve mais ser usado
+ * @return string
+ */
+function formatarData($data, $resumido = false) {
+	$_data = explode("-",$data);
+	if(count($_data)==3) {
+		$ano = ($resumido ? substr($_data[0], 2) : $_data[0]);
+		$data_form = $_data[2]."/".$_data[1]."/".$ano;
+		return $data_form;
+	}
+	$_data = explode("/",$data);
+	if(count($_data)==3) {
+		$data_db = $_data[2]."-".$_data[1]."-".$_data[0];
+		return $data_db;
+	}
 }
 
-
 /**
- * funcao para validar a data e muda para a data do banco
+ * funcao para validar a data 
  * @param data dd/mm/YYYY
  * @return data YYYY-mm-dd ou false
  */
@@ -70,8 +141,8 @@ function validarData($data){
 	if (!$sucesso){	
 		return false;
 	} else {
-		$data_db = $y."-".$m."-".$d;
-		return $data_db;
+		$data_br = $d."-".$m."-".$y;
+		return $data_br;
 	}
 	
 }

@@ -44,7 +44,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		// faz a validacao dos campos obrigatorios, setados na classe
 		if ($valor == 'obrigatorio') {
 			if (empty($_POST[$chave][0])){
-				$erro_nome = 'do formulário.';
+				$erro_nome = 'Preencha todos os campo do formulário.';
 				$ERRO = true;
 			}
 		} 	
@@ -72,7 +72,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			} 	
 		} 	
 	} 	
-
 	// se não teve enhum erro de campos obrigatorios
 	if (!$ERRO){	
 		// loop para fazer as validacoes do post inteiro
@@ -117,7 +116,8 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		        }		        
 		        // verificar se email ja existe no banco	        
 		        $usuarioVo->setUsuarioEmail($valor);
-		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo);
+	
+		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo, 'usuario');
 		        if (!$sucesso) {
 		            $ERRO = true;
 		            $erro_nome .= 'O email já está cadastrado na base de dados.';
@@ -131,9 +131,6 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		            $ERRO = true;
 		            $erro_nome .= 'A data não é válida.';
 		            break;
-		        }
-		        else {
-		        	$_POST[$chave] = $resposta;
 		        }
 			}
 			if ($chave == 'usuarioSenha') {
@@ -182,6 +179,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		$usuarioVo->setCepXedicaoVo($cepXedicaoVo);	
 		$usuarioVo->setCepCadastroVo($cepCadastroVo);
 	}
+
 	if (!$ERRO) { 		
 		$sucesso = $usuarioBpm->cadastrarAlterar($usuarioVo, 'usuario');
         if (!$sucesso) {
@@ -192,12 +190,12 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';
-        echo 'location.href="../galeria/index.php";';
+        echo 'location.href="../home/index.php";';
         echo '</script>';
     } else {
         echo '<script language="JavaScript">';
         echo 'alert("' . $erro_nome . '");';
-		echo 'location.href="../index.php";';
+		echo 'location.href="index.php";';
         echo '</script>';
 
     }

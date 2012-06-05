@@ -32,6 +32,7 @@ class Entidade extends Banco{
 	public function cadastrarAlterar($objetoVo){
 		
 		// verifica se tiver o id dentro do objeto para salvar ou alterar
+		
 		eval('$id = $objetoVo->get'.ucfirst($this->entidade).'Id();');
 		if (empty($id)) {
 			// nao tem o id dentro do objeto, insert
@@ -81,7 +82,11 @@ class Entidade extends Banco{
 				if (empty($valor)) {
 					$sql .= 'null';
 				} else {
-					$sql .= $valor;
+					if($_dadosBase[1] == 'DATE'){
+						$sql .= formatarData($valor);
+					} else {
+						$sql .= $valor;
+					}
 				}
 				if (is_string($valor)){
 					$sql .= "'";
@@ -99,9 +104,11 @@ class Entidade extends Banco{
 				eval('$sql .= $objetoVo -> get'.ucfirst($this->entidade).'Status();');
 			}
 			$sql .= ' ) ;';			
+				
 			$query = mysql_query($sql); 
-			$_id = mysql_insert_id();			
+			$_id = mysql_insert_id();	
 		} else {
+			//exit();
 			// tem o id dentro do objeto, update
 			$sql = 'UPDATE '.$this->entidade. ' SET ( ';
 			for ( $j = 0; $j < count($this->chaveEstrangeira); $j++ ) {

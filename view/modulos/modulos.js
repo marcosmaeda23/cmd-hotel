@@ -8,13 +8,13 @@ dependencia jquery.maskedinput
  * funcao que preenche os campos do telefone
  * @param array associativo do telefone
  */
-function preencheCamposTelefone(telefonearray){
+function preencheCamposTelefone(telefoneArray){
 	// verifica se o array esta vazio
-	if(telefoneArray.length > 0){
-		
+	if(telefoneArray == ''){		
 		for ( var i = 0; i < telefoneArray.length; i++) {
 			// mosta o campo do telefone e insere os valores
 			mostrarTelefone();
+			aplicarMascara();
 			var qtde = $('#qtdeTelefone').val();
 			for ( var description in telefoneArray[i]) {
 				$('#'+description+(qtde-1)).val(telefoneArray[i][description]);
@@ -23,7 +23,30 @@ function preencheCamposTelefone(telefonearray){
 		
 	} else {
 		mostrarTelefone();
+		aplicarMascara()
 	}
+	
+}
+/**
+ * funcao que verifica qual o cep e mostra os campos
+ * @param array associativo do cep, e o tipo que é para mostrar
+ */
+function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
+	if (cepTipo == 1){
+		mostrarCepCadastro();
+		for ( var description in cepArray) {
+			$('#'+description).val(cepArray[description]);
+		}
+		$('#cepPesquisa').val(cepArray['cepCadastroCep']);
+	} else {
+		mostrarCepPreenchido();
+		aplicarMascara();
+	}
+	mostrarCepComplemento();
+	for ( var description in cepComplementoArray) {
+		$('#'+description).val(cepComplementoArray[description]);
+	}
+	// seta o cep no cepPesquisa
 	
 }
 
@@ -84,7 +107,9 @@ function cepPesquisar(){
 				mostrarCepCadastro();
 				// seta o valor com 1 para cadastrar 
 				$('#cepXedicaoTipo').val(1);
-				
+				$('#cepCadastroLogradouro').focus();
+				mostrarCepComplemento();
+				// seta p campo cepCadastroCep para cadastrar no banco
 				$('#cepCadastroCep').val($('#cepPesquisa').val());
 				
 			} else {
@@ -98,7 +123,7 @@ function cepPesquisar(){
 				$('#pais').val();
 				// seta o valor como 2 para nao gravar o cepCadastro no banco
 				$('#cepXedicaoTipo').val(2);
-				
+				mostrarCepComplemento();
 				// seta o focus
 				$('#cepXedicaoNumero').focus();		
 			}		    	
@@ -149,13 +174,13 @@ function mostrarCepPreenchido(){
 	_cep += 'Estado: 		<input type="text" 		name="estado" 		id="estado" 	value="" />	<br />';
 	_cep += 'Pais: 			<input type="text" 		name="pais" 		id="pais" 		value="" />	<br />';
 	$('#cep').append(_cep);
-	mostrarCepComplemento();
 }
 /**
  * mostra a parte do cadastro do cep, para salvar no banco
  */
 function mostrarCepCadastro(){
 	var _cep = '';
+	_cep += '				<input type="hidden" 	name="cepCadastroId" 			id="cepCadastroId" 				value="" />	<br />';
 	_cep += '				<input type="hidden" 	name="cepCadastroCep" 			id="cepCadastroCep" 				value="" />	<br />';
 	_cep += 'Logradouro: 	<input type="text" 		name="cepCadastroLogradouro"	id="cepCadastroLogradouro" 	class="obrigatorio" /><br />';
 	_cep += 'Bairro: 		<input type="text" 		name="cepCadastroBairro" 		id="cepCadastroBairro" 		class="obrigatorio" /><br />';
@@ -163,8 +188,6 @@ function mostrarCepCadastro(){
 	_cep += 'Estado: 		<input type="text" 		name="cepCadastroEstado" 		id="cepCadastroEstado" 		class="obrigatorio" /><br />';
 	_cep += 'Pais:	 		<input type="text" 		name="cepCadastroPais"	 		id="cepCadastroPais" 		class="obrigatorio" /><br />';
 	$('#cep').append(_cep);
-	mostrarCepComplemento();
-	$('#cepCadastroLogradouro').focus();
 }
 /**
  * mostra a parte do complemento do cep

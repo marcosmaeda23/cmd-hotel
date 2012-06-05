@@ -12,103 +12,73 @@ class UsuarioDao extends Entidade {
 	/**
 	 * nome da tabela 
 	 */
-	protected $entidade = 'usuario';
+	protected $entidade 		= 'usuario';
 
 	/**
 	 * chave estrangeira
 	 * @example $chaveEstrangeira = array('usuarioSistema INT(11) NOT NULL')
 	 */
-	protected $chaveEstrangeira = array (
-		'nivelId INT NOT NULL'
-	);
+	protected $chaveEstrangeira = array ('nivelId INT NOT NULL');
 
 	/**
 	 * se tiver a chave estrangeira setado arruma a relacao e defineo update 
 	 * @example $onUpdate = array('usuarioSistema' => 'cascade');
 	 */
-	protected $onUpdate = array (
-		'nivelId' => 'cascade'
-	);
+	protected $onUpdate 		= array ('nivelId' => 'cascade');
 
 	/**
 	 * se tiver a chave estrangeira setado arruma a relacao e define o delete
 	 * @example $onUpdate = array('usuarioSistema' => 'set null');
 	 */
-	protected $onDelete = array (
-		'nivelId' => 'cascade'
-	);
+	protected $onDelete 		= array ('nivelId' => 'cascade');
 	/**
 	 * se tiver algum atributo como unique setado, inclui na tabela
 	 * @deprecated id
 	 * @example $uniqueKey = array('email', 'documento');
 	 */
-	protected $uniqueKey = array (
-		'email',
-		'documento',
-		'login'
-	);
+	protected $uniqueKey 		= array ('email', 'documento', 'login');
 	/**
 	 * seta a base de dados para fazer a atualizacao ou criacao
 	 * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
 	 * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
 	 */
-
-	private $usuarioId;
-	private $usuarioNome;
-	private $usuarioEmail;
-	private $usuarioDocumentoTipo;
-	private $usuarioDocumento;
-	private $usuarioDataNascimento;
-	private $usuarioSexo;
-	private $usuarioLogin;
-	private $usuarioSenha;
-	private $usuarioLembrete;
-	private $usuarioStatus;
-	private $usuarioDataCadastro;
-
-	protected $dadosBase = array (
-		'nome VARCHAR(100) NOT NULL',
-		'email VARCHAR(100) NOT NULL',
-		'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
-		'documento VARCHAR(100) NOT NULL',
-		'dataNascimento DATE NOT NULL',
-		'sexo ENUM(\'f\',\'m\') NOT NULL',
-		'login VARCHAR(100) NOT NULL',
-		'senha VARCHAR(100) NOT NULL',
-		'lembrete VARCHAR(150) NOT NULL'
-	);
+	protected $dadosBase 		= array('nome VARCHAR(100) NOT NULL',
+										'email VARCHAR(100) NOT NULL',
+										'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
+										'documento VARCHAR(100) NOT NULL',
+										'dataNascimento DATE NOT NULL',
+										'sexo ENUM(\'f\',\'m\') NOT NULL',
+										'login VARCHAR(100) NOT NULL',
+										'senha VARCHAR(100) NOT NULL',
+										'lembrete VARCHAR(150) NOT NULL');
 
 	/**
 	 * Array contendo a ordem para salvar no banco
 	 */
-	protected $ordemBase = array (
-		'telefone',
-		'cepXedicao',
-		'cepCadastro'
-	);
+	protected $ordemBase 		= array ('telefone', 'cepXedicao', 'cepCadastro');
 	/**
 	 * se true coloca um campo dataCadastro na tabela
 	 */
-	protected $momentoCadastro = true;
+	protected $momentoCadastro 	= true;	
 	/**
 	 *  se true coloca um campo status na tabela
 	 */
-	protected $status = true;
+	protected $status 			= true;
 
 	/**
 	 * deixa os dados ordenados, acrescenta um campo ordem na tabela
 	 */
-	protected $ordenado = false;
+	protected $ordenado 		= false;
 
 	/**
 	 * arquivo com foto
 	 */
-	protected $foto = false;
+	protected $foto 			= false;
 
 	/**
 	 * se foto true , as fotos vao para esta pasta
 	 */
-	protected $fotoPasta = '';
+	protected $fotoPasta 		= '';
 
 	// =================================================================
 	// METODOS =========================================================
@@ -167,8 +137,10 @@ class UsuarioDao extends Entidade {
 	 * @return boolean 
 	 */
 	public function cadastrarAlterar($usuarioVo) {
+		var_dump($usuarioVo);
 		// cadastra o objeto principal retorna o id do usuario ou false
 		$idUsuario = entidade :: cadastrarAlterar($usuarioVo);
+
 		if ($idUsuario === false) {
 			return false;
 		} else {
@@ -226,6 +198,7 @@ class UsuarioDao extends Entidade {
 		$qtde = mysql_affected_rows();
 		$tipo = $resposta->cepXedicaoTipo;
 		$cepXedicaoVo = new CepXedicaoVo();
+		$cepCadastroVo = new CepCadastroVo();
 		if ($qtde == 1) {
 			if ($tipo == 1) {
 				// tem o cep cadastrado
@@ -241,8 +214,11 @@ class UsuarioDao extends Entidade {
 					}
 					for ($j = 0; $j < count($this->dadosBase); $j++) {
 						$_dadosBase = explode(' ', $this->dadosBase[$j]);
-						eval ('$objetoVo->set' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '($resposta->' . $this->entidade . ucfirst($_dadosBase[0]) . ');');
-	
+						if ($_dadosBase[1] == 'DATE') {
+							eval ('$objetoVo->set' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '(formatarData($resposta->' . $this->entidade . ucfirst($_dadosBase[0]) . '));');
+						} else {
+							eval ('$objetoVo->set' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '($resposta->' . $this->entidade . ucfirst($_dadosBase[0]) . ');');
+						}
 					}
 					if ($this->momentoCadastro) {
 						eval ('$objetoVo->set' . ucfirst($this->entidade) . 'DataCadastro($resposta->' . $this->entidade . 'DataCadastro);');
@@ -250,13 +226,19 @@ class UsuarioDao extends Entidade {
 					if ($this->status) {
 						eval ('$objetoVo->set' . ucfirst($this->entidade) . 'Status($resposta->' . $this->entidade . 'Status);');
 					}
+					// pega o cepXedicao e coloca os atributos dentro
 					foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $valor) {
-						//$_dadosBase = explode(' ', $this->dadosBase[$j]);
 						eval ('$cepXedicaoVo->set' . ucfirst($chave) . '($resposta->' . $chave . ');');
 					}
+					// pega o cepCadastro e coloca os atributos dentro
+					foreach ($cepCadastroVo->cepCadastroObrigatorio as $chave => $valor) {
+						eval ('$cepCadastroVo->set' . ucfirst($chave) . '($resposta->' . $chave . ');');
+					}
+					
 				}
 			}
 			$objetoVo->setCepXedicaoVo($cepXedicaoVo);
+			$objetoVo->setCepCadastroVo($cepCadastroVo);
 			
 		} else {
 			// nao tem o cep cadastrado

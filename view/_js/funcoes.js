@@ -3,9 +3,9 @@
  * 
  * @param pais
  */
-function aplicarMascara(pais) {
-
-	// alert(pais);
+function aplicarMascara() {
+	pais = $('#paisOrigem').val();
+	 alert(pais);
 	if (pais == 'brasil') {
 		$('.cep').mask('99 999-999');
 		$('.data').mask('99/99/9999', {

@@ -1,10 +1,15 @@
 $(document).ready(function(){
 	// busca o campo paisOrigem no formulario do cliente para setar a mascara, default brasil
 	var pais = $('#paisOrigem').val();
-	preencheCamposTelefone(telefoneArray);	
+	
+	preencheCamposTelefone(telefoneArray = null);	
+	
+	preencheCamposCep(cepComplementoArray = null, cepArray = null, cepTipo = null);
+	
+	//alert('sda');
 	//mostrarTelefone();
 	//mostrarCep();
-	aplicarMascara(pais);
+	
 });	
 /**
  * muda a mascara conforme o tipo que o usuario selecionou

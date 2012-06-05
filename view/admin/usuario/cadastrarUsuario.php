@@ -1,5 +1,6 @@
 <?php 
-require_once '../topoAdmin.php';
+//require_once '../topoAdmin.php';
+
 require_once '../../../dao/Banco.php';
 require_once '../../../dao/Entidade.php';
 require_once '../../../dao/UsuarioDao.php';
@@ -32,9 +33,16 @@ if(!empty($_SESSION['NOME'])){
 		$usuarioVo = $usuarioBpm -> exibir($usuarioVo, 'usuario');
 		
 	}	
+	$telefoneArray = $usuarioVo->getTelefoneVo();
+	$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
+	if($cepXedicaoVo->getCepXedicaoTipo() == 1) {
+		$cepCadastro = $usuarioVo->getCepCadastroVo();
+	} else {
+		
+	}
 }
-$telefoneArray = $usuarioVo->getTelefoneVo();
 
+//var_dump($CepXedicaoVo);
 //var_dump($usuarioVo);
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
@@ -58,6 +66,7 @@ $telefoneArray = $usuarioVo->getTelefoneVo();
 -->
 <head>
 	<title> </title>
+	
 </head>
 <body>		
 	<div id="formulario">
@@ -75,8 +84,9 @@ $telefoneArray = $usuarioVo->getTelefoneVo();
 				</label><input type="text" name="usuarioNome" id="usuarioNome" value="<?php echo $_POST['usuarioNome'] ? $_POST['usuarioNome']: $usuarioVo->getUsuarioNome(); ?>" maxlength="50" class="obrigatorio"  /><br />
 				Seu e-mail:<br />
 				<input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail']:$usuarioVo->getUsuarioEmail(); ?>" maxlength="50" class="obrigatorio"  /><br />
+				
 				Usuário: 	<br />
-				<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"  /><br />
+				<input type="text" name="usuarioLogin" id="usuarioLogin" value="<?php echo $usuarioVo->getUsuarioLogin(); ?>" maxlength="50" class="obrigatorio"  /><br />
 				Senha: 	<br />
 				<input type="password" name="usuarioSenha"id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />
 				Confirmacao de senha: 	<br />
@@ -108,9 +118,9 @@ $telefoneArray = $usuarioVo->getTelefoneVo();
 				Documento tipo: 	<br />
 				<select name="usuarioDocumentoTipo" id="usuarioDocumentoTipo" onchange="mudaMascara(this.value);" class="obrigatorio" >
 					<option value=""> Selecione o tipo do documento: </option>
-					<option value="cpf" <?php echo $usuarioVo->getUsuarioSexo() == 'cpf'?'selected=\'selected\'':'';?>> cpf </option>
-					<option value="cnpj" <?php echo $usuarioVo->getUsuarioSexo() == 'cnpj'?'selected=\'selected\'':'';?>> cnpj </option>
-					<option value="passaporte" <?php echo $usuarioVo->getUsuarioSexo() == 'passaporte'?'selected=\'selected\'':'';?>> passaporte </option>
+					<option value="cpf" <?php echo $usuarioVo->getUsuarioDocumentoTipo() == 'cpf'?'selected=\'selected\'':'';?>> cpf </option>
+					<option value="cnpj" <?php echo $usuarioVo->getUsuarioDocumento() == 'cnpj'?'selected=\'selected\'':'';?>> cnpj </option>
+					<option value="passaporte" <?php echo $usuarioVo->getUsuarioDocumentoTipo() == 'passaporte'?'selected=\'selected\'':'';?>> passaporte </option>
 				</select><br />
 	           Documento numero: 	<br />
 	           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="<?php echo $usuarioVo->getUsuarioDocumento() ?>" maxlength="50" class="obrigatorio"  /><br />
@@ -120,16 +130,21 @@ $telefoneArray = $usuarioVo->getTelefoneVo();
 			<div id='telefone'>
 				<!-- telefone -->
 			</div>
-			<a onclick="chamarFuncaoTel()">+ telefone</a><br />
+			<a onclick="mostrarTelefone();">+ telefone</a><br />
 			<input type='hidden' name="qtdeTelefone" id="qtdeTelefone" value="" />
+			           			
 			           							
-			<label for="cepPesquisa">Cep</label><br>
-			<input type="text" 		name="cepPesquisa" 		id="cepPesquisa"    class="cep" onblur="cepPesquisar();" /><br />
-			<input type="hidden" 	name="cepCadastroPais" 	id="cepCadastroPais" 	value="" />	<br />
-			<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		<br />       
+			<label for="cepPesquisa">Cep</label>
+			<input type="text" 		name="cepPesquisa" 		id="cepPesquisa"    class="cep" />
+			<input type="button" 	value="Pesquisar cep" onclick="cepPesquisar();" /><br />
+			
+			<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		      
+			<input type="hidden" 	name="cepXedicaoId" 	id="cepXedicaoId" 	value="" />		  
 			<div id='cep'>
 				<!-- cep -->   
-			</div>						
+			</div>
+			
+									
 			<input type="submit" name="cmdSalvar" value=" Cadastrar " />
 		</form>
 	</div>
@@ -140,30 +155,50 @@ $telefoneArray = $usuarioVo->getTelefoneVo();
 	<script type="text/javascript" src="../../_js/funcoes.js"></script>
 	<script type="text/javascript" src="../../modulos/modulos.js"></script>
 	<script type="text/javascript" src="../../_js/usuario.js"></script>
+	
 	<script type="text/javascript">
-		// seta o campo hidden como zero
-		$('#qtdeTelefone').val(0);
-	
 		telefoneArray = new Array();
-		<?php for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
-				var telefone = new Object(); 
-	
-				<?php foreach ( $telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
-				
-					telefone['<?php echo $chave;?>'] = '<?php eval('echo $telefoneArray['.$i.']->get'.ucfirst($chave).'();'); ?>';
-				<?php } ?>
-	
-	
-				telefoneArray[<?php echo $i;?>] = telefone;	     
-				<?php } ?>
-	
-	
-	
-		<?php if (isset($_POST['paisOrigem'])){ ?>
-			aplicarMascara(<?php $_POST['paisOrigem'];?>);
-		<?php } ?>
+		cepArray = new Array();
+		cepComplementoArray = new Array();
+		
+		// seta o campo hidden como zero
+		$('#qtdeTelefone').val(0);	
+		//seta o cepXedicaoTipo com o valor do banco
+		cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo();?>;
+		$('#cepXedicaoTipo').val(cepTipo);
+		
+		var edicao = false;
+		
+		<?php if (!empty($_SESSION['ID'])){ 
+				for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
+					var telefone = new Object(); 	
+					<?php foreach ( $telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>				
+						telefone['<?php echo $chave;?>'] = '<?php eval('echo $telefoneArray['.$i.']->get'.ucfirst($chave).'();'); ?>';
+					<?php } ?>	
+					telefoneArray[<?php echo $i;?>] = telefone;	     
+			<?php } ?>
+			edicao = true;
+			<?php if ($cepXedicaoVo->getCepXedicaoTipo() == 1) { 
+				// mostra o cepCadastro preenchido
+					foreach ( $cepCadastro->cepCadastroObrigatorio as $chave => $valor ) { ?>
+		       			cepArray['<?php echo $chave;?>'] = '<?php eval('echo $cepCadastro->get'.ucfirst($chave).'();'); ?>';
+			<?php	}					
+			 } else { ?>
+				// mostra o campo do cep do banco 
+			<?php }?>
+			<?php foreach ( $cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave ) { ?>
+	       			cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get'.ucfirst($chave).'();'); ?>';
+			<?php }
+			
+			}?>
+		
+		
+			mostrarTelefone()
+		
+		aplicarMascara(<?php $_POST['paisOrigem'];?>);
+		
 	</script>
 </html>
 
 
-<?php require_once '../rodapeAdmin.php'; ?>
+<?php //require_once '../rodapeAdmin.php'; ?>

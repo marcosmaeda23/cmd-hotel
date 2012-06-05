@@ -24,15 +24,10 @@ require_once '../../../biblioteca/funcoes.php';
 // verificar a sessao
 session_start();
 
-$usuarioVo = new UsuarioVo();
-if(isset($_SESSION['NOME'])){
+if(empty($_SESSION['NOME'])){
 	if ($_SESSION['NIVEL'] == 4){
-		// buscar usuario para mostrar nos campos
-		$usuarioVo -> setUsuarioId($_SESSION['ID']);
-		$resposta = $usuarioVo -> exibir($usuarioVo, 'usuario');
-		if($resposta === false){
-			
-		}
+		header('location:exibirUsuario.php');	
+	
 	}	
 }
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm

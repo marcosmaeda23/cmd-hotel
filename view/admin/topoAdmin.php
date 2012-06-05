@@ -1,6 +1,17 @@
 <?php
 session_start();
 include('../../template/iniciarDados.php');
+
+session_start();
+if($_GET['acao'] == 'deslogar'){
+	session_unset();
+	session_destroy();
+	header('location:../');
+}
+
+if(empty($_SESSION)){
+}
+
 ?>
 <html>
 <head>
@@ -39,7 +50,7 @@ include('../../template/iniciarDados.php');
 					</li>
 				</ul>
 				<li><a href="#" title="Home">Reservas</a></li>
-				<li><a href="#" title="Perfil">Sair</a></li>
+				<li><a href="?acao=deslogar" title="Perfil">Sair</a></li>
 		
 		</ul>
 	</div>

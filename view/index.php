@@ -5,7 +5,7 @@
 <script type="text/javascript" src="_js/slider/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-bullets-1.1.2.js"></script>
 <script type="text/javascript" src="_js/slider/sliderwall-options.js"></script>
-<script type="text/javascript" src="admin/_js/index.js"></script>
+<script type="text/javascript" src="_js/index.js"></script>
 <script type="text/javascript" src="_js/funcoes.js"></script>
 <div id="imageSlideshow">
     <div rel="slider_content" style="display: none;">
@@ -72,7 +72,7 @@
     </div>
     <div class="cadastro" style="padding-left:30px">
         <div class="conteudoMenu <?php echo $cor_principal; ?>">Cadastre-se </div>
-        <form action="admin/usuario/index.php" method="post" id="cadastroUser" name="cadastroUser"  class="formDefault"  onsubmit='return verificarCampos("cadastroUser");' >
+        <form action="admin/usuario/cadastrarUsuario.php" method="post" id="cadastroUser" name="cadastroUser"  class="formDefault"  onsubmit='return verificarCampos("cadastroUser");' >
             <div class="cadastro_titulo_container" >           
                
                <!-- usuario -->
