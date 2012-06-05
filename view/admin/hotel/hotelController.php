@@ -79,16 +79,6 @@ if ($_POST['acao'] == 'cadastrarHotel') {
 
         foreach ($_POST as $chave => $valor) {
             // validacoes
-            if ($chave == 'hotelNome') {
-                // verifica se o login ja existe no banco
-                $hotelVo->setHotelLogin($valor);
-                $sucesso = $hotelBpm->verificarLogin($hotelVo);
-                if (!$sucesso) {
-                    $ERRO = true;
-                    $erro_nome .= 'O login já está cadastado no banco.';
-                    break;
-                }
-            }
             if ($chave == 'hotelEmail') {
                 // verifica se o email esta no formato valido
                 $sucesso = validarEmail($valor);
@@ -101,6 +91,8 @@ if ($_POST['acao'] == 'cadastrarHotel') {
                 $hotelVo->setHotelEmail($valor);
 
                 $sucesso = $hotelBpm->verificarExistenciaEmail($hotelVo, 'hotel');
+                echo $sucesso;
+                exit();
                 if (!$sucesso) {
                     $ERRO = true;
                     $erro_nome .= 'O email já está cadastrado na base de dados.';
