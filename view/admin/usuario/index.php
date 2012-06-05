@@ -1,6 +1,6 @@
-<?php require_once '../topoAdmin.php'; ?>
+<?php
+include('../template/iniciarDados.php');
 
-<?php 
 require_once '../../../dao/Banco.php';
 require_once '../../../dao/Entidade.php';
 require_once '../../../dao/UsuarioDao.php';
@@ -39,33 +39,40 @@ if(empty($_SESSION['NOME'])){
 
 
 ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
-<!--
- * Created on 22/05/2012
- *
- * To change the template for this generated file go to
- * Window - Preferences - PHPeclipse - PHP - Code Templates
--->
-<head>
-	<title> </title>
-</head>
-<body>		
-	
-</body>
-	<!-- scripts -->
-	<script type="text/javascript" src="../../_js/slider/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" src="../../_js/plugin/jquery.maskedinput-1.3.min.js"></script>
-	<script type="text/javascript" src="../../_js/funcoes.js"></script>
-	<script type="text/javascript" src="../../modulos/modulos.js"></script>
-	<script type="text/javascript" src="../../_js/usuario.js"></script>
-	<script type="text/javascript">
+    <head>
+        <title><?php echo $nome_site_Title; ?></title>
+        <!-- css gerais-->
+        <?php include('../template/css.php'); ?>
+    </head>
+    <body>	
+        <?php include('../template/topoAdmin.php') ?>
+        <div class="content cf">
+            <div class="container">
+                <div class="middle">
+
+                    <!-- conteudo -->	
+
+                    <a href="cadastrarUsuario.php">Cadastrar</a> <br />
+                    <a href="cadastrarUsuario.php">Alterar</a>
+
+                    
+
+                </div>
+            </div>
+        </div>
+
+        <?php include('../template/rodapeAdmin.php'); ?>
+    </body>
+    <!-- scripts gerais -->
+    <?php include('../template/js.php') ?>
+    <script type="text/javascript">
 		<?php if (isset($_POST['paisOrigem'])){ ?>
 			aplicarMascara(<?php $_POST['paisOrigem'];?>);
 		<?php } ?>
 	</script>
 </html>
-<?php require_once '../rodapeAdmin.php'; ?>
+</html>

@@ -25,5 +25,4 @@ require_once '../../../vo/CepCadastroVo.php';
 require_once '../../../vo/TelefoneVo.php';
 
 require_once '../../../biblioteca/funcoes.php';
-
 ?>

@@ -12,7 +12,7 @@ include('iniciarDados.php');
 </head>
 <body>	
 	<?php include('topo.php') ?>
-	<div class="content">
+	<div class="content cf">
 		<div class="container">
 			<div class="middle">
 							

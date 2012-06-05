@@ -1,7 +1,7 @@
 <div class="menuTopo <?php echo $cor_secundaria; ?>" style="height: 70px !important;">
     <ul class="content adminNav">
         <div class="cf logo">
-            <a href="index.php"> <?php echo $nome_site; ?> </a>
+            <a href="../home/"> <?php echo $nome_site; ?> </a>
         </div>
         <div id="menu">
             <ul class="menu">
