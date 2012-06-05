@@ -1,4 +1,4 @@
-Ï<?php
+<?php
 
 /**
  * classe com o metodo exclusivo do hotel
@@ -14,29 +14,11 @@ class HotelDao extends Entidade {
     protected $entidade = 'hotel';
 
     /**
-     * chave estrangeira
-     * @example $chaveEstrangeira = array('usuarioSistema INT(11) NOT NULL')
-     */
-    protected $chaveEstrangeira = array('nivelId INT NOT NULL');
-
-    /**
-     * se tiver a chave estrangeira setado arruma a relacao e defineo update 
-     * @example $onUpdate = array('usuarioSistema' => 'cascade');
-     */
-//    protected $onUpdate = array('nivelId' => 'cascade');
-
-    /**
-     * se tiver a chave estrangeira setado arruma a relacao e define o delete
-     * @example $onUpdate = array('usuarioSistema' => 'set null');
-     */
-//    protected $onDelete = array('nivelId' => 'cascade');
-
-    /**
      * se tiver algum atributo como unique setado, inclui na tabela
      * @deprecated id
      * @example $uniqueKey = array('email', 'documento');
      */
-    protected $uniqueKey = array('email', 'cnpj', 'nome', 'inscricao_estadual');
+    protected $uniqueKey = array('cnpj', 'nome', 'inscricao_estadual', 'email');
           
     /**
      * seta a base de dados para fazer a atualizacao ou criacao
@@ -60,12 +42,7 @@ class HotelDao extends Entidade {
     /**
      * se true coloca um campo dataCadastro na tabela
      */
-    protected $momentoCadastro = true;
-
-    /**
-     *  se true coloca um campo status na tabela
-     */
-    protected $status = true;
+    protected $momentoCadastro = false;
 
     /**
      * deixa os dados ordenados, acrescenta um campo ordem na tabela

@@ -1,8 +1,6 @@
 <?php
 include('../template/iniciarDados.php');
-if ($_SESSION['NIVEL'] == 2) {
-    header('location:cadastrarHotel.php');
-} else {
+if ($_SESSION['NIVEL'] != 2) {
     header('location:../home/');
 }
 ?>
@@ -38,11 +36,10 @@ if ($_SESSION['NIVEL'] == 2) {
                             <input type="text" name="hotelCnpj" id="hotelCnpj" value="" maxlength="50" class="obrigatorio"  /><br />
                             Inscrição Estadual:	<br />
                             <input type="text" name="hotelInscricaoEstadual" id="hotelInscricaoEstadual" value="" maxlength="50" class="obrigatorio"  /><br />
-                            Confirmacao de senha: 	<br />
+                            Gerente: 	<br />
                             <input type="text" name="hotelGerente" id="hotelGerente" value="" maxlength="50" class="obrigatorio"  /><br />
                             Observação:<br />
-
-
+                            <input type="text" name="hotelObservacao" id="hotelObservacao" value="" maxlength="50" class="obrigatorio"  /><br />
 
                             <div id='telefone'>
                                 <!-- telefone -->
@@ -63,6 +60,7 @@ if ($_SESSION['NIVEL'] == 2) {
 
 
                             <input type="submit" name="cmdSalvar" value=" Cadastrar " />
+                        </div>
                     </form>
 
 
