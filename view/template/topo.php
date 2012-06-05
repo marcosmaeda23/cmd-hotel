@@ -1,6 +1,6 @@
 <?php
 	session_start();
-	include('../template/iniciarDados.php');
+	include('iniciarDados.php');
 ?>
 <html>
 <head>
