@@ -1,5 +1,18 @@
 <?php
 include('../template/iniciarDados.php');
+session_start();
+if ($_GET['acao'] == 'deslogar') {
+    session_unset();
+    session_destroy();
+    header('location:../');
+}
+
+if (empty($_SESSION)) {
+    session_unset();
+    session_destroy();
+    header('location:../../');
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
