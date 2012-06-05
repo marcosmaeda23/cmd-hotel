@@ -41,25 +41,26 @@ function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
 			$('#cepPesquisa').val(cepArray['cepCadastroCep']);
 		} else {
 			mostrarCepPreenchido();
-			aplicarMascara();
 		}
 		mostrarCepComplemento();
 		for ( var description in cepComplementoArray) {
 			$('#'+description).val(cepComplementoArray[description]);
 		}
+		aplicarMascara();
 	}
 }
 
 function mostrarCampoLogin(){
 	var _login = '';
 	_login += 'Usuário: 	<br />';
-	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="<?php echo $usuarioVo->getUsuarioLogin(); ?>" maxlength="50" class="obrigatorio"  /><br />';
+	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"  /><br />';
 	_login += 'Senha: 	<br />';
-	_login += '<input type="password" name="usuarioSenha"id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
+	_login += '<input type="password" name="usuarioSenha" id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
 	_login += 'Confirmacao de senha: 	<br />';
 	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
 	_login += 'Lembrete:<br />';
-	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="<?php echo $usuarioVo->getUsuarioLembrete; ?>" maxlength="50" /><br />';
+	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />';
+	
 	$('#login').append(_login);
 }
 /**

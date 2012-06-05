@@ -3,7 +3,7 @@ include('../template/iniciarDados.php');
 
 // verificar a sessao
 session_start();
-//var_dump($_SESSION);
+var_dump($_SESSION);
 $usuarioVo = new UsuarioVo();
 if(!empty($_SESSION['NOME'])){
 	if (!empty($_SESSION['ID'])){
@@ -20,10 +20,7 @@ if(!empty($_SESSION['NOME'])){
 	} else {
 		
 	}	
-} else {
-	?> <script type="text/javascript">mostrarCampoLogin();</script><?php
-}
-
+} 
 
 //var_dump($CepXedicaoVo);
 //var_dump($usuarioVo);
@@ -133,9 +130,9 @@ if(!empty($_SESSION['NOME'])){
 </body>
 	<!-- scripts -->
 	<?php include('../template/js.php')?>
-	<script type="text/javascript" src="../../_js/usuario.js"></script>
-	
+	<script type="text/javascript" src="../../_js/usuario.js"></script>	
 	<script type="text/javascript">
+			
 		telefoneArray = new Array();
 		cepArray = new Array();
 		cepComplementoArray = new Array();
@@ -146,7 +143,7 @@ if(!empty($_SESSION['NOME'])){
 		cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo();?>;
 		$('#cepXedicaoTipo').val(cepTipo);
 		
-		var edicao = false;
+		
 		
 		<?php if (!empty($_SESSION['ID'])){ 
 				for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
@@ -156,7 +153,6 @@ if(!empty($_SESSION['NOME'])){
 					<?php } ?>	
 					telefoneArray[<?php echo $i;?>] = telefone;	     
 			<?php } ?>
-			edicao = true;
 			<?php if ($cepXedicaoVo->getCepXedicaoTipo() == 1) { 
 				// mostra o cepCadastro preenchido
 					foreach ( $cepCadastro->cepCadastroObrigatorio as $chave => $valor ) { ?>
@@ -172,9 +168,11 @@ if(!empty($_SESSION['NOME'])){
 			}?>
 		
 		
-			mostrarTelefone()
+			//mostrarTelefone();
+			
 		
-		
+		<?php if(empty($_SESSION['ID'])) { ?>
+		<?php } ?>
 		
 	</script>
 </html>

@@ -6,9 +6,13 @@ $(document).ready(function(){
 	
 	preencheCamposCep(cepComplementoArray = null, cepArray = null, cepTipo = null);
 	
+	if(telefoneArray == null){
+		mostrarCampoLogin();
+	}
 	//alert('sda');
 	//mostrarTelefone();
 	//mostrarCep();
+	
 	
 });	
 /**
