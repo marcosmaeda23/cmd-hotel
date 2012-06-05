@@ -187,6 +187,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
             $erro_nome .= 'O ocorreu um erro ao cadastrar o usuario';
     	}
 	}
+	
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';

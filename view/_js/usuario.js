@@ -25,7 +25,7 @@ function mudaMascara(tipo){
 	//verifica qual a mascara ira aparecer quando ele mudar o select no campo do cadastro de usuario
 	// coloca a mascara e depois ja faz a validacaos
 	if(tipo == 'cpf'){
-		$("#usuarioDocumento").mask("999.999.99-99",{
+		$("#usuarioDocumento").mask("999.999.999-99",{
 			completed: function(){
 				validarDocumento('cpj', this.val());
 			}

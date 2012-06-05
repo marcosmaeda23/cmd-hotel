@@ -1,3 +1,7 @@
+<?php 
+
+?>
+
 <div class="menuTopo <?php echo $cor_secundaria; ?>" style="height: 70px !important;">
     <ul class="content adminNav">
         <div class="cf logo">

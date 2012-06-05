@@ -140,7 +140,7 @@ class UsuarioDao extends Entidade {
      * @return boolean 
      */
     public function cadastrarAlterar($usuarioVo) {
-        var_dump($usuarioVo);
+        //var_dump($usuarioVo);
         // cadastra o objeto principal retorna o id do usuario ou false
         $idUsuario = entidade :: cadastrarAlterar($usuarioVo);
 

@@ -5,6 +5,7 @@ include('../template/iniciarDados.php');
 session_start();
 //var_dump($_SESSION);
 $usuarioVo = new UsuarioVo();
+
 if(!empty($_SESSION['NOME'])){
 	if (!empty($_SESSION['ID'])){
 		$usuarioBpm = new UsuarioBpm();
@@ -166,8 +167,7 @@ if(!empty($_SESSION['NOME'])){
 			<?php }
 			
 			}?>
-		
-		
+	
 			//mostrarTelefone();
 			
 		

@@ -197,6 +197,7 @@ function validarDocumento($documentoTipo, $documento){
 	} else if ($documentoTipo == 'iE') {
 		return true;
 	}	
+	return true;
 }
 
 /**
