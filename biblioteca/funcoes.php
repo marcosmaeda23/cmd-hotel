@@ -149,21 +149,23 @@ function validarData($data){
  */
 function retirarMascara($valor){
 	
-	$caracteres = array(" ", "-", "_");
+	$caracteres = array(" ", "-", "_", ",");
 	$resultado = str_replace($caracteres, "", $valor);
 	
 	return $resultado;
 }
+
 /**
  * funcao para validar documento
  * @param documentoTipo-'cpf','cnpj'-, documento: String
  * @return boolean
  */
 function validarDocumento($documentoTipo, $documento){
+	$numero = retirarMascara($documento);
 	if ($documentoTipo == 'cpf') {
-		/*
+		
 		// Verifiva se o número digitado contém todos os digitos
-		$cpf = str_pad(ereg_replace('[^0-9]', '', $documento), 11, '0', STR_PAD_LEFT);
+		$cpf = str_pad(ereg_replace('[^0-9]', '', $numero), 11, '0', STR_PAD_LEFT);
 	
 		// Verifica se nenhuma das sequências abaixo foi digitada, caso seja, retorna falso
 		if (strlen($cpf) != 11 || 
@@ -189,10 +191,10 @@ function validarDocumento($documentoTipo, $documento){
 	            }
 	        }	
 	        return true;
-		}*/
-		
-		return true;
+		}
 	} else if ($documentoTipo == 'cnpj') {
+		
+		
 		return true;
 	} else if ($documentoTipo == 'iE') {
 		return true;

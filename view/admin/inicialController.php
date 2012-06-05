@@ -28,7 +28,7 @@ if ($_POST['acao'] == 'logar') {
 
 		// o logar precisa ser como login e senha e nao como usuarioLogin e usuarioSenha
         $usuarioVo->setUsuarioLogin($_POST['login']);
-        $usuarioVo->setUsuarioSenha(md5($_POST['senha']));
+        $usuarioVo->setUsuarioSenha(md5(addcslashes($_POST['senha'])));
         $resposta = $usuarioBpm->logar($usuarioVo);
         switch ($resposta) {
             case 0 : $ERRO = false;
