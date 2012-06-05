@@ -26,12 +26,12 @@ class HotelDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'hotelNome VARCHAR(100) NOT NULL' ,
-        'hotelCnpj INT NOT NULL' ,
-        'hotelInscricaoEstadual INT NOT NULL' ,
-        'hotelEmail VARCHAR(100) NOT NULL' ,
-        'hotelObservacao VARCHAR(800) NULL' ,
-        'hotelGerente VARCHAR(100) NOT NULL' ,
+        'nome VARCHAR(100) NOT NULL' ,
+        'cnpj INT NOT NULL' ,
+        'inscricaoEstadual INT NOT NULL' ,
+        'email VARCHAR(100) NOT NULL' ,
+        'observacao VARCHAR(800) NULL' ,
+        'gerente VARCHAR(100) NOT NULL' ,
         );
 
     /**

@@ -91,6 +91,8 @@ if ($_POST['acao'] == 'cadastrarHotel') {
                 $hotelVo->setHotelEmail($valor);
 
                 $sucesso = $hotelBpm->verificarExistenciaEmail($hotelVo, 'hotel');
+	echo $valor;
+        exit();
                 echo $sucesso;
                 exit();
                 if (!$sucesso) {
