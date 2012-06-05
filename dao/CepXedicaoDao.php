@@ -105,8 +105,8 @@ class CepXedicaoDao extends Entidade {
 				$objeto -> setEstadoUf($row -> estadoUf);
 				$objeto -> setPaisId($row -> paisId);
 				$objeto -> setPaisNome($row -> paisNome);
-				return $objeto;
 			}			
+			return $objeto;
 		} else {
 			return false;
 		}

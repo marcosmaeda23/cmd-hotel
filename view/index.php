@@ -1,4 +1,4 @@
-<?php include('topo.php'); ?>
+<?php include('template/topo.php'); ?>
 <!-- #Slider -->
 <link rel="stylesheet" type="text/css" href="_css/slider/sliderwall_bullets_skin.css"/>
 <link rel="stylesheet" type="text/css" href="_css/slider/slideshow_sample.css"/>
@@ -85,4 +85,4 @@
             <div class="cadastro_selecao"><input type="submit" value="cadastrar novo usuario" name="cmdSalvar"></div>
         </form>
     </div>
-    <?php require_once("rodape.php"); ?>
+    <?php require_once("template/rodape.php"); ?>

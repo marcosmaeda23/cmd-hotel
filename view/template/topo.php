@@ -18,7 +18,7 @@
 			<div class="cf loginInicial">
 				<form method="post" action="admin/inicialController.php"
 					class="formDefault">
-					<input type="hidden" name="acao" id="acao" value="logar" /> Usu·rio
+					<input type="hidden" name="acao" id="acao" value="logar" /> Usu√°rio
 					<input type="text" name="login" id='login' maxlength="50" /> Senha
 					<input type="password" name="senha" id='senha' maxlength="20" /> <input
 						type="submit" value="  Entrar  " />

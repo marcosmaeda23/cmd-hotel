@@ -32,24 +32,36 @@ function preencheCamposTelefone(telefoneArray){
  * @param array associativo do cep, e o tipo que é para mostrar
  */
 function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
-	if (cepTipo == 1){
-		mostrarCepCadastro();
-		for ( var description in cepArray) {
-			$('#'+description).val(cepArray[description]);
+	if(cepComplementoArray != null) {
+		if (cepTipo == 1){
+			mostrarCepCadastro();
+			for ( var description in cepArray) {
+				$('#'+description).val(cepArray[description]);
+			}
+			$('#cepPesquisa').val(cepArray['cepCadastroCep']);
+		} else {
+			mostrarCepPreenchido();
+			aplicarMascara();
 		}
-		$('#cepPesquisa').val(cepArray['cepCadastroCep']);
-	} else {
-		mostrarCepPreenchido();
-		aplicarMascara();
+		mostrarCepComplemento();
+		for ( var description in cepComplementoArray) {
+			$('#'+description).val(cepComplementoArray[description]);
+		}
 	}
-	mostrarCepComplemento();
-	for ( var description in cepComplementoArray) {
-		$('#'+description).val(cepComplementoArray[description]);
-	}
-	// seta o cep no cepPesquisa
-	
 }
 
+function mostrarCampoLogin(){
+	var _login = '';
+	_login += 'Usuário: 	<br />';
+	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="<?php echo $usuarioVo->getUsuarioLogin(); ?>" maxlength="50" class="obrigatorio"  /><br />';
+	_login += 'Senha: 	<br />';
+	_login += '<input type="password" name="usuarioSenha"id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
+	_login += 'Confirmacao de senha: 	<br />';
+	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
+	_login += 'Lembrete:<br />';
+	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="<?php echo $usuarioVo->getUsuarioLembrete; ?>" maxlength="50" /><br />';
+	$('#login').append(_login);
+}
 /**
  * pesquisa o cep na base de dados
  * mostra o resultado no campo 'resposta' caso nao ache 
@@ -114,6 +126,7 @@ function cepPesquisar(){
 				
 			} else {
 				mostrarCepPreenchido();
+				alert('Cep encontrado');
 				// mostra os campos do cep com os valores preenchidos
 				$('#cepId').val();
 				$('#logradouro').val();
