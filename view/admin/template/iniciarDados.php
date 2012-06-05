@@ -7,6 +7,13 @@ $cor_principal = "bgAzulClaro";
 $cor_secundaria = "bgAzul";
 
 
+session_start();
+if ($_GET['acao'] == 'deslogar') {
+    session_unset();
+    session_destroy();
+    header('location:../../');
+}
+
 require_once '../../../dao/Banco.php';
 require_once '../../../dao/Entidade.php';
 require_once '../../../dao/UsuarioDao.php';

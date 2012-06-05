@@ -30,7 +30,7 @@ class Entidade extends Banco{
 	 * @return bool
 	 */
 	public function cadastrarAlterar($objetoVo){
-		
+		var_dump($objetoVo);
 		// verifica se tiver o id dentro do objeto para salvar ou alterar
 		
 		eval('$id = $objetoVo->get'.ucfirst($this->entidade).'Id();');
@@ -138,7 +138,7 @@ class Entidade extends Banco{
 			//$_id = mysql_insert_id();
 		}		
 			
-			
+		exit();	
 		if(!$query){
 			return false;
 		} else {

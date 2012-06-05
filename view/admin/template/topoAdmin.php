@@ -1,6 +1,4 @@
-<?php 
 
-?>
 
 <div class="menuTopo <?php echo $cor_secundaria; ?>" style="height: 70px !important;">
     <ul class="content adminNav">
