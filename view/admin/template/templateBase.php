@@ -8,7 +8,7 @@ include('../template/iniciarDados.php');
     <head>
         <title><?php echo $nome_site_Title; ?></title>
         <!-- css gerais-->
-        <?php include('css.php'); ?>
+        <?php include('../template/css.php'); ?>
     </head>
     <body>	
         <?php include('../template/topoAdmin.php') ?>
@@ -17,6 +17,7 @@ include('../template/iniciarDados.php');
                 <div class="middle">
 
                     <!-- conteudo -->	
+                    
 
                 </div>
             </div>

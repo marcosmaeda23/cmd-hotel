@@ -86,7 +86,7 @@ class CepXedicaoDao extends Entidade {
 					INNER JOIN cidade 		ON cidade.cidadeId	= logradouro.cidadeId
 					INNER JOIN estado 		ON estado.estadoId	= cidade.estadoId
 					INNER JOIN pais 		ON pais.paisId 		= estado.paisId
-				WHERE cep.cepNumero = '. $objeto -> getCepNumero();
+				WHERE cep.cepNumero = '. retirarMascara($objeto -> getCepNumero());
 		$query = mysql_query($sql);
 		$qtde = mysql_affected_rows();
 		

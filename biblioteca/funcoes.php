@@ -143,7 +143,17 @@ function validarData($data){
 	}
 	
 }
-
+/**
+ * funcao que retira a mascara 
+ * @return 
+ */
+function retirarMascara($valor){
+	
+	$caracteres = array(" ", "-", "_");
+	$resultado = str_replace($caracteres, "", $valor);
+	
+	return $resultado;
+}
 /**
  * funcao para validar documento
  * @param documentoTipo-'cpf','cnpj'-, documento: String
