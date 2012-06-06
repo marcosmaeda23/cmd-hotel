@@ -60,7 +60,7 @@ class HotelDao extends Entidade {
      * @return boolean 
      */
     public function cadastrarAlterar($hotelVo) {
-        var_dump($hotelVo);
+        //var_dump($hotelVo);
         // cadastra o objeto principal retorna o id do hotel ou false
         $idHotel = entidade :: cadastrarAlterar($hotelVo);
 

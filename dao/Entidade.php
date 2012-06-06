@@ -106,7 +106,10 @@ class Entidade extends Banco {
                 eval('$sql .= $objetoVo -> get' . ucfirst($this->entidade) . 'Status();');
             }
             $sql .= ' ) ;';
-
+echo $sql;
+echo "<br/> ";
+echo "<br/> Deve ser passado 'hotelCnpj' e 'hotelInscricaoEstadual' de String para Int ";
+exit();
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
         } else {
