@@ -1,9 +1,8 @@
 <?php
 include('../template/iniciarDados.php');
 
-// verificar a sessao
-session_start();
-//var_dump($_SESSION);
+
+var_dump($_SESSION);
 $usuarioVo = new UsuarioVo();
 
 if(!empty($_SESSION['NOME'])){

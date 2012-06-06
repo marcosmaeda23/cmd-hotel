@@ -1,12 +1,12 @@
 $(document).ready(function(){
-	$('#lembrete').hide();
+	$('#campoEmail').hide();
 });	
 
 
 
 
 function mostrarCampoEmail(){
-	$('#login_normal').hide();
+	$('#loginNormal').hide();
 	$('#campoEmail').show();
 }
 

@@ -72,7 +72,10 @@ class UsuarioDao extends Entidade {
      * deixa os dados ordenados, acrescenta um campo ordem na tabela
      */
     protected $ordenado = false;
-
+	/**
+	 * limite de para a pesquisa
+	 */
+	protected $limite = '0, 10';
     /**
      * arquivo com foto
      */

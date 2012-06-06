@@ -14,7 +14,7 @@ if (!empty($_SESSION['NOME'])) {
         <?php include('../template/css.php'); ?>
     <head>
     <body>
-		<?php include('../template/topo.php') ?>
+		
         <div class='login radius10' >
             <h2 class="borderTop BgAzulClaro">Entrar no Sistema</h2>
             <div class='loginNormal'>
@@ -47,6 +47,6 @@ if (!empty($_SESSION['NOME'])) {
             </div>
         </div>
     </body>
-    <script type="text/javascript" charset="UTF-8" src="../_js/plugin/jquery.min.js"></script>
-    <script type="text/javascript" charset="UTF-8" src="../_js/_index.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../_js/plugin/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" charset="UTF-8" src="../_js/index.js"></script>
 </html>

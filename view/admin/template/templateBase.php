@@ -1,4 +1,5 @@
 <?php
+//base de template da parte adm
 include('../template/iniciarDados.php');
 
 

@@ -2,18 +2,14 @@
 include('../template/iniciarDados.php');
 
 
-// verificar a sessao
-session_start();
-
-if(!empty($_SESSION['NOME'])){
-	if ($_SESSION['NIVEL'] <> 4){
-		header('location:exibirUsuario.php');	
-	} else {
-		header('location:cadastrarUsuario.php');	
-	}	
-} else {
+if(empty($_SESSION['NOME']) || $_SESSION['NIVEL'] == 4){
 	header('location:cadastrarUsuario.php');	
 }
+
+$usuarioBpm = new UsuarioBpm();
+
+$arrayUsuarioVo = $usuarioBpm -> buscar('usuario');
+echo 'exibe os dados do usuario';
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
 
@@ -36,9 +32,7 @@ if(!empty($_SESSION['NOME'])){
         <?php include('../template/topoAdmin.php') ?>
         <div class="content cf">
             <div class="container">
-                <div class="middle">
-
-                    <!-- conteudo -->	
+                <div class="middle">                    <!-- conteudo -->	
 
                     <a href="cadastrarUsuario.php">Cadastrar</a> <br />
                     <a href="cadastrarUsuario.php">Alterar</a>

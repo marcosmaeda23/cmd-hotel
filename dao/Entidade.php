@@ -109,6 +109,8 @@ class Entidade extends Banco {
 echo $sql;
 echo "<br/> ";
 echo "<br/> Deve ser passado 'hotelCnpj' e 'hotelInscricaoEstadual' de String para Int ";
+echo "<br/> verificar se está vindo com a mascara, se tiver tem a funcao retirarMascara ";
+echo "<br/> mas sera que nao seria interessante salva com a mascara no banco?? dai so mudar na base";
 exit();
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
@@ -171,12 +173,19 @@ exit();
     }
 
     /**
-     * metodo para exibir os atributos do objeto
-     * @param id da entidade
-     * @return objeto da entidade
+     * metodo para buscar os objetos 
+     * @param 
+     * @return array de objeto
      */
-    public function exibir() {
+    public function buscar() {
+        $sql = 'SELECT * FROM '.$this->entidade.' LIMIT '.$this->limite; 
+        $query = mysql_query($query);
+        $arrayObjeto = array();
+        while($rows = mysql_fetch_object($query)){
+        	
+        }
         
+        exit();
     }
 
     /**

@@ -16,6 +16,16 @@ class BpmGenerico {
 	}
 	
 	/**
+	 * metodo buscar
+	 * busca os objetos para a listagem
+	 * @return array de objetos
+	 */
+	public function buscar($entidade){
+		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
+		$resposta = $_objeto -> buscar();
+		return $resposta;
+	}
+	/**
 	 * metodo cadastrar ou alterar generico
 	 * @param Objeto, entidade
 	 * @return boolean
@@ -37,6 +47,7 @@ class BpmGenerico {
 	}  
 	/**
 	 * metodo exibir generico
+	 * busca o objeto passando o id 
 	 * @param Objeto, entidade
 	 * @return Objeto
 	 */

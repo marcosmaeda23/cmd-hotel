@@ -43,6 +43,10 @@ class HotelDao extends Entidade {
      * se true coloca um campo dataCadastro na tabela
      */
     protected $momentoCadastro = false;
+    /**
+	 * limite de para a pesquisa
+	 */
+	protected $limite = '0, 10'; 
 
     /**
      * deixa os dados ordenados, acrescenta um campo ordem na tabela
