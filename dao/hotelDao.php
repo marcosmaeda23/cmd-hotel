@@ -31,7 +31,7 @@ class HotelDao extends Entidade {
         'inscricaoEstadual INT NOT NULL' ,
         'email VARCHAR(100) NOT NULL' ,
         'observacao VARCHAR(800) NULL' ,
-        'gerente VARCHAR(100) NOT NULL' ,
+        'gerente VARCHAR(100) NOT NULL' 
         );
 
     /**

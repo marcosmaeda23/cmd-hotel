@@ -2,6 +2,9 @@
 include('../template/iniciarDados.php');
 
 
+
+
+
 if(validarDocumento('cpf', '011.662.479-70')){
 	echo 's';
 } else {
