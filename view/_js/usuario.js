@@ -1,5 +1,6 @@
 $(document).ready(function(){
 	// busca o campo paisOrigem no formulario do cliente para setar a mascara, default brasil
+	verificarCampos();
 	var pais = $('#paisOrigem').val();
 	
 	preencheCamposTelefone(telefoneArray = null);	
@@ -9,10 +10,6 @@ $(document).ready(function(){
 	if(telefoneArray == null){
 		mostrarCampoLogin();
 	}
-	//alert('sda');
-	//mostrarTelefone();
-	//mostrarCep();
-	
 	
 });	
 /**

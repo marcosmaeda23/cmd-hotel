@@ -14,7 +14,6 @@ function preencheCamposTelefone(telefoneArray){
 		for ( var i = 0; i < telefoneArray.length; i++) {
 			// mosta o campo do telefone e insere os valores
 			mostrarTelefone();
-			aplicarMascara();
 			var qtde = $('#qtdeTelefone').val();
 			for ( var description in telefoneArray[i]) {
 				$('#'+description+(qtde-1)).val(telefoneArray[i][description]);
@@ -22,10 +21,8 @@ function preencheCamposTelefone(telefoneArray){
 		}
 		
 	} else {
-		mostrarTelefone();
-		aplicarMascara()
-	}
-	
+		mostrarTelefone();		
+	}	
 }
 /**
  * funcao que verifica qual o cep e mostra os campos
@@ -117,11 +114,11 @@ function cepPesquisar(){
 			if(resposta == 'fracasso'){
 				alert('Cep não encontrado');
 				// mostra o botao para cadastrar o cep 
+				mostrarCepComplemento();
 				mostrarCepCadastro();
 				// seta o valor com 1 para cadastrar 
+				$('#cepXedicaoNumero').focus();
 				$('#cepXedicaoTipo').val(1);
-				$('#cepCadastroLogradouro').focus();
-				mostrarCepComplemento();
 				// seta p campo cepCadastroCep para cadastrar no banco
 				$('#cepCadastroCep').val($('#cepPesquisa').val());
 				
@@ -209,7 +206,7 @@ function mostrarCepCadastro(){
 function mostrarCepComplemento(){
 	var _cep = '';
 	_cep += 'Número: 		<input type="text" name="cepXedicaoNumero" 		id="cepXedicaoNumero" 		maxlength="50" class="obrigatorio" /><br />';
-	_cep += 'Complemento: 	<input type="text" name="cepXedicaoComplemento" id="cepXedicaoComplemento" 	maxlength="50" class="obrigatorio" /><br />';
+	_cep += 'Complemento: 	<input type="text" name="cepXedicaoComplemento" id="cepXedicaoComplemento" 	maxlength="50" class="" /><br />';
 	$('#cep').append(_cep);
 }
 /**
@@ -228,10 +225,10 @@ function mostrarTelefone(){
 	_telefone += '	<option value="celular"> 		Celular 	</option>';
 	_telefone += '	<option value="comercial"> 		Comercial 	</option>';
 	_telefone += '</select><br />';
-	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi'+i+'" 		maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi'+i+'" 		maxlength="5" 	class="" /><br />';
 	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 		maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="obrigatorio" /><br />';
-	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="obrigatorio" /><br />';
+	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="obrigatorio telefone" /><br />';
+	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="" /><br />';
 	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" 	maxlength="100" />					  <br />';	
 	_telefone += '</div>';
 		
@@ -239,5 +236,6 @@ function mostrarTelefone(){
 	// soma e insere o valor de volta no campo
 	i++
 	$('#qtdeTelefone').val(i);
+	aplicarMascara();
 
 }

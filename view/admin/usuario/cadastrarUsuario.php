@@ -49,7 +49,7 @@ if(!empty($_SESSION['NOME'])){
 		<div class="container">
 			<div class="middle">	
 				<div id="formulario">
-					<form action="usuarioController.php" method="post" id="cadastroUser" onsubmit="return verificarCampos();" >
+					<form action="usuarioController.php" method="post" id="cadastroUsusario" onsubmit="return verificarCampos('cadastroUsusario');" >
 						<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
 						<input type="hidden" name="usuarioStatus" id="usuarioStatus" value="1" />			
 						

@@ -5,15 +5,19 @@
  */
 function aplicarMascara() {
 	pais = $('#paisOrigem').val();
-	 alert(pais);
+	//alert(pais);
 	if (pais == 'brasil') {
 		$('.cep').mask('99 999-999');
+		$('.telefone').mask('9999-9999');
 		$('.data').mask('99/99/9999', {
-			complete : function() {
-				validarData(this.val());
+			completed:function(){
+				if(!validarData(this.val())){
+					this.focus();
+					alert('Data inválida.');
+				}
 			}
 		});
-		$('.telefone').mask('9999-9999');
+
 		$('#telefoneDdi').val(55);
 	} else {
 		$('.data').mask('9999/99/99');
@@ -24,10 +28,37 @@ function aplicarMascara() {
  * faz a validacao da data
  * 
  * @param data
- *            return
+ * @return boolean
  */
 function validarData(data) {
-	alert(data);
+	if(data.length != 10) {
+		return false;
+	}
+	__dia = (data.substring(0,2)); 
+	__mes = (data.substring(3,5)); 
+	__ano = (data.substring(6,10));
+
+	if(isNaN(__dia) || isNaN(__mes) || isNaN(__ano)) {
+		return false;
+	}
+	if (data == "") { 
+		return false; 
+	} else if(data.length < 10) { 
+		return false; 
+	} else if(__dia < 01 || __dia > 31) {
+		return false; 
+	} else if(__dia == 31 && (  __mes == 4 || __mes == 6 || __mes == 9 || __mes == 11 ) ) { 
+		// verifica o __dia valido para cada __mes 
+		return false; 
+	}else if (__mes < 1 || __mes > 12 ) { 	
+		// verifica se o __mes e valido 
+		return false; 
+	} else if (__mes == 2 && ( __dia < 1 || __dia > 29 || ( __dia > 28 && (parseInt(__ano / 4) != __ano / 4)))) { 
+		// verifica se e __ano bissexto 
+		return false; 
+	} else {
+		return true;
+	}
 }
 
 /**
@@ -38,7 +69,43 @@ function validarData(data) {
  * @returns boolean
  */
 function validarDocumento(tipo, documento) {
-	alert(tipo);
+	if(tipo == 'cpf'){
+		cpf = documento;
+		cpf = cpf.replace(/\./g, '');
+		cpf = cpf.replace(/\//g, '');
+		cpf = cpf.replace(/-/g, '');
+
+		erro = new String;
+		if (cpf.length < 11) erro += "Sao necessarios 11 digitos para verificacao do CPF! \n\n"; 
+		var nonNumbers = /\D/;
+		if (nonNumbers.test(cpf)) erro += "A verificacao de CPF suporta apenas numeros! \n\n"; 
+		if (cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" || cpf == "33333333333" || cpf == "44444444444" || cpf == "55555555555" || cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"){
+			 erro += "Numero de CPF invalido!"
+		}
+		var a = [];
+		var b = new Number;
+		var c = 11;
+		for (i=0; i<11; i++){
+			   a[i] = cpf.charAt(i);
+			   if (i < 9) b += (a[i] * --c);
+		}
+		if ((x = b % 11) < 2) { a[9] = 0 } else { a[9] = 11-x }
+		b = 0;
+		c = 11;
+		for (y=0; y<10; y++) b += (a[y] * c--); 
+		if ((x = b % 11) < 2) { a[10] = 0; } else { a[10] = 11-x; }
+		if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10])){
+			   erro +="Digito verificador com problema!";
+		}
+		if (erro.length > 0){
+			   // alert(erro);
+			   return false;
+		}
+		return true;
+	}
+	if(tipo == 'cnpj'){
+		
+	}
 	alert(documento);
 
 }

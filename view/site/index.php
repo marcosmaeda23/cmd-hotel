@@ -68,21 +68,21 @@ include('../template/iniciarDados.php');
 					            <h2 class="demoHeaders">Data:</h2>
 					            <div id="datepicker"></div>
 					            <div class="cadastro_selecao">
-					                <input type="submit" name="cmdSalvar" value=" Cadastrar "  onClick="return cadastrar()" >
+					           		<input type="submit" name="cmdSalvar" value=" Cadastrar "  onClick="return cadastrar()" >
 					            </div>
 					        </form>
 					    </div>
 					    <div class="fotoInicial">
-					        <img src="_imagens/hotel_fotos/01.jpg" width="610px" height="350px">
+					        <img src="../_imagens/hotel_fotos/01.jpg" width="610px" height="350px">
 					    </div>
 					</div>
 					<div class="cf middleConteudo">
 					    <div class="fotoInicial">
-					        <img src="_imagens/hotel_fotos/02.jpg" width="610px" height="400px">
+					        <img src="./_imagens/hotel_fotos/02.jpg" width="610px" height="400px">
 					    </div>
 					    <div class="cadastro" style="padding-left:30px">
 					        <div class="conteudoMenu <?php echo $cor_principal; ?>">Cadastre-se </div>
-					        <form action="admin/usuario/cadastrarUsuario.php" method="post" id="cadastroUser" name="cadastroUser"  class="formDefault"  onsubmit='return verificarCampos("cadastroUser");' >
+					        <form action="../admin/usuario/cadastrarUsuario.php" method="post" id="cadastroUser" name="cadastroUser"  class="formDefault"  onsubmit='return verificarCampos("cadastroUser");' >
 					            <div class="cadastro_titulo_container" >           
 					               
 					               <!-- usuario -->
