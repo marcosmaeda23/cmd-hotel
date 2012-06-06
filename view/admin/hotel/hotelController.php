@@ -45,7 +45,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
         // faz a validacao dos campos obrigatorios, setados na classe
         if ($valor == 'obrigatorio') {
             if (empty($_POST[$chave][0])) {
-                $erro_nome = 'Preencha todos os campo do formulário.';
+                $erro_nome = 'Preencha todos os campo do formulárioX.';
                 $ERRO = true;
             }
         }
@@ -57,7 +57,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
             // faz a validacao dos campos obrigatorios, setados na classe
             if ($valor == 'obrigatorio') {
                 if (empty($_POST[$chave])) {
-                    $erro_nome = 'Preencha todos os campos do formulário.';
+                    $erro_nome = 'Preencha todos os campos do formulárioCALASTRO LOGRADOURO.';
                     $ERRO = true;
                 }
             }
@@ -68,7 +68,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
         // faz a validacao dos campos obrigatorios, setados na classe
         if ($valor == 'obrigatorio') {
             if (empty($_POST[$chave])) {
-                $erro_nome = 'Preencha todos os campos do formulário.';
+                $erro_nome = 'Preencha todos os campos do formulário CEPXEDIÇÂO.';
                 $ERRO = true;
             }
         }
@@ -91,10 +91,6 @@ if ($_POST['acao'] == 'cadastrarHotel') {
                 $hotelVo->setHotelEmail($valor);
 
                 $sucesso = $hotelBpm->verificarExistenciaEmail($hotelVo, 'hotel');
-	echo $valor;
-        exit();
-                echo $sucesso;
-                exit();
                 if (!$sucesso) {
                     $ERRO = true;
                     $erro_nome .= 'O email já está cadastrado na base de dados.';
