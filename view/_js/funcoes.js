@@ -63,18 +63,16 @@ function validarData(data) {
 
 /**
  * faz a verificacao do tipo do documento
- * 
- * @param tipo
- *            do documento, numero do documento
+ * @param tipo do documento, numero do documento
  * @returns boolean
  */
-function validarDocumento(tipo, documento) {
+function validarDocumento(documento, tipo) {
 	if(tipo == 'cpf'){
+		//seta o documento na variavel certa
 		cpf = documento;
 		cpf = cpf.replace(/\./g, '');
 		cpf = cpf.replace(/\//g, '');
 		cpf = cpf.replace(/-/g, '');
-
 		erro = new String;
 		if (cpf.length < 11) erro += "Sao necessarios 11 digitos para verificacao do CPF! \n\n"; 
 		var nonNumbers = /\D/;
@@ -97,17 +95,14 @@ function validarDocumento(tipo, documento) {
 		if ((cpf.charAt(9) != a[9]) || (cpf.charAt(10) != a[10])){
 			   erro +="Digito verificador com problema!";
 		}
-		if (erro.length > 0){
-			   // alert(erro);
-			   return false;
+		if (erro.length > 0){			   
+			return false;
 		}
 		return true;
+	} else if(tipo == 'cnpj'){
+		return true;
 	}
-	if(tipo == 'cnpj'){
-		
-	}
-	alert(documento);
-
+return false;
 }
 
 /**
@@ -133,8 +128,25 @@ function verificarCampos(_form) {
 	}
 	return true;
 }
+/**
+ * funcao de verificacao da senha e confirmacao da senha
+ * @param campos do formulario, 
+ * @example senha, confirmacaoSenha
+ */
+function verificaSenha(senha, confirmacaoSenha){
+	if($('#'+senha).val() != '' && $('#'+confirmacaoSenha).val() != ''){
+		if($('#'+senha).val() != $('#'+confirmacaoSenha).val()){
+			alert('A sua senha está difeente da confirmação da senha');
+			$('#'+senha).focus();
+		}
+	}
+}
 
-function apagarFoto(foto_tipo) {
+/**
+ * verifica os campos unicos da tabela, cpf, cnpj, login, email
+ * @param entidade, campo, tipoCampo
+ */
+function verificaCamposUnicos(entidade, campo, tipoCampo) {
 	$.ajax({
 		// definimos a url
 		url : 'galeriaController.php',
@@ -143,9 +155,9 @@ function apagarFoto(foto_tipo) {
 		// definimos o tipo de retorno, xml, html, json, sjonp, script e text
 		dataType : 'text',
 		// colocamos os valores a serem enviados
-		data : "acao=excluir&foto_tipo=" + foto_tipo,
+		data : "acao=verificaCamposUnicos&campo=" + campo,
 		// beforeSend : function(){},
-		// ao completar a requisiï¿½ï¿½o tira o sinal de carregando
+		// ao completar a requisição tira o sinal de carregando
 		// complete : function(){},
 		// aqui colocamos o callback na div #retorno
 
@@ -170,12 +182,8 @@ function apagarFoto(foto_tipo) {
 		// colocamos o retorno na tela
 		success : function(resposta) {
 			if (resposta == 'sucesso') {
-				alert('Foto excluida com sucesso.');
-				location.href = "index.php";
-			} else {
-				alert('Ocorreu um erro ao excluir foto');
-			}
-
+				alert('Ocorreu um erro ao excluir foto');				
+			} 
 		}
 	});
 }

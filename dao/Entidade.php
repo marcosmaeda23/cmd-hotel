@@ -106,12 +106,6 @@ class Entidade extends Banco {
                 eval('$sql .= $objetoVo -> get' . ucfirst($this->entidade) . 'Status();');
             }
             $sql .= ' ) ;';
-echo $sql;
-echo "<br/> ";
-echo "<br/> Deve ser passado 'hotelCnpj' e 'hotelInscricaoEstadual' de String para Int ";
-echo "<br/> verificar se está vindo com a mascara, se tiver tem a funcao retirarMascara ";
-echo "<br/> mas sera que nao seria interessante salva com a mascara no banco?? dai so mudar na base";
-exit();
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
         } else {

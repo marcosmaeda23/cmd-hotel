@@ -12,13 +12,14 @@ if(!empty($_SESSION['NOME'])){
 		$usuarioVo -> setUsuarioId($_SESSION['ID']);
 		$usuarioVo = $usuarioBpm -> exibir($usuarioVo, 'usuario');
 		
-	}	
-	$telefoneArray = $usuarioVo->getTelefoneVo();
-	$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
-	if($cepXedicaoVo->getCepXedicaoTipo() == 1) {
-		$cepCadastro = $usuarioVo->getCepCadastroVo();
-	} else {
-		
+		$telefoneArray = $usuarioVo->getTelefoneVo();
+		$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
+		if($cepXedicaoVo->getCepXedicaoTipo() == 1) {
+			$cepCadastro = $usuarioVo->getCepCadastroVo();
+		} else {
+			
+		}	
+		echo '2343';
 	}	
 } 
 
@@ -96,8 +97,10 @@ if(!empty($_SESSION['NOME'])){
 								<option value="cnpj" <?php echo $usuarioVo->getUsuarioDocumento() == 'cnpj'?'selected=\'selected\'':'';?>> cnpj </option>
 								<option value="passaporte" <?php echo $usuarioVo->getUsuarioDocumentoTipo() == 'passaporte'?'selected=\'selected\'':'';?>> passaporte </option>
 							</select><br />
-				           Documento numero: 	<br />
-				           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="<?php echo $usuarioVo->getUsuarioDocumento() ?>" maxlength="50" class="obrigatorio"  /><br />
+							<div id='documentoNumero' style='display:none;'>
+					           	Documento numero: 	<br />
+					           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="<?php echo $usuarioVo->getUsuarioDocumento() ?>" maxlength="50" class="obrigatorio"  /><br />
+							</div>
 						</div> 	
 					
 					        

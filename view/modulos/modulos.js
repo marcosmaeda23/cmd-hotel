@@ -50,11 +50,11 @@ function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
 function mostrarCampoLogin(){
 	var _login = '';
 	_login += 'Usuário: 	<br />';
-	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"  /><br />';
+	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"/><br />';
 	_login += 'Senha: 	<br />';
-	_login += '<input type="password" name="usuarioSenha" id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
+	_login += '<input type="password" name="usuarioSenha" id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
 	_login += 'Confirmacao de senha: 	<br />';
-	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha"  /><br />';
+	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
 	_login += 'Lembrete:<br />';
 	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />';
 	

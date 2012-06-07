@@ -19,12 +19,18 @@ $(document).ready(function(){
 function mudaMascara(tipo){
 	// apaga o valor que tiver no campo
 	$('#usuarioDocumento').val('');
+	$('#documentoNumero').show();
+	$('#usuarioDocumento').focus();
+	
 	//verifica qual a mascara ira aparecer quando ele mudar o select no campo do cadastro de usuario
 	// coloca a mascara e depois ja faz a validacaos
 	if(tipo == 'cpf'){
 		$("#usuarioDocumento").mask("999.999.999-99",{
 			completed: function(){
-				validarDocumento('cpj', this.val());
+				if (!validarDocumento(this.val(), 'cpf')){
+					alert('Número do documento inválido.');
+					this.focus();
+				}
 			}
 		});
 	} else if (tipo == 'cnpj'){

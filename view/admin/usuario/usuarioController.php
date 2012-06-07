@@ -120,7 +120,7 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 			if ($chave == 'usuarioSenha') {
 				// insere \ para evitar o injection e md5
-				$_POST[$chave] = md5(addcslashes($valor));
+				$_POST[$chave] = md5($valor);
 			}
 		}		
 	}
