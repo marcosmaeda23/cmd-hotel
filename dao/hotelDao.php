@@ -19,20 +19,20 @@ class HotelDao extends Entidade {
      * @example $uniqueKey = array('email', 'documento');
      */
     protected $uniqueKey = array('cnpj', 'nome', 'inscricao_estadual', 'email');
-          
+
     /**
      * seta a base de dados para fazer a atualizacao ou criacao
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'nome VARCHAR(100) NOT NULL' ,
-        'cnpj INT NOT NULL' ,
-        'inscricaoEstadual INT NOT NULL' ,
-        'email VARCHAR(100) NOT NULL' ,
-        'observacao VARCHAR(800) NULL' ,
-        'gerente VARCHAR(100) NOT NULL' 
-        );
+        'nome VARCHAR(100) NOT NULL',
+        'cnpj INT NOT NULL',
+        'inscricaoEstadual INT NOT NULL',
+        'email VARCHAR(100) NOT NULL',
+        'observacao VARCHAR(800) NULL',
+        'gerente VARCHAR(100) NOT NULL',
+    );
 
     /**
      * Array contendo a ordem para salvar no banco
@@ -42,11 +42,12 @@ class HotelDao extends Entidade {
     /**
      * se true coloca um campo dataCadastro na tabela
      */
-    protected $momentoCadastro = false;
+    protected $momentoCadastro = true;
+
     /**
-	 * limite de para a pesquisa
-	 */
-	protected $limite = '0, 10'; 
+     * limite de para a pesquisa
+     */
+    protected $limite = '0, 10';
 
     /**
      * deixa os dados ordenados, acrescenta um campo ordem na tabela
@@ -216,7 +217,6 @@ class HotelDao extends Entidade {
         }
     }
 
-    
-
 }
+
 ?>

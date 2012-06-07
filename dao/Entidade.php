@@ -13,8 +13,8 @@ class Entidade extends Banco {
     }
 
     public function __destruct() {
-        $banco = new Banco();
-        $sucesso = $banco->fechar();
+//        $banco = new Banco();
+//        $sucesso = $banco->fechar();
     }
 
     /**
@@ -172,13 +172,13 @@ class Entidade extends Banco {
      * @return array de objeto
      */
     public function buscar() {
-        $sql = 'SELECT * FROM '.$this->entidade.' LIMIT '.$this->limite; 
+        $sql = 'SELECT * FROM ' . $this->entidade . ' LIMIT ' . $this->limite;
         $query = mysql_query($query);
         $arrayObjeto = array();
-        while($rows = mysql_fetch_object($query)){
-        	
+        while ($rows = mysql_fetch_object($query)) {
+            
         }
-        
+
         exit();
     }
 
