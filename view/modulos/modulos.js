@@ -10,7 +10,9 @@ dependencia jquery.maskedinput
  */
 function preencheCamposTelefone(telefoneArray){
 	// verifica se o array esta vazio
-	if(telefoneArray == ''){		
+	if(telefoneArray != null){	
+		$('#documentoNumero').show();
+		
 		for ( var i = 0; i < telefoneArray.length; i++) {
 			// mosta o campo do telefone e insere os valores
 			mostrarTelefone();
@@ -18,8 +20,7 @@ function preencheCamposTelefone(telefoneArray){
 			for ( var description in telefoneArray[i]) {
 				$('#'+description+(qtde-1)).val(telefoneArray[i][description]);
 			}
-		}
-		
+		}		
 	} else {
 		mostrarTelefone();		
 	}	
@@ -54,6 +55,9 @@ function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
  */
 function verificaCamposUnicos(entidade, campo, valor) {
 	if(valor == ''){
+		return;
+	}
+	if ($('#'+entidade+'Id').val() != ''){
 		return;
 	}
 	var parametros = '';
@@ -288,7 +292,8 @@ function mostrarTelefone(){
 	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 		maxlength="5" 	class="" /><br />';
 	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="telefone" /><br />';
 	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="" /><br />';
-	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" 	maxlength="100" />					  <br />';	
+	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" 	maxlength="100" />					  <br />';		
+	_telefone += '		<input type="hidden" name="telefoneId[]" 	id="telefoneId'+i+'" 	maxlength="100" />					  <br />';	
 	_telefone += '</div>';
 		
 	$('#telefone').append(_telefone);

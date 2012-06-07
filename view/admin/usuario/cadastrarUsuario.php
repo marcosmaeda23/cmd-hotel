@@ -2,15 +2,15 @@
 include('../template/iniciarDados.php');
 
 
-var_dump($_SESSION);
 $usuarioVo = new UsuarioVo();
-
 if(!empty($_SESSION['NOME'])){
 	if (!empty($_SESSION['ID'])){
+		
 		$usuarioBpm = new UsuarioBpm();
 		// buscar usuario para mostrar nos campos
 		$usuarioVo -> setUsuarioId($_SESSION['ID']);
 		$usuarioVo = $usuarioBpm -> exibir($usuarioVo, 'usuario');
+//var_dump($usuarioVo);
 		
 		$telefoneArray = $usuarioVo->getTelefoneVo();
 		$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
@@ -132,10 +132,9 @@ if(!empty($_SESSION['NOME'])){
 	<?php include('../template/rodapeAdmin.php');?>
 </body>
 	<!-- scripts -->
-	<?php include('../template/js.php')?>
+	<?php include('../template/js.php');?>
 	<script type="text/javascript" src="../../_js/usuario.js"></script>	
 	<script type="text/javascript">
-			
 		telefoneArray = new Array();
 		cepArray = new Array();
 		cepComplementoArray = new Array();
@@ -147,14 +146,16 @@ if(!empty($_SESSION['NOME'])){
 		$('#cepXedicaoTipo').val(cepTipo);
 		
 		
-		
-		<?php if (!empty($_SESSION['ID'])){ 
+		<?php if (!empty($_SESSION['NOME'])){ 
 				for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
+					
 					var telefone = new Object(); 	
-					<?php foreach ( $telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>				
+					<?php foreach ( $telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
 						telefone['<?php echo $chave;?>'] = '<?php eval('echo $telefoneArray['.$i.']->get'.ucfirst($chave).'();'); ?>';
+	
 					<?php } ?>	
-					telefoneArray[<?php echo $i;?>] = telefone;	     
+					
+					telefoneArray[<?php echo $i;?>] = telefone;	  
 			<?php } ?>
 			<?php if ($cepXedicaoVo->getCepXedicaoTipo() == 1) { 
 				// mostra o cepCadastro preenchido
@@ -162,7 +163,7 @@ if(!empty($_SESSION['NOME'])){
 		       			cepArray['<?php echo $chave;?>'] = '<?php eval('echo $cepCadastro->get'.ucfirst($chave).'();'); ?>';
 			<?php	}					
 			 } else { ?>
-				// mostra o campo do cep do banco 
+				 
 			<?php }?>
 			<?php foreach ( $cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave ) { ?>
 	       			cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get'.ucfirst($chave).'();'); ?>';
@@ -170,7 +171,7 @@ if(!empty($_SESSION['NOME'])){
 			
 			}?>
 	
-			//mostrarTelefone();
+			
 			
 		
 		<?php if(empty($_SESSION['ID'])) { ?>

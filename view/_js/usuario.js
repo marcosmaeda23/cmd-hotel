@@ -2,9 +2,8 @@ $(document).ready(function(){
 	// trava o uso acidental do enter para envio do form
 	travarteclaEnter();
 	
-	preencheCamposTelefone(telefoneArray = null);	
-	
-	preencheCamposCep(cepComplementoArray = null, cepArray = null, cepTipo = null);
+	preencheCamposCep(cepComplementoArray, cepArray, cepTipo);
+	preencheCamposTelefone(telefoneArray);	
 	
 	if(telefoneArray == null){
 		mostrarCampoLogin();

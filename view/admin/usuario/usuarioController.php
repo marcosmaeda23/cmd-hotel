@@ -6,7 +6,7 @@ include('../template/iniciarDados.php');
 // -------------------------------
 // para cadastrar ou alterar
 // ------------------------------- 
-
+var_dump($_POST);
 if ($_POST['acao'] == 'cadastrarUsuario') {
     $usuarioVo = new UsuarioVo();
     $usuarioBpm = new UsuarioBpm();
@@ -14,6 +14,9 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
     
+    if(!empty($_POST['usuarioId'])){
+    	$verificarUnicos = false;    	
+    }
 	// verifica se os campos do usuario estao vazios		
 	foreach ( $usuarioVo->usuarioObrigatorio as $chave => $valor ) {
 		// faz a validacao dos campos obrigatorios, setados na classe
@@ -74,13 +77,15 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}
 			if ($chave == 'usuarioLogin') {
 				// verifica se o login ja existe no banco
-				$usuarioVo->setUsuarioLogin($valor);
-		        $sucesso = $usuarioBpm->verificarLogin($usuarioVo);
-			    if (!$sucesso) {
-			        $ERRO = true;
-			        $erro_nome .= 'O login já está cadastado no banco.';
-			    	break;
-			    }
+				if($verificarUnicos){
+					$usuarioVo->setUsuarioLogin($valor);
+			        $sucesso = $usuarioBpm->verificarLogin($usuarioVo);
+				    if (!$sucesso) {
+				        $ERRO = true;
+				        $erro_nome .= 'O login já está cadastado no banco.';
+				    	break;
+				    }
+				}
 			}
 			if ($chave == 'usuarioDocumento') {
 				// verifica o documento do usuario
@@ -90,6 +95,10 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			        $erro_nome .= 'O documento não é válido.';
 			    	break;
 			    }
+			    // verificar se o documento ja esta na base de dados
+				if($verificarUnicos) {      
+				 
+				}
 			}
 			if ($chave == 'usuarioEmail') {
 				// verifica se o email esta no formato valido
@@ -98,15 +107,17 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 		            $ERRO = true;
 		            $erro_nome .= 'O email não é válido.';
 		            break;
-		        }		        
-		        // verificar se email ja existe no banco	        
-		        $usuarioVo->setUsuarioEmail($valor);
-	
-		        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo, 'usuario');
-		        if (!$sucesso) {
-		            $ERRO = true;
-		            $erro_nome .= 'O email já está cadastrado na base de dados.';
-		            break;
+		        }		  
+		        if($verificarUnicos) {      
+			        // verificar se email ja existe no banco	        
+			        $usuarioVo->setUsuarioEmail($valor);
+		
+			        $sucesso = $usuarioBpm->verificarExistenciaEmail($usuarioVo, 'usuario');
+			        if (!$sucesso) {
+			            $ERRO = true;
+			            $erro_nome .= 'O email já está cadastrado na base de dados.';
+			            break;
+			        }
 		        }
 			}			
 			if ($chave == 'usuarioDataNascimento') {
@@ -146,6 +157,8 @@ if ($_POST['acao'] == 'cadastrarUsuario') {
 			}				
 			// inserindo manualmente pois não rolou colocar dinamico, telefone é array
 			for ( $j = 0; $j < count($_POST['telefoneTipo']); $j++ ) {	
+				eval('$telefoneVo'.$j.' ->setTelefoneId('.$_POST["telefoneId"][$j].');');
+				//eval('$telefoneVo'.$j.' ->setTelefoneUsuarioId('.$_POST["telefoneUsuarioId"][$j].');');
 				eval('$telefoneVo'.$j.' ->setTelefoneTipo('.$_POST["telefoneTipo"][$j].');');
 				eval('$telefoneVo'.$j.' ->setTelefoneDdd('.$_POST["telefoneDdd"][$j].');');
 				eval('$telefoneVo'.$j.' ->setTelefoneDdi('.$_POST["telefoneDdi"][$j].');');

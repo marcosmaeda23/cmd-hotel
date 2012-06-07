@@ -6,6 +6,11 @@ $nome_site_Title = "CMD - Hoteis & Resorts";
 $cor_principal = "bgAzulClaro";
 $cor_secundaria = "bgAzul";
 
+// seta variaveis necessarias
+$ERRO = false;
+$sucesso = false;
+$erro_nome = '';
+$verificarUnicos = true;
 
 session_start();
 if ($_GET['acao'] == 'deslogar') {

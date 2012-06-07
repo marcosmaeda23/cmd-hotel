@@ -44,14 +44,14 @@ class UsuarioDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array('nome VARCHAR(100) NOT NULL',
-        'email VARCHAR(100) NOT NULL',
-        'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
-        'documento VARCHAR(100) NOT NULL',
-        'dataNascimento DATE NOT NULL',
-        'sexo ENUM(\'f\',\'m\') NOT NULL',
-        'login VARCHAR(100) NOT NULL',
-        'senha VARCHAR(100) NOT NULL',
-        'lembrete VARCHAR(150) NOT NULL');
+       							 'email VARCHAR(100) NOT NULL',
+						         'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
+						         'documento VARCHAR(100) NOT NULL',
+						         'dataNascimento DATE NOT NULL',
+						         'sexo ENUM(\'f\',\'m\') NOT NULL',
+						         'login VARCHAR(100) NOT NULL',
+						         'senha VARCHAR(100) NOT NULL',
+						         'lembrete VARCHAR(150) NOT NULL');
 
     /**
      * Array contendo a ordem para salvar no banco
@@ -147,7 +147,7 @@ class UsuarioDao extends Entidade {
         // cadastra o objeto principal retorna o id do usuario ou false
         $idUsuario = entidade :: cadastrarAlterar($usuarioVo);
         if ($idUsuario === false) {
-           return false;
+            return false;
         } else {
             // verifica se tem setado a $ordemBase e cadastra o restante das tabelas	
             for ($i = 0; $i < count($this->ordemBase); $i++) {

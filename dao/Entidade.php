@@ -109,34 +109,46 @@ class Entidade extends Banco {
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
         } else {
-            exit();
+
             // tem o id dentro do objeto, update
-            $sql = 'UPDATE ' . $this->entidade . ' SET ( ';
-            for ($j = 0; $j < count($this->chaveEstrangeira); $j++) {
-                $_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
-                $sql .= $_dadosEstrangeiro[0];
-                if ($j + 1 == count($this->chaveEstrangeira)) {
-                    $sql .= ', ';
-                }
-            }
-            for ($j = 0; $j < count($this->dadosBase); $j++) {
+            $sql = 'UPDATE ' . $this->entidade . ' SET  ';
+       		for ($j = 0; $j < count($this->dadosBase); $j++) {
                 $_dadosBase = explode(' ', $this->dadosBase[$j]);
-                $sql .= $this->entidade . ucfirst($_dadosBase[0]);
-                if ($j + 1 <> count($this->dadosBase)) {
-                    $sql .= ', ';
-                }
+                if($_dadosBase[0] <> 'login' &&
+                		$_dadosBase[0] <> 'senha' &&
+                		$_dadosBase[0] <> 'lembrete') {
+	                $sql .= $this->entidade . ucfirst($_dadosBase[0]);
+	                $sql .= ' = ';
+	                eval('$valor = $objetoVo -> get' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '();');
+	                if (is_string($valor)) {
+	                    $sql .= "'";
+	                }
+	                if ($_dadosBase[1] == 'DATE') {
+	                    $sql .= formatarData($valor);
+	                } else {
+	                    $sql .= $valor;
+	                }
+	                if (is_string($valor)) {
+	                    $sql .= "'";
+	                }
+	                if($this->entidade == 'usuario'){
+	                	if (($j + 4) < count($this->dadosBase)) {
+	                    	$sql .= ', ';
+	                	}
+	                } else {
+	                	if (($j + 1) <> count($this->dadosBase)) {
+	                    	$sql .= ', ';
+	                	}
+	                }
+                }             
             }
-            // se na Dao tiver setado momentoCadastro = true, cadastra o momento na tabela
-            if ($this->momentoCadastro) {
-                $sql .= ', ' . $this->entidade . 'DataCadastro';
-            }
-            if ($this->status) {
-                $sql .= ', ' . ucfirst($this->entidade) . 'Status';
-            }
-            $sql .= ') WHERE ' . $this->entidade . 'Id = ' . $id;
+             
+           	$sql .= ' WHERE '.$this->entidade .'Id = '. $id;
+            //$_sql .= '  -  '.$sql;
+            //echo $_sql;
             //var_dump($objetoVo);
-            //$query = mysql_query($sql);
-            //$_id = mysql_insert_id();
+            $query = mysql_query($sql);
+            $_id = mysql_insert_id();
         }
 
 

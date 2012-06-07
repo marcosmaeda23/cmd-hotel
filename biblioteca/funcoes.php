@@ -1,7 +1,5 @@
 <?php 
-$ERRO = false;
-$sucesso = false;
-$erro_nome = '';
+
 
 /**
  * Retorna uma string de saudação ao usuário logado
