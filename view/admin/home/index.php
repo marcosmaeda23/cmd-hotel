@@ -1,11 +1,9 @@
 <?php
 include('../template/iniciarDados.php');
 
-//testes
-if(validarDocumento('cpf', '011.662.479-70')){
-	echo 's';
-} else {
-	echo 'n';
+if(empty($_SESSION['NOME'])){
+	header('location:../');
+
 }
 
 

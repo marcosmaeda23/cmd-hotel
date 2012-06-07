@@ -16,10 +16,10 @@ if(!empty($_SESSION['NOME'])){
 		$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
 		if($cepXedicaoVo->getCepXedicaoTipo() == 1) {
 			$cepCadastro = $usuarioVo->getCepCadastroVo();
-		} else {
+
+		} else {		echo '2343';
 			
 		}	
-		echo '2343';
 	}	
 } 
 
