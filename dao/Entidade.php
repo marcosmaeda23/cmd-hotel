@@ -209,6 +209,33 @@ class Entidade extends Banco {
             return true;
         }
     }
+    /**
+	 * funcao para verificar se o campo unico ja esta cadastrado no banco
+	 * usado ajax
+	 * @param objeto e a entidade
+	 * @return boolean
+	 */
+	public function verificaCamposUnicos($objetoVo){
+		
+		for ( $i = 0; $i < count($this->uniqueKey); $i++ ) {
+	        eval('$valor = $objetoVo -> get' . ucfirst($this->entidade) .ucfirst($this->uniqueKey[$i]). '();');
+	        $campo =  $this->entidade.ucfirst($this->uniqueKey[$i]);
+	        if(!empty($valor)){
+	        	break;
+	        }
+		}
+		$sql = 'SELECT ' . $campo . ' FROM ' . $this->entidade ;
+        $sql .= ' WHERE '. $campo .' = "'. $valor.'"';
+        $query = mysql_query($sql);
+        $qtde = mysql_affected_rows();      
+        if ($qtde == 1) {
+        	//achou
+            return true;
+        } else {
+        	//nao achou
+            return false;
+        }
+	}
 
 }
 

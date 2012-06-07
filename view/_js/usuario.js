@@ -1,7 +1,6 @@
 $(document).ready(function(){
-	// busca o campo paisOrigem no formulario do cliente para setar a mascara, default brasil
-	verificarCampos();
-	var pais = $('#paisOrigem').val();
+	// trava o uso acidental do enter para envio do form
+	travarteclaEnter();
 	
 	preencheCamposTelefone(telefoneArray = null);	
 	

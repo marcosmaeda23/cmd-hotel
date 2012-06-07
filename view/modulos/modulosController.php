@@ -34,4 +34,19 @@ if ($_POST['acao'] == 'pesquisarCep'){
  	
 }
 
+if ($_POST['acao'] == 'verificaCamposUnicos') {
+	//entidade, campo, valor
+	eval('$_objetoVo = new '.ucfirst($_POST['entidade']).'Vo();');
+	eval('$_objetoVo -> set'.ucfirst($_POST['campo']).'("'.$_POST['valor'].'");');
+	eval('$_objetoBpm = new '.ucfirst($_POST['entidade']).'Bpm();');
+	$sucesso = $_objetoBpm -> verificaCamposUnicos($_objetoVo, $_POST['entidade']);
+	if($sucesso){
+		// achou
+		echo 'sucesso';
+	} else {
+		// nao achou
+		echo 'fracasso';
+	}
+}
+
 ?>

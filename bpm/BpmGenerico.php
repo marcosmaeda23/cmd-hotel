@@ -87,6 +87,17 @@ class BpmGenerico {
 		$sucesso = $_objeto -> verificarExistenciaEmail($objeto);
 		return $sucesso;
 	}
+	/**
+	 * funcao para verificar se o campo unico ja esta cadastrado no banco
+	 * usado ajax
+	 * @param objeto e a entidade
+	 * @return boolean
+	 */
+	public function verificaCamposUnicos($objeto, $entidade){
+		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
+		$sucesso = $_objeto -> verificaCamposUnicos($objeto);
+		return $sucesso;
+	}
 	
 }
 ?>

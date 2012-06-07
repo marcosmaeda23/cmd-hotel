@@ -23,7 +23,16 @@ function aplicarMascara() {
 		$('.data').mask('9999/99/99');
 	}
 }
-
+/**
+ * trava o uso da tecla enter para o envio do formulario
+ */
+function travarteclaEnter(){
+	$('input').keypress(function (e){
+		var code = null;
+		code = (e.keyCode ? e.keyCode : e.which);
+		return code == 13 ? false : true;
+	});
+}
 /**
  * faz a validacao da data
  * 
@@ -77,7 +86,16 @@ function validarDocumento(documento, tipo) {
 		if (cpf.length < 11) erro += "Sao necessarios 11 digitos para verificacao do CPF! \n\n"; 
 		var nonNumbers = /\D/;
 		if (nonNumbers.test(cpf)) erro += "A verificacao de CPF suporta apenas numeros! \n\n"; 
-		if (cpf == "00000000000" || cpf == "11111111111" || cpf == "22222222222" || cpf == "33333333333" || cpf == "44444444444" || cpf == "55555555555" || cpf == "66666666666" || cpf == "77777777777" || cpf == "88888888888" || cpf == "99999999999"){
+		if (cpf == "00000000000" || 
+				cpf == "11111111111" || 
+				cpf == "22222222222" || 
+				cpf == "33333333333" || 
+				cpf == "44444444444" || 
+				cpf == "55555555555" || 
+				cpf == "66666666666" || 
+				cpf == "77777777777" || 
+				cpf == "88888888888" || 
+				cpf == "99999999999"){
 			 erro += "Numero de CPF invalido!"
 		}
 		var a = [];
@@ -102,30 +120,30 @@ function validarDocumento(documento, tipo) {
 	} else if(tipo == 'cnpj'){
 		return true;
 	}
-return false;
 }
 
 /**
- * faz a verificacao do formulario
- * 
- * @param nomeformulario
+ * faz a verificacao do formulario 
+ * @param nomeformulario, nome da entidade 
  * @returns {Boolean}
  */
-function verificarCampos(_form) {
+function verificarCampos(_form, _entidade) {
+
 	var erro = false;
+	var param = '';
+	var retorno;
 	$('#' + _form).find('.obrigatorio').each(function() {
 		if ($(this).val() == '') {
-			erro = true;
 			$(this).addClass('obrigatorio_forte');
+			erro = true;
 		} else {
 			$(this).removeClass('obrigatorio_forte');
-			erro = false;
 		}
 	});
 	if (erro) {
-		alert('preencha os campos em amarelo');
+		alert('Preencha os campos em amarelo.');
 		return false;
-	}
+	}	
 	return true;
 }
 /**
@@ -142,51 +160,6 @@ function verificaSenha(senha, confirmacaoSenha){
 	}
 }
 
-/**
- * verifica os campos unicos da tabela, cpf, cnpj, login, email
- * @param entidade, campo, tipoCampo
- */
-function verificaCamposUnicos(entidade, campo, tipoCampo) {
-	$.ajax({
-		// definimos a url
-		url : 'galeriaController.php',
-		// definimos o tipo de requisiï¿½ï¿½o, post ou get
-		type : 'post',
-		// definimos o tipo de retorno, xml, html, json, sjonp, script e text
-		dataType : 'text',
-		// colocamos os valores a serem enviados
-		data : "acao=verificaCamposUnicos&campo=" + campo,
-		// beforeSend : function(){},
-		// ao completar a requisição tira o sinal de carregando
-		// complete : function(){},
-		// aqui colocamos o callback na div #retorno
-
-		// veja se teve erros
-		error : function(jqXHR, exception) {
-			if (jqXHR.status === 0) {
-				alert('Not connect.\n Verify Network.');
-			} else if (jqXHR.status == 404) {
-				alert('Requested page not found. [404]');
-			} else if (jqXHR.status == 500) {
-				alert('Internal Server Error [500].');
-			} else if (exception === 'parsererror') {
-				alert('Requested JSON parse failed.');
-			} else if (exception === 'timeout') {
-				alert('Time out error.');
-			} else if (exception === 'abort') {
-				alert('Ajax request aborted.');
-			} else {
-				alert('Uncaught Error.\n' + jqXHR.responseText);
-			}
-		},
-		// colocamos o retorno na tela
-		success : function(resposta) {
-			if (resposta == 'sucesso') {
-				alert('Ocorreu um erro ao excluir foto');				
-			} 
-		}
-	});
-}
 function sair() {
 	$.ajax({
 		// definimos a url

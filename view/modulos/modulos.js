@@ -47,18 +47,62 @@ function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
 	}
 }
 
-function mostrarCampoLogin(){
-	var _login = '';
-	_login += 'Usuário: 	<br />';
-	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="" maxlength="50" class="obrigatorio"/><br />';
-	_login += 'Senha: 	<br />';
-	_login += '<input type="password" name="usuarioSenha" id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
-	_login += 'Confirmacao de senha: 	<br />';
-	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
-	_login += 'Lembrete:<br />';
-	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />';
-	
-	$('#login').append(_login);
+/**
+ * verifica os campos unicos da tabela, cpf, cnpj, login, email
+ * @param entidade, campo, valor
+ * @returns boolean
+ */
+function verificaCamposUnicos(entidade, campo, valor) {
+	if(valor == ''){
+		return;
+	}
+	var parametros = '';
+	parametros += '&entidade=' + entidade;
+	parametros += '&campo=' + campo;
+	parametros += '&valor=' + valor;
+	$.ajax({
+		// definimos a url
+		url : '../../modulos/modulosController.php',
+		// definimos o tipo de requisiï¿½ï¿½o, post ou get
+		type : 'post',
+		// definimos o tipo de retorno, xml, html, json, sjonp, script e text
+		dataType : 'text',
+		// colocamos os valores a serem enviados
+		data : "acao=verificaCamposUnicos" + parametros,
+		// beforeSend : function(){},
+		// ao completar a requisição tira o sinal de carregando
+		// complete : function(){},
+		// aqui colocamos o callback na div #retorno
+
+		// veja se teve erros
+		error : function(jqXHR, exception) {
+			if (jqXHR.status === 0) {
+				alert('Not connect.\n Verify Network.');
+			} else if (jqXHR.status == 404) {
+				alert('Requested page not found. [404]');
+			} else if (jqXHR.status == 500) {
+				alert('Internal Server Error [500].');
+			} else if (exception === 'parsererror') {
+				alert('Requested JSON parse failed.');
+			} else if (exception === 'timeout') {
+				alert('Time out error.');
+			} else if (exception === 'abort') {
+				alert('Ajax request aborted.');
+			} else {
+				alert('Uncaught Error.\n' + jqXHR.responseText);
+			}
+		},
+		// colocamos o retorno na tela
+		success : function(resposta) {
+			if(resposta == 'sucesso'){
+				alert('Este campo já está cadastrado no banco.');
+				$('#'+campo).addClass('obrigatorio_forte');
+			} else {
+				$('#'+campo).removeClass('obrigatorio_forte');
+			}
+			
+		}
+	});
 }
 /**
  * pesquisa o cep na base de dados
@@ -72,7 +116,7 @@ function cepPesquisar(){
 	if(cep.indexOf('_') != -1){
 		return;
 	}
-	if (cep == '__ ___-___') {
+	if (cep == '__ ___-___' || cep == '') {
 		return;
 	}
 	$('#cep').empty();
@@ -150,10 +194,26 @@ function cepPesquisar(){
 }
 
 /**
+ * mostra os campos de login
+ */
+function mostrarCampoLogin(){
+	var _login = '';
+	_login += 'Usuário: 	<br />';
+	_login += '<input type="text" name="usuarioLogin" id="usuarioLogin" value="" onblur="verificaCamposUnicos(\'usuario\', \'usuarioLogin\', this.value);" maxlength="50" class="obrigatorio"/><br />';
+	_login += 'Senha: 	<br />';
+	_login += '<input type="password" name="usuarioSenha" id="usuarioSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
+	_login += 'Confirmacao de senha: 	<br />';
+	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
+	_login += 'Lembrete:<br />';
+	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />';
+	
+	$('#login').append(_login);
+}
+
+/**
  * mostra a parte da pergunta caso nao ache o cep
  * 
  */
-
 function mostrarPerguntaCep(){
 	var _cep = '';
 	_cep += '<a href="" onclick="mostrarCepCadastro();" >Cadastrar Cep</a>'
@@ -215,27 +275,32 @@ function mostrarCepComplemento(){
 function mostrarTelefone(){
 	// pega o valor do campo que ira ficar setado a qtde de telefone
 	var i = $('#qtdeTelefone').val();
-	
 	var _telefone = '';
 	_telefone += '<div id="telefone'+i+'">';
 	_telefone += 'Telefone tipo: <br />';
-	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo'+i+'" class="obrigatorio" >';
+	_telefone += '<select name="telefoneTipo[]" id="telefoneTipo'+i+'" class="" >';
 	_telefone += '	<option value=""> Selecione o tipo do telefone </option>';
 	_telefone += '	<option value="residencial"> 	Residencial </option>';
 	_telefone += '	<option value="celular"> 		Celular 	</option>';
 	_telefone += '	<option value="comercial"> 		Comercial 	</option>';
 	_telefone += '</select><br />';
 	_telefone += 'Ddi:		<input type="text" name="telefoneDdi[]" 	id="telefoneDdi'+i+'" 		maxlength="5" 	class="" /><br />';
-	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 		maxlength="5" 	class="obrigatorio" /><br />';
-	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="obrigatorio telefone" /><br />';
+	_telefone += 'Ddd:		<input type="text" name="telefoneDdd[]" 	id="telefoneDdd'+i+'" 		maxlength="5" 	class="" /><br />';
+	_telefone += 'Telefone:	<input type="text" name="telefoneNumero[]" 	id="telefoneNumero'+i+'" 	maxlength="15" 	class="telefone" /><br />';
 	_telefone += 'ramal:	<input type="text" name="telefoneRamal[]" 	id="telefoneRamal'+i+'" 	maxlength="5" 	class="" /><br />';
 	_telefone += 'recado:	<input type="text" name="telefoneRecado[]" 	id="telefoneRecado'+i+'" 	maxlength="100" />					  <br />';	
 	_telefone += '</div>';
 		
 	$('#telefone').append(_telefone);
 	// soma e insere o valor de volta no campo
+	aplicarMascara();
+	// se for o primeiro tel deixa ele como obrigatorio
+	if(i == 0){
+		$('#telefoneTipo'+i).addClass('obrigatorio');
+		$('#telefoneDdd'+i).addClass('obrigatorio');
+		$('#telefoneNumero'+i).addClass('obrigatorio');
+	}
 	i++
 	$('#qtdeTelefone').val(i);
-	aplicarMascara();
 
 }

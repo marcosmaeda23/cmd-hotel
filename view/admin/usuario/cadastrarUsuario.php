@@ -50,7 +50,7 @@ if(!empty($_SESSION['NOME'])){
 		<div class="container">
 			<div class="middle">	
 				<div id="formulario">
-					<form action="usuarioController.php" method="post" id="cadastroUsusario" onsubmit="return verificarCampos('cadastroUsusario');" >
+					<form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario', 'usuario');" >
 						<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
 						<input type="hidden" name="usuarioStatus" id="usuarioStatus" value="1" />			
 						
@@ -63,7 +63,7 @@ if(!empty($_SESSION['NOME'])){
 							<label>Nome completo:</label><br />
 							</label><input type="text" name="usuarioNome" id="usuarioNome" value="<?php echo $_POST['usuarioNome'] ? $_POST['usuarioNome']: $usuarioVo->getUsuarioNome(); ?>" maxlength="50" class="obrigatorio"  /><br />
 							Seu e-mail:<br />
-							<input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail']:$usuarioVo->getUsuarioEmail(); ?>" maxlength="50" class="obrigatorio"  /><br />
+							<input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail']:$usuarioVo->getUsuarioEmail(); ?>" maxlength="50" onblur='verificaCamposUnicos("usuario", "usuarioEmail", this.value);' class="obrigatorio"  /><br />
 							
 							<div id='login'>
 							
@@ -99,7 +99,7 @@ if(!empty($_SESSION['NOME'])){
 							</select><br />
 							<div id='documentoNumero' style='display:none;'>
 					           	Documento numero: 	<br />
-					           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="<?php echo $usuarioVo->getUsuarioDocumento() ?>" maxlength="50" class="obrigatorio"  /><br />
+					           	<input type="text" name="usuarioDocumento" id="usuarioDocumento" value="<?php echo $usuarioVo->getUsuarioDocumento() ?>" maxlength="50" onblur='verificaCamposUnicos("usuario", "usuarioDocumento", this.value);' class="obrigatorio"  /><br />
 							</div>
 						</div> 	
 					
@@ -112,7 +112,7 @@ if(!empty($_SESSION['NOME'])){
 						           			
 						           							
 						<label for="cepPesquisa">Cep</label>
-						<input type="text" 		name="cepPesquisa" 		id="cepPesquisa"    class="cep" />
+						<input type="text" 		name="cepPesquisa" 		id="cepPesquisa"    class="cep obrigatorio" />
 						<input type="button" 	value="Pesquisar cep" onclick="cepPesquisar();" /><br />
 						
 						<input type="hidden" 	name="cepXedicaoTipo" 	id="cepXedicaoTipo" 	value="" />		      
