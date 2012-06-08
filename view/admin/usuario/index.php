@@ -29,21 +29,26 @@ $arrayUsuarioVo = $usuarioBpm -> buscar('usuario');
 					<?php 
 					// colocar os campos de pesquisa 
 					
-					for ( $i = 0; $i < count($arrayUsuarioVo); $i++ ) {
+					for ( $i = 0; $i < count($arrayUsuarioVo); $i++ ) {?>
+						<a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId();?>'> 
+					<?php
 						echo $arrayUsuarioVo[$i]->getUsuarioId();
 						echo ' - ';
 						echo $arrayUsuarioVo[$i]->getUsuarioNome();
-						echo '<br />';
+						?>
+						</a>
+						<a href="javascript:;" onclick="alert('excluir');">Excluir</a>
+						<br />
+					<?php
 						// colocar aqui um botao para excluir e outro para alterar
 					}
 					
 					?>
 					
-					
-					
+					<br />
 					
                     <a href="cadastrarUsuario.php">Cadastrar</a> <br />
-                    <a href="cadastrarUsuario.php">Alterar</a>
+
 					
                     
 

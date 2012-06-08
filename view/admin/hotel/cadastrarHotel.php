@@ -4,6 +4,10 @@ include('../template/iniciarDados.php');
 if ($_SESSION['NIVEL'] != 2 && $_SESSION['NIVEL'] != 1) {
     header('location:../home/');
 }
+// se tem o id do hotel faz a busca para colocar nos campos
+if(!empty($_GET['hotel'])){
+	echo 'buscando';
+}
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

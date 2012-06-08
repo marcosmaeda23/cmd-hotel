@@ -32,20 +32,27 @@ $arrayHotelVo = $hotelBpm -> buscar('hotel');
 					<?php 
 					// colocar os campos de pesquisa 
 					
-					for ( $i = 0; $i < count($arrayHotelVo); $i++ ) {
+					for ( $i = 0; $i < count($arrayHotelVo); $i++ ) { ?>
+						<a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId();?>'> 
+					<?php
 						echo $arrayHotelVo[$i]->getHotelId();
 						echo ' - ';
 						echo $arrayHotelVo[$i]->getHotelNome();
-						echo '<br />';
+						?>
+						</a>
+						<a href="javascript:;" onclick="alert('excluir');">Excluir</a>
+						<br />
+					<?php
 						// colocar aqui um botao para excluir e outro para alterar
 					}
 					
 					?>
 
 
+					<br />
+                    <a href="cadastrarHotel.php">Novo</a> <br />
+                    
 
-                    <a href="cadastrarHotel.php">Cadastrar</a> <br />
-                    <a href="cadastrarHotel.php">Alterar</a>
 
 
 
