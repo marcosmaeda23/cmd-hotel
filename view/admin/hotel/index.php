@@ -1,6 +1,17 @@
 <?php
 include('../template/iniciarDados.php');
 
+if(empty($_SESSION['NOME'])){
+	header('location:../');
+}
+
+$hotelVo = new HotelVo();
+$hotelBpm = new HotelBpm();
+
+$arrayHotelVo = $hotelBpm -> buscar('hotel');
+
+//var_dump($arrayHotelVo);
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -18,6 +29,20 @@ include('../template/iniciarDados.php');
                 <div class="middle">
 
                     <!-- conteudo -->	
+					<?php 
+					// colocar os campos de pesquisa 
+					
+					for ( $i = 0; $i < count($arrayHotelVo); $i++ ) {
+						echo $arrayHotelVo[$i]->getHotelId();
+						echo ' - ';
+						echo $arrayHotelVo[$i]->getHotelNome();
+						echo '<br />';
+						// colocar aqui um botao para excluir e outro para alterar
+					}
+					
+					?>
+
+
 
                     <a href="cadastrarHotel.php">Cadastrar</a> <br />
                     <a href="cadastrarHotel.php">Alterar</a>

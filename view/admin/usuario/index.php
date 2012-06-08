@@ -5,18 +5,10 @@ include('../template/iniciarDados.php');
 if(empty($_SESSION['NOME']) || $_SESSION['NIVEL'] == 4){
 	header('location:cadastrarUsuario.php');	
 }
-
+$usuarioVo = new UsuarioVo();
 $usuarioBpm = new UsuarioBpm();
 
 $arrayUsuarioVo = $usuarioBpm -> buscar('usuario');
-echo 'exibe os dados do usuario';
-// se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
-// ou sem sessao de cliente cadastro normal , o campo de senha tbm
-
-// sessao de gerente mostrar nivel de acesso, apagar, alterar, cadastrar, nao mostrar campo de senha e sim um botao para enviar email para o cliente
-
-// sessao do recepcionista , cadastrar, alterar, nao mostrar campo de senha e sim um botao para enviar email pro cliente
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -32,11 +24,27 @@ echo 'exibe os dados do usuario';
         <?php include('../template/topoAdmin.php') ?>
         <div class="content cf">
             <div class="container">
-                <div class="middle">                    <!-- conteudo -->	
-
+                <div class="middle">                   
+                <!-- conteudo -->	
+					<?php 
+					// colocar os campos de pesquisa 
+					
+					for ( $i = 0; $i < count($arrayUsuarioVo); $i++ ) {
+						echo $arrayUsuarioVo[$i]->getUsuarioId();
+						echo ' - ';
+						echo $arrayUsuarioVo[$i]->getUsuarioNome();
+						echo '<br />';
+						// colocar aqui um botao para excluir e outro para alterar
+					}
+					
+					?>
+					
+					
+					
+					
                     <a href="cadastrarUsuario.php">Cadastrar</a> <br />
                     <a href="cadastrarUsuario.php">Alterar</a>
-
+					
                     
 
                 </div>

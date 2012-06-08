@@ -1,13 +1,6 @@
 <?php
 include('../template/iniciarDados.php');
 
-if(empty($_SESSION['NOME'])){
-	header('location:../');
-
-}
-
-
-
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"

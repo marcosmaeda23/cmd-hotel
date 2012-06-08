@@ -144,7 +144,7 @@ class TelefoneDao extends Entidade {
 				for ( $j = 0; $j < count($this->dadosBase); $j++ ) {
 					$_dadosBase = explode(' ', $this->dadosBase[$j]);
 					eval('$valor = $objetoVo['.$value.'] -> get'.ucfirst($this->entidade).ucfirst($_dadosBase[0]).'();');
-					if (is_string($valor)){
+					if (is_string($valor) || $_dadosBase[0] == 'numero'){
 						$sql .= "'";
 					}
 					if (empty($valor)) {
@@ -152,7 +152,7 @@ class TelefoneDao extends Entidade {
 					} else {
 						$sql .= $valor;
 					}
-					if (is_string($valor)){
+					if (is_string($valor) || $_dadosBase[0] == 'numero'){
 						$sql .= "'";
 					}
 					if ($j+1 <> count($this->dadosBase)){
@@ -174,6 +174,8 @@ class TelefoneDao extends Entidade {
 				$i++;
 			}
 			$sql .= ' ;';
+			//$_sql .= '  -  '.$sql;
+            //echo $_sql;
 			$query = mysql_query($sql);  
 			if (!$query){
 				$ERRO = true;

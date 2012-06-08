@@ -4,9 +4,7 @@
  * @param pais
  */
 function aplicarMascara() {
-	pais = $('#paisOrigem').val();
-	//alert(pais);
-	if (pais == 'brasil') {
+	
 		$('.cep').mask('99 999-999');
 		$('.telefone').mask('9999-9999');
 		$('.data').mask('99/99/9999', {
@@ -17,11 +15,16 @@ function aplicarMascara() {
 				}
 			}
 		});
+		$('.cnpj').mask('99.999.999/9999-99', {
+			completed:function(){
+				if(!validarDocumento('cnpj', this.val())){
+					this.focus();
+					alert('Cnpj inválido.');
+				}
+			}
+		});
 
-		$('#telefoneDdi').val(55);
-	} else {
-		$('.data').mask('9999/99/99');
-	}
+	
 }
 /**
  * trava o uso da tecla enter para o envio do formulario

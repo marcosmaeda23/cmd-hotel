@@ -1,23 +1,5 @@
 <?php
-
-require_once '../../../dao/Banco.php';
-require_once '../../../dao/Entidade.php';
-require_once '../../../dao/HotelDao.php';
-require_once '../../../dao/TelefoneDao.php';
-require_once '../../../dao/CepXedicaoDao.php';
-require_once '../../../dao/CepCadastroDao.php';
-
-require_once '../../../bpm/BpmGenerico.php';
-require_once '../../../bpm/HotelBpm.php';
-require_once '../../../bpm/CepBpm.php';
-require_once '../../../bpm/TelefoneBpm.php';
-
-require_once '../../../vo/HotelVo.php';
-require_once '../../../vo/CepXedicaoVo.php';
-require_once '../../../vo/CepCadastroVo.php';
-require_once '../../../vo/TelefoneVo.php';
-
-require_once '../../../biblioteca/funcoes.php';
+include('../template/iniciarDados.php');
 
 // -------------------------------
 // para cadastrar ou alterar
@@ -29,7 +11,10 @@ if ($_POST['acao'] == 'cadastrarHotel') {
     $telefoneVo = new TelefoneVo();
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
-
+    
+     if(!empty($_POST['usuarioId'])){
+    	$verificarUnicos = false;    	
+    }
     // verifica se os campos do hotel estao vazios		
     foreach ($hotelVo->hotelObrigatorio as $chave => $valor) {
         // faz a validacao dos campos obrigatorios, setados na classe
@@ -121,7 +106,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
             }
             // inserindo manualmente pois não rolou colocar dinamico, telefone é array
             for ($j = 0; $j < count($_POST['telefoneTipo']); $j++) {
-                eval('$telefoneVo' . $j . ' ->setTelefoneTipo(' . $_POST["telefoneTipo"][$j] . ');');
+                eval('$telefoneVo' . $j . ' ->setTelefoneId(' . $_POST["telefoneId"][$j] . ');');
                 eval('$telefoneVo' . $j . ' ->setTelefoneDdd(' . $_POST["telefoneDdd"][$j] . ');');
                 eval('$telefoneVo' . $j . ' ->setTelefoneDdi(' . $_POST["telefoneDdi"][$j] . ');');
                 eval('$telefoneVo' . $j . ' ->setTelefoneNumero(' . $_POST["telefoneNumero"][$j] . ');');
@@ -139,7 +124,6 @@ if ($_POST['acao'] == 'cadastrarHotel') {
         $hotelVo->setCepXedicaoVo($cepXedicaoVo);
         $hotelVo->setCepCadastroVo($cepCadastroVo);
     }
-
     if (!$ERRO) {
         $sucesso = $hotelBpm->cadastrarAlterar($hotelVo, 'hotel');
         if (!$sucesso) {
@@ -147,6 +131,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
             $erro_nome .= 'O ocorreu um erro ao cadastrar o hotel';
         }
     }
+
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Bem vindo");';

@@ -18,11 +18,11 @@ class Entidade extends Banco {
     }
 
     /**
-     * metodo para alterar
+     * metodo para alterar o status
      * @param id da entidade
      * @return bool
      */
-    public function alterar() {
+    public function alterarStatus() {
         
     }
 
@@ -106,8 +106,10 @@ class Entidade extends Banco {
                 eval('$sql .= $objetoVo -> get' . ucfirst($this->entidade) . 'Status();');
             }
             $sql .= ' ) ;';
+            //$_sql .= '  -  '.$sql;
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
+            //echo $_sql;
         } else {
 
             // tem o id dentro do objeto, update
@@ -185,13 +187,18 @@ class Entidade extends Banco {
      */
     public function buscar() {
         $sql = 'SELECT * FROM ' . $this->entidade . ' LIMIT ' . $this->limite;
-        $query = mysql_query($query);
+        $query = mysql_query($sql);
         $arrayObjeto = array();
-        while ($rows = mysql_fetch_object($query)) {
-            
-        }
-
-        exit();
+        $qtde = mysql_affected_rows();
+        if ($qtde > 0) {
+	        while ($rows = mysql_fetch_object($query)) {
+				eval('$objetoVo = new '.ucfirst($this->entidade).'Vo();');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Id("$rows->'.$this->entidade.'Id");');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Nome("$rows->'.$this->entidade.'Nome");');
+				$arrayObjeto[] = $objetoVo;			
+	        }
+        }		
+		return $arrayObjeto;
     }
 
     /**

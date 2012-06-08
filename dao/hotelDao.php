@@ -8,51 +8,69 @@ class HotelDao extends Entidade {
     // =================================================================
     // SETANDO =========================================================
     // ================================================================= 
+    
+
     /**
      * nome da tabela 
      */
-    protected $entidade = 'hotel';
+    protected $entidade 			= 'hotel';
+    /**
+     * chave estrangeira
+     * @example $chaveEstrangeira 	= array('usuarioSistema INT(11) NOT NULL')
+     */
+    protected $chaveEstrangeira 	= array();
+	/**
+     * se tiver a chave estrangeira setado arruma a relacao e defineo update 
+     * @example $onUpdate = array('usuarioSistema' => 'cascade');
+     */
+    protected $onUpdate 			= array();
 
+    /**
+     * se tiver a chave estrangeira setado arruma a relacao e define o delete
+     * @example $onUpdate = array('usuarioSistema' => 'set null');
+     */
+    protected $onDelete 			= array();
     /**
      * se tiver algum atributo como unique setado, inclui na tabela
      * @deprecated id
      * @example $uniqueKey = array('email', 'documento');
      */
-    protected $uniqueKey = array('cnpj', 'nome', 'inscricao_estadual', 'email');
-
+    protected $uniqueKey 		= array('cnpj', 'nome', 'inscricaoEstadual', 'email');
     /**
      * seta a base de dados para fazer a atualizacao ou criacao
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-    protected $dadosBase = array(
-        'nome VARCHAR(100) NOT NULL',
-        'cnpj INT NOT NULL',
-        'inscricaoEstadual INT NOT NULL',
-        'email VARCHAR(100) NOT NULL',
-        'observacao VARCHAR(800) NULL',
-        'gerente VARCHAR(100) NOT NULL',
-    );
+	protected $dadosBase 		= array('nome VARCHAR(100) NOT NULL',
+								        'cnpj VARCHAR(100) NOT NULL',
+								        'inscricaoEstadual VARCHAR(100) NOT NULL',
+								        'email VARCHAR(100) NOT NULL',
+								        'observacao VARCHAR(800) NULL',
+								        'gerente VARCHAR(100) NOT NULL' );
 
     /**
      * Array contendo a ordem para salvar no banco
      */
     protected $ordemBase = array('telefone', 'cepXedicao', 'cepCadastro');
+    /**
+     *  se true coloca um campo status na tabela
+     */
+    protected $status 				= false;
 
     /**
      * se true coloca um campo dataCadastro na tabela
      */
-    protected $momentoCadastro = true;
+    protected $momentoCadastro 		= true;
 
     /**
      * limite de para a pesquisa
      */
-    protected $limite = '0, 10';
+    protected $limite 				= '0, 10';
 
     /**
      * deixa os dados ordenados, acrescenta um campo ordem na tabela
      */
-    protected $ordenado = false;
+    protected $ordenado 			= false;
 
     // =================================================================
     // METODOS =========================================================
@@ -65,11 +83,9 @@ class HotelDao extends Entidade {
      * @return boolean 
      */
     public function cadastrarAlterar($hotelVo) {
-        //var_dump($hotelVo);
         // cadastra o objeto principal retorna o id do hotel ou false
         $idHotel = entidade :: cadastrarAlterar($hotelVo);
-
-        if ($idHotel === false) {
+        if ($idHotel == false) {
             return false;
         } else {
             // verifica se tem setado a $ordemBase e cadastra o restante das tabelas	
@@ -81,7 +97,8 @@ class HotelDao extends Entidade {
                     for ($j = 0; $j < count($_objeto); $j++) {
                         $_objeto[$j]->setHotelId($idHotel);
                     }
-                    $sucesso = $telefoneDao->cadastrarAlterar($_objeto);
+                    $sucesso = $telefoneDao ->cadastrarAlterar($_objeto);
+
                     if ($sucesso === false) {
                         return false;
                     }
