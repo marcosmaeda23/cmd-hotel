@@ -5,7 +5,7 @@ include('../template/iniciarDados.php');
 // -------------------------------
 // para cadastrar ou alterar
 // ------------------------------- 
-var_dump($_POST);
+
 if ($_POST['acao'] == 'cadastrarUsuario') {
     $usuarioVo = new UsuarioVo();
     $usuarioBpm = new UsuarioBpm();

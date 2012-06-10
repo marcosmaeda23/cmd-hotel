@@ -10,19 +10,17 @@ class ServicoVo {
 
     private $servicoId;
     private $hotelId;
-    private $nome;
-    private $observacao;
-    private $valor;
-    private $dataCadastro;
+    private $servicoNome;
+    private $servicoObservacao;
+    private $servicoValor;
+    private $servicoDataCadastro;
     
-    public $servicoObrigatorio = array(
-        'servicoId' => '',
-        'hotelId' => '',
-        'nome' => '',
-        'observacao' => '',
-        'valor' => '',
-        'dataCadastro' => ''
-    );
+    public $servicoObrigatorio 	= array('servicoId' 			=> '',
+   										'hotelId' 				=> 'obrigatorio',
+        								'servicoNome' 			=> 'obrigatorio',
+								        'servicoObservacao' 	=> '',
+								        'servicoValor' 			=> 'obrigatorio',
+								        'servicoDataCadastro' 	=> '');
 
     /*
      * get e set da classe Servico
@@ -43,36 +41,36 @@ class ServicoVo {
         $this->hotelId = $hotelId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getServicoNome() {
+        return $this->servicoNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setServicoNome($servicoNome) {
+        $this->servicoNome = $servicoNome;
     }
 
-    public function getObservacao() {
-        return $this->observacao;
+    public function getServicoObservacao() {
+        return $this->servicoObservacao;
     }
 
-    public function setObservacao($observacao) {
-        $this->observacao = $observacao;
+    public function setServicoObservacao($servicoObservacao) {
+        $this->servicoObservacao = $servicoObservacao;
     }
 
-    public function getValor() {
-        return $this->valor;
+    public function getServicoValor() {
+        return $this->servicoValor;
     }
 
-    public function setValor($valor) {
-        $this->valor = $valor;
+    public function setServicoValor($servicoValor) {
+        $this->servicoValor = $servicoValor;
     }
 
-    public function getDataCadastro() {
-        return $this->dataCadastro;
+    public function getServicoDataCadastro() {
+        return $this->servicoDataCadastro;
     }
 
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
+    public function setServicoDataCadastro($servicoDataCadastro) {
+        $this->servicoDataCadastro = $servicoDataCadastro;
     }
 }
 

@@ -1,41 +1,14 @@
-<?php
+<!-- chat -->	
+         
+Chat<a href="javascript:;" onclick="alert('fechar');">Fechar</a>
 
-// a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('chat');
-include('../template/iniciarDados.php');
+<div id="msgRecebida" style="width:280px;height:100px;">
+	<textarea style="width:280px;height:100px;border:solid 1px #c0c0c0;resize:none;" readonly="readonly"></textarea>
 
-
-?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en_US" xml:lang="en_US">
-    <head>
-        <title><?php echo $nome_site_Title; ?></title>
-        <!-- css gerais-->
-        <?php include('../template/css.php'); ?>
-    </head>
-    <body>	
-        <?php include('../template/topoAdmin.php') ?>
-        <div class="content cf">
-            <div class="container">
-                <div class="middle">
-
-                    <!-- conteudo -->	
-                    <br />
-					<br />
-					<br />
-					Página inicial achar o que vai colocar aqui 
-					<br />
-					<br />
-					<br />
-
-                </div>
-            </div>
-        </div>
-
-        <?php include('../template/rodapeAdmin.php'); ?>
-    </body>
-    <!-- scripts gerais -->
-    <?php include('../template/js.php') ?>	
-</html>
+</div>
+<div id='msgEnviar' style="margin-top:10px;width:280px;height:100px;">
+	<textarea style="width:280px;height:100px;border:solid 1px #c0c0c0;resize:none;"></textarea>
+</div>
+<div>
+	<input style="margin-top:10px;"type="button" value="enviar" onclick="alert('enviando..');"/>
+</div>

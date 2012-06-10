@@ -1,7 +1,7 @@
 <?php
 
 // a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('home');
+$necessario = array();
 include('../template/iniciarDados.php');
 
 

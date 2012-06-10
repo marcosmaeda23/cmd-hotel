@@ -26,19 +26,19 @@ class UsuarioVo {
     /**
      * define os atributos da classe e determina quais atributos serao obrigatorios
      */
-    public $usuarioObrigatorio = array('usuarioId' => '',
-        'nivelId' => 'obrigatorio',
-        'usuarioNome' => 'obrigatorio',
-        'usuarioEmail' => 'obrigatorio',
-        'usuarioDocumentoTipo' => 'obrigatorio',
-        'usuarioDocumento' => 'obrigatorio',
-        'usuarioDataNascimento' => 'obrigatorio',
-        'usuarioSexo' => 'obrigatorio',
-        'usuarioLogin' => '',
-        'usuarioSenha' => '',
-        'usuarioLembrete' => '',
-        'usuarioStatus' => '',
-        'usuarioDataCadastro' => '');
+    public $usuarioObrigatorio 	= array('usuarioId' => '',
+								        'nivelId' => 'obrigatorio',
+								        'usuarioNome' => 'obrigatorio',
+								        'usuarioEmail' => 'obrigatorio',
+								        'usuarioDocumentoTipo' => 'obrigatorio',
+								        'usuarioDocumento' => 'obrigatorio',
+								        'usuarioDataNascimento' => 'obrigatorio',
+								        'usuarioSexo' => 'obrigatorio',
+								        'usuarioLogin' => '',
+								        'usuarioSenha' => '',
+								        'usuarioLembrete' => '',
+								        'usuarioStatus' => '',
+								        'usuarioDataCadastro' => '');
 
     /**
      * atributos que precisam validacoes
