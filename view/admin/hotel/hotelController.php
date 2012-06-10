@@ -1,4 +1,5 @@
 <?php
+$necessario = array('hotel');
 include('../template/iniciarDados.php');
 
 // -------------------------------
@@ -12,7 +13,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
     
-     if(!empty($_POST['usuarioId'])){
+     if(!empty($_POST['hotelId'])){
     	$verificarUnicos = false;    	
     }
     // verifica se os campos do hotel estao vazios		
@@ -72,14 +73,27 @@ if ($_POST['acao'] == 'cadastrarHotel') {
                     $erro_nome .= 'O email não é válido.';
                     break;
                 }
-                // verificar se email ja existe no banco	        
-                $hotelVo->setHotelEmail($valor);
-
-                $sucesso = $hotelBpm->verificarExistenciaEmail($hotelVo, 'hotel');
-                if (!$sucesso) {
-                    $ERRO = true;
-                    $erro_nome .= 'O email já está cadastrado na base de dados.';
-                    break;
+                if($verificarUnicos) {
+	                // verificar se email ja existe no banco	        
+	                $hotelVo->setHotelEmail($valor);
+	
+	                $sucesso = $hotelBpm->verificarExistenciaEmail($hotelVo, 'hotel');
+	                if (!$sucesso) {
+	                    $ERRO = true;
+	                    $erro_nome .= 'O email já está cadastrado na base de dados.';
+	                    break;
+	                }
+                }
+                if($verificarUnicos) {
+	                // verificar se email ja existe no banco	        
+	                $hotelVo->setHotelCnpj($valor);
+	
+	                $sucesso = $hotelBpm->verificarExistenciaDocumento($hotelVo, 'hotel', 'cnpj');
+	                if (!$sucesso) {
+	                    $ERRO = true;
+	                    $erro_nome .= 'O cnpj já está cadastrado na base de dados.';
+	                    break;
+	                }
                 }
             }
         }

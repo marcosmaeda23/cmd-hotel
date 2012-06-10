@@ -12,6 +12,8 @@ class HotelVo {
     private $hotelEmail;
     private $hotelObservacao;
     private $hotelGerente;
+    private $hotelDataCadastro;
+    
     private $telefoneVo;        // array de objetos
     private $cepXedicaoVo;      // objeto
     private $cepCadastroVo;     // objeto
@@ -83,6 +85,13 @@ class HotelVo {
 
     public function setHotelGerente($hotelGerente) {
         $this->hotelGerente = $hotelGerente;
+    }
+    public function getHotelDataCadastro() {
+        return $this->hotelDataCadastro;
+    }
+
+    public function setHotelDataCadastro($hotelDataCadastro) {
+        $this->hotelDataCadastro = $hotelDataCadastro;
     }
     /*
      * get e set dos objetos

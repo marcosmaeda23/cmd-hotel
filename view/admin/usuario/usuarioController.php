@@ -1,7 +1,6 @@
 <?php
+$necessario = array('usuario');
 include('../template/iniciarDados.php');
-
-
 
 // -------------------------------
 // para cadastrar ou alterar

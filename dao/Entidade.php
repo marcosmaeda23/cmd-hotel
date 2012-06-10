@@ -166,8 +166,16 @@ class Entidade extends Banco {
      * @param id da entidade
      * @return bool
      */
-    public function excluir() {
-        
+    public function excluir($objetoVo) {
+        $sql = 'DELETE '.$this->entidade .' WHERE '.$this->entidade.'Id = ';
+        eval('$sql .= $objetoVo->get'.ucfirst($this->entidade).'Id();');
+        $query = mysql_query($sql);
+        $qtde = mysql_affected_rows();
+        if ($qtde == 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**
@@ -207,7 +215,17 @@ class Entidade extends Banco {
      * @return boolean
      */
     public function verificarExistenciaDocumento($objeto, $documentoTipo) {
-        
+    	 $sql = 'SELECT ' . $this->entidade . ucfirst($documentoTipo).' FROM ' . $this->entidade . ' WHERE ' .
+                $this->entidade .ucfirst($documentoTipo).' = "';
+        eval('$valor = $objetoVo -> get'.ucfirst($this->entidade).ucfirst($documentoTipo).'();');
+        $sql .= $valor . '"';
+        $query = mysql_query($sql);
+        $qtde = mysql_affected_rows();
+        if ($qtde == 1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /**

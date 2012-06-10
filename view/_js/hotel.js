@@ -5,6 +5,10 @@ $(document).ready(function(){
 	//preencheCamposCep(cepComplementoArray, cepArray, cepTipo);
 	//preencheCamposTelefone(telefoneArray);	
 	
-	mostrarTelefone();
+
+	preencheCamposCep(cepComplementoArray, cepArray, cepTipo);
+	preencheCamposTelefone(telefoneArray);	
+
+	
 	
 });	

@@ -72,9 +72,9 @@ class BpmGenerico {
 	 * @param objeto e a entidade
 	 * @return boolean
 	 */
-	public function verificarExistenciaDocumento($objeto, $entidade){
+	public function verificarExistenciaDocumento($objeto, $entidade, $documentotipo){
 		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
-		$sucesso = $_objeto -> verificarDocumento($objeto);
+		$sucesso = $_objeto -> verificarDocumento($objeto, $documentotipo);
 		return $sucesso;
 	}
 	/**

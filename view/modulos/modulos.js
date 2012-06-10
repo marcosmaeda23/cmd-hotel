@@ -108,6 +108,72 @@ function verificaCamposUnicos(entidade, campo, valor) {
 		}
 	});
 }
+
+/**
+ * funcao que excluir 
+ * @param entidade
+ * @param id
+ * return boolean
+ */
+function excluir(entidade, id){
+	var parametros = '';
+	if(entidade == ''){
+		return;
+	}
+	if(id == ''){
+		return;
+	}	
+	if(!confirm('Deseja excluir este ' + entidade + '?')){
+		return;
+	}
+	parametros += '&entidade=' + entidade;
+	parametros += '&id=' + id;
+	alert('sdf');
+	$.ajax({
+		// definimos a url
+		url : '../../modulos/modulosController.php',
+		// definimos o tipo de requisiï¿½ï¿½o, post ou get
+		type : 'post',
+		// definimos o tipo de retorno, xml, html, json, sjonp, script e text
+		dataType : 'text',
+		// colocamos os valores a serem enviados
+		data : "acao=excluir" + parametros,
+		// beforeSend : function(){},
+		// ao completar a requisição tira o sinal de carregando
+		// complete : function(){},
+		// aqui colocamos o callback na div #retorno
+
+		// veja se teve erros
+		error : function(jqXHR, exception) {
+			if (jqXHR.status === 0) {
+				alert('Not connect.\n Verify Network.');
+			} else if (jqXHR.status == 404) {
+				alert('Requested page not found. [404]');
+			} else if (jqXHR.status == 500) {
+				alert('Internal Server Error [500].');
+			} else if (exception === 'parsererror') {
+				alert('Requested JSON parse failed.');
+			} else if (exception === 'timeout') {
+				alert('Time out error.');
+			} else if (exception === 'abort') {
+				alert('Ajax request aborted.');
+			} else {
+				alert('Uncaught Error.\n' + jqXHR.responseText);
+			}
+		},
+		// colocamos o retorno na tela
+		success : function(resposta) {
+			alert(resposta)
+			if(resposta == 'sucesso'){
+				alert('Exclusão efetuada');
+			} else {
+				alert('Ocorreu um erro ao excluir o hotel.\nTente novamente mais tarde.');
+			}
+			
+		}
+	});
+}
+
 /**
  * pesquisa o cep na base de dados
  * mostra o resultado no campo 'resposta' caso nao ache 

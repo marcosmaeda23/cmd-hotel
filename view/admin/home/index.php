@@ -1,4 +1,7 @@
 <?php
+
+// a variavel necessario eh para inserido os objetos que serao incluidos 
+$necessario = array('home');
 include('../template/iniciarDados.php');
 
 
@@ -19,8 +22,13 @@ include('../template/iniciarDados.php');
                 <div class="middle">
 
                     <!-- conteudo -->	
-                    OK
-                    
+                    <br />
+					<br />
+					<br />
+					Página inicial achar o que vai colocar aqui 
+					<br />
+					<br />
+					<br />
 
                 </div>
             </div>

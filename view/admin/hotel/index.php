@@ -1,4 +1,5 @@
 <?php
+$necessario = array('hotel');
 include('../template/iniciarDados.php');
 
 if(empty($_SESSION['NOME'])){
@@ -40,7 +41,7 @@ $arrayHotelVo = $hotelBpm -> buscar('hotel');
 						echo $arrayHotelVo[$i]->getHotelNome();
 						?>
 						</a>
-						<a href="javascript:;" onclick="alert('excluir');">Excluir</a>
+						<a href="javascript:;" onclick="excluir('hotel', <?php echo $arrayHotelVo[$i]->getHotelId();?>);">Excluir</a>
 						<br />
 					<?php
 						// colocar aqui um botao para excluir e outro para alterar
@@ -64,5 +65,6 @@ $arrayHotelVo = $hotelBpm -> buscar('hotel');
     </body>
     <!-- scripts gerais -->
         <?php include('../template/js.php') ?>
+        <script type="text/javascript" src="../../_js/hotel.js"></script>	
 </html>
 </html>

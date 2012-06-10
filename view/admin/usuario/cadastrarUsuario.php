@@ -1,4 +1,5 @@
 <?php
+$necessario = array('usuario');
 include('../template/iniciarDados.php');
 
 
@@ -122,7 +123,7 @@ if(!empty($_SESSION['NOME'])){
 						</div>
 						
 												
-						<input type="submit" name="cmdSalvar" value=" Cadastrar " />
+						<input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET)?'Cadastrar':'Alterar');?>" />
 					</form>
 				</div>
 			</div>

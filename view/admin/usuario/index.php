@@ -1,4 +1,6 @@
 <?php
+// a variavel necessario eh para inserido os objetos que serao incluidos 
+$necessario = array('usuario');
 include('../template/iniciarDados.php');
 
 
@@ -30,7 +32,7 @@ $arrayUsuarioVo = $usuarioBpm -> buscar('usuario');
 					// colocar os campos de pesquisa 
 					
 					for ( $i = 0; $i < count($arrayUsuarioVo); $i++ ) {?>
-						<a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId();?>'> 
+						<a href='cadastrarUsuario.php?usuario=<?php echo $arrayUsuarioVo[$i]->getUsuarioId();?>'> 
 					<?php
 						echo $arrayUsuarioVo[$i]->getUsuarioId();
 						echo ' - ';

@@ -1,5 +1,7 @@
 <?php
-//base de template da parte adm
+
+// a variavel necessario eh para inserido os objetos que serao incluidos 
+$necessario = array('usuario');
 include('../template/iniciarDados.php');
 
 
