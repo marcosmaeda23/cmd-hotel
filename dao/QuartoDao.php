@@ -47,10 +47,10 @@ class QuartoDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      * reservado 1-nao reservado, 2-resevado, 3-manutencao, 4-indisponivel
      */
-     protected $dadosBase 			= array('numero VARCHAR(100) NOT NULL',
-									        'descricao VARCHAR(800) NOT NULL',
-									        'valor DECIMAL(10,2) NOT NULL',
-									        'reservado DECIMAL(3,0) NOT NULL DEFAULT \'1\'');
+     protected $dadosBase 			= array('numero VARCHAR (100) NOT NULL',
+									        'descricao VARCHAR (800) NOT NULL',
+									        'valor DECIMAL (10,2) NOT NULL',
+									        'reservado DECIMAL (3,0) NOT NULL DEFAULT \'1\'');
 
     /**
      * Array contendo a ordem para salvar no banco

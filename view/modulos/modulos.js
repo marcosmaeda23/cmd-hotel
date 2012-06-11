@@ -128,7 +128,6 @@ function excluir(entidade, id){
 	}
 	parametros += '&entidade=' + entidade;
 	parametros += '&id=' + id;
-	alert('sdf');
 	$.ajax({
 		// definimos a url
 		url : '../../modulos/modulosController.php',
@@ -163,11 +162,11 @@ function excluir(entidade, id){
 		},
 		// colocamos o retorno na tela
 		success : function(resposta) {
-			alert(resposta)
 			if(resposta == 'sucesso'){
 				alert('Exclusão efetuada');
+				location.reload();
 			} else {
-				alert('Ocorreu um erro ao excluir o hotel.\nTente novamente mais tarde.');
+				alert('Ocorreu um erro ao excluir o ' + entidade + '.\nTente novamente mais tarde.');
 			}
 			
 		}

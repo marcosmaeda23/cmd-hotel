@@ -41,12 +41,12 @@ class HotelDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-	protected $dadosBase 		= array('nome VARCHAR(100) NOT NULL',
-								        'cnpj VARCHAR(100) NOT NULL',
-								        'inscricaoEstadual VARCHAR(100) NOT NULL',
-								        'email VARCHAR(100) NOT NULL',
-								        'observacao VARCHAR(800) NULL',
-								        'gerente VARCHAR(100) NOT NULL' );
+	protected $dadosBase 		= array('nome VARCHAR (100) NOT NULL',
+								        'cnpj VARCHAR (100) NOT NULL',
+								        'inscricaoEstadual VARCHAR (100) NOT NULL',
+								        'email VARCHAR (100) NOT NULL',
+								        'observacao VARCHAR (800) NULL',
+								        'gerente VARCHAR (100) NOT NULL' );
 
     /**
      * Array contendo a ordem para salvar no banco

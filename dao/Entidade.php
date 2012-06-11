@@ -86,7 +86,9 @@ class Entidade extends Banco {
                 } else {
                     if ($_dadosBase[1] == 'DATE') {
                         $sql .= formatarData($valor);
-                    } else {
+                    } if($_dadosBase[1] == 'DECIMAL'){
+                		$sql .= formatarValor($valor);
+                	} else {
                         $sql .= $valor;
                     }
                 }
@@ -106,9 +108,11 @@ class Entidade extends Banco {
                 eval('$sql .= $objetoVo -> get' . ucfirst($this->entidade) . 'Status();');
             }
             $sql .= ' ) ;';
-            $_sql .= '  -  '.$sql;
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
+            //$_sql .= '  -  '.$sql;
+            //echo $_sql;
+            //exit();
         } else {
 
             // tem o id dentro do objeto, update
@@ -126,7 +130,9 @@ class Entidade extends Banco {
 	                }
 	                if ($_dadosBase[1] == 'DATE') {
 	                    $sql .= formatarData($valor);
-	                } else {
+	                } else if($_dadosBase[1] == 'DECIMAL'){
+                		$sql .= formatarValor($valor);
+                	} else {
 	                    $sql .= $valor;
 	                }
 	                if (is_string($valor)) {
@@ -145,13 +151,13 @@ class Entidade extends Banco {
             }
              
            	$sql .= ' WHERE '.$this->entidade .'Id = '. $id;
-            //$_sql .= '  -  '.$sql;
+            $_sql .= '  -  '.$sql;
             //echo $_sql;
-            //var_dump($objetoVo);
+            //exit();
             $query = mysql_query($sql);
             $_id = $id;
         }
-
+        //var_dump($objetoVo);
 
         if (!$query) {
             return false;
@@ -166,14 +172,14 @@ class Entidade extends Banco {
      * @return bool
      */
     public function excluir($objetoVo) {
-        $sql = 'DELETE '.$this->entidade .' WHERE '.$this->entidade.'Id = ';
+        $sql = 'DELETE FROM '.$this->entidade .' WHERE '.$this->entidade.'Id = ';
         eval('$sql .= $objetoVo->get'.ucfirst($this->entidade).'Id();');
         $query = mysql_query($sql);
         $qtde = mysql_affected_rows();
         if ($qtde == 1) {
-            return false;
-        } else {
             return true;
+        } else {
+            return false;
         }
     }
     /**
@@ -200,9 +206,12 @@ class Entidade extends Banco {
 	        	for ( $i = 0; $i < count($this->dadosBase); $i++ ) {
 					$_dadosBase = explode(' ', $this->dadosBase[$i]);
 					if ($_dadosBase[1] == 'DATE') {
-			        	eval('$objetoVo -> set'.ucfirst($this->entidade). ucfirst($_dadosBase[0]).'("formatarData($rows->'.$this->entidade.ucfirst($_dadosBase[0]).'))");');
+			        	eval('$objetoVo -> set'.ucfirst($this->entidade). ucfirst($_dadosBase[0]).'(formatarData("$rows->'.$this->entidade.ucfirst($_dadosBase[0]).'"));');
                      
-                    } else {
+                    } else if($_dadosBase[1] == 'DECIMAL'){
+			        	eval('$objetoVo -> set'.ucfirst($this->entidade). ucfirst($_dadosBase[0]).'(formatarValor("$rows->'.$this->entidade.ucfirst($_dadosBase[0]).'"));');
+			   
+                	} else {
 			        	eval('$objetoVo -> set'.ucfirst($this->entidade). ucfirst($_dadosBase[0]).'("$rows->'.$this->entidade.ucfirst($_dadosBase[0]).'");');
                          
                     }
@@ -306,7 +315,7 @@ class Entidade extends Banco {
 		$sql = 'SELECT ' . $campo . ' FROM ' . $this->entidade ;
         $sql .= ' WHERE '. $campo .' = "'. $valor.'"';
         $query = mysql_query($sql);
-        $qtde = mysql_affected_rows();      
+        $qtde = mysql_affected_rows(); 
         if ($qtde == 1) {
         	//achou
             return true;

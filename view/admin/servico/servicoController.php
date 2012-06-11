@@ -46,7 +46,7 @@ if ($_POST['acao'] == 'cadastrarServico') {
 	
     if (!$ERRO) {
         echo '<script language="JavaScript">';
-        echo 'alert("Bem vindo");';
+        echo 'alert("Serviço cadastrado com sucesso.");';
         echo 'location.href="index.php";';
         echo '</script>';
     } else {

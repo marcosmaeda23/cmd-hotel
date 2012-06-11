@@ -55,7 +55,8 @@ if(!empty($_GET['servico'])){
 								</select><br />
 								
 								<label>Nome do serviço:</label><br />
-								</label><input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome();?>" maxlength="50" class="obrigatorio"  /><br />
+								</label><input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome();?>" maxlength="50" 
+											class="obrigatorio" onblur="verificaCamposUnicos('servico', 'servicoNome', this.value);" /><br />
 								Valor:<br />
 								<input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor();?>" maxlength="50" class="obrigatorio preco"  /><br />
 								

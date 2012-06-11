@@ -46,12 +46,12 @@ class CardapioDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-     protected $dadosBase 			= array('nome VARCHAR(100) NOT NULL',
-									        'tempo VARCHAR(100) NOT NULL',
-									        'descricao VARCHAR(200) NOT NULL',
-									        'valorCalorico DECIMAL(3,0) NULL',
-									        'valor DECIMAL(10,2) NOT NULL',
-									        'observacao VARCHAR(800) NULL');
+     protected $dadosBase 			= array('nome VARCHAR (100) NOT NULL',
+									        'tempo VARCHAR (100) NOT NULL',
+									        'descricao VARCHAR (200) NOT NULL',
+									        'valorCalorico DECIMAL (3,0) NULL',
+									        'valor DECIMAL (10,2) NOT NULL',
+									        'observacao VARCHAR (800) NULL');
 
     /**
      * Array contendo a ordem para salvar no banco

@@ -123,6 +123,21 @@ function formatarData($data, $resumido = false) {
 }
 
 /**
+ * funcao que troca a mascara do valor para inserir no banco
+ * @example 90,78 vira 90.78
+ * @return valor formatado
+ */
+function formatarValor($valor){	
+	if(strstr($valor, ',')){
+		$valorFormatado = str_replace(",", ".", $valor);
+	} else {
+		$valorFormatado = str_replace(".", ",", $valor);		
+	}
+	
+	return $valorFormatado;
+}
+
+/**
  * funcao para validar a data 
  * @param data dd/mm/YYYY
  * @return data YYYY-mm-dd ou false
@@ -145,8 +160,7 @@ function validarData($data){
  * funcao que retira a mascara 
  * @return 
  */
-function retirarMascara($valor){
-	
+function retirarMascara($valor){	
 	$caracteres = array(" ", "-", "_", ",");
 	$resultado = str_replace($caracteres, "", $valor);
 	

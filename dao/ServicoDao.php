@@ -43,9 +43,9 @@ class ServicoDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-     protected $dadosBase 			= array('nome VARCHAR(100) NOT NULL',
-									        'observacao VARCHAR(800) NOT NULL',
-									        'valor DECIMAL(10,2) NOT NULL');
+     protected $dadosBase 			= array('nome VARCHAR (100) NOT NULL',
+									        'observacao VARCHAR (800) NOT NULL',
+									        'valor DECIMAL (10,2) NOT NULL');
 
     /**
      * Array contendo a ordem para salvar no banco

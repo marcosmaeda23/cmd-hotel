@@ -43,7 +43,7 @@ if ($_POST['acao'] == 'cadastrarCardapioTipo') {
 	}
     if (!$ERRO) {
         echo '<script language="JavaScript">';
-        echo 'alert("Bem vindo");';
+        echo 'alert("Tipo de cardápio cadastrado com sucesso.");';
         echo 'location.href="index.php";';
         echo '</script>';
     } else {

@@ -43,12 +43,12 @@ class TelefoneDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-    protected $dadosBase = array('ddd DECIMAL(5) NOT NULL',
-						        'ddi DECIMAL(5) NULL',
-						        'tipo ENUM(\'residencial\',\'celular\',\'comercial\') DEFAULT \'celular\' NOT NULL',
-						        'numero VARCHAR(15) NOT NULL',
-						        'recado VARCHAR(15) NULL',
-						        'ramal DECIMAL(5) NOT NULL');   
+    protected $dadosBase = array('ddd DECIMAL (5) NOT NULL',
+						        'ddi DECIMAL (5) NULL',
+						        'tipo ENUM (\'residencial\',\'celular\',\'comercial\') DEFAULT \'celular\' NOT NULL',
+						        'numero VARCHAR (15) NOT NULL',
+						        'recado VARCHAR (15) NULL',
+						        'ramal DECIMAL (5) NOT NULL');   
 
 	/**
 	 * Array contendo a ordem para salva no banco

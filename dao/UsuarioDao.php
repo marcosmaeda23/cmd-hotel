@@ -43,15 +43,15 @@ class UsuarioDao extends Entidade {
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
-    protected $dadosBase = array('nome VARCHAR(100) NOT NULL',
-       							 'email VARCHAR(100) NOT NULL',
-						         'documentoTipo ENUM(\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
-						         'documento VARCHAR(100) NOT NULL',
+    protected $dadosBase = array('nome VARCHAR (100) NOT NULL',
+       							 'email VARCHAR (100) NOT NULL',
+						         'documentoTipo ENUM (\'cpf\',\'cnpj\',\'passaporte\') DEFAULT \'cpf\' NOT NULL',
+						         'documento VARCHAR (100) NOT NULL',
 						         'dataNascimento DATE NOT NULL',
-						         'sexo ENUM(\'f\',\'m\') NOT NULL',
-						         'login VARCHAR(100) NOT NULL',
-						         'senha VARCHAR(100) NOT NULL',
-						         'lembrete VARCHAR(150) NOT NULL');
+						         'sexo ENUM (\'f\',\'m\') NOT NULL',
+						         'login VARCHAR (100) NOT NULL',
+						         'senha VARCHAR (100) NOT NULL',
+						         'lembrete VARCHAR (150) NOT NULL');
 
     /**
      * Array contendo a ordem para salvar no banco

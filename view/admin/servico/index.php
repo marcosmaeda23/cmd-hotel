@@ -6,6 +6,7 @@ include('../template/iniciarDados.php');
 $servicoBpm = new ServicoBpm();
 $arrayServicoVo = $servicoBpm -> buscar('servico');
 
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -33,9 +34,8 @@ $arrayServicoVo = $servicoBpm -> buscar('servico');
 							echo $arrayServicoVo[$i]->getServicoId().' - ';
 							echo $arrayServicoVo[$i]->getServicoNome();
 							?>
-							</a>
-							
-							<a href="javascript:;" onclick="alert('excluir');">Excluir</a>
+							</a>							
+							<a href="javascript:;" onclick="excluir('servico', <?php echo $arrayServicoVo[$i]->getServicoId();?>);">Excluir</a>
 							<br /> 
 						<?php
 						}	

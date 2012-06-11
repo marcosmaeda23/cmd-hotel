@@ -1,6 +1,6 @@
 <?php
-$necessario = array('usuario', 'hotel');
-include('../template/iniciarDados.php');
+$necessario = array('servico', 'usuario', 'hotel');
+include('../admin/template/iniciarDados.php');
 
 // ------------------------------------------
 // Pesquisar o cep vindo do modulo via ajax
@@ -40,7 +40,7 @@ if ($_POST['acao'] == 'verificaCamposUnicos') {
 if($_POST['acao'] == 'excluir'){
 	//entidade, campo, valor
 	eval('$_objetoVo = new '.ucfirst($_POST['entidade']).'Vo();');
-	eval('$_objetoVo -> set'.ucfirst($_POST['entidade']).'Id("'.$_POST['id'].'");');
+	eval('$_objetoVo -> set'.ucfirst($_POST['entidade']).'Id('.$_POST['id'].');');
 	eval('$_objetoBpm = new '.ucfirst($_POST['entidade']).'Bpm();');
 	$sucesso = $_objetoBpm -> excluir($_objetoVo, $_POST['entidade']);
 	if($sucesso){
@@ -49,11 +49,7 @@ if($_POST['acao'] == 'excluir'){
 	} else {
 		// nao excluiu
 		echo 'fracasso';
-	}
-	
-	
-	
-	
+	}	
 }
 
 ?>
