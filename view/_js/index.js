@@ -1,7 +1,15 @@
 
+$(document).ready(function(){
+    $('#campoEmail').hide();
+});	
+
 
 function fecharChat(){
-	$('#chat').hide();
+    $('#chat').hide();
 }
 
+function mostrarLembrete(){
+    $('.loginNormal').hide();
+    $('#campoEmail').show();
+}
 
