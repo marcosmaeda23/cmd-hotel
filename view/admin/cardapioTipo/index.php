@@ -1,9 +1,11 @@
 <?php
 
 // a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('cardapio', 'cardapioTipo');
+$necessario = array('cardapioTipo', 'cardapio');
 include('../template/iniciarDados.php');
-$arrayCardapioVo = new CardapioVo();
+$arrayCardapioTipoVo = new CardapioTipoVo();
+$cardapioTipoBpm = new CardapioTipoBpm();
+$arrayCardapioTipoVo = $cardapioTipoBpm -> buscar('cardapioTipo');
 
 
 ?>
@@ -24,15 +26,14 @@ $arrayCardapioVo = new CardapioVo();
 
                     <!-- conteudo -->	
                     <?php 
-                    /*
-                    if($arrayCardapioVo < 1){
+                    if($arrayCardapioTipoVo < 1){
                     	echo 'Sem nenhum cardápio cadastrado';
                     } else {
-	                    for ( $i = 0; $i < count($arrayCardapioVo); $i++ ) {?>
-							<a href='cadastrarCardapio.php?cardapio=<?php echo $arrayCardapioVo[$i]->getCardapioId();?>'> 
+	                    for ( $i = 0; $i < count($arrayCardapioTipoVo); $i++ ) {?>
+							<a href='cadastrarCardapioTipo.php?cardapioTipo=<?php echo $arrayCardapioTipoVo[$i]->getCardapioTipoId();?>'> 
 							<?php
-							echo $arrayCardapioVo[$i]->getCardapioId().' - ';
-							echo $arrayCardapioVo[$i]->getCardapioNome();
+							echo $arrayCardapioTipoVo[$i]->getCardapioTipoId().' - ';
+							echo $arrayCardapioTipoVo[$i]->getCardapioTipoNome();
 							?>
 							</a>
 							
@@ -40,14 +41,12 @@ $arrayCardapioVo = new CardapioVo();
 							<br /> 
 						<?php
 						}	
-                    } */               
+                    }                
                     ?>
 
 					<br />
 					
-                    <a href="cadastrarCardapio.php">Cadastrar</a> <br />
-                    <a href="../cardapioTipo/cadastrarCardapioTipo.php">Cadastrar tipo de cardápio</a> <br />
-
+                    <a href="cadastrarCardapioTipo.php">Cadastrar</a> <br />
 
                 </div>
             </div>

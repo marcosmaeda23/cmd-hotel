@@ -182,6 +182,7 @@ class Entidade extends Banco {
      * @return objeto
      */
     public function exibir($objetoVo){
+    	
     	$sql = 'SELECT * FROM ' . $this->entidade . ' WHERE ' . $this->entidade.'Id = ';
     	eval('$sql .= $objetoVo->get'.ucfirst($this->entidade).'Id();');
         $query = mysql_query($sql);

@@ -1,12 +1,12 @@
 <?php 
 
-$necessario = array('hotel', 'servico');
+$necessario = array('cardapio');
 include('../template/iniciarDados.php');
 
 /// buscar os hoteis para mostar no slect
 $hotelVo = new HotelVo();
 $hotelBpm = new HotelBpm();
-$arrayHotelVo = $hotelBpm -> buscar('hotel');
+$hotelVo = $hotelBpm -> buscar('hotel');
 
 $servicoVo = new ServicoVo();
 if(!empty($_GET['servico'])){
@@ -32,21 +32,20 @@ if(!empty($_GET['servico'])){
             <div class="container">
                 <div class="middle">	
 					<div id="formulario">
-						<?php if(count($arrayHotelVo) > 0) { ?>								
-						<form id="cadastrarServico" action="servicoController.php" method="post" onsubmit="return verificarCampos('cadastrarServico');" >
+						<form action="servicoController.php" method="post" onsubmit="return verificarCampos();" >
 							<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarServico" />
 							<input type="hidden" name="servicoId" id="servicoId" value="<?php echo $servicoVo ->getServicoId();?>" />			
 							
 							
 							<div id="servico" >
-								<!-- servico -->
+								<!-- usuario -->
 								Selecione o hotel:<br />
 								<select name="hotelId" id="hotelId" class="obrigatorio" >
 									<option value=""> Selecione o hotel: </option>
 									<?php 
-									for ( $i = 0; $i < count($arrayHotelVo); $i++ ) { ?>
-										<option value="<?php echo $arrayHotelVo[$i]->getHotelId();?>"<?php echo $servicoVo->getHotelId() == $arrayHotelVo[$i]->getHotelId() ? 'selected=\'selected\'':'';?>>
-											<?php echo $arrayHotelVo[$i]->getHotelNome();?>
+									for ( $i = 0; $i < count($hotelVo); $i++ ) { ?>
+										<option value="<?php echo $hotelVo[$i]->getHotelId();?>"<?php echo $servicoVo->getHotelId() == $hotelVo[$i]->getHotelId() ? 'selected=\'selected\'':'';?>>
+											<?php echo $hotelVo[$i]->getHotelNome();?>
 										</option>
 										
 									<?php
@@ -57,7 +56,7 @@ if(!empty($_GET['servico'])){
 								<label>Nome do serviço:</label><br />
 								</label><input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome();?>" maxlength="50" class="obrigatorio"  /><br />
 								Valor:<br />
-								<input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor();?>" maxlength="50" class="obrigatorio preco"  /><br />
+								<input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor();?>" maxlength="50" class="obrigatorio"  /><br />
 								
 								Observação: 	<br />
 								<textarea id="servicoObservacao" name="servicoObservacao" rows="10" cols="50" wrap="off"><?php echo $servicoVo->getServicoObservacao();?></textarea><br />
@@ -65,10 +64,6 @@ if(!empty($_GET['servico'])){
 													
 							<input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET)?'Cadastrar':'Alterar');?>" />
 						</form>
-						<?php 
-						} else {
-							echo 'Voce precisa cadastar algum hotel antes.'; 
-						}?>
 					</div>
 				</div>
             </div>
@@ -78,5 +73,5 @@ if(!empty($_GET['servico'])){
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>	
-	<script type="text/javascript" src="../../_js/servico.js"></script>
+	<script type="text/javascript" src="../../_js/usuario.js"></script>
 </html>

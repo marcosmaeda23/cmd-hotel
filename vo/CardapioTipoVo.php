@@ -8,34 +8,40 @@ class CardapioTipoVo {
      * atributos da tabela Cardapio Tipo
      */
 
-    private $cardapioId;
-    private $nome;
+    private $cardapioTipoId;
+    private $cardapioTipoNome;
+    private $cardapioTipoDataCadastro;
     
-    public $cardapioTipoObrigatorio = array(
-        'cardapioId' => '',
-        'nome' => '',
-    );
+    public $cardapioTipoObrigatorio = array('cardapioTipoId' 			=> '',
+ 											'cardapioTipoNome'			=> 'obrigatorio',
+ 											'cardapioTipoDataCadastro' 	=> '');
 
     /*
      * get e set da classe cepXedicao, cepCadastro
      */
 
-    public function getCardapioId() {
-        return $this->cardapioId;
+    public function getCardapioTipoId() {
+        return $this->cardapioTipoId;
     }
 
-    public function setCardapioId($cardapioId) {
-        $this->cardapioId = $cardapioId;
+    public function setCardapioTipoId($cardapioTipoId) {
+        $this->cardapioTipoId = $cardapioTipoId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getCardapioTipoNome() {
+        return $this->cardapioTipoNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setCardapioTipoNome($cardapioTipoNome) {
+        $this->cardapioTipoNome = $cardapioTipoNome;
+    }
+	public function getCardapioTipoDataCadastro() {
+        return $this->cardapioTipoDataCadastro;
     }
 
+    public function setCardapioTipoDataCadastro($cardapioTipoDataCadastro) {
+        $this->cardapioTipoDataCadastro = $cardapioTipoDataCadastro;
+    }
 }
 
 ?>

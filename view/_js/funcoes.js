@@ -7,6 +7,7 @@ function aplicarMascara() {
 	
 		$('.cep').mask('99 999-999');
 		$('.telefone').mask('9999-9999');
+		
 		$('.data').mask('99/99/9999', {
 			completed:function(){
 				if(!validarData(this.val())){
@@ -23,7 +24,11 @@ function aplicarMascara() {
 				}
 			}
 		});
-
+		$('.preco').maskMoney({
+			symbol:"R$",
+			decimal:",",
+			thousands:"."
+		});
 	
 }
 /**
