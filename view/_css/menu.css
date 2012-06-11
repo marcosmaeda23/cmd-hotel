@@ -77,7 +77,7 @@ div#menu span {
 	cursor: pointer;
 	background-repeat: no-repeat;
 	background-position: 95% 0;
-	color:FFF;
+        color: #FFFFFF;
 }
 
 div#menu ul ul a.parent span {

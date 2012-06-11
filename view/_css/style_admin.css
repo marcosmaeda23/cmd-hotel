@@ -22,14 +22,16 @@ a{ text-decoration:none;}
 .nav li a {  display: block; padding:8px 25px; color:#fff;}
 .nav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
 
-.middle{float:left; width:100%; padding-top:145px; background-color:#FFF}
+.middle{float:left; width:100%; background-color:#FFF}
 .middleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
 .conteudoMenu {font:24px Verdana, Geneva, sans-serif; color:#006;height: 30px; 
               color: white; font-weight: bold; padding: 15px}
 .cadastro{float:left; width:310px;}
 .fotoInicial{float:left; width:610px;}
+
 .cadastro_titulo_container{float:left; width:80px; font-size:13px;padding-top:15px;}
-.cadastro_titulo{float:left; font-size:13px;padding-top:15px;  height:19px;}
+.cadastro_titulo{float:left; font-size:13px;padding:15px 0; width: 100%; }
+.cadastro_titulo p {color: #6E8FFF; border-bottom:#000066 solid 2px; font-size: 24px;}
 .cadastro_selecao{float:left; width:230px;padding-top:2px;}
 .cadastro_selecao_especial{float:left; height:30px;padding-top:1px; font-size:16px;}
 .cadastro_selecao_container{float:left; width:230px; font-size:13px;padding-top:15px}
@@ -61,48 +63,7 @@ a{ text-decoration:none;}
 .titulo_editar{ font-size:26px; color:#000033;}
 
 /* Rodapé*/
-.rodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 520px; margin-top: 40px;}
-.rodape .rodape_nome{ float:left;width:330px;text-align: left; color:#FFFFFF}
-.rodape .rodape_mais{ float:left;width:650px; text-align:right; color:#FFFFFF}
-.rodape .rodape_mais a{ float:left;width:650px; text-align:right; color:#FFFFFF; margin-top: 40px;}
-/**
-
-*{outline-style: none;outline:none;padding:0px;margin:0px;}
-html{outline-style: none;outline:none;padding:0px;margin:0px;}
-body{margin:0px;padding:0px;font:11px verdana;outline-style: none;}
-a:active {outline:none;}
-:focus {-moz-outline-style:none;}
-.hide{display:none;}
-
-a{ text-decoration:none;}
-
-
-/* TOPO /
-#contentAdmin {margin: 0 auto; text-align:center;}
-.containerAdmin{width:760px; background-color:#FFF}
-.menu_admin{ font:14px Verdana, Geneva, sans-serif; color:#006;}
-
-/* admin /
-.adminNav {height: 100%;font: normal 20px/1em Arial, Helvetica, sans-serif;}
-.adminNav li { float:left;  margin-right:1px; padding-top: 10px;}
-.adminNav li a {  display: block; padding:8px 25px; color:#fff;}
-.adminNav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
-.adminMiddle{float:left; width:100%;  background-color:#FFF}
-.adminMiddleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
-.adminRodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 20px;}
-
-
-/* FormulÃ¡rios /
-#formFloat{margin-top:20px;padding:5px;border:0px solid red;}
-.formDefault .button{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #fff;}
-.formDefault .button:hover{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #f0f0f0;}
-.formDefault label{font:bold 11px verdana;padding:3px;padding-left:0px;margin:2px;margin-top:15px;color:#999;display: block;width:200px;border:0px solid blue;height:25px}
-.formDefault input{font:12px verdana;padding:6px;margin:2px;width:200px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666;}
-.formDefault select{font:12px verdana;padding:6px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666;}
-.formDefault option{font:11px verdana;padding:0px;margin:1px;border:0px solid #333;}
-.controls{padding-bottom: 10px;border-bottom:1px dashed #b2b2b2;}
-#validate_message{padding:5px;font: 11px verdana;color:red;border-bottom:0px dashed #b2b2b2;}
-.formDefault .invalid{border:1px solid red;}
-
-.rodape{padding: 10px 0 10px 0; width:100%}
-*/
+.adminRodape {float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 30px; margin-top: 40px;}
+.rodape_nome{ float:left;width:330px;text-align:left; color:#FFFFFF!important;}
+.rodape_mais{ float:left;width:650px; text-align:right; color:#FFFFFF!important;}
+.rodape_mais a{ float:left;width:650px; text-align:right; color:#FFFFFF; margin-top: 40px;}
