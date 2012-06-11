@@ -9,12 +9,10 @@ class TipoQuartoVo {
      */
 
     private $tipoQuartoId;
-    private $descricao;
+    private $tipoQuartoId;
     
-    public $tipoQuartoObrigatorio = array(
-        'tipoQuartoId' => '',
-        'descricao' => ''
-    );
+    public $tipoQuartoObrigatorio 	= array('tipoQuartoId' 			=> '',
+        									'tipoQuartoDescricao' 	=> 'obrigatorio');
 
     /*
      * get e set da classe TipoQuarto
@@ -27,12 +25,12 @@ class TipoQuartoVo {
         $this->tipoQuartoId = $tipoQuartoId;
     }
 
-    public function getDescricao() {
-        return $this->descricao;
+    public function getTipoQuartoDescricao() {
+        return $this->tipoQuartoDescricao;
     }
 
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
+    public function setTipoQuartoDescricao($tipoQuartoDescricao) {
+        $this->tipoQuartoDescricao = $tipoQuartoDescricao;
     }
 }
 ?>
