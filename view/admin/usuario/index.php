@@ -3,7 +3,6 @@
 $necessario = array('usuario');
 include('../template/iniciarDados.php');
 
-
 if(empty($_SESSION['NOME']) || $_SESSION['NIVEL'] == 4){
 	header('location:cadastrarUsuario.php');	
 }
@@ -65,6 +64,7 @@ $arrayUsuarioVo = $usuarioBpm -> buscar('usuario');
     <script type="text/javascript">
 		<?php if (isset($_POST['paisOrigem'])){ ?>
 			aplicarMascara(<?php $_POST['paisOrigem'];?>);
+                        
 		<?php } ?>
 	</script>
 </html>

@@ -1051,7 +1051,7 @@ select {
     padding-top: 2px;
 }
 input:focus, select:focus, textarea:focus, input:hover, select:hover, textarea:hover {
-    color: #CCC;
+    color: #000;
 }
 table {
     width: 100%;

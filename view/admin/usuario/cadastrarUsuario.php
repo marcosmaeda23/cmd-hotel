@@ -41,11 +41,19 @@ if (!empty($_SESSION['NOME'])) {
 <?php include('../template/css.php'); ?>	
     </head>
     <body>	
-<?php include('../template/topoAdmin.php') ?>
+<?php 
+
+if (!empty($_SESSION)) {
+include('../template/topoAdmin.php');
+}else{
+include('../../template/topo.php');
+echo "<div  style='padding-top:120px;'>";
+}
+?>
         <div class="content cf">
             <div class="container">
                 <div class="middle">	
-                    <div class="cadastro_titulo"><p> Cadastrar Usuário </p></div>	
+                    <div class="cadastro_titulo"><p> Cadastrar Usu&aacute;rio </p></div>	
                     <div id="formulario">
                         <form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario', 'usuario');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
@@ -81,7 +89,7 @@ if (!empty($_SESSION['NOME'])) {
 
                                 Eu Sou:<br />
                                 <select name="usuarioSexo" id="usuarioSexo" class="obrigatorio" >
-                                    <option value=""> Selecione o gênero: </option>
+                                    <option value=""> Selecione o g&ecirc;nero: </option>
                                     <option value="m" <?php echo $usuarioVo->getUsuarioSexo() == 'm' ? 'selected=\'selected\'' : ''; ?>> Masculino </option>
                                     <option value="f" <?php echo $usuarioVo->getUsuarioSexo() == 'f' ? 'selected=\'selected\'' : ''; ?>> Feminino </option>
                                 </select><br />
