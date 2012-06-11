@@ -3,6 +3,10 @@
 // a variavel necessario eh para inserido os objetos que serao incluidos 
 $necessario = array('servico');
 include('../template/iniciarDados.php');
+
+if($_SESSION['NIVEL'] == 4){
+	header('location:../');
+} 
 $servicoBpm = new ServicoBpm();
 $arrayServicoVo = $servicoBpm -> buscar('servico');
 
@@ -29,13 +33,16 @@ $arrayServicoVo = $servicoBpm -> buscar('servico');
                     	echo 'Sem nenhum serviço cadastrado';
                     } else {
 	                    for ( $i = 0; $i < count($arrayServicoVo); $i++ ) {?>
-							<a href='cadastrarServico.php?servico=<?php echo $arrayServicoVo[$i]->getServicoId();?>'> 
-							<?php
+	                    	<?php if($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1){ ?> 	
+								<a href='cadastrarServico.php?servico=<?php echo $arrayServicoVo[$i]->getServicoId();?>'> 
+							<?php } 
 							echo $arrayServicoVo[$i]->getServicoId().' - ';
 							echo $arrayServicoVo[$i]->getServicoNome();
-							?>
-							</a>							
-							<a href="javascript:;" onclick="excluir('servico', <?php echo $arrayServicoVo[$i]->getServicoId();?>);">Excluir</a>
+							
+							if($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1){ ?> 						
+								</a>	
+								<a href="javascript:;" onclick="excluir('servico', <?php echo $arrayServicoVo[$i]->getServicoId();?>);">Excluir</a>
+							<?php } ?>
 							<br /> 
 						<?php
 						}	
@@ -43,8 +50,9 @@ $arrayServicoVo = $servicoBpm -> buscar('servico');
                     ?>
 
 					<br />
-					
-                    <a href="cadastrarServico.php">Cadastrar</a> <br />
+					<?php if($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1){ ?> 
+                    	<a href="cadastrarServico.php">Cadastrar</a> <br />
+                    <?php } ?>
 
                 </div>
             </div>

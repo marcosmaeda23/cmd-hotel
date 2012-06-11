@@ -135,7 +135,7 @@ function validarDocumento(documento, tipo) {
  * @param nomeformulario, nome da entidade 
  * @returns {Boolean}
  */
-function verificarCampos(_form, _entidade) {
+function verificarCampos(_form) {
 
 	var erro = false;
 	var param = '';

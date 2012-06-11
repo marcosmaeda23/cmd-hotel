@@ -10,7 +10,7 @@ dependencia jquery.maskedinput
  */
 function preencheCamposTelefone(telefoneArray){
 	// verifica se o array esta vazio
-	if(telefoneArray != null){	
+	if(telefoneArray != ''){	
 		$('#documentoNumero').show();
 		
 		for ( var i = 0; i < telefoneArray.length; i++) {
@@ -30,6 +30,7 @@ function preencheCamposTelefone(telefoneArray){
  * @param array associativo do cep, e o tipo que é para mostrar
  */
 function preencheCamposCep(cepComplementoArray, cepArray, cepTipo){
+	
 	if(cepComplementoArray != null) {
 		if (cepTipo == 1){
 			mostrarCepCadastro();

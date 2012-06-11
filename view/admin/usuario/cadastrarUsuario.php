@@ -23,7 +23,7 @@ if (!empty($_SESSION['NOME'])) {
     }
 }
 
-//var_dump($CepXedicaoVo);
+var_dump($CepXedicaoVo);
 //var_dump($usuarioVo);
 // se for sessao de cliente mostrar o cadastro preenchido botao pra apagar cadastro ou alterar, o campo de senha tbm
 // ou sem sessao de cliente cadastro normal , o campo de senha tbm
@@ -55,7 +55,7 @@ echo "<div  style='padding-top:120px;'>";
                 <div class="middle">	
                     <div class="cadastro_titulo"><p> Cadastrar Usu&aacute;rio </p></div>	
                     <div id="formulario">
-                        <form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario', 'usuario');" >
+                        <form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
                             <input type="hidden" name="usuarioStatus" id="usuarioStatus" value="1" />			
 
@@ -143,15 +143,19 @@ echo "<div  style='padding-top:120px;'>";
         telefoneArray = new Array();
         cepArray = new Array();
         cepComplementoArray = new Array();
+        cepTipo = '';
+        alert(cepComplementoArray);
 		
+<?php if (!empty($_SESSION['NOME'])) { ?>
         // seta o campo hidden como zero
         $('#qtdeTelefone').val(0);	
         //seta o cepXedicaoTipo com o valor do banco
+        <?php if (!empty($cepXedicaoVo)) { ?>
         cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo(); ?>;
         $('#cepXedicaoTipo').val(cepTipo);
+        <?php }
 		
 		
-<?php if (!empty($_SESSION['NOME'])) {
     for ($i = 0; $i < count($telefoneArray); $i++) {
         ?>
         					
@@ -180,11 +184,7 @@ echo "<div  style='padding-top:120px;'>";
 }
 ?>
 	
-			
-			
 		
-<?php if (empty($_SESSION['ID'])) { ?>
-<?php } ?>
 		
     </script>
 </html>
