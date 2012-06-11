@@ -65,6 +65,7 @@ class Template extends Entidade {
 
     /**
      *  se true coloca um campo status na tabela
+     *  padrao 1 - ativo, 2 - inativo
      */
     protected $status 				= true;
 

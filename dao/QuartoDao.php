@@ -45,6 +45,7 @@ class QuartoDao extends Entidade {
      * seta a base de dados para fazer a atualizacao ou criacao
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
+     * reservado 1-nao reservado, 2-resevado, 3-manutencao, 4-indisponivel
      */
      protected $dadosBase 			= array('numero VARCHAR(100) NOT NULL',
 									        'descricao VARCHAR(800) NOT NULL',
@@ -63,6 +64,7 @@ class QuartoDao extends Entidade {
 
     /**
      *  se true coloca um campo status na tabela
+     * 	padrao 1 - ativo, 2 - inativo
      */
     protected $status 				= false;
 
