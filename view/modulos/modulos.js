@@ -276,7 +276,6 @@ function mostrarCampoLogin(){
 	_login += '<input type="password" name="usuarioConfirmacaoSenha" id="usuarioConfirmacaoSenha" value="" maxlength="50" class="obrigatorio senha" onblur="verificaSenha(\'usuarioSenha\',\'usuarioConfirmacaoSenha\');" /><br />';
 	_login += 'Lembrete:<br />';
 	_login += '<input type="text" name="usuarioLembrete" id="usuarioLembrete" value="" maxlength="50" /><br />';
-	alert(_login);
 	$('#campoLogin').append(_login);
 }
 
