@@ -1,26 +1,26 @@
 <?php
 $necessario = array('usuario');
-include('../template/iniciarDados.php');
+include('../../admin/template/iniciarDados.php');
 
 
 $usuarioVo = new UsuarioVo();
-if (!empty($_SESSION['NOME'])) {
-    if (!empty($_SESSION['ID'])) {
+if (!empty($_GET)) {
+    
 
-        $usuarioBpm = new UsuarioBpm();
-        // buscar usuario para mostrar nos campos
-        $usuarioVo->setUsuarioId($_SESSION['ID']);
-        $usuarioVo = $usuarioBpm->exibir($usuarioVo, 'usuario');
-//var_dump($usuarioVo);
+	$usuarioBpm = new UsuarioBpm();
+	// buscar usuario para mostrar nos campos
+	$usuarioVo->setUsuarioId($_GET['usuario']);
+	$usuarioVo = $usuarioBpm->exibir($usuarioVo, 'usuario');
+	var_dump($usuarioVo);
+	
+	$telefoneArray = $usuarioVo->getTelefoneVo();
+	$cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
+	if ($cepXedicaoVo->getCepXedicaoTipo() == 1) {
+	    $cepCadastro = $usuarioVo->getCepCadastroVo();
+	} else {
+	    echo '2343';
+	}
 
-        $telefoneArray = $usuarioVo->getTelefoneVo();
-        $cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
-        if ($cepXedicaoVo->getCepXedicaoTipo() == 1) {
-            $cepCadastro = $usuarioVo->getCepCadastroVo();
-        } else {
-            echo '2343';
-        }
-    }
 }
 
 var_dump($CepXedicaoVo);
@@ -70,7 +70,7 @@ echo "<div  style='padding-top:120px;'>";
                                 Seu e-mail:<br />
                                 <input type="text" name="usuarioEmail" id="usuarioEmail" value="<?php echo $_POST['usuarioEmail'] ? $_POST['usuarioEmail'] : $usuarioVo->getUsuarioEmail(); ?>" maxlength="50" onblur='verificaCamposUnicos("usuario", "usuarioEmail", this.value);' class="obrigatorio"  /><br />
 
-                                <div id='login'>
+                                <div id='campoLogin'>
 
                                 </div>
 
@@ -144,7 +144,6 @@ echo "<div  style='padding-top:120px;'>";
         cepArray = new Array();
         cepComplementoArray = new Array();
         cepTipo = '';
-        alert(cepComplementoArray);
 		
 		<?php if (!empty($_GET)) { ?>
 	        // seta o campo hidden como zero
@@ -156,33 +155,35 @@ echo "<div  style='padding-top:120px;'>";
 	        <?php }
 			
 			
-	    for ($i = 0; $i < count($telefoneArray); $i++) {
-	        ?>
-	        					
-	                                        var telefone = new Object(); 	
-	        <?php foreach ($telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
-	                                                    telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
-	            	
-	        <?php } ?>	
-	        					
-	                                                telefoneArray[<?php echo $i; ?>] = telefone;	  
-	    <?php } ?>
-	    <?php
-	    if ($cepXedicaoVo->getCepXedicaoTipo() == 1) {
-	        // mostra o cepCadastro preenchido
-	        foreach ($cepCadastro->cepCadastroObrigatorio as $chave => $valor) {
-	            ?>
-	                                                    cepArray['<?php echo $chave; ?>'] = '<?php eval('echo $cepCadastro->get' . ucfirst($chave) . '();'); ?>';
-	        <?php }
-	    } else {
-	        ?>
-	        				 
-	    <?php } ?>
-	    <?php foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave) { ?>
-	                                cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';
-	    <?php }
-}
-?>
+		    for ($i = 0; $i < count($telefoneArray); $i++) {
+		        ?>
+		        					
+		                                        var telefone = new Object(); 	
+		        <?php foreach ($telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
+		                                                    telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
+		            	
+		        <?php } ?>	
+		        					
+		                                                telefoneArray[<?php echo $i; ?>] = telefone;	  
+		    <?php } ?>
+		    <?php
+		    if ($cepXedicaoVo->getCepXedicaoTipo() == 1) {
+		        // mostra o cepCadastro preenchido
+		        foreach ($cepCadastro->cepCadastroObrigatorio as $chave => $valor) {
+		            ?>
+		                                                    cepArray['<?php echo $chave; ?>'] = '<?php eval('echo $cepCadastro->get' . ucfirst($chave) . '();'); ?>';
+		        <?php }
+		    } else {
+		        ?>
+		        				 
+		    <?php } ?>
+		    <?php foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave) { ?>
+				cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';
+		    <?php }
+		} else { ?>
+		<?php }
+		?>
+			mostrarCampoLogin();
 	
 		
 		
