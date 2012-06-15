@@ -1,6 +1,6 @@
 <?php
 $necessario = array('hotel');
-include('../template/iniciarDados.php');
+include('../../admin/template/iniciarDados.php');
 
 if ($_SESSION['NIVEL'] != 2 && $_SESSION['NIVEL'] != 1) {
     header('location:../home/');
@@ -97,15 +97,15 @@ if(!empty($_GET['hotel'])){
 		telefoneArray = new Array();
 		cepArray = new Array();
 		cepComplementoArray = new Array();
-		
+		cepTipo = '';
+		<?php if (!empty($_GET['hotel'])){ ?>
 		// seta o campo hidden como zero
 		$('#qtdeTelefone').val(0);	
 		//seta o cepXedicaoTipo com o valor do banco
 		cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo();?>;
 		$('#cepXedicaoTipo').val(cepTipo);
 		
-		
-		<?php if (!empty($_SESSION['NOME'])){ 
+		<?php
 				for ( $i = 0; $i < count($telefoneArray); $i++ ) { ?>
 					
 					var telefone = new Object(); 	

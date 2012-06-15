@@ -1,6 +1,6 @@
 <?php 
 
-$necessario = array('cardapio');
+$necessario = array('cardapio', 'hotel', 'cardapioTipo');
 include('../template/iniciarDados.php');
 
 /// buscar os hoteis para mostar no slect
@@ -8,13 +8,9 @@ $hotelVo = new HotelVo();
 $hotelBpm = new HotelBpm();
 $hotelVo = $hotelBpm -> buscar('hotel');
 
-$servicoVo = new ServicoVo();
-if(!empty($_GET['servico'])){
-	$servicoBpm = new ServicoBpm();
-	$servicoVo ->setServicoId($_GET['servico']);
-	$servicoVo = $servicoBpm ->exibir($servicoVo, 'servico');
-	
-}
+$cardapioTipoVo = new CardapioTipoVo();
+$cardapioTipoBpm = new CardapioTipoBpm();
+$cardapioTipoVo = $cardapioTipoBpm -> buscar('cardapioTipo');
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -32,38 +28,75 @@ if(!empty($_GET['servico'])){
             <div class="container">
                 <div class="middle">	
 					<div id="formulario">
-						<form action="servicoController.php" method="post" onsubmit="return verificarCampos();" >
-							<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarServico" />
-							<input type="hidden" name="servicoId" id="servicoId" value="<?php echo $servicoVo ->getServicoId();?>" />			
+						<?php if (!empty($hotelVo)) {
 							
-							
-							<div id="servico" >
-								<!-- usuario -->
-								Selecione o hotel:<br />
-								<select name="hotelId" id="hotelId" class="obrigatorio" >
-									<option value=""> Selecione o hotel: </option>
-									<?php 
-									for ( $i = 0; $i < count($hotelVo); $i++ ) { ?>
-										<option value="<?php echo $hotelVo[$i]->getHotelId();?>"<?php echo $servicoVo->getHotelId() == $hotelVo[$i]->getHotelId() ? 'selected=\'selected\'':'';?>>
-											<?php echo $hotelVo[$i]->getHotelNome();?>
-										</option>
+								if (!empty($cardapioTipoVo)) { ?>
+									<form action="cardapioController.php" method="post" onsubmit="return verificarCampos();" enctype="multipart/form-data" >
+										<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarCardapio" />
+										<input type="hidden" name="cardapioId" id="cardapioId" value="" />			
 										
-									<?php
-									}?>
-
-								</select><br />
-								
-								<label>Nome do serviço:</label><br />
-								</label><input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome();?>" maxlength="50" class="obrigatorio"  /><br />
-								Valor:<br />
-								<input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor();?>" maxlength="50" class="obrigatorio"  /><br />
-								
-								Observação: 	<br />
-								<textarea id="servicoObservacao" name="servicoObservacao" rows="10" cols="50" wrap="off"><?php echo $servicoVo->getServicoObservacao();?></textarea><br />
-									
+										
+										<div id="cardapio" >
+											<!-- cardapio -->
+											Selecione o hotel:<br />
+											<select name="hotelId" id="hotelId" class="obrigatorio" >
+												<option value=""> Selecione o hotel: </option>
+												<?php 
+												for ( $i = 0; $i < count($hotelVo); $i++ ) { ?>
+													<option value="<?php echo $hotelVo[$i]->getHotelId();?>">
+														<?php echo $hotelVo[$i]->getHotelNome();?>
+													</option>
 													
-							<input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET)?'Cadastrar':'Alterar');?>" />
-						</form>
+												<?php
+												}?>
+			
+											</select><br />
+											Selecione o tipo de cardápio:<br />
+											<select name="cardapioTipoId" id="cardapioTipoId" class="obrigatorio" >
+												<option value=""> Selecione o tipo de cardápio: </option>
+												<?php 
+												for ( $i = 0; $i < count($cardapioTipoVo); $i++ ) { ?>
+													<option value="<?php echo $cardapioTipoVo[$i]->getCardapioTipoId();?>">
+														<?php echo $cardapioTipoVo[$i]->getCardapioTipoNome();?>
+													</option>
+													
+												<?php
+												}?>
+			
+											</select><br />
+											
+											<label>Nome do cardápio:</label><br />
+											</label><input type="text" name="cardapioNome" id="cardapioNome" value="" maxlength="50" class="obrigatorio"  /><br />
+											Tempo de preparo:<br />
+											<input type="text" name="cardapioTempo" id="cardapioTempo" value="" maxlength="50" class=""  /><br />
+											Valor calórico:<br />
+											<input type="text" name="cardapioValorCalorico" id="cardapioValorCalorico" value="" maxlength="50" class="preco"  /><br />
+											Valor:<br />
+											<input type="text" name="cardapioValor" id="cardapioValor" value="" maxlength="50" class="obrigatorio preco"  /><br />
+											
+											Observação: 	<br />
+											<textarea id="cardapioObservacao" name="cardapioObservacao" rows="10" cols="50" wrap="off"></textarea><br />
+											Descrição: 	<br />
+											<textarea id="cardapioDescricao" name="cardapioDescricao" rows="10" cols="50" wrap="off"></textarea><br />
+												
+											Imagem:<br />
+											<input type="file" name="imagem" id="imagem" class="obrigatorio"  /><br />
+											
+																
+										<input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET)?'Cadastrar':'Alterar');?>" />
+									</form>
+								<?php } else { ?>
+									
+									nenhum tipo de cardapio cadastrado <br/>
+									<a href='../cardapioTipo/cadastrarCardapioTipo.php'> cadastrar tipo de cardápio</a>
+								<?php }?>
+								
+							<?php } else { ?>
+								
+								nenhum Hotel cadastrado <br />
+								<a href='../hotel/cadastrarHotel.php'> cadastrar hotel</a>
+								
+							<?php } ?>
 					</div>
 				</div>
             </div>
@@ -73,5 +106,5 @@ if(!empty($_GET['servico'])){
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>	
-	<script type="text/javascript" src="../../_js/usuario.js"></script>
+	<script type="text/javascript" src="../../_js/cardapio.js"></script>
 </html>

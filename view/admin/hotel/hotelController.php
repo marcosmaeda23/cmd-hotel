@@ -1,6 +1,6 @@
 <?php
 $necessario = array('hotel');
-include('../template/iniciarDados.php');
+include('../../admin/template/iniciarDados.php');
 
 // -------------------------------
 // para cadastrar ou alterar
@@ -13,7 +13,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
     $cepXedicaoVo = new CepXedicaoVo();
     $cepCadastroVo = new CepCadastroVo();
     
-     if(!empty($_POST['hotelId'])){
+    if(empty($_POST['hotelId'])){
     	$verificarUnicos = false;    	
     }
     // verifica se os campos do hotel estao vazios		
@@ -94,6 +94,7 @@ if ($_POST['acao'] == 'cadastrarHotel') {
 	                    $erro_nome .= 'O cnpj já está cadastrado na base de dados.';
 	                    break;
 	                }
+echo '11';
                 }
             }
         }

@@ -140,8 +140,8 @@ function formatarValor($valor){
 function salvarFoto($arrayFoto, $caminho){
 	// Instanciamos o objeto Upload
 	$handle = new Upload($arrayFoto);
-	 
 	// Então verificamos se o arquivo foi carregado corretamente
+	 var_dump($handle);
 	if ($handle->uploaded) {
 		// Definimos as configurações desejadas da imagem maior
 		$handle->image_resize = true;
@@ -150,7 +150,10 @@ function salvarFoto($arrayFoto, $caminho){
 		$handle->image_y = 480;
 		// Definimos a qualidade da imagem a ser enviada para o servidor, por default é 85
 		$handle->jpeg_quality = 70;
-		
+		// adiciona um complemento no nome do arquivo
+		$handle->file_name_body_add = time();
+		$handle->mime_check = true;
+		/*
 		// seta marca dagua 
 		$handle->image_watermark = 'watermark.png';
 		// posicao X e Y da marca dagua
@@ -158,10 +161,7 @@ function salvarFoto($arrayFoto, $caminho){
 		$handle->image_watermark_y = -10;
 		// Define a posição onde colocar a marca d'agua, a combinação pode ser 1 ou 2 para 'TBLR': top, bottom, left, right (default: NULL)
 		$handle->image_watermark_position = 'LR';
-		// adiciona um complemento no nome do arquivo
-		$handle->file_name_body_add = "_nome";
 		
-		$handle->mime_check = true;
 		 
 		// Definimos um novo nome para nossa imagem
 		$handle->file_new_name_body = 'nome1';		 
@@ -231,6 +231,7 @@ function salvarFoto($arrayFoto, $caminho){
 		// Cortando a imagem em varios pontos. aceita 4, 2 ou 1. Valor 'T R B L' ou 'TB LR' ou 'TBLR'. Dimensão pode ser de 20, ou 20% ou 20px (default: NULL)
 		$handle->image_crop = array(50,40,30,20); // ou '-20 20%'...
  	
+		*/
 		// Criamos automaticamente o diretória caso não exista no servidor, por default é true
 		$handle->auto_create_dir = true;
 		// Definimos a pasta para onde a imagem maior será armazenada
@@ -245,7 +246,7 @@ function salvarFoto($arrayFoto, $caminho){
 			$handle->image_y = 75;
 			$handle->image_contrast = 10;
 			$handle->jpeg_quality = 70;
-			$handle->file_name_body_add = "_nome";
+			$handle->file_name_body_add = time();
 			 
 			// Definimos a pasta para onde a imagem thumbs será armazenada
 			$handle->Process('../upload/thumb/'.$caminho);

@@ -56,7 +56,7 @@ class CardapioDao extends Entidade {
     /**
      * Array contendo a ordem para salvar no banco
      */
-    protected $ordemBase 			= array();
+    protected $ordemBase 			= array('foto');
 
     /**
      * se true coloca um campo dataCadastro na tabela
@@ -90,7 +90,36 @@ class CardapioDao extends Entidade {
     // =================================================================
     // METODOS =========================================================
     // =================================================================
-
+	
+	/**
+	 * 
+	 */
+	public function cadastrarAlterar($objetoVo) {
+		$idCardapio = entidade :: cadastrarAlterar($objetoVo);
+        if ($idCardapio === false) {
+            return false;
+        } else {
+            // verifica se tem setado a $ordemBase e cadastra o restante das tabelas	
+            for ($i = 0; $i < count($this->ordemBase); $i++) {
+                $_entidade = $this->ordemBase[$i];
+                if ($_entidade == 'foto') {
+                    eval('$_objeto = $objetoVo -> get' . ucfirst($_entidade) . 'Vo();');
+                    $_objeto->setCardapioId($idCardapio);
+                    $fotoDao = new FotoDao();
+					
+					
+                    $sucesso = $fotoDao->cadastrarAlterar($_objeto);
+                    
+                    if ($sucesso === false) {
+                    	return false;
+                    }
+                }
+            }
+        }
+      
+        return true;
+		
+	}
 
 }
 ?>

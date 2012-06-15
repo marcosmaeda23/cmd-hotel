@@ -1,6 +1,6 @@
 <?php
 $necessario = array('hotel');
-include('../template/iniciarDados.php');
+include('../../admin/template/iniciarDados.php');
 
 if(empty($_SESSION['NOME'])){
 	header('location:../');
