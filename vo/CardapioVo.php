@@ -19,28 +19,25 @@ class CardapioVo {
     private $cardapioValor;
     private $cardapioObservacao;
     private $cardapioDataCadastro;
-    
     private $fotoVo;
     private $hotelVo;
     private $cardapioTipoVo;
-    
-    public $cardapioObrigatorio = array('cardapioId' 			=> '',
-								        'hotelId' 				=> 'obrigatorio',
-								        'cardapioTipoId'	 	=> 'obrigatorio',
-								        'cardapioNome' 			=> 'obrigatorio',
-								        'cardapioTempo' 		=> '',
-								        'cardapioDescricao' 	=> '',
-								        'cardapioValorCalorico' => '',
-								        'cardapioValor' 		=> 'obrigatorio',
-								        'cardapioObservacao' 	=> '',
-								        'cardapioDataCadastro' 	=> '');
+    public $cardapioObrigatorio = array(
+        'cardapioId' => '',
+        'hotelId' => 'obrigatorio',
+        'cardapioTipoId' => 'obrigatorio',
+        'cardapioNome' => 'obrigatorio',
+        'cardapioTempo' => '',
+        'cardapioDescricao' => '',
+        'cardapioValorCalorico' => '',
+        'cardapioValor' => 'obrigatorio',
+        'cardapioObservacao' => '',
+        'cardapioDataCadastro' => '');
 
-    
-    
-    
     /*
      * get e set da classe cepXedicao, cepCadastro
      */
+
     public function getCardapioId() {
         return $this->cardapioId;
     }
@@ -56,6 +53,7 @@ class CardapioVo {
     public function setHotelId($hotelId) {
         $this->hotelId = $hotelId;
     }
+
     public function getFotoId() {
         return $this->fotoId;
     }
@@ -127,6 +125,7 @@ class CardapioVo {
     public function setCardapioDataCadastro($cardapioDataCadastro) {
         $this->cardapioDataCadastro = $cardapioDataCadastro;
     }
+
     public function getFotoVo() {
         return $this->fotoVo;
     }
@@ -134,18 +133,23 @@ class CardapioVo {
     public function setFotoVo($fotoVo) {
         $this->fotoVo = $fotoVo;
     }
+
     public function getHotelVo() {
         return $this->hotelVo;
     }
+
     public function setHoteVo($hotelVo) {
         $this->hotelVo = $hotelVo;
     }
+
     public function getCardapioTipoVo() {
         return $this->cardapioTipoVo;
     }
+
     public function setCardapioTipoVo($cardapioTipoVo) {
         $this->cardapioTipoVo = $cardapioTipoVo;
     }
 
 }
+
 ?>
