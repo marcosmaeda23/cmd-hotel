@@ -18,7 +18,7 @@ class CardapioVo {
     private $cardapioValorCalorico;
     private $cardapioValor;
     private $cardapioObservacao;
-    private $dataCadastro;
+    private $cardapioDataCadastro;
     
     private $fotoVo;
     private $hotelVo;
@@ -57,75 +57,75 @@ class CardapioVo {
         $this->hotelId = $hotelId;
     }
     public function getFotoId() {
-        return $this->FotoId;
+        return $this->fotoId;
     }
 
     public function setFotolId($fotoId) {
         $this->fotoId = $fotoId;
     }
 
-    public function getTipoId() {
-        return $this->tipoId;
+    public function getCardapioTipoId() {
+        return $this->cardapioTipoId;
     }
 
-    public function setTipoId($tipoId) {
-        $this->tipoId = $tipoId;
+    public function setCardapioTipoId($cardapioTipoId) {
+        $this->cardapioTipoId = $cardapioTipoId;
     }
 
-    public function getCadastroNome() {
-        return $this->nome;
+    public function getCardapioNome() {
+        return $this->cardapioNome;
     }
 
-    public function setCadastroNome($nome) {
-        $this->nome = $nome;
+    public function setCardapioNome($cardapioNome) {
+        $this->cardapioNome = $cardapioNome;
     }
 
-    public function getCadastroTempo() {
-        return $this->tempo;
+    public function getCardapioTempo() {
+        return $this->cardapioTempo;
     }
 
-    public function setCadastroTempo($tempo) {
-        $this->tempo = $tempo;
+    public function setCardapioTempo($cardapioTempo) {
+        $this->cardapioTempo = $cardapioTempo;
     }
 
-    public function getCadastroDescricao() {
-        return $this->descricao;
+    public function getCardapioDescricao() {
+        return $this->cardapioDescricao;
     }
 
-    public function setCadastroDescricao($descricao) {
-        $this->descricao = $descricao;
+    public function setCardapioDescricao($cardapioDescricao) {
+        $this->cardapioDescricao = $cardapioDescricao;
     }
 
-    public function getCadastroValorCalorico() {
-        return $this->valorCalorico;
+    public function getCardapioValorCalorico() {
+        return $this->cardapioValorCalorico;
     }
 
-    public function setCadastroValorCalorico($valorCalorico) {
-        $this->valorCalorico = $valorCalorico;
+    public function setCardapioValorCalorico($cardapioValorCalorico) {
+        $this->cardapioValorCalorico = $cardapioValorCalorico;
     }
 
-    public function getCadastroValor() {
-        return $this->valor;
+    public function getCardapioValor() {
+        return $this->cardapioValor;
     }
 
-    public function setCadastroValor($valor) {
-        $this->valor = $valor;
+    public function setCardapioValor($cardapioValor) {
+        $this->cardapioValor = $cardapioValor;
     }
 
-    public function getCadastroObservacao() {
-        return $this->observacao;
+    public function getCardapioObservacao() {
+        return $this->cardapioObservacao;
     }
 
-    public function setCadastroObservacao($observacao) {
-        $this->observacao = $observacao;
+    public function setCardapioObservacao($cardapioObservacao) {
+        $this->cardapioObservacao = $cardapioObservacao;
     }
 
-    public function getCadastroDataCadastro() {
-        return $this->dataCadastro;
+    public function getCardapioDataCadastro() {
+        return $this->cardapioDataCadastro;
     }
 
-    public function setCadastroDataCadastro($dataCadastro) {
-        $this->cardapioDataCadastro = $dataCadastro;
+    public function setCardapioDataCadastro($cardapioDataCadastro) {
+        $this->cardapioDataCadastro = $cardapioDataCadastro;
     }
     public function getFotoVo() {
         return $this->fotoVo;
