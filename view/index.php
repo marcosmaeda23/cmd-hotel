@@ -1,4 +1,3 @@
 <?php
-echo md5('desenv');
-//header('location:site/')
+header('location:site/')
 ?>
