@@ -139,9 +139,9 @@ function formatarValor($valor){
  */
 function salvarFoto($arrayFoto, $caminho){
 	// Instanciamos o objeto Upload
-	$handle = new Upload($arrayFoto);
+	$handle = new Upload($arrayFoto['imagem']);
 	// Então verificamos se o arquivo foi carregado corretamente
-	 var_dump($handle);
+	 var_dump($arrayFoto);
 	if ($handle->uploaded) {
 		// Definimos as configurações desejadas da imagem maior
 		$handle->image_resize = true;
