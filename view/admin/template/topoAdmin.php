@@ -5,7 +5,8 @@
         <div class="cf logo">
             <a href="../home/"> <?php echo $nome_site; ?> </a>
         </div>
-        <div class="cf logo parent">Bem vindo(a) <?php echo $_SESSION['NOME'];?>
+        <div class="cf bemVindo">
+            Bem vindo(a) <?php echo $_SESSION['NOME'];?>
         </div>
         <div id="menu">
             <ul class="menu">

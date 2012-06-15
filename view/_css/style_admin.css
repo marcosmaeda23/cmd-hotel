@@ -8,7 +8,8 @@ a{ text-decoration:none;}
 .topoInicial{height:95px;padding:10px 0;position: fixed;top: 0;vertical-align: top;width: 100%; z-index: 666;}
 .content {width:1000px; margin:0 auto; text-align:left;}
 .container{width:1000px; background-color:#FFF}
-.menu_admin{ font:14px Verdana, Geneva, sans-serif; color:#006;}
+.bemVindo{ float:left; width:250px;padding-top: 25px; height: 21px; font-size: 16px; color: #FFF}
+.menu_admin{font:14px Verdana, Geneva, sans-serif; color:#006;}
 .logo{ float:left; width:300px; height:70px; padding:0 0 0 20px}
 .logo a { font-family: 'JuliusBlackRegular', Helvetica, sans-serif; font-size:53px; color:#FFF; font-weight:bold;}
 .loginInicial { font-size:18px; color:#FFF; float:left; width:680px;padding-top:15px; text-align:right}
@@ -28,6 +29,16 @@ a{ text-decoration:none;}
               color: white; font-weight: bold; padding: 15px}
 .cadastro{float:left; width:310px;}
 .fotoInicial{float:left; width:610px;}
+
+.linhaResultado{ height: 30px;}
+.colunaResultado{padding-left: 20px;}
+.pesquisarConteiner{float: left;padding-bottom: 20px; width: 100%}
+.cadastro_pesquisar{float: left; width: 300px}
+.cadastro_novo{float: right; width: 450px}
+.subMenuleft{ float:right;color: #FFF; padding:10px 20px;}
+.colunaTitulo{ text-align: center; color: #FFF; font-size: 16px;}
+.linhaImpar{background: #D2D2D2}
+.linhaPar{background-color: #DBDBDB}
 
 .cadastro_titulo_container{float:left; width:80px; font-size:13px;padding-top:15px;}
 .cadastro_titulo{float:left; font-size:13px;padding:15px 0; width: 100%; }
