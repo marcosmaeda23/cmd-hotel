@@ -10,12 +10,12 @@ class CidadeVo {
     
     private $cidadeId;
     private $estadoId;
-    private $nome;
+    private $cidadeNome;
     
     public $cidadeObrigatorio = array(
         'cidadeId' => '',
         'estadoId' => '',
-        'nome' => ''
+        'cidadeNome' => ''
         );
 
     /*
@@ -37,12 +37,12 @@ class CidadeVo {
         $this->estadoId = $estadoId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getCidadeNome() {
+        return $this->cidadeNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setCidadeNome($cidadeNome) {
+        $this->cidadeNome = $cidadeNome;
     }
 }
 ?>

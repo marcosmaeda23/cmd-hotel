@@ -1,4 +1,5 @@
 <?php
+
 /**
  * classe do Servico
  */
@@ -14,16 +15,17 @@ class ServicoVo {
     private $servicoValor;
     private $servicoDataCadastro;
     
-    public $servicoObrigatorio 	= array('servicoId' 			=> '',
-   										'hotelId' 				=> 'obrigatorio',
-        								'servicoNome' 			=> 'obrigatorio',
-								        'servicoObservacao' 	=> '',
-								        'servicoValor' 			=> 'obrigatorio',
-								        'servicoDataCadastro' 	=> '');
+    public $servicoObrigatorio = array('servicoId' => '',
+        'hotelId' => 'obrigatorio',
+        'servicoNome' => 'obrigatorio',
+        'servicoObservacao' => '',
+        'servicoValor' => 'obrigatorio',
+        'servicoDataCadastro' => '');
 
     /*
      * get e set da classe Servico
      */
+
     public function getServicoId() {
         return $this->servicoId;
     }
@@ -71,6 +73,7 @@ class ServicoVo {
     public function setServicoDataCadastro($servicoDataCadastro) {
         $this->servicoDataCadastro = $servicoDataCadastro;
     }
+
 }
 
 ?>

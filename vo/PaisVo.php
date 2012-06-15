@@ -9,10 +9,11 @@ class PaisVo {
      */
 
     private $paisId;
-    private $nome;
+    private $paisNome;
+    
     public $cepObrigatorio = array(
         'paisId' => '',
-        'nome' => ''
+        'paisNome' => ''
     );
 
     /*
@@ -26,12 +27,12 @@ class PaisVo {
         $this->paisId = $paisId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getPaisNome() {
+        return $this->paisNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setPaisNome($paisNome) {
+        $this->paisNome = $paisNome;
     }
 }
 

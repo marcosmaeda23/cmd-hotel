@@ -112,7 +112,7 @@ DROP TABLE IF EXISTS `hotel_v4`.`cidade` ;
 CREATE  TABLE IF NOT EXISTS `hotel_v4`.`cidade` (
   `cidadeId` INT NOT NULL AUTO_INCREMENT ,
   `estadoId` INT NOT NULL ,
-  `CidadeNome` VARCHAR(100) NOT NULL ,
+  `cidadeNome` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`cidadeId`) ,
   INDEX `fk_cidade_estado1` (`estadoId` ASC) ,
   UNIQUE INDEX `cidade_UNIQUE` (`cidadeId` ASC) )

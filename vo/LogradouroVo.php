@@ -10,20 +10,19 @@ class LogradouroVo {
 
     private $logradouroId;
     private $cidadeId;
-    private $nome;
-    private $bairro;
+    private $logradouroNome;
+    private $logradouroBairro;
     
     public $logradouroObrigatorio = array(
         'logradouroId' => '',
         'cidadeId' => '',
-        'nome' => '',
-        'bairro' => ''
+        'logradouroNome' => '',
+        'logradouroBairro' => ''
     );
 
     /*
      * get e set da classe Logradouro
      */
-
     public function getLogradouroId() {
         return $this->logradouroId;
     }
@@ -40,22 +39,20 @@ class LogradouroVo {
         $this->cidadeId = $cidadeId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getLogradouroNome() {
+        return $this->logradouroNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setLogradouroNome($logradouroNome) {
+        $this->logradouroNome = $logradouroNome;
     }
 
-    public function getBairro() {
-        return $this->bairro;
+    public function getLogradouroBairro() {
+        return $this->logradouroBairro;
     }
 
-    public function setBairro($bairro) {
-        $this->bairro = $bairro;
+    public function setLogradouroBairro($logradouroBairro) {
+        $this->logradouroBairro = $logradouroBairro;
     }
-
 }
-
 ?>

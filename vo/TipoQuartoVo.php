@@ -9,14 +9,16 @@ class TipoQuartoVo {
      */
 
     private $tipoQuartoId;
-    private $tipoQuartoId;
+    private $tipoQuartoDescricao;
     
-    public $tipoQuartoObrigatorio 	= array('tipoQuartoId' 			=> '',
-        									'tipoQuartoDescricao' 	=> 'obrigatorio');
+    public $tipoQuartoObrigatorio = array(
+        'tipoQuartoId' => '',
+        'tipoQuartoDescricao' => 'obrigatorio');
 
     /*
      * get e set da classe TipoQuarto
      */
+    
     public function getTipoQuartoId() {
         return $this->tipoQuartoId;
     }
@@ -33,4 +35,5 @@ class TipoQuartoVo {
         $this->tipoQuartoDescricao = $tipoQuartoDescricao;
     }
 }
+
 ?>

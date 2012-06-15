@@ -7,22 +7,22 @@ class EstadoVo {
     /*
      * atributos da tabela Estado
      */
-
+    
     private $estadoId;
     private $paisId;
-    private $nome;
-    private $uf;
+    private $estadoNome;
+    private $estadoUf;
+    
     public $estadoObrigatorio = array(
         'estadoId' => '',
         'paisId' => '',
-        'nome' => '',
-        'uf' => ''
+        'estadoNome' => '',
+        'estadoUf' => ''
     );
 
     /*
      * get e set da classe Estado
      */
-    
     public function getEstadoId() {
         return $this->estadoId;
     }
@@ -39,20 +39,20 @@ class EstadoVo {
         $this->paisId = $paisId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getEstadoNome() {
+        return $this->estadoNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setEstadoNome($estadoNome) {
+        $this->estadoNome = $estadoNome;
     }
 
-    public function getUf() {
-        return $this->uf;
+    public function getEstadoUf() {
+        return $this->estadoUf;
     }
 
-    public function setUf($uf) {
-        $this->uf = $uf;
+    public function setEstadoUf($estadoUf) {
+        $this->estadoUf = $estadoUf;
     }
 }
 ?>

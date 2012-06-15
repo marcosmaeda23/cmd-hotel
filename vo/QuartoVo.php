@@ -9,35 +9,43 @@ class QuartoVo {
      */
 
     private $quartoId;
+    private $tipoQuartoId;
     private $hotelId;
-    private $tipoQuarto;
-    private $numero;
-    private $descricao;
-    private $valor;
-    private $reservado;
-    private $dataCadastro;
+    private $quartoNumero;
+    private $quartoDescricao;
+    private $quartoValor;
+    private $quartoDataCadastro;
+    private $statusQuartoId;
     
     public $cepObrigatorio = array(
         'quartoId' => '',
+        'tipoQuartoId' => '',
         'hotelId' => '',
-        'tipoQuarto' => '',
-        'numero' => '',
-        'descricao' => '',
-        'valor' => '',
-        'reservado' => '',
-        'dataCadastro' => ''
+        'quartoNumero' => '',
+        'quartoDescricao' => '',
+        'quartoValor' => '',
+        'quartoDataCadastro' => '',
+        'statusQuartoId' => ''
     );
 
     /*
      * get e set da classe Quarto
-     */
-    
+     */    
+
     public function getQuartoId() {
         return $this->quartoId;
     }
 
     public function setQuartoId($quartoId) {
         $this->quartoId = $quartoId;
+    }
+
+    public function getTipoQuartoId() {
+        return $this->tipoQuartoId;
+    }
+
+    public function setTipoQuartoId($tipoQuartoId) {
+        $this->tipoQuartoId = $tipoQuartoId;
     }
 
     public function getHotelId() {
@@ -48,53 +56,45 @@ class QuartoVo {
         $this->hotelId = $hotelId;
     }
 
-    public function getTipoQuarto() {
-        return $this->tipoQuarto;
+    public function getQuartoNumero() {
+        return $this->quartoNumero;
     }
 
-    public function setTipoQuarto($tipoQuarto) {
-        $this->tipoQuarto = $tipoQuarto;
+    public function setQuartoNumero($quartoNumero) {
+        $this->quartoNumero = $quartoNumero;
     }
 
-    public function getNumero() {
-        return $this->numero;
+    public function getQuartoDescricao() {
+        return $this->quartoDescricao;
     }
 
-    public function setNumero($numero) {
-        $this->numero = $numero;
+    public function setQuartoDescricao($quartoDescricao) {
+        $this->quartoDescricao = $quartoDescricao;
     }
 
-    public function getDescricao() {
-        return $this->descricao;
+    public function getQuartoValor() {
+        return $this->quartoValor;
     }
 
-    public function setDescricao($descricao) {
-        $this->descricao = $descricao;
+    public function setQuartoValor($quartoValor) {
+        $this->quartoValor = $quartoValor;
     }
 
-    public function getValor() {
-        return $this->valor;
+    public function getQuartoDataCadastro() {
+        return $this->quartoDataCadastro;
     }
 
-    public function setValor($valor) {
-        $this->valor = $valor;
+    public function setQuartoDataCadastro($quartoDataCadastro) {
+        $this->quartoDataCadastro = $quartoDataCadastro;
     }
 
-    public function getReservado() {
-        return $this->reservado;
+    public function getStatusQuartoId() {
+        return $this->statusQuartoId;
     }
 
-    public function setReservado($reservado) {
-        $this->reservado = $reservado;
+    public function setStatusQuartoId($statusQuartoId) {
+        $this->statusQuartoId = $statusQuartoId;
     }
-
-    public function getDataCadastro() {
-        return $this->dataCadastro;
-    }
-
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
-    }   
 }
 
 ?>

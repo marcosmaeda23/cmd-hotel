@@ -9,27 +9,26 @@ class AmbienteVo {
      */
 
     private $ambienteId;
+    private $ambienteNome;
+    private $ambienteObservacao;
+    private $ambienteValor;
+    private $ambienteReservado;
+    private $ambienteDataCadastro;
     private $hotelId;
-    private $nome;
-    private $observacao;
-    private $valor;
-    private $reservado;
-    private $dataCadastro;
     
     public $ambienteObrigatorio = array(
         'ambienteId' => '',
-        'hotelId' => '',
-        'nome' => '',
-        'observacao' => '',
-        'valor' => '',
-        'reservado' => '',
-        'dataCadastro' => ''
+        'ambienteNome' => '',
+        'ambienteObservacao' => '',
+        'ambienteValor' => '',
+        'ambienteReservado' => '',
+        'ambienteDataCadastro' => '',
+        'hotelId' => ''
     );
 
     /*
      * get e set da classe Ambiente
      */
-
     public function getAmbienteId() {
         return $this->ambienteId;
     }
@@ -38,48 +37,52 @@ class AmbienteVo {
         $this->ambienteId = $ambienteId;
     }
 
+    public function getAmbienteNome() {
+        return $this->ambienteNome;
+    }
+
+    public function setAmbienteNome($ambienteNome) {
+        $this->ambienteNome = $ambienteNome;
+    }
+
+    public function getAmbienteObservacao() {
+        return $this->ambienteObservacao;
+    }
+
+    public function setAmbienteObservacao($ambienteObservacao) {
+        $this->ambienteObservacao = $ambienteObservacao;
+    }
+
+    public function getAmbienteValor() {
+        return $this->ambienteValor;
+    }
+
+    public function setAmbienteValor($ambienteValor) {
+        $this->ambienteValor = $ambienteValor;
+    }
+
+    public function getAmbienteReservado() {
+        return $this->ambienteReservado;
+    }
+
+    public function setAmbienteReservado($ambienteReservado) {
+        $this->ambienteReservado = $ambienteReservado;
+    }
+
+    public function getAmbienteDataCadastro() {
+        return $this->ambienteDataCadastro;
+    }
+
+    public function setAmbienteDataCadastro($ambienteDataCadastro) {
+        $this->ambienteDataCadastro = $ambienteDataCadastro;
+    }
+
     public function getHotelId() {
         return $this->hotelId;
     }
 
     public function setHotelId($hotelId) {
         $this->hotelId = $hotelId;
-    }
-
-    public function getNome() {
-        return $this->nome;
-    }
-
-    public function setNome($nome) {
-        $this->nome = $nome;
-    }
-    public function getObservacao() {
-        return $this->observacao;
-    }
-
-    public function setObservacao($observacao) {
-        $this->observacao = $observacao;
-    }
-    public function getValor() {
-        return $this->valor;
-    }
-
-    public function setValor($valor) {
-        $this->valor = $valor;
-    }
-    public function getReservado() {
-        return $this->reservado;
-    }
-
-    public function setReservado($reservado) {
-        $this->reservado = $reservado;
-    }
-    public function getDataCadastro() {
-        return $this->dataCadastro;
-    }
-
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
     }
 }
 ?>

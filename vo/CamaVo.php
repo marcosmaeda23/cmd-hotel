@@ -9,11 +9,11 @@ class CamaVo {
      */
 
     private $camaId;
-    private $nome;
+    private $camaNome;
     
     public $camaObrigatorio = array(
         'camaId' => '',
-        'nome' => ''
+        'camaNome' => ''
     );
 
     /*
@@ -27,15 +27,12 @@ class CamaVo {
     public function setCamaId($camaId) {
         $this->camaId = $camaId;
     }
-
-    public function getNome() {
-        return $this->nome;
+    public function getCamaNome() {
+        return $this->camaNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setCamaNome($camaNome) {
+        $this->camaNome = $camaNome;
     }
-
 }
-
 ?>
