@@ -10,28 +10,34 @@ class CardapioVo {
 
     private $cardapioId;
     private $hotelId;
-    private $tipoId;
-    private $nome;
-    private $tempo;
-    private $descricao;
-    private $valorCalorico;
-    private $valor;
-    private $observacao;
+    private $fotoId;
+    private $cardapioTipoId;
+    private $cardapioNome;
+    private $cardapioTempo;
+    private $cardapioDescricao;
+    private $cardapioValorCalorico;
+    private $cardapioValor;
+    private $cardapioObservacao;
     private $dataCadastro;
     
-    public $cardapioObrigatorio = array(
-        'cardapioId' => '',
-        'hotelId' => '',
-        'tipoId' => '',
-        'nome' => '',
-        'tempo' => '',
-        'descricao' => '',
-        'valorCalorico' => '',
-        'valor' => '',
-        'observacao' => '',
-        'dataCadastro' => '',
-    );
+    private $fotoVo;
+    private $hotelVo;
+    private $cardapioTipoVo;
+    
+    public $cardapioObrigatorio = array('cardapioId' 			=> '',
+								        'hotelId' 				=> 'obrigatorio',
+								        'cardapioTipoId'	 	=> 'obrigatorio',
+								        'cardapioNome' 			=> 'obrigatorio',
+								        'cardapioTempo' 		=> '',
+								        'cardapioDescricao' 	=> '',
+								        'cardapioValorCalorico' => '',
+								        'cardapioValor' 		=> 'obrigatorio',
+								        'cardapioObservacao' 	=> '',
+								        'cardapioDataCadastro' 	=> '');
 
+    
+    
+    
     /*
      * get e set da classe cepXedicao, cepCadastro
      */
@@ -50,6 +56,13 @@ class CardapioVo {
     public function setHotelId($hotelId) {
         $this->hotelId = $hotelId;
     }
+    public function getFotoId() {
+        return $this->FotoId;
+    }
+
+    public function setFotolId($fotoId) {
+        $this->fotoId = $fotoId;
+    }
 
     public function getTipoId() {
         return $this->tipoId;
@@ -59,60 +72,79 @@ class CardapioVo {
         $this->tipoId = $tipoId;
     }
 
-    public function getNome() {
+    public function getCadastroNome() {
         return $this->nome;
     }
 
-    public function setNome($nome) {
+    public function setCadastroNome($nome) {
         $this->nome = $nome;
     }
 
-    public function getTempo() {
+    public function getCadastroTempo() {
         return $this->tempo;
     }
 
-    public function setTempo($tempo) {
+    public function setCadastroTempo($tempo) {
         $this->tempo = $tempo;
     }
 
-    public function getDescricao() {
+    public function getCadastroDescricao() {
         return $this->descricao;
     }
 
-    public function setDescricao($descricao) {
+    public function setCadastroDescricao($descricao) {
         $this->descricao = $descricao;
     }
 
-    public function getValorCalorico() {
+    public function getCadastroValorCalorico() {
         return $this->valorCalorico;
     }
 
-    public function setValorCalorico($valorCalorico) {
+    public function setCadastroValorCalorico($valorCalorico) {
         $this->valorCalorico = $valorCalorico;
     }
 
-    public function getValor() {
+    public function getCadastroValor() {
         return $this->valor;
     }
 
-    public function setValor($valor) {
+    public function setCadastroValor($valor) {
         $this->valor = $valor;
     }
 
-    public function getObservacao() {
+    public function getCadastroObservacao() {
         return $this->observacao;
     }
 
-    public function setObservacao($observacao) {
+    public function setCadastroObservacao($observacao) {
         $this->observacao = $observacao;
     }
 
-    public function getDataCadastro() {
+    public function getCadastroDataCadastro() {
         return $this->dataCadastro;
     }
 
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
+    public function setCadastroDataCadastro($dataCadastro) {
+        $this->cardapioDataCadastro = $dataCadastro;
+    }
+    public function getFotoVo() {
+        return $this->fotoVo;
+    }
+
+    public function setFotoVo($fotoVo) {
+        $this->fotoVo = $fotoVo;
+    }
+    public function getHotelVo() {
+        return $this->hotelVo;
+    }
+    public function setHoteVo($hotelVo) {
+        $this->hotelVo = $hotelVo;
+    }
+    public function getCardapioTipoVo() {
+        return $this->cardapioTipoVo;
+    }
+    public function setCardapioTipoVo($cardapioTipoVo) {
+        $this->cardapioTipoVo = $cardapioTipoVo;
     }
 
 }
