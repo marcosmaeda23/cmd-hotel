@@ -151,7 +151,7 @@ function salvarFoto($arrayFoto, $caminho){
 		// Definimos a qualidade da imagem a ser enviada para o servidor, por default é 85
 		$handle->jpeg_quality = 70;
 		// adiciona um complemento no nome do arquivo
-		$handle->file_name_body_add = time();
+		$handle->file_name_body_add = '_'.time();
 		$handle->mime_check = true;
 		/*
 		// seta marca dagua 
@@ -246,7 +246,7 @@ function salvarFoto($arrayFoto, $caminho){
 			$handle->image_y = 75;
 			$handle->image_contrast = 10;
 			$handle->jpeg_quality = 70;
-			$handle->file_name_body_add = time();
+			$handle->file_name_body_add = '_thumbs_'.time();
 			 
 			// Definimos a pasta para onde a imagem thumbs será armazenada
 			$handle->Process('../upload/thumb/'.$caminho);
