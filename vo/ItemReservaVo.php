@@ -9,22 +9,24 @@ class ItemReservaVo {
      */
 
     private $itemReservaId;
+    private $reservaId;
     private $quartoId;
-    private $cardapioId;
+    private $pacoteId;
     private $ambienteId;
     private $servicoId;
-    private $reservaId;
+    private $cardapioId;
     private $itemReservaDataInicial;
     private $itemReservaDataFinal;
     private $itemReservaDataCadastro;
     
     public $itemReservaObrigatorio = array(
         'itemReservaId' => '',
+        'reservaId' => '',
         'quartoId' => '',
-        'cardapioId' => '',
+        'pacoteId' => '',
         'ambienteId' => '',
         'servicoId' => '',
-        'reservaId' => '',
+        'cardapioId' => '',
         'itemReservaDataInicial' => '',
         'itemReservaDataFinal' => '',
         'itemReservaDataCadastro' => ''
@@ -33,12 +35,21 @@ class ItemReservaVo {
     /*
      * get e set da classe ItemReserva
      */
+    
     public function getItemReservaId() {
         return $this->itemReservaId;
     }
 
     public function setItemReservaId($itemReservaId) {
         $this->itemReservaId = $itemReservaId;
+    }
+
+    public function getReservaId() {
+        return $this->reservaId;
+    }
+
+    public function setReservaId($reservaId) {
+        $this->reservaId = $reservaId;
     }
 
     public function getQuartoId() {
@@ -49,12 +60,12 @@ class ItemReservaVo {
         $this->quartoId = $quartoId;
     }
 
-    public function getCardapioId() {
-        return $this->cardapioId;
+    public function getPacoteId() {
+        return $this->pacoteId;
     }
 
-    public function setCardapioId($cardapioId) {
-        $this->cardapioId = $cardapioId;
+    public function setPacoteId($pacoteId) {
+        $this->pacoteId = $pacoteId;
     }
 
     public function getAmbienteId() {
@@ -73,12 +84,12 @@ class ItemReservaVo {
         $this->servicoId = $servicoId;
     }
 
-    public function getReservaId() {
-        return $this->reservaId;
+    public function getCardapioId() {
+        return $this->cardapioId;
     }
 
-    public function setReservaId($reservaId) {
-        $this->reservaId = $reservaId;
+    public function setCardapioId($cardapioId) {
+        $this->cardapioId = $cardapioId;
     }
 
     public function getItemReservaDataInicial() {
@@ -105,5 +116,4 @@ class ItemReservaVo {
         $this->itemReservaDataCadastro = $itemReservaDataCadastro;
     }
 }
-
 ?>

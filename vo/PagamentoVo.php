@@ -9,11 +9,11 @@ class PagamentoVo {
      */
 
     private $pagamentoId;
-    private $nome;
+    private $pagamentoNome;
 
     public $pagamentoObrigatorio = array(
         'pagamentoId' => '',
-        'nome' => ''
+        'pagamentoNome' => ''
         );
 
     /*
@@ -26,14 +26,15 @@ class PagamentoVo {
     public function setPagamentoId($pagamentoId) {
         $this->pagamentoId = $pagamentoId;
     }
-
-    public function getNome() {
-        return $this->nome;
+    public function getPagamentoNome() {
+        return $this->pagamentoNome;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setPagamentoNome($pagamentoNome) {
+        $this->pagamentoNome = $pagamentoNome;
     }
+
+
 }
 
 ?>

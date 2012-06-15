@@ -10,16 +10,18 @@ class FinanceiroVo {
 
     private $financeiroId;
     private $reservaId;
+    private $pagamentoId;
     private $usuarioSistemaId;
-    private $valor;
-    private $dataCadastro;
+    private $financeiroValor;
+    private $financeiroDataCadastro;
     
     public $financeiroObrigatorio = array(
         'financeiroId' => '',
         'reservaId' => '',
+        'pagamentoId' => '',
         'usuarioSistemaId' => '',
-        'valor' => '',
-        'dataCadastro' => ''
+        'financeiroValor' => '',
+        'financeiroDataCadastro' => ''
     );
 
     /*
@@ -41,6 +43,14 @@ class FinanceiroVo {
         $this->reservaId = $reservaId;
     }
 
+    public function getPagamentoId() {
+        return $this->pagamentoId;
+    }
+
+    public function setPagamentoId($pagamentoId) {
+        $this->pagamentoId = $pagamentoId;
+    }
+
     public function getUsuarioSistemaId() {
         return $this->usuarioSistemaId;
     }
@@ -49,20 +59,20 @@ class FinanceiroVo {
         $this->usuarioSistemaId = $usuarioSistemaId;
     }
 
-    public function getValor() {
-        return $this->valor;
+    public function getFinanceiroValor() {
+        return $this->financeiroValor;
     }
 
-    public function setValor($valor) {
-        $this->valor = $valor;
+    public function setFinanceiroValor($financeiroValor) {
+        $this->financeiroValor = $financeiroValor;
     }
 
-    public function getDataCadastro() {
-        return $this->dataCadastro;
+    public function getFinanceiroDataCadastro() {
+        return $this->financeiroDataCadastro;
     }
 
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
+    public function setFinanceiroDataCadastro($financeiroDataCadastro) {
+        $this->financeiroDataCadastro = $financeiroDataCadastro;
     }
 }
 ?>

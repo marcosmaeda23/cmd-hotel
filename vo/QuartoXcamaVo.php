@@ -10,12 +10,12 @@ class QuartoXcamaVo {
 
     private $quartoXcamaId;
     private $camaId;
-    private $quartoId;
+    private $tipoQuartoId;
     
     public $quartoXcamaObrigatorio = array(
         'quartoXcamaId' => '',
         'camaId' => '',
-        'quartoId' => ''
+        'tipoQuartoId' => ''
     );
 
     /*
@@ -37,12 +37,12 @@ class QuartoXcamaVo {
         $this->camaId = $camaId;
     }
 
-    public function getQuartoId() {
-        return $this->quartoId;
+    public function getTipoQuartoId() {
+        return $this->tipoQuartoId;
     }
 
-    public function setQuartoId($quartoId) {
-        $this->quartoId = $quartoId;
+    public function setTipoQuartoId($tipoQuartoId) {
+        $this->tipoQuartoId = $tipoQuartoId;
     }
 }
 

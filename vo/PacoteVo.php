@@ -10,30 +10,30 @@ class PacoteVo {
 
     private $pacoteId;
     private $quartoId;
-    private $cardapioId;
     private $ambienteId;
     private $servicoId;
-    private $nome;
-    private $dataInicial;
-    private $dataFinal;
-    private $periodo;
-    private $pessoas;
-    private $desconto;
-    private $dataCadastro;
+    private $cardapioId;
+    private $pacoteNome;
+    private $pacoteDataInicial;
+    private $pacoteDataFinal;
+    private $pacotePeriodo;
+    private $pacotePessoas;
+    private $pacoteDesconto;
+    private $pacoteDataCadastro;
     
     public $pacoteObrigatorio = array(
         'pacoteId' => '',
         'quartoId' => '',
-        'cardapioId' => '',
         'ambienteId' => '',
         'servicoId' => '',
-        'nome' => '',
-        'dataInicial' => '',
-        'dataFinal' => '',
-        'periodo' => '',
-        'pessoas' => '',
-        'desconto' => '',
-        'dataCadastro' => ''
+        'cardapioId' => '',
+        'pacoteNome' => '',
+        'pacoteDataInicial' => '',
+        'pacoteDataFinal' => '',
+        'pacotePeriodo' => '',
+        'pacotePessoas' => '',
+        'pacoteDesconto' => '',
+        'pacoteDataCadastro' => ''
     );
 
     /*
@@ -55,14 +55,6 @@ class PacoteVo {
         $this->quartoId = $quartoId;
     }
 
-    public function getCardapioId() {
-        return $this->cardapioId;
-    }
-
-    public function setCardapioId($cardapioId) {
-        $this->cardapioId = $cardapioId;
-    }
-
     public function getAmbienteId() {
         return $this->ambienteId;
     }
@@ -79,62 +71,69 @@ class PacoteVo {
         $this->servicoId = $servicoId;
     }
 
-    public function getNome() {
-        return $this->nome;
+    public function getCardapioId() {
+        return $this->cardapioId;
     }
 
-    public function setNome($nome) {
-        $this->nome = $nome;
+    public function setCardapioId($cardapioId) {
+        $this->cardapioId = $cardapioId;
     }
 
-    public function getDataInicial() {
-        return $this->dataInicial;
+    public function getPacoteNome() {
+        return $this->pacoteNome;
     }
 
-    public function setDataInicial($dataInicial) {
-        $this->dataInicial = $dataInicial;
+    public function setPacoteNome($pacoteNome) {
+        $this->pacoteNome = $pacoteNome;
     }
 
-    public function getDataFinal() {
-        return $this->dataFinal;
+    public function getPacoteDataInicial() {
+        return $this->pacoteDataInicial;
     }
 
-    public function setDataFinal($dataFinal) {
-        $this->dataFinal = $dataFinal;
+    public function setPacoteDataInicial($pacoteDataInicial) {
+        $this->pacoteDataInicial = $pacoteDataInicial;
     }
 
-    public function getPeriodo() {
-        return $this->periodo;
+    public function getPacoteDataFinal() {
+        return $this->pacoteDataFinal;
     }
 
-    public function setPeriodo($periodo) {
-        $this->periodo = $periodo;
+    public function setPacoteDataFinal($pacoteDataFinal) {
+        $this->pacoteDataFinal = $pacoteDataFinal;
     }
 
-    public function getPessoas() {
-        return $this->pessoas;
+    public function getPacotePeriodo() {
+        return $this->pacotePeriodo;
     }
 
-    public function setPessoas($pessoas) {
-        $this->pessoas = $pessoas;
+    public function setPacotePeriodo($pacotePeriodo) {
+        $this->pacotePeriodo = $pacotePeriodo;
     }
 
-    public function getDesconto() {
-        return $this->desconto;
+    public function getPacotePessoas() {
+        return $this->pacotePessoas;
     }
 
-    public function setDesconto($desconto) {
-        $this->desconto = $desconto;
+    public function setPacotePessoas($pacotePessoas) {
+        $this->pacotePessoas = $pacotePessoas;
     }
 
-    public function getDataCadastro() {
-        return $this->dataCadastro;
+    public function getPacoteDesconto() {
+        return $this->pacoteDesconto;
     }
 
-    public function setDataCadastro($dataCadastro) {
-        $this->dataCadastro = $dataCadastro;
+    public function setPacoteDesconto($pacoteDesconto) {
+        $this->pacoteDesconto = $pacoteDesconto;
     }
 
+    public function getPacoteDataCadastro() {
+        return $this->pacoteDataCadastro;
+    }
+
+    public function setPacoteDataCadastro($pacoteDataCadastro) {
+        $this->pacoteDataCadastro = $pacoteDataCadastro;
+    }
 }
 
 ?>

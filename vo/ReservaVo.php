@@ -10,14 +10,14 @@ class ReservaVo {
 
     private $reservaId;
     private $usuarioId;
-    private $checkIn;
-    private $finalizado;
+    private $reservaCheckIn;
+    private $reservaFinalizado;
     
     public $cepObrigatorio = array(
         'reservaId' => '',
         'usuarioId' => '',
-        'checkIn' => '',
-        'finalizado' => ''
+        'reservaCheckIn' => '',
+        'reservaFinalizado' => ''
     );
 
     /*
@@ -40,22 +40,20 @@ class ReservaVo {
         $this->usuarioId = $usuarioId;
     }
 
-    public function getCheckIn() {
-        return $this->checkIn;
+    public function getReservaCheckIn() {
+        return $this->reservaCheckIn;
     }
 
-    public function setCheckIn($checkIn) {
-        $this->checkIn = $checkIn;
+    public function setReservaCheckIn($reservaCheckIn) {
+        $this->reservaCheckIn = $reservaCheckIn;
     }
 
-    public function getFinalizado() {
-        return $this->finalizado;
+    public function getReservaFinalizado() {
+        return $this->reservaFinalizado;
     }
 
-    public function setFinalizado($finalizado) {
-        $this->finalizado = $finalizado;
+    public function setReservaFinalizado($reservaFinalizado) {
+        $this->reservaFinalizado = $reservaFinalizado;
     }
-
 }
-
 ?>
