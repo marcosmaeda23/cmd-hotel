@@ -2,7 +2,6 @@
 $necessario = array('usuario');
 include('../../admin/template/iniciarDados.php');
 
-
 $usuarioVo = new UsuarioVo();
 if (!empty($_GET)) {
 

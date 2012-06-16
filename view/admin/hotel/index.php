@@ -34,21 +34,27 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
                             <input type="text" style="height: 28px" />
                             <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_principal; ?>" />
                         </div>
-                        <div class="cadastro_novo">
-                            <a href="cadastrarHotel.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
-                        </div>
+                        <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?> 
+                            <div class="cadastro_novo">
+                                <a href="cadastrarHotel.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
+                            </div>
+                        <?php } ?>
                     </div>
                     <table>
                         <tr class="linhaResultado">
                             <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
-                        </tr>                    
+                        </tr>
                         <?php
                         // colocar os campos de pesquisa 
                         for ($i = 0; $i < count($arrayHotelVo); $i++) {
                             ?>
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
+                                <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?> 
                                     <a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'> 
+                                <?php } else {?>
+                                    <a href='exibirHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'> 
+                                <?php } ?>
                                         <?php
                                         echo $arrayHotelVo[$i]->getHotelId();
                                         echo ' - ';
@@ -56,12 +62,14 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
                                         ?>
                                     </a>
                                 </td>
+                                <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?> 
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'>Editar</a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href="javascript:;" onclick="excluir('hotel', <?php echo $arrayHotelVo[$i]->getHotelId(); ?>);">Excluir</a>
                                 </td>
+                                <?php } ?>
                             </tr>
                             <?php
                             // colocar aqui um botao para excluir e outro para alterar
