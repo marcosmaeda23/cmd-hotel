@@ -28,7 +28,7 @@
                 </li>
             </ul>
             <ul class="menu">
-                <li><a href="../reservas" class="parent"><span>Reservas</span> </a></li>
+                <li><a href="../reserva" class="parent"><span>Reservas</span> </a></li>
             </ul>
             <ul class="menu">
                 <li><a href="?acao=deslogar" class="parent"><span>Sair</span> </a></li>

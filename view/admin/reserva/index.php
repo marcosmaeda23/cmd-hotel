@@ -26,7 +26,7 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
             <div class="container">
                 <div class="middle">
                     <!-- conteudo -->	
-                    <div class="cadastro_titulo"><p> Gerenciar Usu&aacute;rio </p></div>
+                    <div class="cadastro_titulo"><p> Gerenciar Reserva </p></div>
                     <div class="pesquisarConteiner">
                         <div class="cadastro_pesquisar">
                             <input type="text" style="height: 28px" />

@@ -239,6 +239,7 @@ DROP TABLE IF EXISTS `hotel_v4`.`tipoQuarto` ;
 CREATE  TABLE IF NOT EXISTS `hotel_v4`.`tipoQuarto` (
   `tipoQuartoId` INT NOT NULL AUTO_INCREMENT ,
   `tipoQuartoDescricao` VARCHAR(100) NOT NULL ,
+  `cardapioTipoDataCadastro` TIMESTAMP NULL ,
   PRIMARY KEY (`tipoQuartoId`) ,
   UNIQUE INDEX `id_UNIQUE` (`tipoQuartoId` ASC) )
 ENGINE = InnoDB;
@@ -601,6 +602,19 @@ INSERT INTO `hotel_v4`.`cama` (`camaId`, `camaNome`) VALUES (2, 'casal');
 INSERT INTO `hotel_v4`.`cama` (`camaId`, `camaNome`) VALUES (3, 'beliche');
 INSERT INTO `hotel_v4`.`cama` (`camaId`, `camaNome`) VALUES (4, 'berço');
 INSERT INTO `hotel_v4`.`cama` (`camaId`, `camaNome`) VALUES (5, 'suite');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v4`.`tipoQuarto`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v4`;
+INSERT INTO `hotel_v4`.`tipoQuarto` (`tipoQuartoId`, `tipoQuartoDescricao`, `cardapioTipoDataCadastro`) VALUES (1, 'Entrada', NULL);
+INSERT INTO `hotel_v4`.`tipoQuarto` (`tipoQuartoId`, `tipoQuartoDescricao`, `cardapioTipoDataCadastro`) VALUES (2, 'Principal', NULL);
+INSERT INTO `hotel_v4`.`tipoQuarto` (`tipoQuartoId`, `tipoQuartoDescricao`, `cardapioTipoDataCadastro`) VALUES (3, 'Acompanhamento', NULL);
+INSERT INTO `hotel_v4`.`tipoQuarto` (`tipoQuartoId`, `tipoQuartoDescricao`, `cardapioTipoDataCadastro`) VALUES (4, 'Sobremesa', NULL);
+INSERT INTO `hotel_v4`.`tipoQuarto` (`tipoQuartoId`, `tipoQuartoDescricao`, `cardapioTipoDataCadastro`) VALUES (5, 'Bebida', NULL);
 
 COMMIT;
 

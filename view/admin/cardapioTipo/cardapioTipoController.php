@@ -21,7 +21,7 @@ if ($_POST['acao'] == 'cadastrarCardapioTipo') {
 				$ERRO = true;
 			}
 		} 	
-	}		
+	}	
 	// aqui insere dentro dos objetos respectivos
 	if (!$ERRO){
 		// loop so para inserir os valores dentro dos objetos
