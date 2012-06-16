@@ -17,6 +17,7 @@
                             <li><a href="../hotel" class="parent"><span>Hotel</span> </a></li>
                             <li><a href="../servico" class="parent"><span>Serviço</span> </a></li>
                             <li><a href="../quarto" class="parent"><span>Quarto</span> </a></li>
+                            <li><a href="../quartoTipo" class="parent"><span>Quarto tipo</span> </a></li>
                             <li><a href="../cardapio" class="parent"><span>Cardapio</span> </a></li>
                             <li><a href="../cardapioTipo" class="parent"><span>Cardapio tipo</span> </a></li>
                             <li><a href="../pacote" class="parent"><span>Pacote</span> </a></li>

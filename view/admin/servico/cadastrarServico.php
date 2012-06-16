@@ -1,21 +1,18 @@
-<?php 
-
+<?php
 $necessario = array('hotel', 'servico');
 include('../template/iniciarDados.php');
 
 /// buscar os hoteis para mostar no slect
 $hotelVo = new HotelVo();
 $hotelBpm = new HotelBpm();
-$arrayHotelVo = $hotelBpm -> buscar('hotel');
+$arrayHotelVo = $hotelBpm->buscar('hotel');
 
 $servicoVo = new ServicoVo();
-if(!empty($_GET['servico'])){
-	$servicoBpm = new ServicoBpm();
-	$servicoVo ->setServicoId($_GET['servico']);
-	$servicoVo = $servicoBpm ->exibir($servicoVo, 'servico');
-	
+if (!empty($_GET['servico'])) {
+    $servicoBpm = new ServicoBpm();
+    $servicoVo->setServicoId($_GET['servico']);
+    $servicoVo = $servicoBpm->exibir($servicoVo, 'servico');
 }
-
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -31,47 +28,47 @@ if(!empty($_GET['servico'])){
         <div class="content cf">
             <div class="container">
                 <div class="middle">	
-					<div id="formulario">
-						<?php if(count($arrayHotelVo) > 0) { ?>								
-						<form id="cadastrarServico" action="servicoController.php" method="post" onsubmit="return verificarCampos('cadastrarServico');" >
-							<input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarServico" />
-							<input type="hidden" name="servicoId" id="servicoId" value="<?php echo $servicoVo ->getServicoId();?>" />			
-							
-							
-							<div id="servico" >
-								<!-- servico -->
-								Selecione o hotel:<br />
-								<select name="hotelId" id="hotelId" class="obrigatorio" >
-									<option value=""> Selecione o hotel: </option>
-									<?php 
-									for ( $i = 0; $i < count($arrayHotelVo); $i++ ) { ?>
-										<option value="<?php echo $arrayHotelVo[$i]->getHotelId();?>"<?php echo $servicoVo->getHotelId() == $arrayHotelVo[$i]->getHotelId() ? 'selected=\'selected\'':'';?>>
-											<?php echo $arrayHotelVo[$i]->getHotelNome();?>
-										</option>
-										
-									<?php
-									}?>
+                    <!-- conteudo -->	
+                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar' : 'Cadastrar'; ?> Hotel </p></div>	
+                    <div id="formulario">
+                        <?php if (count($arrayHotelVo) > 0) { ?>								
+                            <form id="cadastrarServico" action="servicoController.php" method="post" onsubmit="return verificarCampos('cadastrarServico');" >
+                                <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarServico" />
+                                <input type="hidden" name="servicoId" id="servicoId" value="<?php echo $servicoVo->getServicoId(); ?>" />			
+                                <div id="servico" >
+                                    <!-- servico -->
+                                    Selecione o hotel:<br />
+                                    <select name="hotelId" id="hotelId" class="obrigatorio" >
+                                        <option value=""> Selecione o hotel: </option>
+                                        <?php for ($i = 0; $i < count($arrayHotelVo); $i++) { ?>
+                                            <option value="<?php echo $arrayHotelVo[$i]->getHotelId(); ?>"<?php echo $servicoVo->getHotelId() == $arrayHotelVo[$i]->getHotelId() ? 'selected=\'selected\'' : ''; ?>>
+                                                <?php echo $arrayHotelVo[$i]->getHotelNome(); ?>
+                                            </option>
 
-								</select><br />
-								
-								<label>Nome do serviço:</label><br />
-								</label><input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome();?>" maxlength="50" 
-											class="obrigatorio" onblur="verificaCamposUnicos('servico', 'servicoNome', this.value);" /><br />
-								Valor:<br />
-								<input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor();?>" maxlength="50" class="obrigatorio preco"  /><br />
-								
-								Observação: 	<br />
-								<textarea id="servicoObservacao" name="servicoObservacao" rows="10" cols="50" wrap="off"><?php echo $servicoVo->getServicoObservacao();?></textarea><br />
-									
-													
-							<input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET)?'Cadastrar':'Alterar');?>" />
-						</form>
-						<?php 
-						} else {
-							echo 'Voce precisa cadastar algum hotel antes.'; 
-						}?>
-					</div>
-				</div>
+                                        <?php }
+                                        ?>
+
+                                    </select><br />
+                                    <label>Nome do serviço:</label>
+                                    <input type="text" name="servicoNome" id="servicoNome" value="<?php echo $servicoVo->getServicoNome(); ?>" maxlength="50" 
+                                           class="obrigatorio" onblur="verificaCamposUnicos('servico', 'servicoNome', this.value);" /><br />
+                                    Valor:<br />
+                                    <input type="text" name="servicoValor" id="servicoValor" value="<?php echo $servicoVo->getServicoValor(); ?>" maxlength="50" class="obrigatorio preco"  /><br />
+
+                                    Observação: 	<br />
+                                    <textarea id="servicoObservacao" name="servicoObservacao" rows="10" cols="50" wrap="off"><?php echo $servicoVo->getServicoObservacao(); ?></textarea><br />
+
+
+                                    <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
+                                </div>
+                            </form>
+                            <?php
+                        } else {
+                            echo 'Voce precisa cadastar algum hotel antes.';
+                        }
+                        ?>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -79,5 +76,5 @@ if(!empty($_GET['servico'])){
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>	
-	<script type="text/javascript" src="../../_js/servico.js"></script>
+    <script type="text/javascript" src="../../_js/servico.js"></script>
 </html>

@@ -9,7 +9,7 @@ class QuartoVo {
      */
 
     private $quartoId;
-    private $tipoQuartoId;
+    private $quartoTipoId;
     private $hotelId;
     private $quartoNumero;
     private $quartoDescricao;
@@ -19,7 +19,7 @@ class QuartoVo {
     
     public $cepObrigatorio = array(
         'quartoId' => '',
-        'tipoQuartoId' => '',
+        'quartoTipoId' => '',
         'hotelId' => '',
         'quartoNumero' => '',
         'quartoDescricao' => '',
@@ -39,13 +39,12 @@ class QuartoVo {
     public function setQuartoId($quartoId) {
         $this->quartoId = $quartoId;
     }
-
-    public function getTipoQuartoId() {
-        return $this->tipoQuartoId;
+    public function getQuartoTipoId() {
+        return $this->quartoTipoId;
     }
 
-    public function setTipoQuartoId($tipoQuartoId) {
-        $this->tipoQuartoId = $tipoQuartoId;
+    public function setQuartoTipoId($quartoTipoId) {
+        $this->quartoTipoId = $quartoTipoId;
     }
 
     public function getHotelId() {

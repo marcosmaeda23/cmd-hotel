@@ -51,23 +51,22 @@ $arrayServicoVo = $servicoBpm->buscar('servico');
                             ?>
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href='cadastrarServico.php?servico=<?php echo $arrayServicosVo[$i]->getServicosId(); ?>'> 
+                                    <a href='cadastrarServico.php?servico=<?php echo $arrayServicoVo[$i]->getServicoId(); ?>'> 
                                         <?php
-                                        echo $arrayServicosVo[$i]->getServicoId();
+                                        echo $arrayServicoVo[$i]->getServicoId();
                                         echo ' - ';
-                                        echo $arrayServicosVo[$i]->getServicoNome();
+                                        echo $arrayServicoVo[$i]->getServicoNome();
                                         ?>
                                     </a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href='cadastrarServico.php?servicos=<?php echo $arrayServicoVo[$i]->getServicoId(); ?>'>Editar</a>
+                                    <a href='cadastrarServico.php?servico=<?php echo $arrayServicoVo[$i]->getServicoId(); ?>'>Editar</a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href="javascript:;" onclick="excluir('servico', <?php echo $arrayServicoVo[$i]->getServicoId(); ?>);">Excluir</a>
                                 </td>
                             </tr>
                             <?php
-                            // colocar aqui um botao para excluir e outro para alterar
                         }
                         echo "</table>";
                         ?>

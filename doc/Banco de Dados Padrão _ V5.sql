@@ -2,6 +2,9 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
+DROP SCHEMA IF EXISTS `hotel_v5` ;
+CREATE SCHEMA IF NOT EXISTS `hotel_v5` DEFAULT CHARACTER SET latin1 ;
+USE `hotel_v5` ;
 
 -- -----------------------------------------------------
 -- Table `hotel_v5`.`nivel`
@@ -251,7 +254,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`servico` (
   `servicoId` INT NOT NULL AUTO_INCREMENT ,
   `servicoNome` VARCHAR(100) NOT NULL ,
   `servicoObservacao` VARCHAR(800) NULL ,
-  `servicoValor` DECIMAL(10,2) NOT NULL ,
+  `servicoValor` DECIMAL(20,2) NOT NULL ,
   `servicoDataCadastro` DATETIME NOT NULL ,
   `hotelId` INT NOT NULL ,
   PRIMARY KEY (`servicoId`) ,
@@ -279,15 +282,16 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `hotel_v5`.`tipoQuarto`
+-- Table `hotel_v5`.`quartoTipo`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `hotel_v5`.`tipoQuarto` ;
+DROP TABLE IF EXISTS `hotel_v5`.`quartoTipo` ;
 
-CREATE  TABLE IF NOT EXISTS `hotel_v5`.`tipoQuarto` (
-  `tipoQuartoId` INT NOT NULL AUTO_INCREMENT ,
-  `tipoQuartoDescricao` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`tipoQuartoId`) ,
-  UNIQUE INDEX `id_UNIQUE` (`tipoQuartoId` ASC) )
+CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quartoTipo` (
+  `quartoTipoId` INT NOT NULL AUTO_INCREMENT ,
+  `quartoTipoDescricao` VARCHAR(100) NOT NULL ,
+  `quartoTipoDataCadastro` TIMESTAMP NULL ,
+  PRIMARY KEY (`quartoTipoId`) ,
+  UNIQUE INDEX `id_UNIQUE` (`quartoTipoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -310,7 +314,7 @@ DROP TABLE IF EXISTS `hotel_v5`.`quarto` ;
 
 CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quarto` (
   `quartoId` INT NOT NULL AUTO_INCREMENT ,
-  `tipoQuartoId` INT NOT NULL ,
+  `quartoTipoId` INT NOT NULL ,
   `hotelId` INT NOT NULL ,
   `quartoNumero` VARCHAR(100) NOT NULL ,
   `quartoDescricao` VARCHAR(800) NULL ,
@@ -320,12 +324,12 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quarto` (
   PRIMARY KEY (`quartoId`) ,
   UNIQUE INDEX `quartos_numero_UNIQUE` (`quartoNumero` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`quartoId` ASC) ,
-  INDEX `tipoQuarto2` (`tipoQuartoId` ASC) ,
+  INDEX `tipoQuarto2` (`quartoTipoId` ASC) ,
   INDEX `hotel2` (`hotelId` ASC) ,
   INDEX `statusQuarto1` (`statusQuartoId` ASC) ,
   CONSTRAINT `tipoQuarto2`
-    FOREIGN KEY (`tipoQuartoId` )
-    REFERENCES `hotel_v5`.`tipoQuarto` (`tipoQuartoId` )
+    FOREIGN KEY (`quartoTipoId` )
+    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `hotel2`
@@ -616,19 +620,19 @@ DROP TABLE IF EXISTS `hotel_v5`.`quartoXcama` ;
 CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quartoXcama` (
   `quartoXcamaId` INT NOT NULL AUTO_INCREMENT ,
   `camaId` INT NOT NULL ,
-  `tipoQuartoId` INT NOT NULL ,
+  `quartoTipoId` INT NOT NULL ,
   INDEX `fk_quartoXcama_camas1` (`camaId` ASC) ,
   PRIMARY KEY (`quartoXcamaId`) ,
   UNIQUE INDEX `quartoXcama_UNIQUE` (`quartoXcamaId` ASC) ,
-  INDEX `tipoQuarto1` (`tipoQuartoId` ASC) ,
+  INDEX `tipoQuarto1` (`quartoTipoId` ASC) ,
   CONSTRAINT `fk_quartoXcama_camas1`
     FOREIGN KEY (`camaId` )
     REFERENCES `hotel_v5`.`cama` (`camaId` )
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `tipoQuarto1`
-    FOREIGN KEY (`tipoQuartoId` )
-    REFERENCES `hotel_v5`.`tipoQuarto` (`tipoQuartoId` )
+    FOREIGN KEY (`quartoTipoId` )
+    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
     ON DELETE CASCADE
     ON UPDATE CASCADE)
 ENGINE = InnoDB;
@@ -728,7 +732,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`foto` (
   INDEX `servico3` (`servicoId` ASC) ,
   CONSTRAINT `tipoQuarto3`
     FOREIGN KEY (`tipoQuartoId` )
-    REFERENCES `hotel_v5`.`tipoQuarto` (`tipoQuartoId` )
+    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
     ON DELETE CASCADE
     ON UPDATE CASCADE,
   CONSTRAINT `cardapio3`
@@ -800,6 +804,15 @@ INSERT INTO `hotel_v5`.`telefone` (`telefoneId`, `hotelId`, `usuarioId`, `telefo
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `hotel_v5`.`servico`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`servico` (`servicoId`, `servicoNome`, `servicoObservacao`, `servicoValor`, `servicoDataCadastro`, `hotelId`) VALUES (1, 'Serviço Padrão', 'Obs Padrão', 10.0, '2012-06-16 00:06:43', 1);
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `hotel_v5`.`cama`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -809,6 +822,15 @@ INSERT INTO `hotel_v5`.`cama` (`camaId`, `camaNome`) VALUES (2, 'casal');
 INSERT INTO `hotel_v5`.`cama` (`camaId`, `camaNome`) VALUES (3, 'beliche');
 INSERT INTO `hotel_v5`.`cama` (`camaId`, `camaNome`) VALUES (4, 'berço');
 INSERT INTO `hotel_v5`.`cama` (`camaId`, `camaNome`) VALUES (5, 'suite');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`quartoTipo`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`quartoTipo` (`quartoTipoId`, `quartoTipoDescricao`, `quartoTipoDataCadastro`) VALUES (1, 'Tipo Padrão', '2012-06-16 00:06:43');
 
 COMMIT;
 

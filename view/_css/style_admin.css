@@ -1,6 +1,6 @@
 *{outline-style: none;outline:none;padding:0px;margin:0px;}
 html{outline-style: none;outline:none;padding:0px;margin:0px;}
-body{margin:0px;padding:0px;font:12px verdana;outline-style: none; background-color: F2F2F2}
+body{margin:0px;padding:0px;font:12px verdana;outline-style: none; background-color: #d2d2d2}
 a:active {outline:none;}
 a{ text-decoration:none;}
 
@@ -23,7 +23,7 @@ a{ text-decoration:none;}
 .nav li a {  display: block; padding:8px 25px; color:#fff;}
 .nav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
 
-.middle{float:left; width:100%; background-color:#FFF}
+.middle{float:left; width:100%; background-color:#FFF;padding: 0 30px  30px  30px;}
 .middleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
 .conteudoMenu {font:24px Verdana, Geneva, sans-serif; color:#006;height: 30px; 
               color: white; font-weight: bold; padding: 15px}
@@ -74,7 +74,7 @@ a{ text-decoration:none;}
 .titulo_editar{ font-size:26px; color:#000033;}
 
 /* Rodapé*/
-.adminRodape {float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 30px; margin-top: 40px;}
+.adminRodape {float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 30px;}
 .rodape_nome{ float:left;width:330px;text-align:left; color:#FFFFFF!important;}
 .rodape_mais{ float:left;width:650px; text-align:right; color:#FFFFFF!important;}
 .rodape_mais a{ float:left;width:650px; text-align:right; color:#FFFFFF; margin-top: 40px;}
