@@ -1,12 +1,12 @@
 
 
-<div class="menuTopo <?php echo $cor_secundaria; ?>" style="height: 70px !important;">
+<div class="menuTopo <?php echo $cor_principal; ?>" style="height: 70px !important;">
     <ul class="content adminNav">
         <div class="cf logo">
             <a href="../home/"> <?php echo $nome_site; ?> </a>
         </div>
         <div class="cf bemVindo">
-            Bem vindo(a) <?php echo $_SESSION['NOME'];?>
+            Bem vindo(a) <?php echo $_SESSION['NOME']; ?>
         </div>
         <div id="menu">
             <ul class="menu">
@@ -25,8 +25,12 @@
                     </ul>
                 </li>
             </ul>
-            <li><a href="#" title="Home">Reservas</a></li>
-            <li><a href="?acao=deslogar" title="Perfil">Sair</a></li>
-		</div>
+            <ul class="menu">
+                <li><a href="../reservas" class="parent"><span>Reservas</span> </a></li>
+            </ul>
+            <ul class="menu">
+                <li><a href="?acao=deslogar" class="parent"><span>Sair</span> </a></li>
+            </ul>
+        </div>
     </ul>
 </div>

@@ -11,7 +11,7 @@ if (!empty($_GET)) {
     // buscar usuario para mostrar nos campos
     $usuarioVo->setUsuarioId($_GET['usuario']);
     $usuarioVo = $usuarioBpm->exibir($usuarioVo, 'usuario');
-    //var_dump($usuarioVo);
+    var_dump($usuarioVo);
 
     $telefoneArray = $usuarioVo->getTelefoneVo();
     $cepXedicaoVo = $usuarioVo->getCepXedicaoVo();
@@ -51,7 +51,7 @@ if (!empty($_GET)) {
         <div class="content cf">
             <div class="container">
                 <div class="middle">	
-                    <div class="cadastro_titulo"><p> <?php echo $usuarioVo->getUsuarioId() != null ? 'Editar':'Cadastrar';?> Usu&aacute;rio </p></div>	
+                    <div class="cadastro_titulo"><p> Cadastrar Usu&aacute;rio </p></div>	
                     <div id="formulario">
                         <form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />

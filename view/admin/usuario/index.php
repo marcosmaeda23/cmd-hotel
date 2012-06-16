@@ -30,15 +30,15 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
                     <div class="pesquisarConteiner">
                         <div class="cadastro_pesquisar">
                             <input type="text" style="height: 28px" />
-                            <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>" />
+                            <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_principal; ?>" />
                         </div>
                         <div class="cadastro_novo">
-                             <a href="cadastrarUsuario.php" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>">Cadastrar Novo</a>
+                             <a href="cadastrarUsuario.php" class="subMenuleft borderAll  <?php echo $cor_principal; ?>">Cadastrar Novo</a>
                         </div>
                     </div>
                     <table>
                         <tr class="linhaResultado">
-                            <td class="colunaResultados colunaTitulo  <?php echo $cor_secundaria; ?>" colspan="3">Resultado de pesquisa</td> 
+                            <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
                         </tr>                    
                         <?php
                         // colocar os campos de pesquisa 
@@ -55,10 +55,10 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
                                     </a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href="javascript:;" onclick="alert('editar');">Editar</a>
+                                    <a href='cadastrarUsuario.php?usuario=<?php echo $arrayUsuarioVo[$i]->getUsuarioId(); ?>'>Editar</a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href="javascript:;" onclick="alert('excluir');">Excluir</a>
+                                    <a href="javascript:;" onclick="excluir('usuario', <?php echo $arrayUsuarioVo[$i]->getUsuarioId(); ?>);">Excluir</a>
                                 </td>
                             </tr>
                             <?php

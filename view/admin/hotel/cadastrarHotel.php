@@ -38,8 +38,8 @@ if(!empty($_GET['hotel'])){
         <div class="content cf">
             <div class="container">
                 <div class="middle">
-
                     <!-- conteudo -->	
+                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar':'Cadastrar';?> Hotel </p></div>	
                     <form action="hotelController.php" method="post" id="cadastroHotel" onsubmit="return verificarCampos('cadastroHotel', 'hotel');" >
                         <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarHotel" />
 

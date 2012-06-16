@@ -1,17 +1,15 @@
 <?php
-$necessario = array('hotel');
-include('../../admin/template/iniciarDados.php');
+// a variavel necessario eh para inserido os objetos que serao incluidos 
+$necessario = array('usuario');
+include('../template/iniciarDados.php');
 
-if (empty($_SESSION['NOME'])) {
-    header('location:../');
+if (empty($_SESSION['NOME']) || $_SESSION['NIVEL'] == 4) {
+    header('location:cadastrarUsuario.php');
 }
+$usuarioVo = new UsuarioVo();
+$usuarioBpm = new UsuarioBpm();
 
-$hotelVo = new HotelVo();
-$hotelBpm = new HotelBpm();
-
-$arrayHotelVo = $hotelBpm->buscar('hotel');
-
-//var_dump($arrayHotelVo);
+$arrayUsuarioVo = $usuarioBpm->buscar('usuario');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,39 +26,39 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
             <div class="container">
                 <div class="middle">
                     <!-- conteudo -->	
-                    <div class="cadastro_titulo"><p> Gerenciar Hotel </p></div>
+                    <div class="cadastro_titulo"><p> Gerenciar Usu&aacute;rio </p></div>
                     <div class="pesquisarConteiner">
                         <div class="cadastro_pesquisar">
                             <input type="text" style="height: 28px" />
-                            <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_principal; ?>" />
+                            <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>" />
                         </div>
                         <div class="cadastro_novo">
-                            <a href="cadastrarHotel.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
+                             <a href="cadastrarUsuario.php" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>">Cadastrar Novo</a>
                         </div>
                     </div>
                     <table>
                         <tr class="linhaResultado">
-                            <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
+                            <td class="colunaResultados colunaTitulo  <?php echo $cor_secundaria; ?>" colspan="3">Resultado de pesquisa</td> 
                         </tr>                    
                         <?php
                         // colocar os campos de pesquisa 
-                        for ($i = 0; $i < count($arrayHotelVo); $i++) {
+                        for ($i = 0; $i < count($arrayUsuarioVo); $i++) {
                             ?>
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'> 
+                                    <a href='cadastrarUsuario.php?usuario=<?php echo $arrayUsuarioVo[$i]->getUsuarioId(); ?>'> 
                                         <?php
-                                        echo $arrayHotelVo[$i]->getHotelId();
+                                        echo $arrayUsuarioVo[$i]->getUsuarioId();
                                         echo ' - ';
-                                        echo $arrayHotelVo[$i]->getHotelNome();
+                                        echo $arrayUsuarioVo[$i]->getUsuarioNome();
                                         ?>
                                     </a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href='cadastrarHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'>Editar</a>
+                                    <a href="javascript:;" onclick="alert('editar');">Editar</a>
                                 </td>
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href="javascript:;" onclick="excluir('hotel', <?php echo $arrayHotelVo[$i]->getHotelId(); ?>);">Excluir</a>
+                                    <a href="javascript:;" onclick="alert('excluir');">Excluir</a>
                                 </td>
                             </tr>
                             <?php
@@ -68,6 +66,7 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
                         }
                         echo "</table>";
                         ?>
+
                         <br />
                 </div>
             </div>
@@ -77,6 +76,11 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>
-    <script type="text/javascript" src="../../_js/hotel.js"></script>	
+    <script type="text/javascript">
+<?php if (isset($_POST['paisOrigem'])) { ?>
+        aplicarMascara(<?php $_POST['paisOrigem']; ?>);
+                                                                    
+<?php } ?>
+    </script>
 </html>
 </html>

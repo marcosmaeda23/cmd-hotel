@@ -35,7 +35,7 @@ a{ text-decoration:none;}
 .pesquisarConteiner{float: left;padding-bottom: 20px; width: 100%}
 .cadastro_pesquisar{float: left; width: 300px}
 .cadastro_novo{float: right; width: 450px}
-.subMenuleft{ float:right;color: #FFF; padding:10px 20px;}
+.subMenuleft{ float:right;color: #FFF!important; padding:10px 20px;}
 .colunaTitulo{ text-align: center; color: #FFF; font-size: 16px;}
 .linhaImpar{background: #D2D2D2}
 .linhaPar{background-color: #DBDBDB}
