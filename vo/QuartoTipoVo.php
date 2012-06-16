@@ -7,6 +7,7 @@ class QuartoTipoVo {
     /*
      * atributos da tabela Quarto Tipo
      */
+
     private $quartoTipoId;
     private $quartoTipoDescricao;
     private $quartoTipoDataCadastro;
@@ -19,6 +20,7 @@ class QuartoTipoVo {
     /*
      * get e set da classe Quarto Tipo
      */
+
     public function getQuartoTipoId() {
         return $this->quartoTipoId;
     }
@@ -43,6 +45,6 @@ class QuartoTipoVo {
         $this->quartoTipoDataCadastro = $quartoTipoDataCadastro;
     }
 
-
 }
+
 ?>

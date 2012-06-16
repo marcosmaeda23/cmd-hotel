@@ -44,9 +44,28 @@ class QuartoTipoDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'quartoTipoId INT NOT NULL AUTO_INCREMENT' ,
-        'quartoTipoDescricao VARCHAR (100) NOT NULL',
-        'quartoTipoDataCadastro DATETIME NOT NULL');
+        'descricao VARCHAR (100) NOT NULL');
+
+    /**
+     * metodo para buscar os objetos 
+     * @param sem param
+     * @return array de objeto
+     */
+    public function buscar() {
+        $sql = 'SELECT * FROM ' . $this->entidade . ' LIMIT ' . $this->limite;
+        $query = mysql_query($sql);
+        $arrayObjeto = array();
+        $qtde = mysql_affected_rows();
+        if ($qtde > 0) {
+	        while ($rows = mysql_fetch_object($query)) {
+				eval('$objetoVo = new '.ucfirst($this->entidade).'Vo();');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Id("$rows->'.$this->entidade.'Id");');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Descricao("$rows->'.$this->entidade.'Descricao");');
+				$arrayObjeto[] = $objetoVo;			
+	        }
+        }		
+		return $arrayObjeto;
+    }
 
     /**
      * Array contendo a ordem para salvar no banco

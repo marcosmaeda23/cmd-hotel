@@ -1,4 +1,4 @@
-<?php 
+?<php 
 
 $necessario = array('cardapio', 'hotel', 'cardapioTipo');
 include('../template/iniciarDados.php');

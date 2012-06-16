@@ -1,12 +1,12 @@
 <?php
-
 // a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('quartoTipo', 'quarto');
+$necessario = array('quartoTipo');
 include('../template/iniciarDados.php');
-$arrayQuartoTipoVo = new QuartoTipoVo();
 
+$quartoTipoVo = new QuartoTipoVo();
 $quartoTipoBpm = new QuartoTipoBpm();
-$arrayQuartoTipoVo = $quartoTipoBpm -> buscar('quartoTipo');
+
+$arrayQuartoTipoVo = $quartoTipoBpm->buscar('quartoTipo');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,7 +40,7 @@ $arrayQuartoTipoVo = $quartoTipoBpm -> buscar('quartoTipo');
                             <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
                         </tr>
                         <?php
-                        if ($arrayServicoVo == null) {
+                        if ($arrayQuartoTipoVo == null) {
                             echo "<tr class ='linhaResultado'>
                                     <td>Sem nenhum serviço cadastrado</td>
                                   </tr>";
@@ -58,7 +58,7 @@ $arrayQuartoTipoVo = $quartoTipoBpm -> buscar('quartoTipo');
                                         <?php
                                         echo $arrayQuartoTipoVo[$i]->getQuartoTipoId();
                                         echo ' - ';
-                                        echo $arrayQuartoTipoVo[$i]->getQuartoTipoNome();
+                                        echo $arrayQuartoTipoVo[$i]->getQuartoTipoDescricao();
                                         ?>
                                     </a>
                                 </td>

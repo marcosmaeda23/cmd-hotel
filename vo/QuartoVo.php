@@ -11,13 +11,13 @@ class QuartoVo {
     private $quartoId;
     private $quartoTipoId;
     private $hotelId;
+    private $statusId;
     private $quartoNumero;
     private $quartoDescricao;
     private $quartoValor;
     private $quartoDataCadastro;
-    private $statusQuartoId;
     
-    public $cepObrigatorio = array(
+    public $quartoObrigatorio = array(
         'quartoId' => '',
         'quartoTipoId' => '',
         'hotelId' => '',
@@ -25,7 +25,7 @@ class QuartoVo {
         'quartoDescricao' => '',
         'quartoValor' => '',
         'quartoDataCadastro' => '',
-        'statusQuartoId' => ''
+        'statusId' => ''
     );
 
     /*
@@ -86,13 +86,12 @@ class QuartoVo {
     public function setQuartoDataCadastro($quartoDataCadastro) {
         $this->quartoDataCadastro = $quartoDataCadastro;
     }
-
-    public function getStatusQuartoId() {
-        return $this->statusQuartoId;
+    public function getStatusId() {
+        return $this->statusId;
     }
 
-    public function setStatusQuartoId($statusQuartoId) {
-        $this->statusQuartoId = $statusQuartoId;
+    public function setStatusId($statusId) {
+        $this->statusId = $statusId;
     }
 }
 

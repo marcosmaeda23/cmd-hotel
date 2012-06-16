@@ -42,12 +42,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`usuario` (
   PRIMARY KEY (`usuarioId`) ,
   INDEX `fk_usuario_nivel1` (`nivelId` ASC) ,
   UNIQUE INDEX `documento_UNIQUE` (`usuarioDocumento` ASC) ,
-  UNIQUE INDEX `login_UNIQUE` (`usuarioLogin` ASC) ,
-  CONSTRAINT `fk_usuario_nivel1`
-    FOREIGN KEY (`nivelId` )
-    REFERENCES `hotel_v5`.`nivel` (`nivelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  UNIQUE INDEX `login_UNIQUE` (`usuarioLogin` ASC) )
 ENGINE = InnoDB;
 
 
@@ -76,17 +71,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`usuarioXchat` (
   INDEX `fk_usuarioXchat_usuario2` (`usuarioId` ASC) ,
   INDEX `fk_usuarioXchat_chat2` (`chatId` ASC) ,
   PRIMARY KEY (`usuarioXchatId`) ,
-  UNIQUE INDEX `id_UNIQUE` (`usuarioXchatId` ASC) ,
-  CONSTRAINT `fk_usuarioXchat_usuario2`
-    FOREIGN KEY (`usuarioId` )
-    REFERENCES `hotel_v5`.`usuario` (`usuarioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_usuarioXchat_chat2`
-    FOREIGN KEY (`chatId` )
-    REFERENCES `hotel_v5`.`chat` (`chatId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `id_UNIQUE` (`usuarioXchatId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -115,12 +100,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`estado` (
   `estadoUf` CHAR(2) NOT NULL ,
   PRIMARY KEY (`estadoId`) ,
   INDEX `fk_estado_pais1` (`paisId` ASC) ,
-  UNIQUE INDEX `id_UNIQUE` (`estadoId` ASC) ,
-  CONSTRAINT `fk_estado_pais1`
-    FOREIGN KEY (`paisId` )
-    REFERENCES `hotel_v5`.`pais` (`paisId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `id_UNIQUE` (`estadoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -135,12 +115,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cidade` (
   `cidadeNome` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`cidadeId`) ,
   INDEX `fk_cidade_estado1` (`estadoId` ASC) ,
-  UNIQUE INDEX `cidade_UNIQUE` (`cidadeId` ASC) ,
-  CONSTRAINT `fk_cidade_estado1`
-    FOREIGN KEY (`estadoId` )
-    REFERENCES `hotel_v5`.`estado` (`estadoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `cidade_UNIQUE` (`cidadeId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -156,12 +131,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`logradouro` (
   `logradouroBairro` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`logradouroId`) ,
   UNIQUE INDEX `id_UNIQUE` (`logradouroId` ASC) ,
-  INDEX `fk_logradouro_cidade1` (`cidadeId` ASC) ,
-  CONSTRAINT `fk_logradouro_cidade1`
-    FOREIGN KEY (`cidadeId` )
-    REFERENCES `hotel_v5`.`cidade` (`cidadeId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  INDEX `fk_logradouro_cidade1` (`cidadeId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -207,17 +177,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`telefone` (
   PRIMARY KEY (`telefoneId`) ,
   INDEX `fk_telefone_usuario1` (`usuarioId` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`telefoneId` ASC) ,
-  INDEX `hotel6` (`hotelId` ASC) ,
-  CONSTRAINT `fk_telefone_usuario1`
-    FOREIGN KEY (`usuarioId` )
-    REFERENCES `hotel_v5`.`usuario` (`usuarioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `hotel6`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `hotel6` (`hotelId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -236,12 +196,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`ambiente` (
   `hotelId` INT NOT NULL ,
   PRIMARY KEY (`ambienteId`) ,
   UNIQUE INDEX `ambiente_UNIQUE` (`ambienteId` ASC) ,
-  INDEX `hotel5` (`hotelId` ASC) ,
-  CONSTRAINT `hotel5`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `hotel5` (`hotelId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -259,12 +214,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`servico` (
   `hotelId` INT NOT NULL ,
   PRIMARY KEY (`servicoId`) ,
   UNIQUE INDEX `id_UNIQUE` (`servicoId` ASC) ,
-  INDEX `hotel4` (`hotelId` ASC) ,
-  CONSTRAINT `hotel4`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `hotel4` (`hotelId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -316,32 +266,18 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quarto` (
   `quartoId` INT NOT NULL AUTO_INCREMENT ,
   `quartoTipoId` INT NOT NULL ,
   `hotelId` INT NOT NULL ,
+  `statusId` INT NOT NULL ,
   `quartoNumero` VARCHAR(100) NOT NULL ,
   `quartoDescricao` VARCHAR(800) NULL ,
   `quartoValor` DECIMAL(10,2) NOT NULL ,
   `quartoDataCadastro` DATETIME NOT NULL ,
-  `statusQuartoId` INT NOT NULL ,
+  `quartoDecimal` DECIMAL(3,0) NULL DEFAULT 1 ,
   PRIMARY KEY (`quartoId`) ,
   UNIQUE INDEX `quartos_numero_UNIQUE` (`quartoNumero` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`quartoId` ASC) ,
   INDEX `tipoQuarto2` (`quartoTipoId` ASC) ,
   INDEX `hotel2` (`hotelId` ASC) ,
-  INDEX `statusQuarto1` (`statusQuartoId` ASC) ,
-  CONSTRAINT `tipoQuarto2`
-    FOREIGN KEY (`quartoTipoId` )
-    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `hotel2`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `statusQuarto1`
-    FOREIGN KEY (`statusQuartoId` )
-    REFERENCES `hotel_v5`.`status` (`statusId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `statusQuarto1` (`statusId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -378,17 +314,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cardapio` (
   PRIMARY KEY (`cardapioId`) ,
   INDEX `fk_cardapios_cardapioTipos1` (`cardapioTipoId` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`cardapioId` ASC) ,
-  INDEX `hotel3` (`hotelId` ASC) ,
-  CONSTRAINT `fk_cardapios_cardapioTipos1`
-    FOREIGN KEY (`cardapioTipoId` )
-    REFERENCES `hotel_v5`.`cardapioTipo` (`cardapioTipoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `hotel3`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `hotel3` (`hotelId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -415,27 +341,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`pacote` (
   UNIQUE INDEX `id_UNIQUE` (`pacoteId` ASC) ,
   INDEX `ambiente3` (`ambienteId` ASC) ,
   INDEX `servico1` (`servicoId` ASC) ,
-  INDEX `cardapio2` (`cardapioId` ASC) ,
-  CONSTRAINT `fk_pacote_quartos1`
-    FOREIGN KEY (`quartoId` )
-    REFERENCES `hotel_v5`.`quarto` (`quartoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `ambiente3`
-    FOREIGN KEY (`ambienteId` )
-    REFERENCES `hotel_v5`.`ambiente` (`ambienteId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `servico1`
-    FOREIGN KEY (`servicoId` )
-    REFERENCES `hotel_v5`.`servico` (`servicoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `cardapio2`
-    FOREIGN KEY (`cardapioId` )
-    REFERENCES `hotel_v5`.`cardapio` (`cardapioId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `cardapio2` (`cardapioId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -451,12 +357,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`reserva` (
   `reservaFinalizado` TINYINT(1) NOT NULL DEFAULT 1 ,
   PRIMARY KEY (`reservaId`) ,
   INDEX `fk_reservas_usuarios1` (`usuarioId` ASC) ,
-  UNIQUE INDEX `reserva_UNIQUE` (`reservaId` ASC) ,
-  CONSTRAINT `fk_reservas_usuarios1`
-    FOREIGN KEY (`usuarioId` )
-    REFERENCES `hotel_v5`.`usuario` (`usuarioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+  UNIQUE INDEX `reserva_UNIQUE` (`reservaId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -483,37 +384,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`itemReserva` (
   INDEX `cardapio1` (`cardapioId` ASC) ,
   INDEX `ambiente1` (`ambienteId` ASC) ,
   INDEX `pacote1` (`pacoteId` ASC) ,
-  INDEX `servico2` (`servicoId` ASC) ,
-  CONSTRAINT `fk_reserva_quartos1`
-    FOREIGN KEY (`quartoId` )
-    REFERENCES `hotel_v5`.`quarto` (`quartoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_itens_reserva_reserva1`
-    FOREIGN KEY (`reservaId` )
-    REFERENCES `hotel_v5`.`reserva` (`reservaId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `cardapio1`
-    FOREIGN KEY (`cardapioId` )
-    REFERENCES `hotel_v5`.`cardapio` (`cardapioId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `ambiente1`
-    FOREIGN KEY (`ambienteId` )
-    REFERENCES `hotel_v5`.`ambiente` (`ambienteId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `pacote1`
-    FOREIGN KEY (`pacoteId` )
-    REFERENCES `hotel_v5`.`pacote` (`pacoteId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `servico2`
-    FOREIGN KEY (`servicoId` )
-    REFERENCES `hotel_v5`.`servico` (`servicoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `servico2` (`servicoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -546,22 +417,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`financeiro` (
   INDEX `fk_financeiro_pagamento1` (`pagamentoId` ASC) ,
   INDEX `fk_financeiros_reservas1` (`reservaId` ASC) ,
   UNIQUE INDEX `financeiro_UNIQUE` (`financeiroId` ASC) ,
-  INDEX `usuario2` (`usuarioSistemaId` ASC) ,
-  CONSTRAINT `fk_financeiro_pagamento1`
-    FOREIGN KEY (`pagamentoId` )
-    REFERENCES `hotel_v5`.`pagamento` (`pagamentoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk_financeiros_reservas1`
-    FOREIGN KEY (`reservaId` )
-    REFERENCES `hotel_v5`.`reserva` (`reservaId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `usuario2`
-    FOREIGN KEY (`usuarioSistemaId` )
-    REFERENCES `hotel_v5`.`usuario` (`usuarioId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `usuario2` (`usuarioSistemaId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -576,12 +432,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cep` (
   `cepNumero` DECIMAL(15) NOT NULL ,
   PRIMARY KEY (`cepId`) ,
   UNIQUE INDEX `id_UNIQUE` (`cepId` ASC) ,
-  INDEX `logradouro1` (`logradouroId` ASC) ,
-  CONSTRAINT `logradouro1`
-    FOREIGN KEY (`logradouroId` )
-    REFERENCES `hotel_v5`.`logradouro` (`logradouroId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `logradouro1` (`logradouroId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -598,17 +449,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`ramal` (
   PRIMARY KEY (`ramalId`) ,
   INDEX `fk_ramal_quartos1` (`quartoId` ASC) ,
   UNIQUE INDEX `id_UNIQUE` (`ramalId` ASC) ,
-  INDEX `ambiente2` (`ambienteId` ASC) ,
-  CONSTRAINT `fk_ramal_quartos1`
-    FOREIGN KEY (`quartoId` )
-    REFERENCES `hotel_v5`.`quarto` (`quartoId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `ambiente2`
-    FOREIGN KEY (`ambienteId` )
-    REFERENCES `hotel_v5`.`ambiente` (`ambienteId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `ambiente2` (`ambienteId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -624,17 +465,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quartoXcama` (
   INDEX `fk_quartoXcama_camas1` (`camaId` ASC) ,
   PRIMARY KEY (`quartoXcamaId`) ,
   UNIQUE INDEX `quartoXcama_UNIQUE` (`quartoXcamaId` ASC) ,
-  INDEX `tipoQuarto1` (`quartoTipoId` ASC) ,
-  CONSTRAINT `fk_quartoXcama_camas1`
-    FOREIGN KEY (`camaId` )
-    REFERENCES `hotel_v5`.`cama` (`camaId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `tipoQuarto1`
-    FOREIGN KEY (`quartoTipoId` )
-    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `tipoQuarto1` (`quartoTipoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -655,22 +486,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cepXedicao` (
   PRIMARY KEY (`cepXedicaoId`, `cepXedicaoNumero`) ,
   INDEX `usuario1` (`usuarioId` ASC) ,
   INDEX `hotel1` (`hotelId` ASC) ,
-  INDEX `cep1` (`cepId` ASC) ,
-  CONSTRAINT `usuario1`
-    FOREIGN KEY (`usuarioId` )
-    REFERENCES `hotel_v5`.`usuario` (`usuarioId` )
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `hotel1`
-    FOREIGN KEY (`hotelId` )
-    REFERENCES `hotel_v5`.`hotel` (`hotelId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `cep1`
-    FOREIGN KEY (`cepId` )
-    REFERENCES `hotel_v5`.`cep` (`cepId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `cep1` (`cepId` ASC) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_general_ci;
@@ -703,12 +519,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cepCadastro` (
   `cepCadastroPais` VARCHAR(100) NOT NULL ,
   PRIMARY KEY (`cepCadastroId`) ,
   UNIQUE INDEX `cepCadastroId_UNIQUE` (`cepCadastroId` ASC) ,
-  INDEX `cepXedicao1` (`cepXedicaoId` ASC) ,
-  CONSTRAINT `cepXedicao1`
-    FOREIGN KEY (`cepXedicaoId` )
-    REFERENCES `hotel_v5`.`cepXedicao` (`cepXedicaoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `cepXedicao1` (`cepXedicaoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -729,27 +540,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`foto` (
   INDEX `tipoQuarto3` (`tipoQuartoId` ASC) ,
   INDEX `cardapio3` (`cardapioId` ASC) ,
   INDEX `ambiente4` (`ambienteId` ASC) ,
-  INDEX `servico3` (`servicoId` ASC) ,
-  CONSTRAINT `tipoQuarto3`
-    FOREIGN KEY (`tipoQuartoId` )
-    REFERENCES `hotel_v5`.`quartoTipo` (`quartoTipoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `cardapio3`
-    FOREIGN KEY (`cardapioId` )
-    REFERENCES `hotel_v5`.`cardapio` (`cardapioId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `ambiente4`
-    FOREIGN KEY (`ambienteId` )
-    REFERENCES `hotel_v5`.`ambiente` (`ambienteId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE,
-  CONSTRAINT `servico3`
-    FOREIGN KEY (`servicoId` )
-    REFERENCES `hotel_v5`.`servico` (`servicoId` )
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+  INDEX `servico3` (`servicoId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -843,6 +634,15 @@ INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (1, 'nao 
 INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (2, 'nao reservado');
 INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (3, 'manutencao');
 INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (4, 'inativo');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`quarto`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`quarto` (`quartoId`, `quartoTipoId`, `hotelId`, `statusId`, `quartoNumero`, `quartoDescricao`, `quartoValor`, `quartoDataCadastro`, `quartoDecimal`) VALUES (1, 1, 1, 1, '666', 'Quarto Padrão', 1000.0, '2012-06-16 00:06:43', 1);
 
 COMMIT;
 

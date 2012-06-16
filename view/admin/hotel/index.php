@@ -45,7 +45,7 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
                             <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
                         </tr>
                         <?php
-                        if ($arrayServicoVo == null) {
+                        if ($arrayHotelVo == null) {
                             echo "<tr class ='linhaResultado'>
                                     <td>Sem nenhum serviço cadastrado</td>
                                   </tr>";

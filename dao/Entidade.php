@@ -72,7 +72,9 @@ class Entidade extends Banco {
             //chave estrangeira
             for ($j = 0; $j < count($this->chaveEstrangeira); $j++) {
                 $_dadosEstrangeiro = explode(' ', $this->chaveEstrangeira[$j]);
+                //var_dump($_dadosEstrangeiro);
                 eval('$valor = $objetoVo -> get' . ucfirst($_dadosEstrangeiro[0]) . '();');
+                //var_dump($this->chaveEstrangeira);
                 if (empty($valor)) {
                     $sql .= 'null';
                 } else {
