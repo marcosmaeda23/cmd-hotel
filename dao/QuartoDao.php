@@ -57,7 +57,7 @@ class QuartoDao extends Entidade {
     protected $dadosBase = array(
         'numero VARCHAR (100) NOT NULL',
         'descricao VARCHAR (800) NOT NULL',
-        'valor DECIMAL (10,2) NOT NULL');
+        'valor DECIMAL (0,2) NOT NULL');
 
     /**
      * metodo para buscar os objetos 

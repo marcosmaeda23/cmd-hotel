@@ -84,6 +84,7 @@ class Entidade extends Banco {
                     $sql .= ', ';
                 }
             }
+            //var_dump($_dadosBase);
             for ($j = 0; $j < count($this->dadosBase); $j++) {
                 $_dadosBase = explode(' ', $this->dadosBase[$j]);
                 eval('$valor = $objetoVo -> get' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '();');
@@ -133,7 +134,7 @@ class Entidade extends Banco {
 	                $sql .= $this->entidade . ucfirst($_dadosBase[0]);
 	                $sql .= ' = ';
 	                eval('$valor = $objetoVo -> get' . ucfirst($this->entidade) . ucfirst($_dadosBase[0]) . '();');
-	                if (is_string($valor)) {
+                        if (is_string($valor)) {
 	                    $sql .= "'";
 	                }
 	                if ($_dadosBase[1] == 'DATE') {

@@ -22,6 +22,7 @@ class CardapioVo {
     private $fotoVo;
     private $hotelVo;
     private $cardapioTipoVo;
+    
     public $cardapioObrigatorio = array(
         'cardapioId' => '',
         'hotelId' => 'obrigatorio',
@@ -32,7 +33,8 @@ class CardapioVo {
         'cardapioValorCalorico' => '',
         'cardapioValor' => 'obrigatorio',
         'cardapioObservacao' => '',
-        'cardapioDataCadastro' => '');
+        'cardapioDataCadastro' => ''
+        );
 
     /*
      * get e set da classe cepXedicao, cepCadastro

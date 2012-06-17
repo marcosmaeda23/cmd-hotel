@@ -17,39 +17,45 @@ class CardapioDao extends Entidade {
      * chave estrangeira
      * @example $chaveEstrangeira 	= array('usuarioSistema INT(11) NOT NULL')
      */
-//    protected $chaveEstrangeira = array(
-//        'cardapioTipoId INT NOT NULL',
-//        'cardapioTipoNome INT NOT NULL');
+    protected $chaveEstrangeira = array(
+        'cardapioTipoId INT NOT NULL',
+        'hotelId INT NOT NULL');
+    /**
+     * se tiver a chave estrangeira setado arruma a relacao e defineo update 
+     * @example $onUpdate = array('usuarioSistema' => 'cascade');
+     */
+    protected $onUpdate = array(
+        'cardapioTipoId' => 'cascade',
+        'hotelId' => 'cascade');
 
-//    /**
-//     * se tiver a chave estrangeira setado arruma a relacao e defineo update 
-//     * @example $onUpdate = array('usuarioSistema' => 'cascade');
-//     */
-//    protected $onUpdate = array(
-//        'cardapioTipoId' => 'cascade',
-//        'cardapioTipoNome' => 'cascade');
-//
-//    /**
-//     * se tiver a chave estrangeira setado arruma a relacao e define o delete
-//     * @example $onUpdate = array('usuarioSistema' => 'set null');
-//     */
-//    protected $onDelete = array('hotelId' => 'cascade',
-//        'cardapioTipoId' => 'cascade');
-//
-//    /**
-//     * se tiver algum atributo como unique setado, inclui na tabela
-//     * @deprecated id
-//     * @example $uniqueKey = array('email', 'documento');
-//     */
-//    protected $uniqueKey = array('email', 'documento', 'login');
-//
+    /**
+     * se tiver a chave estrangeira setado arruma a relacao e define o delete
+     * @example $onUpdate = array('usuarioSistema' => 'set null');
+     */
+    protected $onDelete = array(
+        'cardapioTipoId' => 'cascade',
+        'hotelId' => 'cascade');
+
+    /**
+     * se tiver algum atributo como unique setado, inclui na tabela
+     * @deprecated id
+     * @example $uniqueKey = array('email', 'documento');
+     */
+    protected $uniqueKey = array();
+
     /**
      * seta a base de dados para fazer a atualizacao ou criacao
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'cardapioTipoNome VARCHAR (100) NOT NULL');
+        'nome VARCHAR(100) NOT NULL ',
+        'tempo VARCHAR(100) NULL ',
+        'descricao VARCHAR(200) NOT NULL ',
+        'valorCalorico DECIMAL (0,2) NULL ',
+        'valor DECIMAL (0,2) NOT NULL ',
+        'observacao VARCHAR(800) NULL ',
+        );
 
     /**
      * Array contendo a ordem para salvar no banco
@@ -106,7 +112,6 @@ class CardapioDao extends Entidade {
                     eval('$_objeto = $objetoVo -> get' . ucfirst($_entidade) . 'Vo();');
                     $_objeto->setCardapioId($idCardapio);
                     $fotoDao = new FotoDao();
-
 
                     $sucesso = $fotoDao->cadastrarAlterar($_objeto);
 

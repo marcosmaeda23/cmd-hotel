@@ -249,7 +249,7 @@ function salvarFoto($arrayFoto, $caminho){
 			$handle->file_name_body_add = '_thumbs_'.time();
 			 
 			// Definimos a pasta para onde a imagem thumbs será armazenada
-			$handle->Process('../upload/thumb/'.$caminho);
+			$handle->Process('../upload/'.$caminho);
 			// Excluimos os arquivos temporarios
 			$handle-> Clean();
 			if ($handle->processed) {

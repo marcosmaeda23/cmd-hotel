@@ -1,11 +1,13 @@
 <?php
-
 // a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('cardapio', 'cardapioTipo');
+$necessario = array('cardapio', 'cardapioTipo', 'foto');
 include('../template/iniciarDados.php');
-$arrayCardapioVo = new CardapioVo();
 
-
+if ($_SESSION['NIVEL'] == 4) {
+    header('location:../');
+}
+$cardapioBpm = new CardapioBpm();
+$arrayCardapioVo = $cardapioBpm->buscar('cardapio');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -21,38 +23,57 @@ $arrayCardapioVo = new CardapioVo();
         <div class="content cf">
             <div class="container">
                 <div class="middle">
-
                     <!-- conteudo -->	
-                    <?php 
-                    /*
-                    if($arrayCardapioVo < 1){
-                    	echo 'Sem nenhum cardápio cadastrado';
-                    } else {
-	                    for ( $i = 0; $i < count($arrayCardapioVo); $i++ ) {?>
-							<a href='cadastrarCardapio.php?cardapio=<?php echo $arrayCardapioVo[$i]->getCardapioId();?>'> 
-							<?php
-							echo $arrayCardapioVo[$i]->getCardapioId().' - ';
-							echo $arrayCardapioVo[$i]->getCardapioNome();
-							?>
-							</a>
-							
-							<a href="javascript:;" onclick="alert('excluir');">Excluir</a>
-							<br /> 
-						<?php
-						}	
-                    } */               
-                    ?>
-
-					<br />
-					
-                    <a href="cadastrarCardapio.php">Cadastrar</a> <br />
-                    <a href="../cardapioTipo/cadastrarCardapioTipo.php">Cadastrar tipo de cardápio</a> <br />
-
-
+                    <div class="cadastro_titulo"><p> Gerenciar Cardápio </p></div>
+                    <div class="pesquisarConteiner">
+                        <div class="cadastro_pesquisar">
+                            <input type="text" style="height: 28px" />
+                            <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_principal; ?>" />
+                        </div>
+                        <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?> 
+                            <div class="cadastro_novo">
+                                <a href="cadastrarCardapio.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
+                            </div>
+                        <?php } ?>
+                    </div>
+                    <table>
+                        <tr class="linhaResultado">
+                            <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
+                        </tr>
+                        <?php
+                        if ($arrayCardapioVo == null) {
+                            echo "<tr class ='linhaResultado'>
+                                    <td>Sem nenhum serviço cadastrado</td>
+                                  </tr>";
+                        }
+                        // colocar os campos de pesquisa 
+                        for ($i = 0; $i < count($arrayCardapioVo); $i++) {
+                            ?>
+                            <tr class ="linhaResultado">
+                                <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
+                                    <a href='cadastrarCardapio.php?cardapio=<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>'> 
+                                        <?php
+                                        echo $arrayCardapioVo[$i]->getCardapioId();
+                                        echo ' - ';
+                                        echo $arrayCardapioVo[$i]->getCardapioNome();
+                                        ?>
+                                    </a>
+                                </td>
+                                <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
+                                    <a href='cadastrarCardapio.php?cardapio=<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>'>Editar</a>
+                                </td>
+                                <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
+                                    <a href="javascript:;" onclick="excluir('cardapio', <?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>);">Excluir</a>
+                                </td>
+                            </tr>
+                            <?php
+                        }
+                        echo "</table>";
+                        ?>
+                        <br />
                 </div>
             </div>
         </div>
-
         <?php include('../template/rodapeAdmin.php'); ?>
     </body>
     <!-- scripts gerais -->

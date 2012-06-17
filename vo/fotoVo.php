@@ -16,23 +16,24 @@ class FotoVo {
     private $fotoNome;
     private $fotoDataCadastro;
     
-    public $fotoObrigatorio 	= array('fotoId' 			=> '',
-								        'tipoQuartoId' 		=> '',
-								        'ambienteId'	 	=> '',
-								        'cardapioId' 		=> '',
-								        'servicoId' 		=> '',
-								        'fotoNome'	 		=> 'obrigatorio',
-								        'fotoDataCadastro' 	=> '');
+    public $fotoObrigatorio = array(
+        'fotoId' => '',
+        'tipoQuartoId' => '',
+        'ambienteId' => '',
+        'cardapioId' => '',
+        'servicoId' => '',
+        'nome' => 'obrigatorio',
+        'dataCadastro' => ''
+        );
 
-    
-    
-    
     /*
      * get e set da classe cepXedicao, cepCadastro
      */
+
     public function getFotoId() {
         return $this->fotoId;
     }
+
     public function setFotoId($fotoId) {
         $this->fotoId = $fotoId;
     }
@@ -40,13 +41,15 @@ class FotoVo {
     public function getTipoQuartoId() {
         return $this->tipoQuartoId;
     }
+
     public function setTipoQuartoId($tipoQuartoId) {
         $this->tipoQuartoId = $tipoQuartoId;
     }
-    
+
     public function getAmbienteId() {
         return $this->ambienteId;
     }
+
     public function setAmbienteId($ambienteId) {
         $this->ambienteId = $ambienteId;
     }
@@ -54,6 +57,7 @@ class FotoVo {
     public function getCardapioId() {
         return $this->cardapioId;
     }
+
     public function setCardapioId($cardapioId) {
         $this->cardapioId = $cardapioId;
     }
@@ -61,6 +65,7 @@ class FotoVo {
     public function getServicoId() {
         return $this->servicoId;
     }
+
     public function setServicoId($servicoId) {
         $this->servicoId = $servicoId;
     }
@@ -68,6 +73,7 @@ class FotoVo {
     public function getFotoNome() {
         return $this->fotoNome;
     }
+
     public function setFotoNome($fotoNome) {
         $this->fotoNome = $fotoNome;
     }
@@ -75,9 +81,11 @@ class FotoVo {
     public function getFotoDataCadastro() {
         return $this->fotoDataCadastro;
     }
+
     public function setFotoDataCadastro($fotoDataCadastro) {
         $this->fotoDataCadastro = $fotoDataCadastro;
     }
 
 }
+
 ?>

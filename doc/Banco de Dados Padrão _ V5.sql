@@ -307,7 +307,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cardapio` (
   `cardapioNome` VARCHAR(100) NOT NULL ,
   `cardapioTempo` VARCHAR(100) NULL ,
   `cardapioDescricao` VARCHAR(200) NOT NULL ,
-  `cardapioValorCalorico` DECIMAL(3,0) NULL ,
+  `cardapioValorCalorico` DECIMAL(10,4) NULL ,
   `cardapioValor` DECIMAL(10,2) NOT NULL ,
   `cardapioObservacao` VARCHAR(800) NULL ,
   `cardapioDataCadastro` DATETIME NOT NULL ,
@@ -529,7 +529,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `hotel_v5`.`foto` ;
 
 CREATE  TABLE IF NOT EXISTS `hotel_v5`.`foto` (
-  `fotoId` INT NOT NULL ,
+  `fotoId` INT NOT NULL AUTO_INCREMENT ,
   `tipoQuartoId` INT NULL ,
   `ambienteId` INT NULL ,
   `cardapioId` INT NULL ,
@@ -657,6 +657,15 @@ INSERT INTO `hotel_v5`.`cardapioTipo` (`cardapioTipoId`, `cardapioTipoNome`, `ca
 INSERT INTO `hotel_v5`.`cardapioTipo` (`cardapioTipoId`, `cardapioTipoNome`, `cardapioTipoDataCadastro`) VALUES (4, 'Sobremesa', '2012-06-16 00:06:43');
 INSERT INTO `hotel_v5`.`cardapioTipo` (`cardapioTipoId`, `cardapioTipoNome`, `cardapioTipoDataCadastro`) VALUES (5, 'Bebida', '2012-06-16 00:06:43');
 INSERT INTO `hotel_v5`.`cardapioTipo` (`cardapioTipoId`, `cardapioTipoNome`, `cardapioTipoDataCadastro`) VALUES (6, 'Alcoólico', '2012-06-16 00:06:43');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`cardapio`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`cardapio` (`cardapioId`, `cardapioTipoId`, `hotelId`, `cardapioNome`, `cardapioTempo`, `cardapioDescricao`, `cardapioValorCalorico`, `cardapioValor`, `cardapioObservacao`, `cardapioDataCadastro`) VALUES (1, 1, 1, 'Cardapio Padrão', '40', 'Descrição Cardapio Padrão', 1.65, 111.0, 'Obs Cardapio Padrão', '2012-06-16 00:06:43');
 
 COMMIT;
 
