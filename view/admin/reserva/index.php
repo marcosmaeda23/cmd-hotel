@@ -3,9 +3,6 @@
 $necessario = array('usuario');
 include('../template/iniciarDados.php');
 
-if (empty($_SESSION['NOME']) || $_SESSION['NIVEL'] == 4) {
-    header('location:cadastrarUsuario.php');
-}
 $usuarioVo = new UsuarioVo();
 $usuarioBpm = new UsuarioBpm();
 

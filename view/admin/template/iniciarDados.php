@@ -78,7 +78,7 @@ session_start();
 if ($_GET['acao'] == 'deslogar') {
     session_unset();
     session_destroy();
-    header('location:../../');
+    header('location:../../../');
 }
 
 // inclui os arquivos que serao necessarios na pagina pela array $necessario
