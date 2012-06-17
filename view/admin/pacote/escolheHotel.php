@@ -34,7 +34,7 @@ if (!empty($_GET['quarto'])) {
             <div class="container">
                 <div class="middle">	
                     <!-- conteudo -->	
-                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar' : 'Cadastrar'; ?> Quarto </p></div>	
+                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar' : 'Cadastrar'; ?> Pacote </p></div>	
                     <div id="formulario">
                         <?php
                         if (count($arrayHotelVo) == 0) {
@@ -47,10 +47,8 @@ if (!empty($_GET['quarto'])) {
                         }
                         if (!$ERRO) {
                             ?>								
-                            <form id="cadastrarQuarto" action="quartoController.php" method="post" onsubmit="return verificarCampos('cadastrarQuarto');" >
+                            <form id="cadastrarQuarto" action="cadastrarPacote.php" method="post" onsubmit="return verificarCampos('cadastrarQuarto');" >
                                 <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarQuarto" />
-                                <input type="hidden" name="quartoId" id="quartoId" value="<?php echo $quartoVo->getQuartoId(); ?>" />			
-                                <input type="hidden" name="statusId" id="statusQuartoId" value="1" />			
                                 <div id="quarto" >
                                     <!-- Quarto -->
                                     Selecione o hotel:<br />
@@ -63,38 +61,13 @@ if (!empty($_GET['quarto'])) {
 
                                         <?php }
                                         ?>
-
                                     </select><br />
-
-                                    Selecione um Tipo Quarto :<br />
-                                    <select name="quartoTipoId" id="quartoTipoId" class="obrigatorio" >
-                                        <option value=""> Selecione o quarto: </option>
-                                        <?php for ($i = 0; $i < count($arrayQuartoTipoVo); $i++) { ?>
-                                            <option value="<?php echo $arrayQuartoTipoVo[$i]->getQuartoTipoId(); ?>"<?php echo $quartoVo->getQuartoTipoId() == $arrayQuartoTipoVo[$i]->getQuartoTipoId() ? 'selected=\'selected\'' : ''; ?>>
-                                                <?php echo $arrayQuartoTipoVo[$i]->getQuartoTipoDescricao(); ?>
-                                            </option>
-
-                                        <?php }
-                                        ?>
-
-                                    </select><br />
-
-                                    <label>Número do Quarto:</label>
-                                    <input type="text" name="quartoNumero" id="quartoNumero" value="<?php echo $quartoVo->getQuartoNumero(); ?>" maxlength="50" 
-                                           class="obrigatorio" onblur="verificaCamposUnicos('quarto', 'quartoNome', this.value);" /><br />
-
-                                    Valor:<br />
-                                    <input type="text" name="quartoValor" id="quartoValor" value="<?php echo $quartoVo->getQuartoValor(); ?>" maxlength="50" class="obrigatorio preco"  /><br />
-
-                                    Descrição: 	<br />
-                                    <textarea id="quartoDescricao" name="quartoDescricao" rows="10" cols="50" wrap="off"><?php echo $quartoVo->getQuartoDescricao(); ?></textarea><br />
-
                                     <br />
                                     <input type="reset" value="Limpar" name="B1" />
                                     <span style=" padding-left: 10px" />
                                     <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
                                     <span style=" padding-left: 10px" />
-                                    <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
+                                    <input type="submit" name="cmdSalvar" value="Continuar Cadastro" />
                                 </div>
                             </form>
                             <?php

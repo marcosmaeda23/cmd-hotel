@@ -190,8 +190,8 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`ambiente` (
   `ambienteId` INT NOT NULL AUTO_INCREMENT ,
   `ambienteNome` VARCHAR(100) NOT NULL ,
   `ambienteObservacao` VARCHAR(800) NULL ,
-  `ambienteValor` DECIMAL(10,2) NOT NULL ,
-  `ambienteReservado` TINYINT(1) NOT NULL DEFAULT 0 ,
+  `ambienteValor` DECIMAL(20,2) NOT NULL ,
+  `ambienteReservado` TINYINT(1) NULL DEFAULT 0 ,
   `ambienteDataCadastro` DATETIME NOT NULL ,
   `hotelId` INT NOT NULL ,
   PRIMARY KEY (`ambienteId`) ,
@@ -307,8 +307,8 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`cardapio` (
   `cardapioNome` VARCHAR(100) NOT NULL ,
   `cardapioTempo` VARCHAR(100) NULL ,
   `cardapioDescricao` VARCHAR(200) NOT NULL ,
-  `cardapioValorCalorico` DECIMAL(10,4) NULL ,
-  `cardapioValor` DECIMAL(10,2) NOT NULL ,
+  `cardapioValorCalorico` DECIMAL(20,4) NULL ,
+  `cardapioValor` DECIMAL(20,2) NOT NULL ,
   `cardapioObservacao` VARCHAR(800) NULL ,
   `cardapioDataCadastro` DATETIME NOT NULL ,
   PRIMARY KEY (`cardapioId`) ,
@@ -334,7 +334,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`pacote` (
   `pacoteDataFinal` DATE NULL ,
   `pacotePeriodo` DECIMAL(2) NULL ,
   `pacotePessoas` INT NOT NULL ,
-  `pacoteDesconto` DECIMAL(2,2) NOT NULL ,
+  `pacoteDesconto` DECIMAL(2,2) NULL ,
   `pacoteDataCadastro` DATETIME NOT NULL ,
   PRIMARY KEY (`pacoteId`) ,
   INDEX `fk_pacote_quartos1` (`quartoId` ASC) ,
@@ -595,6 +595,15 @@ INSERT INTO `hotel_v5`.`telefone` (`telefoneId`, `hotelId`, `usuarioId`, `telefo
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `hotel_v5`.`ambiente`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`ambiente` (`ambienteId`, `ambienteNome`, `ambienteObservacao`, `ambienteValor`, `ambienteReservado`, `ambienteDataCadastro`, `hotelId`) VALUES (1, 'Pacore Padrão', 'Obs Padrão', 100.0, 0, '2012-06-16 00:06:43', 1);
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `hotel_v5`.`servico`
 -- -----------------------------------------------------
 START TRANSACTION;
@@ -666,6 +675,33 @@ COMMIT;
 START TRANSACTION;
 USE `hotel_v5`;
 INSERT INTO `hotel_v5`.`cardapio` (`cardapioId`, `cardapioTipoId`, `hotelId`, `cardapioNome`, `cardapioTempo`, `cardapioDescricao`, `cardapioValorCalorico`, `cardapioValor`, `cardapioObservacao`, `cardapioDataCadastro`) VALUES (1, 1, 1, 'Cardapio Padrão', '40', 'Descrição Cardapio Padrão', 1.65, 111.0, 'Obs Cardapio Padrão', '2012-06-16 00:06:43');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`pacote`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`pacote` (`pacoteId`, `quartoId`, `ambienteId`, `servicoId`, `cardapioId`, `pacoteNome`, `pacoteDataInicial`, `pacoteDataFinal`, `pacotePeriodo`, `pacotePessoas`, `pacoteDesconto`, `pacoteDataCadastro`) VALUES (1, 1, 1, 1, 1, 'Pacote Padrão', '2012-06-16 00:06:43', '2012-06-16 00:06:43', 3, 4, NULL, '2012-06-16 00:06:43');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`reserva`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`reserva` (`reservaId`, `usuarioId`, `reservaCheckIn`, `reservaFinalizado`) VALUES (1, 1, 0, 0);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`itemReserva`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`itemReserva` (`itemReservaId`, `reservaId`, `quartoId`, `pacoteId`, `ambienteId`, `servicoId`, `cardapioId`, `itemReservaDataInicial`, `itemReservaDataFinal`, `itemReservaDataCadastro`) VALUES (1, 1, 1, 1, 1, 1, 1, '2012-06-16 00:06:43', '2012-06-16 00:06:43', '2012-06-16 00:06:43');
 
 COMMIT;
 

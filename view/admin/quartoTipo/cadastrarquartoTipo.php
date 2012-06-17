@@ -8,7 +8,6 @@ if (!empty($_GET['quartoTipo'])) {
     $quartoTipoBpm = new QuartoTipoBpm();
     $quartoTipoVo->setQuartoTipoId($_GET['quartoTipo']);
     $quartoTipoVo = $quartoTipoBpm->exibir($quartoTipoVo, 'quartoTipo');
-
 }
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -26,7 +25,7 @@ if (!empty($_GET['quartoTipo'])) {
             <div class="container">
                 <div class="middle">	
                     <div id="formulario">
-                    <div class="cadastro_titulo"><p> <?php echo $quartoTipoVo->getQuartoTipoId() != null ? 'Editar':'Cadastrar';?> Quarto Tipo </p></div>	
+                        <div class="cadastro_titulo"><p> <?php echo $quartoTipoVo->getQuartoTipoId() != null ? 'Editar' : 'Cadastrar'; ?> Quarto Tipo </p></div>	
                         <form id="cadastrarQuartoTipo" action="quartoTipoController.php" method="post" onsubmit="return verificarCampos('cadastrarQuartoTipo');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarQuartoTipo" />
                             <input type="hidden" name="quartoTipoId" id="quartoTipoId" value="<?php echo $quartoTipoVo->getQuartoTipoId(); ?>" />			
@@ -36,8 +35,11 @@ if (!empty($_GET['quartoTipo'])) {
                                 <!-- quartoTipo -->
                                 <label>Descricao do Tipo de Quarto :</label><br />
                                 </label><input type="text" name="quartoTipoDescricao" id="quartoTipoDescricao" value="<?php echo $quartoTipoVo->getQuartoTipoDescricao(); ?>" maxlength="50" class="obrigatorio"  /><br />
-
-
+                                <br />
+                                <input type="reset" value="Limpar" name="B1" />
+                                <span style=" padding-left: 10px" />
+                                <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                <span style=" padding-left: 10px" />
                                 <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
 
                             </div>

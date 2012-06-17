@@ -77,7 +77,11 @@ if (!empty($_GET['hotel'])) {
                                 <!-- cep -->   
                             </div>
 
-
+                            <br />
+                            <input type="reset" value="Limpar" name="B1" />
+                            <span style=" padding-left: 10px" />
+                            <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                            <span style=" padding-left: 10px" />
                             <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                         </div>
                     </form>
@@ -96,36 +100,38 @@ if (!empty($_GET['hotel'])) {
         cepComplementoArray = new Array();
         cepTipo = '';
 <?php if (!empty($_GET['hotel'])) { ?>
-                        // seta o campo hidden como zero
-                        $('#qtdeTelefone').val(0);	
-                        //seta o cepXedicaoTipo com o valor do banco
-                        cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo(); ?>;
-                        $('#cepXedicaoTipo').val(cepTipo);
-    		
+        // seta o campo hidden como zero
+        $('#qtdeTelefone').val(0);	
+        //seta o cepXedicaoTipo com o valor do banco
+        cepTipo = <?php echo $cepXedicaoVo->getCepXedicaoTipo(); ?>;
+        $('#cepXedicaoTipo').val(cepTipo);
+        		
     <?php for ($i = 0; $i < count($telefoneArray); $i++) { ?>
-        					
-                                            var telefone = new Object(); 	
+                					
+                var telefone = new Object(); 	
         <?php foreach ($telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
-                                                        telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
-            	
+                        telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
+                        	
         <?php } ?>	
-        					
-                                                    telefoneArray[<?php echo $i; ?>] = telefone;	  
+                					
+                    telefoneArray[<?php echo $i; ?>] = telefone;	  
     <?php } ?>
     <?php
     if ($cepXedicaoVo->getCepXedicaoTipo() == 1) {
         // mostra o cepCadastro preenchido
         foreach ($cepCadastro->cepCadastroObrigatorio as $chave => $valor) {
             ?>
-                                                        cepArray['<?php echo $chave; ?>'] = '<?php eval('echo $cepCadastro->get' . ucfirst($chave) . '();'); ?>';
-        <?php }
+                            cepArray['<?php echo $chave; ?>'] = '<?php eval('echo $cepCadastro->get' . ucfirst($chave) . '();'); ?>';
+        <?php
+        }
     } else {
         ?>
-        				 
+                				 
     <?php } ?>
     <?php foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave) { ?>
-                                    cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';
-    <?php }
+                cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';
+    <?php
+    }
 }
 ?>
 	

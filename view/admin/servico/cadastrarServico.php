@@ -59,6 +59,11 @@ if (!empty($_GET['servico'])) {
                                     <textarea id="servicoObservacao" name="servicoObservacao" rows="10" cols="50" wrap="off"><?php echo $servicoVo->getServicoObservacao(); ?></textarea><br />
 
 
+                                    <br />
+                                    <input type="reset" value="Limpar" name="B1" />
+                                    <span style=" padding-left: 10px" />
+                                    <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                    <span style=" padding-left: 10px" />
                                     <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                                 </div>
                             </form>

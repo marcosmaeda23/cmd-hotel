@@ -80,7 +80,7 @@ if (!empty($_GET)) {
                                                     echo "selected";
                                                 }
                                                 ?> >
-                                                    <?php echo $cardapioTipoVo[$i]->getCardapioTipoNome(); ?>
+                                                            <?php echo $cardapioTipoVo[$i]->getCardapioTipoNome(); ?>
                                                 </option>
 
                                             <?php }
@@ -105,7 +105,11 @@ if (!empty($_GET)) {
                                         Imagem:<br />
                                         <input type="file" name="imagem" id="imagem" class="obrigatorio"  /><br />
 
-
+                                        <br />
+                                        <input type="reset" value="Limpar" name="B1" />
+                                        <span style=" padding-left: 10px" />
+                                        <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                        <span style=" padding-left: 10px" />
                                         <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                                     </div>
                                 </form>

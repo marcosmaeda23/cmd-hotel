@@ -50,7 +50,7 @@ if (!empty($_GET)) {
         <div class="content cf">
             <div class="container">
                 <div class="middle">	
-                    <div class="cadastro_titulo"><p> <?php echo $usuarioVo->getUsuarioId() != null ? 'Editar':'Cadastrar';?> Usu&aacute;rio </p></div>	
+                    <div class="cadastro_titulo"><p> <?php echo $usuarioVo->getUsuarioId() != null ? 'Editar' : 'Cadastrar'; ?> Usu&aacute;rio </p></div>	
                     <div id="formulario">
                         <form action="usuarioController.php" method="post" id="cadastroUsuario" onsubmit="return verificarCampos('cadastroUsuario');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarUsuario" />
@@ -124,6 +124,9 @@ if (!empty($_GET)) {
                             </div>
 
 
+                            <br />
+                            <input type="reset" value="Limpar" name="B1" />
+                            <span style=" padding-left: 10px" />
                             <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                         </form>
                     </div>
@@ -155,13 +158,13 @@ if (!empty($_GET)) {
 
     for ($i = 0; $i < count($telefoneArray); $i++) {
         ?>
-                		        					
+                        		        					
                     var telefone = new Object(); 	
         <?php foreach ($telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
                         telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
-                        		            	
+                                    		            	
         <?php } ?>	
-                		        					
+                        		        					
                     telefoneArray[<?php echo $i; ?>] = telefone;	  
     <?php } ?>
     <?php
@@ -174,11 +177,11 @@ if (!empty($_GET)) {
         }
     } else {
         ?>
-                		        				 
+                        		        				 
     <?php } ?>
     <?php foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave) { ?>
                 cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';
-    <?php
+        <?php
     }
 } else {
     ?>

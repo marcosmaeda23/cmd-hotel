@@ -27,7 +27,7 @@ if (!empty($_GET['cardapioTipo'])) {
             <div class="container">
                 <div class="middle">	
                     <div id="formulario">
-                    <div class="cadastro_titulo"><p> <?php echo $cardapioTipoVo->getCardapioTipoId() != null ? 'Editar':'Cadastrar';?> Cardápio Tipo </p></div>	
+                        <div class="cadastro_titulo"><p> <?php echo $cardapioTipoVo->getCardapioTipoId() != null ? 'Editar' : 'Cadastrar'; ?> Cardápio Tipo </p></div>	
                         <form id="cadastrarCardapioTipo" action="cardapioTipoController.php" method="post" onsubmit="return verificarCampos('cadastrarCardapioTipo');" >
                             <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarCardapioTipo" />
                             <input type="hidden" name="cardapioTipoId" id="cardapioTipoId" value="<?php echo $cardapioTipoVo->getCardapioTipoId(); ?>" />			
@@ -40,7 +40,11 @@ if (!empty($_GET['cardapioTipo'])) {
                                 <label>Nome do tipo de cardápio:</label><br />
                                 </label><input type="text" name="cardapioTipoNome" id="cardapioTipoNome" value="<?php echo $cardapioTipoVo->getCardapioTipoNome(); ?>" maxlength="50" class="obrigatorio"  /><br />
 
-
+                                <br />
+                                <input type="reset" value="Limpar" name="B1" />
+                                <span style=" padding-left: 10px" />
+                                <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                <span style=" padding-left: 10px" />
                                 <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
 
                             </div>
