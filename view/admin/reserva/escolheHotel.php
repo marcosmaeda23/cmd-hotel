@@ -34,7 +34,7 @@ if (!empty($_GET['quarto'])) {
             <div class="container">
                 <div class="middle">	
                     <!-- conteudo -->	
-                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar' : 'Cadastrar'; ?> Pacote </p></div>	
+                    <div class="cadastro_titulo"><p> <?php echo $hotelVo->getHotelId() != null ? 'Editar' : 'Cadastrar'; ?> Reserva </p></div>	
                     <div id="formulario">
                         <?php
                         if (count($arrayHotelVo) == 0) {

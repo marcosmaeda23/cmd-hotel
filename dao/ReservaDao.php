@@ -44,8 +44,8 @@ class ReservaDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'reservaCheckIn` TINYINT(1) NOT NULL ',
-        'reservaFinalizado` TINYINT(1) NOT NULL DEFAULT 1 ',
+        'checkIn TINYINT(1) NOT NULL ',
+        'finalizado TINYINT(1) NOT NULL DEFAULT 1 ',
     );
 
     /**
@@ -76,7 +76,7 @@ class ReservaDao extends Entidade {
     /**
      * se true coloca um campo dataCadastro na tabela
      */
-    protected $momentoCadastro = true;
+    protected $momentoCadastro = false;
 
     /**
      *  se true coloca um campo status na tabela

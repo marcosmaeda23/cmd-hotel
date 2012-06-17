@@ -120,7 +120,7 @@ class Entidade extends Banco {
             $sql .= ' ) ;';
             $query = mysql_query($sql);
             $_id = mysql_insert_id();
-            //echo $sql;
+            echo $sql;
             //exit();
         } else {
 

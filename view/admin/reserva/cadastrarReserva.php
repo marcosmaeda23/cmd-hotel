@@ -4,7 +4,7 @@ include('../../admin/template/iniciarDados.php');
 
 
 $idUsuario = $_SESSION['ID'];
-echo $hotelEscolhido = $_POST['hotelId'];
+$hotelEscolhido = $_POST['hotelId'];
 
 
 // buscar os hoteis para mostar no slect
@@ -31,6 +31,11 @@ $arrayServicoVo = $servicoBpm->buscarPoHotel('servico', $hotelEscolhido);
 $cardapioVo = new CardapioVo();
 $cardapioBpm = new CardapioBpm();
 $arrayCardapioVo = $cardapioBpm->buscarPoHotel('cardapio', $hotelEscolhido);
+
+// buscar os Tipo Quarto para mostar no slect
+$pacoteVo = new PacoteVo();
+$pacoteBpm = new PacoteBpm();
+$arrayPacoteVo = $pacoteBpm->buscarPoHotel('pacote', $hotelEscolhido);
 
 
 
@@ -93,13 +98,14 @@ if (!empty($_GET)) {
                             ?>
                             <form action="reservaController.php" method="post" id="cadastroReserva" onsubmit="return verificarCampos('cadastroReserva');" >
                                 <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarReserva" />
+                                <input type="hidden" name="usuarioId" id="usuarioId" maxlength="50" value="<?php echo $idUsuario; ?>" />
 
                                 <div id="reserva" >
                                     <!-- reserva -->
                                     Hotel Selecionado:<span style="padding-left:20px">
                                         <?php
-                                        for ($i = 0; $i < count($arrayHotelVo); $i++) {
                                             $hotelEscolhido = $hotelEscolhido - 1;
+                                        for ($i = 0; $i < count($arrayHotelVo); $i++) {
                                             if ($i == $hotelEscolhido) {
                                                 echo $arrayHotelVo[$i]->getHotelNome();
                                             }
@@ -109,7 +115,7 @@ if (!empty($_GET)) {
                                         <br />
                                         <br />
                                         Selecione um Quarto :<br />
-                                        <select name="quartoId" id="quartoId" class="obrigatorio" >
+                                        <select name="quartoId" id="quartoId" class="" >
                                             <option value=""> Selecione o quarto: </option>
                                             <?php for ($i = 0; $i < count($arrayQuartoVo); $i++) { ?>
                                                 <option value="<?php echo $arrayQuartoVo[$i]->getQuartoId(); ?>"<?php echo $quartoVo->getQuartoId() == $arrayQuartoVo[$i]->getQuartoId() ? 'selected=\'selected\'' : ''; ?>>
@@ -122,7 +128,7 @@ if (!empty($_GET)) {
                                         </select><br />
 
                                         Selecione um ambiente :<br />
-                                        <select name="ambienteId" id="ambienteId" class="obrigatorio" >
+                                        <select name="ambienteId" id="ambienteId" class="" >
                                             <option value=""> Selecione o ambiente: </option>
                                             <?php for ($i = 0; $i < count($arrayAmbienteVo); $i++) { ?>
                                                 <option value="<?php echo $arrayAmbienteVo[$i]->getAmbienteId(); ?>"<?php echo $ambienteVo->getAmbienteId() == $arrayAmbienteVo[$i]->getAmbienteId() ? 'selected=\'selected\'' : ''; ?>>
@@ -135,7 +141,7 @@ if (!empty($_GET)) {
                                         </select><br />
 
                                         Selecione um servico:<br />
-                                        <select name="servicoId" id="servicoId" class="obrigatorio" >
+                                        <select name="servicoId" id="servicoId" class="" >
                                             <option value=""> Selecione o servico: </option>
                                             <?php for ($i = 0; $i < count($arrayServicoVo); $i++) { ?>
                                                 <option value="<?php echo $arrayServicoVo[$i]->getServicoId(); ?>"<?php echo $servicoVo->getServicoId() == $arrayServicoVo[$i]->getServicoId() ? 'selected=\'selected\'' : ''; ?>>
@@ -148,7 +154,7 @@ if (!empty($_GET)) {
                                         </select><br />
 
                                         Selecione um cardapio :<br />
-                                        <select name="cardapioId" id="cardapioId" class="obrigatorio" >
+                                        <select name="cardapioId" id="cardapioId" class="" >
                                             <option value=""> Selecione o cardapio: </option>
                                             <?php for ($i = 0; $i < count($arrayCardapioVo); $i++) { ?>
                                                 <option value="<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>"<?php echo $cardapioVo->getCardapioId() == $arrayCardapioVo[$i]->getCardapioId() ? 'selected=\'selected\'' : ''; ?>>
@@ -160,56 +166,24 @@ if (!empty($_GET)) {
 
                                         </select><br />
 
-                                        <label>Nome do Pacote:</label>
+                                        Selecione um pacote :<br />
+                                        <select name="pacoteId" id="pacoteId" class="" >
+                                            <option value=""> Selecione o pacote: </option>
+                                            <?php for ($i = 0; $i < count($arrayPacoteVo); $i++) { ?>
+                                                <option value="<?php echo $arrayPacoteVo[$i]->getPacoteId(); ?>"<?php echo $pacoteVo->getPacoteId() == $arrayPacoteVo[$i]->getPacoteId() ? 'selected=\'selected\'' : ''; ?>>
+                                                    <?php echo $arrayPacoteVo[$i]->getPacoteNome(); ?>
+                                                </option>
 
+                                            <?php }
+                                            ?>
 
-
-                                        <label>Nome completo:</label><br />
-                                        </label><input type="text" name="reservaNome" id="reservaNome" value="<?php echo $_POST['reservaNome'] ? $_POST['reservaNome'] : $reservaVo->getReservaNome(); ?>" maxlength="50" class="obrigatorio"  /><br />
-                                        Seu e-mail:<br />
-                                        <input type="text" name="reservaEmail" id="reservaEmail" value="<?php echo $_POST['reservaEmail'] ? $_POST['reservaEmail'] : $reservaVo->getReservaEmail(); ?>" maxlength="50" onblur='verificaCamposUnicos("reserva", "reservaEmail", this.value);' class="obrigatorio"  /><br />
-
-                                        <div id='campoLogin'>
-
-                                        </div>
-
-                                        <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?>
-                                            Nivel:<br />
-                                            <select name="nivelId" id="nivelId" class="obrigatorio" >
-                                                <option value=""> Selecione o Nivel: </option>
-                                                <option value="2"> Gerente </option>
-                                                <option value="3"> Recepcionista </option>
-                                            </select><br />
-                                        <?php } else if ($_SESSION['NIVEL'] == 3) { ?>
-                                            <input type="hidden" name="nivelId" id="nivelId" value="3" />
-                                        <?php } else { ?>
-                                            <input type="hidden" name="nivelId" id="nivelId" value="4" />
-                                        <?php } ?>
-
-                                        Eu Sou:<br />
-                                        <select name="reservaSexo" id="reservaSexo" class="obrigatorio" >
-                                            <option value=""> Selecione o g&ecirc;nero: </option>
-                                            <option value="m" <?php echo $reservaVo->getReservaSexo() == 'm' ? 'selected=\'selected\'' : ''; ?>> Masculino </option>
-                                            <option value="f" <?php echo $reservaVo->getReservaSexo() == 'f' ? 'selected=\'selected\'' : ''; ?>> Feminino </option>
                                         </select><br />
-                                        Data de nascimento:	<br />
-                                        <input type="text" name="reservaDataNascimento" id="reservaDataNascimento" value="<?php echo $reservaVo->getReservaDataNascimento(); ?>" maxlength="50" class="obrigatorio data"  /><br />
-                                        Documento tipo: 	<br />
-                                        <select name="reservaDocumentoTipo" id="reservaDocumentoTipo" onchange="mudaMascara(this.value);" class="obrigatorio" >
-                                            <option value=""> Selecione o tipo do documento: </option>
-                                            <option value="cpf" <?php echo $reservaVo->getReservaDocumentoTipo() == 'cpf' ? 'selected=\'selected\'' : ''; ?>> cpf </option>
-                                            <option value="cnpj" <?php echo $reservaoVo->getReservaDocumento() == 'cnpj' ? 'selected=\'selected\'' : ''; ?>> cnpj </option>
-                                            <option value="passaporte" <?php echo $reservaVo->getReservaDocumentoTipo() == 'passaporte' ? 'selected=\'selected\'' : ''; ?>> passaporte </option>
-                                        </select><br />
-                                        <div id='documentoNumero' style='display:none;'>
-                                            Documento numero: 	<br />
-                                            <input type="text" name="reservaDocumento" id="reservaDocumento" value="<?php echo $reservaVo->getReservaDocumento() ?>" maxlength="50" onblur='verificaCamposUnicos("reserva", "reservaDocumento", this.value);' class="obrigatorio"  /><br />
-                                        </div>
-                                </div> 	
-
-
-
-                                <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
+                                </div>
+                                    <input type="reset" value="Limpar" name="B1" />
+                                    <span style=" padding-left: 10px" />
+                                    <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                    <span style=" padding-left: 10px" />
+                                    <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                             </form>
                             <?php
                         }

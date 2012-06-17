@@ -353,8 +353,8 @@ DROP TABLE IF EXISTS `hotel_v5`.`reserva` ;
 CREATE  TABLE IF NOT EXISTS `hotel_v5`.`reserva` (
   `reservaId` INT NOT NULL AUTO_INCREMENT ,
   `usuarioId` INT NOT NULL ,
-  `reservaCheckIn` TINYINT(1) NOT NULL ,
-  `reservaFinalizado` TINYINT(1) NOT NULL DEFAULT 1 ,
+  `reservaCheckIn` TINYINT(1) NULL DEFAULT 0 ,
+  `reservaFinalizado` TINYINT(1) NULL DEFAULT 0 ,
   PRIMARY KEY (`reservaId`) ,
   INDEX `fk_reservas_usuarios1` (`usuarioId` ASC) ,
   UNIQUE INDEX `reserva_UNIQUE` (`reservaId` ASC) )
