@@ -1,12 +1,12 @@
 <?php
 // a variavel necessario eh para inserido os objetos que serao incluidos 
-$necessario = array('usuario');
+$necessario = array('reserva');
 include('../template/iniciarDados.php');
 
-$usuarioVo = new UsuarioVo();
-$usuarioBpm = new UsuarioBpm();
+$reservaVo = new ReservaVo();
+$reservaBpm = new ReservaBpm();
 
-$arrayUsuarioVo = $usuarioBpm->buscar('usuario');
+$arrayReservaVo = $reservaBpm->buscar('reserva');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -30,7 +30,7 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
                             <input type="buttom" value="Pesquisar" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>" />
                         </div>
                         <div class="cadastro_novo">
-                             <a href="cadastrarUsuario.php" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>">Cadastrar Novo</a>
+                             <a href="escolheHotel.php" class="subMenuleft borderAll  <?php echo $cor_secundaria; ?>">Cadastrar Novo</a>
                         </div>
                     </div>
                     <table>
@@ -39,15 +39,14 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
                         </tr>                    
                         <?php
                         // colocar os campos de pesquisa 
-                        for ($i = 0; $i < count($arrayUsuarioVo); $i++) {
+                        for ($i = 0; $i < count($arrayReservaVo); $i++) {
                             ?>
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
-                                    <a href='cadastrarUsuario.php?usuario=<?php echo $arrayUsuarioVo[$i]->getUsuarioId(); ?>'> 
+                                    <a href='cadastrarReserva.php?reserva=<?php echo $arrayReservaVo[$i]->getReservaId(); ?>'> 
                                         <?php
-                                        echo $arrayUsuarioVo[$i]->getUsuarioId();
+                                        echo $arrayReservaVo[$i]->getReservaId();
                                         echo ' - ';
-                                        echo $arrayUsuarioVo[$i]->getUsuarioNome();
                                         ?>
                                     </a>
                                 </td>
@@ -73,11 +72,5 @@ $arrayUsuarioVo = $usuarioBpm->buscar('usuario');
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>
-    <script type="text/javascript">
-<?php if (isset($_POST['paisOrigem'])) { ?>
-        aplicarMascara(<?php $_POST['paisOrigem']; ?>);
-                                                                    
-<?php } ?>
-    </script>
 </html>
 </html>

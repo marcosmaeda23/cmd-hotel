@@ -270,6 +270,27 @@ class Entidade extends Banco {
     }
 
     /**
+     * metodo para buscar os objetos 
+     * @param sem param
+     * @return array de objeto
+     */
+    public function buscarPorHotel($idHotel) {
+        $sql = 'SELECT * FROM ' . $this->entidade . ' WHERE hotelId = ' . $idHotel . ' LIMIT ' . $this->limite;
+        $query = mysql_query($sql);
+        $arrayObjeto = array();
+        $qtde = mysql_affected_rows();
+        if ($qtde > 0) {
+	        while ($rows = mysql_fetch_object($query)) {
+				eval('$objetoVo = new '.ucfirst($this->entidade).'Vo();');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Id("$rows->'.$this->entidade.'Id");');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Nome("$rows->'.$this->entidade.'Nome");');
+				$arrayObjeto[] = $objetoVo;			
+	        }
+        }		
+		return $arrayObjeto;
+    }
+    
+    /**
      * metodo para veificar se o numenro do documento ja esta na basa de dados
      * @param objeto e o tipo do documento
      * @return boolean

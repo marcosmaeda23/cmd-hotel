@@ -20,6 +20,7 @@ class CepVo {
     private $estadoUf;
     private $paisId;
     private $paisNome;
+    
     public $cepObrigatorio = array('cepId' => '',
         'cepNumero' => '',
         'logradouroId' => '',

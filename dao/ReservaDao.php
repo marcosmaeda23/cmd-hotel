@@ -1,9 +1,9 @@
 <?php
 
 /**
- * classe com o metodo exclusivo do gerente
+ * classe com o metodo exclusivo do usuario
  */
-class QuartoDao extends Entidade {
+class ReservaDao extends Entidade {
 
     // =================================================================
     // SETANDO =========================================================
@@ -11,35 +11,25 @@ class QuartoDao extends Entidade {
     /**
      * nome da tabela 
      */
-    protected $entidade = 'quarto';
+    protected $entidade = 'reserva';
 
     /**
      * chave estrangeira
      * @example $chaveEstrangeira 	= array('usuarioSistema INT(11) NOT NULL')
      */
-    protected $chaveEstrangeira = array(
-        'hotelId INT NOT NULL',
-        'quartoTipoId INT NOT NULL',
-        'statusId INT NOT NULL'
-        );
+    protected $chaveEstrangeira = array('usuarioId NOT NULL');
 
     /**
      * se tiver a chave estrangeira setado arruma a relacao e defineo update 
      * @example $onUpdate = array('usuarioSistema' => 'cascade');
      */
-    protected $onUpdate = array(
-        'hotelId' => 'cascade',
-        'quartoTipoId' => 'cascade',
-        'statusId' => 'cascade');
+    protected $onUpdate = array('usuarioId' => 'cascade');
 
     /**
      * se tiver a chave estrangeira setado arruma a relacao e define o delete
      * @example $onUpdate = array('usuarioSistema' => 'set null');
      */
-    protected $onDelete = array(
-        'hotelId' => 'cascade',
-        'quartoTipoId' => 'cascade',
-        'statusId' => 'cascade');
+    protected $onDelete = array('usuarioId' => 'cascade');
 
     /**
      * se tiver algum atributo como unique setado, inclui na tabela
@@ -52,12 +42,11 @@ class QuartoDao extends Entidade {
      * seta a base de dados para fazer a atualizacao ou criacao
      * @deprecated id, status, dataCadastro, ordem - esses sao setados separados 
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
-     * reservado 1-nao reservado, 2-resevado, 3-manutencao, 4-indisponivel
      */
     protected $dadosBase = array(
-        'numero VARCHAR (100) NOT NULL',
-        'descricao VARCHAR (800) NOT NULL',
-        'valor DECIMAL (0,2) NOT NULL');
+        'reservaCheckIn` TINYINT(1) NOT NULL ',
+        'reservaFinalizado` TINYINT(1) NOT NULL DEFAULT 1 ',
+    );
 
     /**
      * metodo para buscar os objetos 
@@ -73,34 +62,11 @@ class QuartoDao extends Entidade {
             while ($rows = mysql_fetch_object($query)) {
                 eval('$objetoVo = new ' . ucfirst($this->entidade) . 'Vo();');
                 eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Id("$rows->' . $this->entidade . 'Id");');
-                eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Descricao("$rows->' . $this->entidade . 'Descricao");');
                 $arrayObjeto[] = $objetoVo;
             }
         }
         return $arrayObjeto;
     }
-
-    /**
-     * metodo para buscar os objetos 
-     * @param sem param
-     * @return array de objeto
-     */
-    public function buscarPorHotel($idHotel) {
-        $sql = 'SELECT * FROM ' . $this->entidade . ' WHERE hotelId = ' . $idHotel . ' LIMIT ' . $this->limite;
-        $query = mysql_query($sql);
-        $arrayObjeto = array();
-        $qtde = mysql_affected_rows();
-        if ($qtde > 0) {
-	        while ($rows = mysql_fetch_object($query)) {
-				eval('$objetoVo = new '.ucfirst($this->entidade).'Vo();');
-				eval('$objetoVo -> set'. ucfirst($this->entidade).'Id("$rows->'.$this->entidade.'Id");');
-				eval('$objetoVo -> set'. ucfirst($this->entidade).'Descricao("$rows->'.$this->entidade.'Descricao");');
-				$arrayObjeto[] = $objetoVo;			
-	        }
-        }		
-		return $arrayObjeto;
-    }
-    
 
     /**
      * Array contendo a ordem para salvar no banco
@@ -114,7 +80,6 @@ class QuartoDao extends Entidade {
 
     /**
      *  se true coloca um campo status na tabela
-     * 	padrao 1 - ativo, 2 - inativo
      */
     protected $status = false;
 
@@ -131,12 +96,12 @@ class QuartoDao extends Entidade {
     /**
      * arquivo com foto
      */
-    protected $foto = true;
+    protected $foto = false;
 
     /**
      * se foto true , as fotos vao para esta pasta
      */
-    protected $fotoPasta = '../quarto/upload/';
+    protected $fotoPasta = '';
 
     // =================================================================
     // METODOS =========================================================

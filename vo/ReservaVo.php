@@ -13,7 +13,7 @@ class ReservaVo {
     private $reservaCheckIn;
     private $reservaFinalizado;
     
-    public $cepObrigatorio = array(
+    public $reservaObrigatorio = array(
         'reservaId' => '',
         'usuarioId' => '',
         'reservaCheckIn' => '',

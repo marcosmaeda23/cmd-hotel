@@ -13,7 +13,7 @@ class RamalVo {
     private $ambienteId;
     private $ramalNumero;
     
-    public $cepObrigatorio = array(
+    public $ramalObrigatorio = array(
         'ramalId' => '',
         'quartoId' => '',
         'ambienteId' => '',

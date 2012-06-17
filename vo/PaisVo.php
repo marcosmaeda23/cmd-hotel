@@ -11,7 +11,7 @@ class PaisVo {
     private $paisId;
     private $paisNome;
     
-    public $cepObrigatorio = array(
+    public $paisObrigatorio = array(
         'paisId' => '',
         'paisNome' => ''
     );
