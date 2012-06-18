@@ -52,9 +52,13 @@ $arrayQuartoVo = $quartoBpm->buscar('quarto');
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarQuarto.php?quarto=<?php echo $arrayQuartoVo[$i]->getQuartoId(); ?>'> 
-                                        <?php
-                                        echo $arrayQuartoVo[$i]->getQuartoId();
-                                        echo ' - ';
+                                        
+										<?php
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayQuartoVo[$i]->getQuartoId();
+	                                        echo ' | ';
+                                        }
                                         echo $arrayQuartoVo[$i]->getQuartoDescricao();
                                         ?>
                                     </a>

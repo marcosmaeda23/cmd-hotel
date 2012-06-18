@@ -61,8 +61,13 @@ $arrayHotelVo = $hotelBpm->buscar('hotel');
                                     <a href='exibirHotel.php?hotel=<?php echo $arrayHotelVo[$i]->getHotelId(); ?>'> 
                                 <?php } ?>
                                         <?php
-                                        echo $arrayHotelVo[$i]->getHotelId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+
+	                                        echo $arrayHotelVo[$i]->getHotelId();
+	                                        echo ' | ';
+                                        }
+    
                                         echo $arrayHotelVo[$i]->getHotelNome();
                                         ?>
                                     </a>

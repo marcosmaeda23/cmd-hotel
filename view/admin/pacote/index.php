@@ -54,8 +54,12 @@ $arrayPacoteVo = $pacoteBpm->buscar('pacote');
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarPacote.php?pacote=<?php echo $arrayPacoteVo[$i]->getPacoteId(); ?>'> 
                                         <?php
-                                        echo $arrayPacoteVo[$i]->getPacoteId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayPacoteVo[$i]->getPacoteId();
+	                                        echo ' | ';
+                                        }
+                                        
                                         echo $arrayPacoteVo[$i]->getPacoteNome();
                                         ?>
                                     </a>

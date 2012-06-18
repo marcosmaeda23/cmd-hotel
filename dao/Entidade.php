@@ -96,7 +96,7 @@ class Entidade extends Banco {
                 } else {
                     if ($_dadosBase[1] == 'DATE') {
                         $sql .= formatarData($valor);
-                    } if($_dadosBase[1] == 'DECIMAL'){
+                    } else if($_dadosBase[1] == 'DECIMAL'){
                 		$sql .= formatarValor($valor);
                 	} else {
                         $sql .= $valor;
@@ -119,7 +119,7 @@ class Entidade extends Banco {
             }
             $sql .= ' ) ;';
             $query = mysql_query($sql);
-            //$_id = mysql_insert_id();
+            $_id = mysql_insert_id();
             //echo $sql;
             //exit();
         } else {

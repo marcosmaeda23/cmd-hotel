@@ -44,9 +44,15 @@ $arrayReservaVo = $reservaBpm->buscar('reserva');
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarReserva.php?reserva=<?php echo $arrayReservaVo[$i]->getReservaId(); ?>'> 
-                                        <?php
-                                        echo $arrayReservaVo[$i]->getReservaId();
-                                        echo ' - ';
+                                        
+										<?php
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+
+	                                        echo $arrayReservaVo[$i]->getReservaId();
+	                                        echo ' | ';
+                                        }
+                                        
                                         ?>
                                     </a>
                                 </td>

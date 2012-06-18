@@ -1,4 +1,4 @@
-<!-- JavaScriptsrwerwer -->
+<!-- JavaScripts -->
 <script type="text/javascript" src="../_js/plugin/jquery-1.7.1.min.js"></script>
 <script type="text/javascript" src="../_js/jquery.js"></script>
 <script type="text/javascript" src="../_js/menu.js"></script>
