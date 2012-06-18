@@ -16,12 +16,12 @@ function verificarCampos_1(){
 	}
 	
 	var parametros = '';
-	parametros += '&dataInicial=' + $('#data_inicial').val();
-	parametros += '&dataFinal=' + $('#data_final').val();
-	parametros += '&tipoQuarto=' + $('#quartoId').val();
+	parametros += '&itemReservaDataInicial=' + $('#data_inicial').val();
+	parametros += '&itemReservaDataFinal=' + $('#data_final').val();
+	parametros += '&quartoId=' + $('#quartoId').val();
 	$.ajax({
 		// definimos a url
-		url : 'rervaController.php',
+		url : 'reservaController.php',
 		// definimos o tipo de requisiï¿½ï¿½o, post ou get
 		type : 'post',
 		// definimos o tipo de retorno, xml, html, json, sjonp, script e text
@@ -53,10 +53,11 @@ function verificarCampos_1(){
 		},
 		// colocamos o retorno na tela
 		success : function(resposta) {
+			alert(resposta);
 			if(resposta == 'sucesso'){
-				alert('Reserva efetuada.');
-			} else {
 				alert('Quarto indisponível nesta data.');
+			} else {
+				alert('Reserva efetuada.');
 			}
 			
 		}
