@@ -43,7 +43,7 @@ $arrayQuartoVo = $quartoBpm->buscar('quarto');
                         <?php
                         if ($arrayQuartoVo == null) {
                             echo "<tr class ='linhaResultado'>
-                                    <td>Sem nenhum serviço cadastrado</td>
+                                    <td>Sem nenhum quarto cadastrado</td>
                                   </tr>";
                         }
                         // colocar os campos de pesquisa 

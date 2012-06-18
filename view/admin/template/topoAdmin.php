@@ -22,7 +22,7 @@
                             <li><a href="../cardapioTipo" class="parent"><span>Cardapio tipo</span> </a></li>
                             <li><a href="../ambiente" class="parent"><span>Ambiente</span> </a></li>
                             <li><a href="../pacote" class="parent"><span>Pacote</span> </a></li>
-                            <li><a href="../financeiro" class="parent"><span>Financeio</span> </a>
+                            <li><a href="../financeiro" class="parent"><span>Financeiro</span> </a>
                         <?php } ?>
                         </li>
                     </ul>
