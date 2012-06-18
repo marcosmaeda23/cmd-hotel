@@ -48,7 +48,6 @@ $arrayReservaVo = $reservaBpm->buscar('reserva');
 										<?php
                                         if($_SESSION['NIVEL'] == 1){
 	                                        echo '| ';
-
 	                                        echo $arrayReservaVo[$i]->getReservaId();
 	                                        echo ' | ';
                                         }
@@ -66,9 +65,9 @@ $arrayReservaVo = $reservaBpm->buscar('reserva');
                             <?php
                             // colocar aqui um botao para excluir e outro para alterar
                         }
-                        echo "</table>";
+         
                         ?>
-
+					</table>
                         <br />
                 </div>
             </div>
