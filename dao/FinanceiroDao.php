@@ -73,7 +73,7 @@ class FinanceiroDao extends Entidade {
             while ($rows = mysql_fetch_object($query)) {
                 eval('$objetoVo = new ' . ucfirst($this->entidade) . 'Vo();');
                 eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Id("$rows->' . $this->entidade . 'Id");');
-                eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Descricao("$rows->' . $this->entidade . 'Descricao");');
+                //eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Descricao("$rows->' . $this->entidade . 'Descricao");');
                 $arrayObjeto[] = $objetoVo;
             }
         }

@@ -32,7 +32,7 @@ $arrayFinanceiroVo = $financeiroBpm->buscar('financeiro');
                         </div>
                         <?php if ($_SESSION['NIVEL'] == 2 || $_SESSION['NIVEL'] == 1) { ?> 
                         <div class="cadastro_novo">
-                            <a href="cadastrarFinanceiro.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
+                            <a href="escolheHotel.php" class="subMenuleft borderAll <?php echo $cor_principal; ?>">Cadastrar Novo</a>
                         </div>
                         <?php } ?>
                     </div>
@@ -55,7 +55,7 @@ $arrayFinanceiroVo = $financeiroBpm->buscar('financeiro');
                                         <?php
                                         echo $arrayFinanceiroVo[$i]->getFinanceiroId();
                                         echo ' - ';
-                                        echo $arrayFinanceiroVo[$i]->getFinanceiroDescricao();
+                                        //echo $arrayFinanceiroVo[$i]->getFinanceiroDescricao();
                                         ?>
                                     </a>
                                 </td>

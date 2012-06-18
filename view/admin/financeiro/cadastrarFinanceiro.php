@@ -1,5 +1,5 @@
 <?php
-$necessario = array('hotel', 'financeiro', 'financeiroTipo');
+$necessario = array('hotel', 'financeiro', 'reserva', 'usuario');
 include('../template/iniciarDados.php');
 
 // buscar os hoteis para mostar no slect
@@ -8,9 +8,14 @@ $hotelBpm = new HotelBpm();
 $arrayHotelVo = $hotelBpm->buscar('hotel');
 
 // buscar os Tipo Financeiro para mostar no slect
-$financeiroTipoVo = new FinanceiroTipoVo();
-$financeiroTipoBpm = new FinanceiroTipoBpm();
-$arrayFinanceiroTipoVo = $financeiroTipoBpm->buscar('financeiroTipo');
+$usuarioVo = new UsuarioVo();
+$usuarioBpm = new UsuarioBpm();
+$arrayUsuarioVo = $usuarioBpm->buscar('usuario');
+
+// buscar os Tipo Financeiro para mostar no slect
+$reservaVo = new ReservaVo();
+$reservaBpm = new ReservaBpm();
+$arrayReservaVo = $reservaBpm->buscar('reserva');
 
 $financeiroVo = new FinanceiroVo();
 if (!empty($_GET['financeiro'])) {

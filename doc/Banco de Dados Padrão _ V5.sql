@@ -182,21 +182,34 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
+-- Table `hotel_v5`.`status`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `hotel_v5`.`status` ;
+
+CREATE  TABLE IF NOT EXISTS `hotel_v5`.`status` (
+  `statusId` INT NOT NULL ,
+  `statusDescricao` VARCHAR(100) NOT NULL ,
+  PRIMARY KEY (`statusId`) )
+ENGINE = InnoDB;
+
+
+-- -----------------------------------------------------
 -- Table `hotel_v5`.`ambiente`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `hotel_v5`.`ambiente` ;
 
 CREATE  TABLE IF NOT EXISTS `hotel_v5`.`ambiente` (
   `ambienteId` INT NOT NULL AUTO_INCREMENT ,
+  `hotelId` INT NOT NULL ,
+  `statusId` INT NOT NULL ,
   `ambienteNome` VARCHAR(100) NOT NULL ,
   `ambienteObservacao` VARCHAR(800) NULL ,
   `ambienteValor` DECIMAL(20,2) NOT NULL ,
-  `ambienteReservado` TINYINT(1) NULL DEFAULT 0 ,
   `ambienteDataCadastro` DATETIME NOT NULL ,
-  `hotelId` INT NOT NULL ,
   PRIMARY KEY (`ambienteId`) ,
   UNIQUE INDEX `ambiente_UNIQUE` (`ambienteId` ASC) ,
-  INDEX `hotel5` (`hotelId` ASC) )
+  INDEX `hotel5` (`hotelId` ASC) ,
+  INDEX `status1` (`statusId` ASC) )
 ENGINE = InnoDB;
 
 
@@ -242,18 +255,6 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`quartoTipo` (
   `quartoTipoDataCadastro` TIMESTAMP NULL ,
   PRIMARY KEY (`quartoTipoId`) ,
   UNIQUE INDEX `id_UNIQUE` (`quartoTipoId` ASC) )
-ENGINE = InnoDB;
-
-
--- -----------------------------------------------------
--- Table `hotel_v5`.`status`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `hotel_v5`.`status` ;
-
-CREATE  TABLE IF NOT EXISTS `hotel_v5`.`status` (
-  `statusId` INT NOT NULL ,
-  `statusDescricao` VARCHAR(100) NOT NULL ,
-  PRIMARY KEY (`statusId`) )
 ENGINE = InnoDB;
 
 
@@ -535,6 +536,7 @@ CREATE  TABLE IF NOT EXISTS `hotel_v5`.`foto` (
   `cardapioId` INT NULL ,
   `servicoId` INT NULL ,
   `fotoNome` VARCHAR(100) NOT NULL ,
+  `fotoNomeThumb` VARCHAR(100) NOT NULL ,
   `fotoDataCadastro` DATETIME NOT NULL ,
   PRIMARY KEY (`fotoId`) ,
   INDEX `tipoQuarto3` (`tipoQuartoId` ASC) ,
@@ -595,11 +597,23 @@ INSERT INTO `hotel_v5`.`telefone` (`telefoneId`, `hotelId`, `usuarioId`, `telefo
 COMMIT;
 
 -- -----------------------------------------------------
+-- Data for table `hotel_v5`.`status`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (1, 'nao reservado');
+INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (2, 'nao reservado');
+INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (3, 'manutencao');
+INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (4, 'inativo');
+
+COMMIT;
+
+-- -----------------------------------------------------
 -- Data for table `hotel_v5`.`ambiente`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `hotel_v5`;
-INSERT INTO `hotel_v5`.`ambiente` (`ambienteId`, `ambienteNome`, `ambienteObservacao`, `ambienteValor`, `ambienteReservado`, `ambienteDataCadastro`, `hotelId`) VALUES (1, 'Pacore Padrão', 'Obs Padrão', 100.0, 0, '2012-06-16 00:06:43', 1);
+INSERT INTO `hotel_v5`.`ambiente` (`ambienteId`, `hotelId`, `statusId`, `ambienteNome`, `ambienteObservacao`, `ambienteValor`, `ambienteDataCadastro`) VALUES (1, 1, 1, 'Pacore Padrão', 'Obs Padrão', 100.0, '2012-06-16 00:06:43');
 
 COMMIT;
 
@@ -631,18 +645,6 @@ COMMIT;
 START TRANSACTION;
 USE `hotel_v5`;
 INSERT INTO `hotel_v5`.`quartoTipo` (`quartoTipoId`, `quartoTipoDescricao`, `quartoTipoDataCadastro`) VALUES (1, 'Tipo Padrão', '2012-06-16 00:06:43');
-
-COMMIT;
-
--- -----------------------------------------------------
--- Data for table `hotel_v5`.`status`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `hotel_v5`;
-INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (1, 'nao reservado');
-INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (2, 'nao reservado');
-INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (3, 'manutencao');
-INSERT INTO `hotel_v5`.`status` (`statusId`, `statusDescricao`) VALUES (4, 'inativo');
 
 COMMIT;
 
@@ -714,6 +716,15 @@ INSERT INTO `hotel_v5`.`pagamento` (`pagamentoId`, `pagamentoNome`) VALUES (1, '
 INSERT INTO `hotel_v5`.`pagamento` (`pagamentoId`, `pagamentoNome`) VALUES (2, 'débito');
 INSERT INTO `hotel_v5`.`pagamento` (`pagamentoId`, `pagamentoNome`) VALUES (3, 'cartão');
 INSERT INTO `hotel_v5`.`pagamento` (`pagamentoId`, `pagamentoNome`) VALUES (4, 'cheque');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `hotel_v5`.`financeiro`
+-- -----------------------------------------------------
+START TRANSACTION;
+USE `hotel_v5`;
+INSERT INTO `hotel_v5`.`financeiro` (`financeiroId`, `reservaId`, `pagamentoId`, `usuarioSistemaId`, `financeiroValor`, `financeiroDataCadastro`) VALUES (1, 1, 1, 1, 111.11, '2012-06-16 00:06:43');
 
 COMMIT;
 
