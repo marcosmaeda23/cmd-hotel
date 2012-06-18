@@ -177,5 +177,5 @@ $hotelEscolhido = $_POST['hotelId'];
     </body>
     <!-- scripts gerais -->
     <?php include('../template/js.php') ?>	
-    <script type="text/javascript" src="../../_js/servico.js"></script>
+    <script type="text/javascript" src="../../_js/pacote.js"></script>
 </html>

@@ -59,12 +59,12 @@ class PacoteDao extends Entidade {
      * reservado 1-nao reservado, 2-resevado, 3-manutencao, 4-indisponivel
      */
     protected $dadosBase = array(
-        'nome VARCHAR(100) NOT NULL ',
-        'dataInicial DATE NULL ',
-        'dataFinal DATE NULL ',
-        'periodo DECIMAL (2) NULL ',
-        'pessoas INT NOT NULL ',
-        'desconto DECIMAL (2,2) NULL ',
+        'nome VARCHAR(100) NOT NULL',
+        'dataInicial DATE NULL',
+        'dataFinal DATE NULL',
+        'periodo DECIMAL (2) NULL',
+        'pessoas INT NOT NULL',
+        'desconto DECIMAL (2,2) NULL'
     );
 
     /**

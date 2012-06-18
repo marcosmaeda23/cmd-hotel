@@ -37,16 +37,12 @@ if ($_POST['acao'] == 'cadastrarPacote') {
     }
     if (!$ERRO) {
         $sucesso = $pacoteBpm->cadastrarAlterar($pacoteVo, 'pacote');
-
         if (!$sucesso) {
             $ERRO = true;
             $erro_nome .= 'O ocorreu um erro ao cadastrar o pacote';
         }
     }
    
-    var_dump($pacoteVo);
-    exit();
-
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("pacote cadastrado com sucesso.");';
