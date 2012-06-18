@@ -6,6 +6,24 @@ include('../template/iniciarDados.php');
 // -------------------------------
 // para cadastrar ou alterar
 // ------------------------------- 
+if ($_POST['acao'] == 'verificaReserva') {
+
+	$itemReservaVo = new itemReservaVo();
+	$itemReservaVo ->setItemReservaDataInicial($_POST['itemReservaDataInicial']);
+	$itemReservaVo ->setItemReservaDataFinal($_POST['itemReservaDataFinal']);
+	$itemReservaVo ->setQuartoId($_POST['quartoId']);
+
+	$itemReservaBpm = new itemReservaBpm();
+	
+	$sucesso = $itemReservaBpm->verificaReserva($itemReservaVo, 'itemReserva');
+	if($sucesso){
+		$_POST['acao'] = 'cadastrarReserva';
+	} else {
+		return 'fracasso';
+	}
+
+
+}
 
 if ($_POST['acao'] == 'cadastrarReserva') {
     $reservaVo = new ReservaVo();
@@ -93,18 +111,10 @@ if ($_POST['acao'] == 'cadastrarReserva') {
         }
     }
 
-    //var_dump($itemReservaVo);
-    exit();
     if (!$ERRO) {
-        echo '<script language="JavaScript">';
-        echo 'alert("Bem vindo");';
-        echo 'location.href="../home/index.php";';
-        echo '</script>';
+       echo 'fracasso';
     } else {
-        echo '<script language="JavaScript">';
-        echo 'alert("' . $erro_nome . '");';
-        echo 'location.href="index.php";';
-        echo '</script>';
+        echo 'sucesso';
     }
 }
 ?>

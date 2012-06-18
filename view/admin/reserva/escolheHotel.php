@@ -22,7 +22,7 @@ if($_SESSION['NIVEL'] <> 4){
     $usuarioBpm = new UsuarioBpm();
     $usuarioVo = $usuarioBpm->buscar('usuario');	
 }
-echo $_SESSION['NIVEL'];
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -64,7 +64,7 @@ echo $_SESSION['NIVEL'];
                                     <select name="hotelId" id="hotelId" class="obrigatorio" >
                                         <option value=""> Selecione o hotel: </option>
                                         <?php for ($i = 0; $i < count($arrayHotelVo); $i++) { ?>
-                                            <option value="<?php echo $arrayHotelVo[$i]->getHotelId(); ?>"<?php echo $quartoVo->getHotelId() == $arrayHotelVo[$i]->getHotelId() ? 'selected=\'selected\'' : ''; ?>>
+                                            <option value="<?php echo $arrayHotelVo[$i]->getHotelId(); ?>">
                                                 <?php echo $arrayHotelVo[$i]->getHotelNome(); ?>
                                             </option>
 
@@ -74,10 +74,10 @@ echo $_SESSION['NIVEL'];
                                     
 		                            <?php
 		                            if($_SESSION['NIVEL'] == 4){ ?>
-		                           		<input type="hidden" name="usuarioId" id="usuarioId" value="<?php echo $_SESSION['ID']; ?>"  />
+		                           		<input type="hidden" class="obrigatorio" name="usuarioId" id="usuarioId" value="<?php echo $_SESSION['ID']; ?>"  />
 		                           	<?php
 		                            } else {
-		                            	?>
+		                               	?>
 		                            	 Selecione o usuario:<br />
 		                                    <select name="usuarioId" id="usuarioId" class="obrigatorio" >
 		                                        <option value=""> Selecione o usuário: </option>

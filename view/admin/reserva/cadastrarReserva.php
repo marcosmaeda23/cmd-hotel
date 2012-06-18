@@ -1,9 +1,12 @@
 <?php
-$necessario = array('reserva', 'hotel', 'pacote', 'quarto', 'quartoTipo', 'ambiente', 'servico', 'cardapio');
+$necessario = array('reserva', 'hotel', 'pacote', 'quarto', 'quartoTipo', 'ambiente', 'servico', 'cardapio', 'usuario');
 include('../../admin/template/iniciarDados.php');
-
-
-$idUsuario = $_SESSION['ID'];
+       
+if($_SESSION['NIVEL'] == 4){ 
+	$idUsuario = $_SESSION['ID'];
+} else {
+	$usuarioEscolhido = $_POST['usuarioId'];	
+}
 $hotelEscolhido = $_POST['hotelId'];
 
 
@@ -38,6 +41,11 @@ $pacoteBpm = new PacoteBpm();
 $arrayPacoteVo = $pacoteBpm->buscarPoHotel('pacote', $hotelEscolhido);
 
 
+$usuarioVo = new UsuarioVo();
+if($_SESSION['NIVEL'] <> 4){
+    $usuarioBpm = new UsuarioBpm();
+    $usuarioVo = $usuarioBpm->buscar('usuario');	
+}
 
 $reservaVo = new ReservaVo();
 if (!empty($_GET)) {
@@ -111,79 +119,74 @@ if (!empty($_GET)) {
                                             }
                                         }
                                         ?>
+                                        <br />
+                                    Usuário Selecionado:<span style="padding-left:20px">
+                                        <?php
+                                        $usuarioEscolhido = $usuarioEscolhido - 1;
+                                        for ($i = 0; $i < count($usuarioVo); $i++) {
+                                            if ($i == $usuarioEscolhido) {
+                                                echo $usuarioVo[$i]->getUsuarioNome();
+                                            }
+                                        }
+                                        ?>
+                                        
+                                        
+                                        
 
                                         <br />
                                         <br />
                                         <?php
-                        if (count($arrayQuartoVo) > 0) { ?>
+				                        if (count($arrayQuartoVo) > 0) { ?>
+				
+				
+	                                        Selecione um Quarto :<br />
+	                                        <select name="quartoId" id="quartoId" class="" >
+	                                            <option value=""> Selecione o quarto: </option>
+	                                            <?php for ($i = 0; $i < count($arrayQuartoVo); $i++) { ?>
+	                                                <option value="<?php echo $arrayQuartoVo[$i]->getQuartoId(); ?>"<?php echo $quartoVo->getQuartoId() == $arrayQuartoVo[$i]->getQuartoId() ? 'selected=\'selected\'' : ''; ?>>
+	                                                    <?php echo $arrayQuartoVo[$i]->getQuartoDescricao(); ?>
+	                                                </option>
+	
+	                                            <?php }
+	                                            ?>
+	
+	                                        </select><br />
+	       								<?php
+				                        } 
+				                        if (count($arrayAmbienteVo) > 0) { ?>
 
+	                                        Selecione um ambiente :<br />
+	                                        <select name="ambienteId" id="ambienteId" class="" >
+	                                            <option value=""> Selecione o ambiente: </option>
+	                                            <?php for ($i = 0; $i < count($arrayAmbienteVo); $i++) { ?>
+	                                                <option value="<?php echo $arrayAmbienteVo[$i]->getAmbienteId(); ?>"<?php echo $ambienteVo->getAmbienteId() == $arrayAmbienteVo[$i]->getAmbienteId() ? 'selected=\'selected\'' : ''; ?>>
+	                                                    <?php echo $arrayAmbienteVo[$i]->getAmbienteNome(); ?>
+	                                                </option>
+	
+	                                            <?php }
+	                                            ?>
+	
+	                                        </select><br />
 
-                                        Selecione um Quarto :<br />
-                                        <select name="quartoId" id="quartoId" class="" >
-                                            <option value=""> Selecione o quarto: </option>
-                                            <?php for ($i = 0; $i < count($arrayQuartoVo); $i++) { ?>
-                                                <option value="<?php echo $arrayQuartoVo[$i]->getQuartoId(); ?>"<?php echo $quartoVo->getQuartoId() == $arrayQuartoVo[$i]->getQuartoId() ? 'selected=\'selected\'' : ''; ?>>
-                                                    <?php echo $arrayQuartoVo[$i]->getQuartoDescricao(); ?>
-                                                </option>
+	       								<?php
+				                        }
+				                        
+					                    if (count($arrayPacoteVo) > 0) { ?>
+	                                        Selecione um pacote :<br />
+	                                        <select name="pacoteId" id="pacoteId" class="" >
+	                                            <option value=""> Selecione o pacote: </option>
+	                                            <?php for ($i = 0; $i < count($arrayPacoteVo); $i++) { ?>
+	                                                <option value="<?php echo $arrayPacoteVo[$i]->getPacoteId(); ?>"<?php echo $pacoteVo->getPacoteId() == $arrayPacoteVo[$i]->getPacoteId() ? 'selected=\'selected\'' : ''; ?>>
+	                                                    <?php echo $arrayPacoteVo[$i]->getPacoteNome(); ?>
+	                                                </option>
+	
+	                                            <?php }
+	                                            ?>
+	
+	                                        </select><br />
 
-                                            <?php }
-                                            ?>
-
-                                        </select><br />
-       					<?php
-                        } ?>
-
-                                        Selecione um ambiente :<br />
-                                        <select name="ambienteId" id="ambienteId" class="" >
-                                            <option value=""> Selecione o ambiente: </option>
-                                            <?php for ($i = 0; $i < count($arrayAmbienteVo); $i++) { ?>
-                                                <option value="<?php echo $arrayAmbienteVo[$i]->getAmbienteId(); ?>"<?php echo $ambienteVo->getAmbienteId() == $arrayAmbienteVo[$i]->getAmbienteId() ? 'selected=\'selected\'' : ''; ?>>
-                                                    <?php echo $arrayAmbienteVo[$i]->getAmbienteNome(); ?>
-                                                </option>
-
-                                            <?php }
-                                            ?>
-
-                                        </select><br />
-
-                                        Selecione um servico:<br />
-                                        <select name="servicoId" id="servicoId" class="" >
-                                            <option value=""> Selecione o servico: </option>
-                                            <?php for ($i = 0; $i < count($arrayServicoVo); $i++) { ?>
-                                                <option value="<?php echo $arrayServicoVo[$i]->getServicoId(); ?>"<?php echo $servicoVo->getServicoId() == $arrayServicoVo[$i]->getServicoId() ? 'selected=\'selected\'' : ''; ?>>
-                                                    <?php echo $arrayServicoVo[$i]->getServicoNome(); ?>
-                                                </option>
-
-                                            <?php }
-                                            ?>
-
-                                        </select><br />
-
-                                        Selecione um cardapio :<br />
-                                        <select name="cardapioId" id="cardapioId" class="" >
-                                            <option value=""> Selecione o cardapio: </option>
-                                            <?php for ($i = 0; $i < count($arrayCardapioVo); $i++) { ?>
-                                                <option value="<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>"<?php echo $cardapioVo->getCardapioId() == $arrayCardapioVo[$i]->getCardapioId() ? 'selected=\'selected\'' : ''; ?>>
-                                                    <?php echo $arrayCardapioVo[$i]->getCardapioNome(); ?>
-                                                </option>
-
-                                            <?php }
-                                            ?>
-
-                                        </select><br />
-
-                                        Selecione um pacote :<br />
-                                        <select name="pacoteId" id="pacoteId" class="" >
-                                            <option value=""> Selecione o pacote: </option>
-                                            <?php for ($i = 0; $i < count($arrayPacoteVo); $i++) { ?>
-                                                <option value="<?php echo $arrayPacoteVo[$i]->getPacoteId(); ?>"<?php echo $pacoteVo->getPacoteId() == $arrayPacoteVo[$i]->getPacoteId() ? 'selected=\'selected\'' : ''; ?>>
-                                                    <?php echo $arrayPacoteVo[$i]->getPacoteNome(); ?>
-                                                </option>
-
-                                            <?php }
-                                            ?>
-
-                                        </select><br />
+	       								<?php
+				                        } ?>
                                         Data inicial:<br />
                                         <input type="text" name="itemReservaDataInicial" id="data_inicial" size="10" maxlength="10" value="" class="obrigatorio data" />
                                         <br />
