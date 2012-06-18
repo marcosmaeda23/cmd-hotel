@@ -15,22 +15,18 @@ include('../admin/template/iniciarDados.php');
         <div class="content cf">
             <div class="container">
                 <div class="middle">
-
                     <div class="cf middleConteudo">
-                        <div class="cadastro" style="padding-right:30px">
-                            <div class="conteudoMenu <?php echo $cor_principal; ?>">Realize Sua Reserva</div>
-                            <form action="frmUsuarioinserir.php" method="post" style="border:0; margin:0;" id="cadastro"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
+                        <div class="conteudoMenuCompleto <?php echo $cor_principal; ?>">Realize Sua Reserva</div>
+                        <div class=".conteudoConteudoCompleto">
+                            
+                            <!-- BEGIN Help Center Live Code, Copyright (c) 2005 Help Center Live. All Rights Reserved -->
+<div id="div_initiate" style="position:absolute; z-index:1; top: 40%; left:40%; visibility: hidden;"><a href="javascript:Live.initiate_accept();"><img src="http://localhost:8888/Chat/_hcl/templates/Bliss/images/initiate.gif" border="0"></a><br><a href="javascript:Live.initiate_decline();"><img src="http://localhost:8888/Chat/_hcl/templates/Bliss/images/initiate_close.gif" border="0"></a></div>
+<script type="text/javascript" language="javascript" src="http://localhost:8888/Chat/_hcl/class/js/include.php?live"></script>
+<!-- END Help Center Live Code, Copyright (c) 2005 Help Center Live. All Rights Reserved -->
 
-                                <!-- Datepicker -->
-                                <h2 class="demoHeaders">Data:</h2>
-                                <div id="datepicker"></div>
-                                <div class="cadastro_selecao">
-                                    <input type="submit" name="cmdSalvar" value=" Cadastrar "  onClick="return cadastrar()" >
-                                </div>
-                            </form>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

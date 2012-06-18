@@ -15,7 +15,9 @@ include('../admin/template/iniciarDados.php');
         <div class="content cf">
             <div class="container">
                 <div class="middle">
-
+                    <br/>
+                    <br/>
+                    <br/>
                     <div id="imageSlideshow">
                         <div rel="slider_content" style="display: none;">
                             <div rel="slide">
