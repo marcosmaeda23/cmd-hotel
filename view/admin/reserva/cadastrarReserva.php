@@ -104,7 +104,7 @@ if (!empty($_GET)) {
                         }
                         if (!$ERRO) {
                             ?>
-                            <form action="reservaController.php" method="post" id="cadastroReserva" onsubmit="return verificarCampos('cadastroReserva');" >
+                            <form action="reservaController.php" method="post" id="cadastroReserva" onsubmit="return verificarCampos_1();" >
                                 <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarReserva" />
                                 <input type="hidden" name="usuarioId" id="usuarioId" maxlength="50" value="<?php echo $idUsuario; ?>" />
 

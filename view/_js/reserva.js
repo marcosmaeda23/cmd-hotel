@@ -4,7 +4,7 @@ $(document).ready(function(){
 	aplicarMascara();
 });	
 
-function verificarCampos(_form){
+function verificarCampos_1(){
 	if($('#data_inicial').val() == ''){
 		return;
 	}
@@ -61,5 +61,6 @@ function verificarCampos(_form){
 			
 		}
 	});
+	return false;
 
 }
