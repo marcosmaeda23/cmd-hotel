@@ -44,7 +44,7 @@ if (!empty($_GET)) {
 
                             if (!empty($cardapioTipoVo)) {
                                 ?>
-                                <form action="cardapioController.php" method="post" onsubmit="return verificarCampos();" enctype="multipart/form-data" >
+                                <form id="cadastrarCardapio" action="cardapioController.php" method="post" onsubmit="return verificarCampos('cadastrarCardapio');" enctype="multipart/form-data" >
                                     <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarCardapio" />
                                     <input type="hidden" name="cardapioId" id="cardapioId" value="" />			
 

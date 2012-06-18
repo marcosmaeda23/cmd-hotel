@@ -139,7 +139,7 @@ function formatarValor($valor){
  */
 function salvarFoto($arrayFoto, $caminho){
 	// Instanciamos o objeto Upload
-	$handle = new Upload($arrayFoto['imagem']);
+	$handle = new Upload($arrayFoto);
 	// Então verificamos se o arquivo foi carregado corretamente
 	 var_dump($arrayFoto);
 	if ($handle->uploaded) {
@@ -240,6 +240,7 @@ function salvarFoto($arrayFoto, $caminho){
 		// Em caso de sucesso no upload podemos fazer outras ações como insert em um banco de cados
 		if ($handle->processed) {
 			// Aqui nos devifimos nossas configurações de imagem do thumbs
+			$nome_da_imagem = $handle->file_dst_name;		 	
 			$handle->image_resize = true;
 			$handle->image_ratio_y = false;
 			$handle->image_x = 100;
@@ -253,7 +254,8 @@ function salvarFoto($arrayFoto, $caminho){
 			// Excluimos os arquivos temporarios
 			$handle-> Clean();
 			if ($handle->processed) {
-				return true;
+				$nome_da_imagem .= '|'. $handle->file_dst_name;		 	
+				return $nome_da_imagem;
 			} else {
 				return false;
 			}
@@ -264,7 +266,6 @@ function salvarFoto($arrayFoto, $caminho){
 		return false;
 	}
 	// retorna p nome da variavel
-	//$nome_da_imagem = $handle->file_dst_name;		 	
 }
 
 /**

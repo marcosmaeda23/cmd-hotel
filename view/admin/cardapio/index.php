@@ -7,7 +7,7 @@ if ($_SESSION['NIVEL'] == 4) {
     header('location:../');
 }
 $cardapioBpm = new CardapioBpm();
-$arrayCardapioVo = $cardapioBpm->buscar('cardapio');
+$arrayCardapioVo = $cardapioBpm->buscarComFoto('cardapio');
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -38,7 +38,7 @@ $arrayCardapioVo = $cardapioBpm->buscar('cardapio');
                     </div>
                     <table>
                         <tr class="linhaResultado">
-                            <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="3">Resultado de pesquisa</td> 
+                            <td class="colunaResultados colunaTitulo  <?php echo $cor_principal; ?>" colspan="4">Resultado de pesquisa</td> 
                         </tr>
                         <?php
                         if ($arrayCardapioVo == null) {
@@ -48,13 +48,20 @@ $arrayCardapioVo = $cardapioBpm->buscar('cardapio');
                         }
                         // colocar os campos de pesquisa 
                         for ($i = 0; $i < count($arrayCardapioVo); $i++) {
+                        	$foto = $arrayCardapioVo[$i]->getFotoVo();
                             ?>
                             <tr class ="linhaResultado">
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
+                                    <img src="../upload/cardapio/<?php echo $foto->getFotoNomeThumb();?>" style="width=50px;height:50px;" />    
+                                </td>
+                                <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarCardapio.php?cardapio=<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>'> 
                                         <?php
+                                        if($_SESSION['NIVEL'] == 1){
+                                        echo '| ';
                                         echo $arrayCardapioVo[$i]->getCardapioId();
-                                        echo ' - ';
+                                        echo ' | ';
+                                        }
                                         echo $arrayCardapioVo[$i]->getCardapioNome();
                                         ?>
                                     </a>

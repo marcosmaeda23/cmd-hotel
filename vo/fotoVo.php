@@ -14,6 +14,7 @@ class FotoVo {
     private $cardapioId;
     private $servicoId;
     private $fotoNome;
+    private $fotoNomeThumb;
     private $fotoDataCadastro;
     
     public $fotoObrigatorio = array(
@@ -22,7 +23,8 @@ class FotoVo {
         'ambienteId' => '',
         'cardapioId' => '',
         'servicoId' => '',
-        'nome' => 'obrigatorio',
+        'fotoNome' => 'obrigatorio',
+        'fotoNomeThumb' => '',
         'dataCadastro' => ''
         );
 
@@ -76,6 +78,13 @@ class FotoVo {
 
     public function setFotoNome($fotoNome) {
         $this->fotoNome = $fotoNome;
+    }
+    public function getFotoNomeThumb() {
+        return $this->fotoNomeThumb;
+    }
+
+    public function setFotoNomeThumb($fotoNomeThumb) {
+        $this->fotoNomeThumb = $fotoNomeThumb;
     }
 
     public function getFotoDataCadastro() {

@@ -53,7 +53,7 @@ class CardapioDao extends Entidade {
         'tempo VARCHAR(100) NULL ',
         'descricao VARCHAR(200) NOT NULL ',
         'valorCalorico DECIMAL (0,2) NULL ',
-        'valor DECIMAL (0,2) NOT NULL ',
+        'valor DECIMAL (10,2) NOT NULL ',
         'observacao VARCHAR(800) NULL ',
         );
 
@@ -101,7 +101,7 @@ class CardapioDao extends Entidade {
      * 
      */
     public function cadastrarAlterar($objetoVo) {
-        $idCardapio = entidade :: cadastrarAlterar($objetoVo);
+        $idCardapio = entidade :: cadastrarAlterar($objetoVo);        
         if ($idCardapio === false) {
             return false;
         } else {

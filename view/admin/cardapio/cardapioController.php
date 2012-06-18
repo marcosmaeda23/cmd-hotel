@@ -32,26 +32,26 @@ if ($_POST['acao'] == 'cadastrarCardapio') {
                 eval('$cardapioVo->set' . ucfirst($chave) . '("' . $valor . '");');
             }
         }
-        $fotoVo->setFotoNome($_FILES['imagem']['name']);
-        $cardapioVo->setFotoVo($fotoVo);
+    }
+    if (!$ERRO) {
+        $arrayFoto = salvarFoto($_FILES['imagem'], 'cardapio');
+        if ($arrayFoto === false) {
+            $ERRO = true;
+            $erro_nome .= 'Ocorreu erro ao salvar foto';
+        }
     }
 
     if (!$ERRO) {
+    	$arrayFoto = explode('|', $arrayFoto);
+        $fotoVo->setFotoNome($arrayFoto[0]);
+        $fotoVo->setFotoNomeThumb($arrayFoto[1]);
+        $cardapioVo->setFotoVo($fotoVo);
         $sucesso = $cardapioBpm->cadastrarAlterar($cardapioVo, 'cardapio');
         if (!$sucesso) {
             $ERRO = true;
             $erro_nome .= 'Ocorreu um erro ao cadastrar o cardapio';
         }
     }
-    if (!$ERRO) {
-        $sucesso = salvarFoto($_FILES, 'cardapio');
-        if (!$sucesso) {
-            $ERRO = true;
-            $erro_nome .= 'Ocorreu erro ao salva foto';
-        }
-    }
-    //echo $erro_nome;
-    //exit();
     if (!$ERRO) {
         echo '<script language="JavaScript">';
         echo 'alert("Cardápio cadastrado com sucesso");';

@@ -25,6 +25,17 @@ class BpmGenerico {
 		$resposta = $_objeto -> buscar();
 		return $resposta;
 	}
+	
+	/**
+	 * metodo buscar
+	 * busca os objetos para a listagem
+	 * @return array de objetos
+	 */
+	public function buscarComFoto($entidade){
+		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
+		$resposta = $_objeto -> buscarComFoto();
+		return $resposta;
+	}
 
 	/**
 	 * metodo buscar

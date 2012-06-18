@@ -19,6 +19,7 @@ class AmbienteDao extends Entidade {
      */
     protected $chaveEstrangeira = array(
         'hotelId  INT NOT NULL',
+        'statusId  INT NOT NULL'
         );
 
     /**
@@ -27,6 +28,7 @@ class AmbienteDao extends Entidade {
      */
     protected $onUpdate = array(
         'hotelId' => 'cascade',
+        'statusId' => 'cascade'
         );
 
     /**
@@ -35,6 +37,7 @@ class AmbienteDao extends Entidade {
      */
     protected $onDelete = array(
         'hotelId' => 'cascade',
+        'statusId' => 'cascade'
         );
 
     /**
@@ -42,7 +45,7 @@ class AmbienteDao extends Entidade {
      * @deprecated id
      * @example $uniqueKey = array('email', 'documento');
      */
-    protected $uniqueKey = array('valor', 'reservado');
+    protected $uniqueKey = array();
 
     /**
      * seta a base de dados para fazer a atualizacao ou criacao
@@ -50,10 +53,9 @@ class AmbienteDao extends Entidade {
      * @example  $dadosBase	= array('nome VARCHAR(100) NOT NULL', 'login VARCHAR(100) NOT NULL')
      */
     protected $dadosBase = array(
-        'nome VARCHAR(100) NOT NULL' ,
-        'observacao VARCHAR(800) NULL' ,
-        'valor DECIMAL (20,2) NOT NULL' ,
-        'reservado TINYINT(1) NOT NULL DEFAULT 0'
+        'nome VARCHAR (100) NOT NULL' ,
+        'observacao VARCHAR (800) NULL' ,
+        'valor DECIMAL (20,2) NOT NULL' 
         );
 
     /**

@@ -25,11 +25,7 @@ if ($_POST['acao'] == 'cadastrarAmbiente') {
             }
         }
     }
-    // aqui insere dentro dos objetos respectivos
-//var_dump($_POST);
-//echo '<br>';
-//echo '<br>';
-//echo '<br>';
+    // aqui insere dentro dos objetos respectivo
     if (!$ERRO) {
         // loop so para inserir os valores dentro dos objetos
         foreach ($_POST as $chave => $valor) {
@@ -42,12 +38,12 @@ if ($_POST['acao'] == 'cadastrarAmbiente') {
     }
     if (!$ERRO) {
         $sucesso = $ambienteBpm->cadastrarAlterar($ambienteVo, 'ambiente');
-
         if (!$sucesso) {
             $ERRO = true;
             $erro_nome .= 'O ocorreu um erro ao cadastrar o Ambiente';
         }
     }
+
 
     if (!$ERRO) {
         echo '<script language="JavaScript">';

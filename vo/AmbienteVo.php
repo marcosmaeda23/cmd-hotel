@@ -9,21 +9,21 @@ class AmbienteVo {
      */
 
     private $ambienteId;
+    private $statusId;
+    private $hotelId;
     private $ambienteNome;
     private $ambienteObservacao;
     private $ambienteValor;
-    private $ambienteReservado;
     private $ambienteDataCadastro;
-    private $hotelId;
     
     public $ambienteObrigatorio = array(
         'ambienteId' => '',
+        'hotelId' => '',
+        'statusId' => '',
         'ambienteNome' => '',
         'ambienteObservacao' => '',
         'ambienteValor' => '',
-        'ambienteReservado' => '',
-        'ambienteDataCadastro' => '',
-        'hotelId' => ''
+        'ambienteDataCadastro' => ''
     );
 
     /*
@@ -61,12 +61,12 @@ class AmbienteVo {
         $this->ambienteValor = $ambienteValor;
     }
 
-    public function getAmbienteReservado() {
-        return $this->ambienteReservado;
+    public function getStatusId() {
+        return $this->statusId;
     }
 
-    public function setAmbienteReservado($ambienteReservado) {
-        $this->ambienteReservado = $ambienteReservado;
+    public function setStatusId($statusId) {
+        $this->statusId = $statusId;
     }
 
     public function getAmbienteDataCadastro() {

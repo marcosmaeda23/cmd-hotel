@@ -41,6 +41,7 @@ if (!empty($_GET['ambiente'])) {
                             <form id="cadastrarAmbiente" action="ambienteController.php" method="post" onsubmit="return verificarCampos('cadastrarQuarto');" >
                                 <input type="hidden" name="acao" id="acao" maxlength="50" value="cadastrarAmbiente" />
                                 <input type="hidden" name="ambienteId" id="AmbienteId" value="<?php echo $ambienteVo->getAmbienteId(); ?>" />			
+                                <input type="hidden" name="ambienteId" id="AmbienteId" value="<?php echo $ambienteVo->getAmbienteId(); ?>" />			
                                 <div id="ambiente" >
                                     <!-- ambiente -->
                                     Selecione o hotel:<br />

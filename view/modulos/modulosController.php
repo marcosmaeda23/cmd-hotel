@@ -1,5 +1,5 @@
 <?php
-$necessario = array('servico', 'usuario', 'hotel');
+$necessario = array('hotel', 'pacote', 'quarto', 'quartoTipo', 'ambiente', 'servico', 'cardapio', 'cardapioTipo');
 include('../admin/template/iniciarDados.php');
 
 // ------------------------------------------

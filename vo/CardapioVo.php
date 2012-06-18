@@ -19,6 +19,7 @@ class CardapioVo {
     private $cardapioValor;
     private $cardapioObservacao;
     private $cardapioDataCadastro;
+    
     private $fotoVo;
     private $hotelVo;
     private $cardapioTipoVo;

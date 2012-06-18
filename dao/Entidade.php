@@ -34,7 +34,7 @@ class Entidade extends Banco {
     public function cadastrarAlterar($objetoVo) {
         //var_dump($objetoVo);
         // verifica se tiver o id dentro do objeto para salvar ou alterar
-        //eval('$id = $objetoVo->get' . ucfirst($this->entidade) . 'Id();');
+        eval('$id = $objetoVo->get' . ucfirst($this->entidade) . 'Id();');
         //echo "<br />";
         //var_dump($this->entidade);
         //echo "<br />";
@@ -119,8 +119,8 @@ class Entidade extends Banco {
             }
             $sql .= ' ) ;';
             $query = mysql_query($sql);
-            $_id = mysql_insert_id();
-            echo $sql;
+            //$_id = mysql_insert_id();
+            //echo $sql;
             //exit();
         } else {
 
@@ -160,7 +160,7 @@ class Entidade extends Banco {
             }
              
            	$sql .= ' WHERE '.$this->entidade .'Id = '. $id;
-            $_sql .= '  -  '.$sql;
+            //$_sql .= '  -  '.$sql;
             //echo $_sql;
             //exit();
             $query = mysql_query($sql);
@@ -186,6 +186,9 @@ class Entidade extends Banco {
         $query = mysql_query($sql);
         $qtde = mysql_affected_rows();
         if ($qtde == 1) {
+        	if($this->foto){
+        		// apagar a foto da pasta
+        	}
             return true;
         } else {
             return false;
@@ -266,6 +269,33 @@ class Entidade extends Banco {
 				$arrayObjeto[] = $objetoVo;			
 	        }
         }		
+		return $arrayObjeto;
+    }
+
+    /**
+     * metodo para buscar os objetos 
+     * @param sem param
+     * @return array de objeto
+     */
+    public function buscarComFoto() {
+        $sql = 'SELECT * FROM ' . $this->entidade;
+        $sql .= ' INNER JOIN foto ON ' .$this->entidade.'.'.$this->entidade.'Id = foto.'.$this->entidade.'Id ';
+        $sql .= ' LIMIT ' . $this->limite;
+        $query = mysql_query($sql);
+        $arrayObjeto = array();
+        $qtde = mysql_affected_rows();
+        if ($qtde > 0) {
+	        while ($rows = mysql_fetch_object($query)) {
+	        	$fotoVo = new FotoVo();
+				eval('$objetoVo = new '.ucfirst($this->entidade).'Vo();');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Id("$rows->'.$this->entidade.'Id");');
+				eval('$objetoVo -> set'. ucfirst($this->entidade).'Nome("$rows->'.$this->entidade.'Nome");');
+				$fotoVo -> setFotoNome($rows->fotoNome);
+				$fotoVo -> setFotoNomeThumb($rows->fotoNomeThumb);
+				$objetoVo->setFotoVo($fotoVo);
+				$arrayObjeto[] = $objetoVo;			
+	        }
+        }	
 		return $arrayObjeto;
     }
 
