@@ -71,40 +71,7 @@ class ItemReservaDao extends Entidade {
         'dataFinal DATETIME NULL ',
     );
 
-    /**
-     * metodo para buscar os objetos 
-     * @param sem param
-     * @return array de objeto
-     */
-    public function buscar() {
-        $sql = 'SELECT * FROM ' . $this->entidade . ' LIMIT ' . $this->limite;
-        $query = mysql_query($sql);
-        $arrayObjeto = array();
-        $qtde = mysql_affected_rows();
-        if ($qtde > 0) {
-            while ($rows = mysql_fetch_object($query)) {
-                eval('$objetoVo = new ' . ucfirst($this->entidade) . 'Vo();');
-                eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Id("$rows->' . $this->entidade . 'Id");');
-                $arrayObjeto[] = $objetoVo;
-            }
-        }
-        return $arrayObjeto;
-    }
-
-    
-        
-    /**
-     *
-select * from quartotipo as tq
-join quarto as q on q.quartotipoId = tq.quartotipoId
-join itemreserva as ir on ir.quartoId = q.quartoId
-where tq.quartotipoId = 1 and
-ir.itemReservaDataInicial > 'DATAINICIAL' and
-ir.itemReservaDataFinal > 'DATAINICIAL' and
-ir.itemReservaDataInicial < 'DATAFINAL' and
-ir.itemReservaDataFinal < 'DATAFINAL'
-
-     */
+   
 
     
     /**
@@ -145,6 +112,50 @@ ir.itemReservaDataFinal < 'DATAFINAL'
     // =================================================================
     // METODOS =========================================================
     // =================================================================
+    
+    
+     /**
+     * metodo para buscar os objetos 
+     * @param sem param
+     * @return array de objeto
+     */
+    public function buscar() {
+        $sql = 'SELECT * FROM ' . $this->entidade . ' LIMIT ' . $this->limite;
+        $query = mysql_query($sql);
+        $arrayObjeto = array();
+        $qtde = mysql_affected_rows();
+        if ($qtde > 0) {
+            while ($rows = mysql_fetch_object($query)) {
+                eval('$objetoVo = new ' . ucfirst($this->entidade) . 'Vo();');
+                eval('$objetoVo -> set' . ucfirst($this->entidade) . 'Id("$rows->' . $this->entidade . 'Id");');
+                $arrayObjeto[] = $objetoVo;
+            }
+        }
+        return $arrayObjeto;
+    }
+
+    public function buscar($objeto) {
+        $sql = ' select * from quartotipo as tq ';
+		$sql .= ' join quarto as q on q.quartotipoId = tq.quartotipoId ';
+		$sql .= ' join itemreserva as ir on ir.quartoId = q.quartoId ';
+		$sql .= ' where tq.quartotipoId = '; 
+		$sql .= $objeto->getQuartoId();
+		$sql .= ' and ';
+		$sql .= ' ir.itemReservaDataInicial > "'.$objeto->getItemReservaDataInicial().'" and ';
+		$sql .= ' ir.itemReservaDataFinal > "'.getItemReservaDataInicial().'" and ';
+		$sql .= ' ir.itemReservaDataInicial < "'.getItemReservaDataFinal().'" and ';
+		$sql .= ' ir.itemReservaDataFinal < "'.getItemReservaDataFinal().'" ';
+
+        $query = mysql_query($sql);
+        $arrayObjeto = array();
+        $qtde = mysql_affected_rows();
+        if ($qtde == 1) {
+        	return false;
+        } else {
+        	return true;
+        }
+    }
+ 
 }
 
 ?>

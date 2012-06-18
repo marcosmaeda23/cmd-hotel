@@ -47,6 +47,16 @@ class BpmGenerico {
 		$resposta = $_objeto -> buscarPorHotel($idHotel);
 		return $resposta;
 	}
+	/**
+	 * metodo buscar
+	 * busca os objetos para a listagem
+	 * @return array de objetos
+	 */
+	public function verificaReserva($entidade, $idHotel){
+		eval('$_objeto = new '.ucfirst($entidade).'Dao();');
+		$resposta = $_objeto -> verificaReserva($idHotel);
+		return $resposta;
+	}
 
         /**
 	 * metodo cadastrar ou alterar generico
