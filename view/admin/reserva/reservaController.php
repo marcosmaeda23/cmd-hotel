@@ -18,11 +18,11 @@ if ($_POST['acao'] == 'verificaReserva') {
 	$sucesso = $itemReservaBpm->verificaReserva($itemReservaVo, 'itemReserva');
 	if($sucesso){
 		$_POST['acao'] = 'cadastrarReserva';
+echo '$sucesso';
 	} else {
 		return 'fracasso';
 	}
-
-
+exit();
 }
 
 if ($_POST['acao'] == 'cadastrarReserva') {
