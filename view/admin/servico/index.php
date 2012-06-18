@@ -53,8 +53,11 @@ $arrayServicoVo = $servicoBpm->buscar('servico');
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarServico.php?servico=<?php echo $arrayServicoVo[$i]->getServicoId(); ?>'> 
                                         <?php
-                                        echo $arrayServicoVo[$i]->getServicoId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayServicoVo[$i]->getServicoId();
+	                                        echo ' | ';
+                                        }
                                         echo $arrayServicoVo[$i]->getServicoNome();
                                         ?>
                                     </a>

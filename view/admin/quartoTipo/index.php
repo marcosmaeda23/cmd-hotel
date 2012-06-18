@@ -56,8 +56,12 @@ $arrayQuartoTipoVo = $quartoTipoBpm->buscar('quartoTipo');
                                     <a href='exibirQuartoTipo.php?quartoTipo=<?php echo $arrayQuartoTipoVo[$i]->getQuartoTipoId(); ?>'> 
                                 <?php } ?>
                                         <?php
-                                        echo $arrayQuartoTipoVo[$i]->getQuartoTipoId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayQuartoTipoVo[$i]->getQuartoTipoId();
+	                                        echo ' | ';
+                                        }
+
                                         echo $arrayQuartoTipoVo[$i]->getQuartoTipoDescricao();
                                         ?>
                                     </a>

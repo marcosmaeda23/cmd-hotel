@@ -51,8 +51,13 @@ $arrayCardapioTipoVo = $cardapioTipoBpm -> buscar('cardapioTipo');
                                     <a href='exibirCardapioTipo.php?cardapioTipo=<?php echo $arrayCardapioTipoVo[$i]->getCardapioTipoId(); ?>'> 
                                 <?php } ?>
                                         <?php
-                                        echo $arrayCardapioTipoVo[$i]->getCardapioTipoId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayCardapioTipoVo[$i]->getCardapioTipoId();
+
+	                                        echo ' | ';
+                                        }
+    
                                         echo $arrayCardapioTipoVo[$i]->getCardapioTipoNome();
                                         ?>
                                     </a>

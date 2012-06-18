@@ -96,7 +96,7 @@ class PacoteDao extends Entidade {
     /**
      * arquivo com foto
      */
-    protected $foto = true;
+    protected $foto = false;
 
     /**
      * se foto true , as fotos vao para esta pasta

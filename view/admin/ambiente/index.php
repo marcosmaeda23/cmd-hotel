@@ -53,8 +53,12 @@ $arrayAmbienteVo = $ambienteBpm->buscar('ambiente');
                                 <td class ="colunaResultado <?php echo ($i % 2) ? 'linhaImpar' : 'linhaPar'; ?>">
                                     <a href='cadastrarAmbiente.php?ambiente=<?php echo $arrayAmbienteVo[$i]->getAmbienteId(); ?>'> 
                                         <?php
-                                        echo $arrayAmbienteVo[$i]->getAmbienteId();
-                                        echo ' - ';
+                                        if($_SESSION['NIVEL'] == 1){
+	                                        echo '| ';
+	                                        echo $arrayAmbienteVo[$i]->getAmbienteId();
+	                                        echo ' | ';
+                                        }
+                                        
                                         echo $arrayAmbienteVo[$i]->getAmbienteNome();
                                         ?>
                                     </a>
