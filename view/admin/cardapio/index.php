@@ -43,7 +43,7 @@ $arrayCardapioVo = $cardapioBpm->buscarComFoto('cardapio');
                         <?php
                         if ($arrayCardapioVo == null) {
                             echo "<tr class ='linhaResultado'>
-                                    <td>Sem nenhum serviço cadastrado</td>
+                                    <td>Sem nenhum Cardapio cadastrado</td>
                                   </tr>";
                         }
                         // colocar os campos de pesquisa 
