@@ -19,7 +19,7 @@ a{ text-decoration:none;}
 
 .nav {height: 100%;font: normal 20px/1em Arial, Helvetica, sans-serif;}
 .nav li { float:left;  margin-right:1px;}
-.nav li a {  display: block; padding:8px 25px; color:#fff;}
+.nav li a {  display: block; padding:8px 25px; color:#fff;font-size:20px;}
 .nav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
 
 .middle{float:left; width:100%; padding-top:65px; background-color:#FFF}
@@ -28,12 +28,12 @@ a{ text-decoration:none;}
               color: white; font-weight: bold; padding: 15px}
 .cadastro{float:left; width:310px;}
 .fotoInicial{float:left; width:610px;}
-.cadastro_titulo_container{float:left; width:80px; font-size:13px;padding-top:15px;}
+.cadastro_titulo_container{float:left; width:280px; font-size:13px;padding:20px 0 20px 20px;}
 .cadastro_titulo{float:left; font-size:13px;padding-top:15px;  height:19px;}
-.cadastro_selecao{float:left; width:230px;padding-top:2px;}
+.cadastro_selecao{float:left; width:230px;padding: 0 20px; text-align: center}
 .cadastro_selecao_especial{float:left; height:30px;padding-top:1px; font-size:16px;}
 .cadastro_selecao_container{float:left; width:230px; font-size:13px;padding-top:15px}
-.cadastro_selecao input{width:200px; height:30px; font-size:16px; color:#333333}
+.cadastro_selecao input{height:30px; font-size:16px; color:#333333}
 .cadastro_selecao option{height:30px}
 
 /* FormulÃ¡rios */
@@ -41,7 +41,7 @@ a{ text-decoration:none;}
 .formDefault .button{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #fff;}
 .formDefault .button:hover{border:1px solid #b2b2b2;color:#666;padding:6px;font:12px verdana;background-color: #f0f0f0;}
 .formDefault label{font:bold 11px verdana;padding:3px;padding-left:0px;margin:2px;margin-top:15px;color:#999;display: block;width:200px;border:0px solid blue;height:25px}
-.formDefault input{font:12px verdana;padding:6px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666; height:28px;}
+.formDefault input{font:12px verdana;padding:8px 5px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666; height:32px;}
 .formDefault .botao{font:12px verdana;padding:6px;margin:2px;width:150px;border:1px solid #b2b2b2;background-color: #333333;color:#FFF;}
 .formDefault select{font:12px verdana;padding:2px;margin:2px;border:1px solid #b2b2b2;background-color: #f9f9f9;color:#666;}
 .formDefault option{font:11px verdana;padding:0px;margin:1px;border:0px solid #333;}
@@ -61,7 +61,7 @@ a{ text-decoration:none;}
 .titulo_editar{ font-size:26px; color:#000033;}
 
 /* Rodapé*/
-.rodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 520px; margin-top: 40px;}
-.rodape .rodape_nome{ float:left;width:330px;text-align: left; color:#FFFFFF}
+.rodape{float:left; padding: 30px 0; width:100%; color:#FFFFFF; height: 15px; margin-top: 40px;}
+.rodape .rodape_nome{ float:left;width:450px;text-align: left; color:#FFFFFF}
 .rodape .rodape_mais{ float:left;width:650px; text-align:right; color:#FFFFFF}
 .rodape .rodape_mais a{ float:left;width:650px; text-align:right; color:#FFFFFF}

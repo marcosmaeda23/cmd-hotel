@@ -8,7 +8,7 @@ include('../admin/template/iniciarDados.php');
     <head>
         <title><?php echo $nome_site_Title; ?></title>
         <!-- css gerais-->
-<?php include('../template/css.php'); ?>
+        <?php include('../template/css.php'); ?>
     </head>
     <body>	
         <?php include('../template/topo.php') ?>
@@ -85,12 +85,15 @@ include('../admin/template/iniciarDados.php');
                                 <div class="cadastro_titulo_container" >           
 
                                     <!-- usuario -->
-                                    Nome completo: 			<input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="obrigatorio" /><br />
-                                    Seu e-mail:			 	<input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="obrigatorio" /><br />
-                                    Pais:     				<input type="text" name="paisOrigem" id="paisOrigem" class="obrigatorio" /><br />
+                                    Nome completo: <input type="text" name="usuarioNome" id="usuarioNome" maxlength="50" class="obrigatorio" /><br />
+                                    Seu e-mail: <input type="text" name="usuarioEmail" id="usuarioEmail" maxlength="50" class="obrigatorio" /><br />
+                                    Pais:
+                                    <select name="paisOrigem" id="paisOrigem" class="obrigatorio" >
+                                        <option value="Brasil">Brasil</option>
+                                        <option value="Outro">Outro</option>
+                                    </select>
 
                                 </div>
-
                                 <div class="cadastro_selecao"><input type="submit" value="cadastrar novo usuario" name="cmdSalvar"></div>
                             </form>
                         </div>
@@ -99,10 +102,10 @@ include('../admin/template/iniciarDados.php');
             </div>
         </div>
 
-<?php include('../template/rodape.php'); ?>
+        <?php include('../template/rodape.php'); ?>
 
     </body>
     <!-- scripts gerais -->
-<?php include('../template/js.php') ?>	
+    <?php include('../template/js.php') ?>	
 </html>
 

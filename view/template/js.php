@@ -11,3 +11,8 @@
 <script type="text/javascript" src="../../_js/date/jquery.js"></script>
 <script type="text/javascript" src="../../_js/date/jquery.click-calendario-1.0.js"></script>		
 <script type="text/javascript" src="../../_js/date/exemplo-calendario.js"></script>
+
+<script type="text/javascript" src="../_js/plugin/jquery-1.7.1.min.js"></script>
+<script type="text/javascript" src="../_js/slider/sliderwall-bullets-1.1.2.js"></script>
+<script type="text/javascript" src="../_js/slider/sliderwall-options.js"></script>
+
