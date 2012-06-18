@@ -114,6 +114,10 @@ if (!empty($_GET)) {
 
                                         <br />
                                         <br />
+                                        <?php
+                        if (count($arrayQuartoVo) > 0) { ?>
+
+
                                         Selecione um Quarto :<br />
                                         <select name="quartoId" id="quartoId" class="" >
                                             <option value=""> Selecione o quarto: </option>
@@ -126,6 +130,8 @@ if (!empty($_GET)) {
                                             ?>
 
                                         </select><br />
+       					<?php
+                        } ?>
 
                                         Selecione um ambiente :<br />
                                         <select name="ambienteId" id="ambienteId" class="" >
@@ -179,10 +185,10 @@ if (!empty($_GET)) {
 
                                         </select><br />
                                         Data inicial:<br />
-                                        <input type="text" name="itemReservaDataInicial" id="data_inicial" size="10" maxlength="10" value="13/12/2012" class="obrigatorio data" />
+                                        <input type="text" name="itemReservaDataInicial" id="data_inicial" size="10" maxlength="10" value="" class="obrigatorio data" />
                                         <br />
                                         Data final:<br />
-                                        <input type="text" name="itemReservaDataFinal" id="data_final" size="10" maxlength="10" value="13/12/2012" class="obrigatorio data" />
+                                        <input type="text" name="itemReservaDataFinal" id="data_final" size="10" maxlength="10" value="" class="obrigatorio data" />
 
                                         <br />
                                 </div>
@@ -204,5 +210,6 @@ if (!empty($_GET)) {
     </body>
     <!-- scripts -->
         <?php include('../template/js.php'); ?>
+        <script type="text/javascript" src="../../_js/reserva.js"></script>
 
 </html>

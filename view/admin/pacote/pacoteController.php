@@ -18,11 +18,6 @@ if ($_POST['acao'] == 'cadastrarPacote') {
     // verifica se os campos do usuario estao vazios		
     foreach ($pacoteVo->pacoteObrigatorio as $chave => $valor) {
         // faz a validacao dos campos obrigatorios, setados na classe
-        echo $chave;
-        echo '<br>';
-        echo $valor;
-        echo '<br>';
-
         if ($valor == 'obrigatorio') {
             if (empty($_POST[$chave])) {
                 $erro_nome = 'Preencha todos os campos do formulário.';
@@ -31,10 +26,6 @@ if ($_POST['acao'] == 'cadastrarPacote') {
         }
     }
     // aqui insere dentro dos objetos respectivos
-//var_dump($_POST);
-//echo '<br>';
-//echo '<br>';
-//echo '<br>';
     if (!$ERRO) {
         // loop so para inserir os valores dentro dos objetos
         foreach ($_POST as $chave => $valor) {
@@ -52,12 +43,7 @@ if ($_POST['acao'] == 'cadastrarPacote') {
             $erro_nome .= 'O ocorreu um erro ao cadastrar o pacote';
         }
     }
-    echo $erro_nome;
-    echo '<br>';
-    echo '<br>';
-    var_dump($_POST);
-    echo '<br>';
-    echo '<br>';
+   
     var_dump($pacoteVo);
     exit();
 

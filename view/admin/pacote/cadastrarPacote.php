@@ -80,7 +80,7 @@ $hotelEscolhido = $_POST['hotelId'];
                                         <br />
                                         <br />
                                         Selecione um Quarto :<br />
-                                        <select name="quartoId" id="quartoId" class="obrigatorio" >
+                                        <select name="quartoId" id="quartoId" class="" >
                                             <option value=""> Selecione o quarto: </option>
                                             <?php for ($i = 0; $i < count($arrayQuartoVo); $i++) { ?>
                                                 <option value="<?php echo $arrayQuartoVo[$i]->getQuartoId(); ?>"<?php echo $quartoVo->getQuartoId() == $arrayQuartoVo[$i]->getQuartoId() ? 'selected=\'selected\'' : ''; ?>>
@@ -93,7 +93,7 @@ $hotelEscolhido = $_POST['hotelId'];
                                         </select><br />
 
                                         Selecione um ambiente :<br />
-                                        <select name="ambienteId" id="ambienteId" class="obrigatorio" >
+                                        <select name="ambienteId" id="ambienteId" class="" >
                                             <option value=""> Selecione o ambiente: </option>
                                             <?php for ($i = 0; $i < count($arrayAmbienteVo); $i++) { ?>
                                                 <option value="<?php echo $arrayAmbienteVo[$i]->getAmbienteId(); ?>"<?php echo $ambienteVo->getAmbienteId() == $arrayAmbienteVo[$i]->getAmbienteId() ? 'selected=\'selected\'' : ''; ?>>
@@ -106,7 +106,7 @@ $hotelEscolhido = $_POST['hotelId'];
                                         </select><br />
 
                                         Selecione um servico:<br />
-                                        <select name="servicoId" id="servicoId" class="obrigatorio" >
+                                        <select name="servicoId" id="servicoId" class="" >
                                             <option value=""> Selecione o servico: </option>
                                             <?php for ($i = 0; $i < count($arrayServicoVo); $i++) { ?>
                                                 <option value="<?php echo $arrayServicoVo[$i]->getServicoId(); ?>"<?php echo $servicoVo->getServicoId() == $arrayServicoVo[$i]->getServicoId() ? 'selected=\'selected\'' : ''; ?>>
@@ -119,7 +119,7 @@ $hotelEscolhido = $_POST['hotelId'];
                                         </select><br />
 
                                         Selecione um cardapio :<br />
-                                        <select name="cardapioId" id="cardapioId" class="obrigatorio" >
+                                        <select name="cardapioId" id="cardapioId" class="" >
                                             <option value=""> Selecione o cardapio: </option>
                                             <?php for ($i = 0; $i < count($arrayCardapioVo); $i++) { ?>
                                                 <option value="<?php echo $arrayCardapioVo[$i]->getCardapioId(); ?>"<?php echo $cardapioVo->getCardapioId() == $arrayCardapioVo[$i]->getCardapioId() ? 'selected=\'selected\'' : ''; ?>>
@@ -136,16 +136,16 @@ $hotelEscolhido = $_POST['hotelId'];
                                                class="obrigatorio" onblur="verificaCamposUnicos('pacote', 'pacoteNome', this.value);" /><br />
 
                                         <label>Data Inicial:</label>
-                                        <input type="text" name="pacoteDataInicial" id="pacoteDataInicial" value="<?php echo $pacoteVo->getPacoteDataInicial(); ?>" maxlength="50" 
-                                               class="obrigatorio data" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
+                                        <input type="text" name="pacoteDataInicial" id="data_inicial" value="<?php echo $pacoteVo->getPacoteDataInicial(); ?>" maxlength="50" 
+                                               class="data" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
 
                                         <label>Data Final:</label>
-                                        <input type="text" name="pacoteDataFinal" id="pacoteDataFinal" value="<?php echo $pacoteVo->getPacoteDataFinal(); ?>" maxlength="50" 
-                                               class="obrigatorio data" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
+                                        <input type="text" name="pacoteDataFinal" id="data_final" value="<?php echo $pacoteVo->getPacoteDataFinal(); ?>" maxlength="50" 
+                                               class="data" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
 
                                         <label>Periodo:</label>
                                         <input type="text" name="pacotePeriodo" id="pacotePeriodo" value="<?php echo $pacoteVo->getPacotePeriodo(); ?>" maxlength="50" 
-                                               class="obrigatorio" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
+                                               class="" onblur="verificaCamposUnicos('pacote', 'pacotePeriodo', this.value);" /><br />
 
                                         <label>Quantidade de pessoas:</label>
                                         <input type="text" name="pacotePessoas" id="pacotePessoas" value="<?php echo $pacoteVo->getPacotePessoas(); ?>" maxlength="50" 

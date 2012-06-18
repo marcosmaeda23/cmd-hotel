@@ -16,6 +16,7 @@ function aplicarMascara() {
 				}
 			}
 		});
+		
 		$('.cnpj').mask('99.999.999/9999-99', {
 			completed:function(){
 				if(!validarDocumento('cnpj', this.val())){

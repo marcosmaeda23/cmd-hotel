@@ -13,6 +13,7 @@ $(document).ready(function(){
 		$(this).calendario({ 
 			target:'#data_1'
 		});
+		
 	});
 	
 	
