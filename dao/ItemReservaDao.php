@@ -91,6 +91,22 @@ class ItemReservaDao extends Entidade {
         return $arrayObjeto;
     }
 
+    
+        
+    /**
+     *
+select * from quartotipo as tq
+join quarto as q on q.quartotipoId = tq.quartotipoId
+join itemreserva as ir on ir.quartoId = q.quartoId
+where tq.quartotipoId = 1 and
+ir.itemReservaDataInicial > 'DATAINICIAL' and
+ir.itemReservaDataFinal > 'DATAINICIAL' and
+ir.itemReservaDataInicial < 'DATAFINAL' and
+ir.itemReservaDataFinal < 'DATAFINAL'
+
+     */
+
+    
     /**
      * Array contendo a ordem para salvar no banco
      */

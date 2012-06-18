@@ -67,7 +67,7 @@ class ReservaDao extends Entidade {
         }
         return $arrayObjeto;
     }
-
+    
     /**
      * Array contendo a ordem para salvar no banco
      */
