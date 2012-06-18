@@ -158,13 +158,13 @@ if (!empty($_GET)) {
 
     for ($i = 0; $i < count($telefoneArray); $i++) {
         ?>
-                        		        					
+                                		        					
                     var telefone = new Object(); 	
         <?php foreach ($telefoneArray[$i]->telefoneObrigatorio as $chave => $valor) { ?>
                         telefone['<?php echo $chave; ?>'] = '<?php eval('echo $telefoneArray[' . $i . ']->get' . ucfirst($chave) . '();'); ?>';
-                                    		            	
+                                                		            	
         <?php } ?>	
-                        		        					
+                                		        					
                     telefoneArray[<?php echo $i; ?>] = telefone;	  
     <?php } ?>
     <?php
@@ -177,7 +177,7 @@ if (!empty($_GET)) {
         }
     } else {
         ?>
-                        		        				 
+                                		        				 
     <?php } ?>
     <?php foreach ($cepXedicaoVo->cepXedicaoObrigatorio as $chave => $chave) { ?>
                 cepComplementoArray['<?php echo $chave; ?>'] =  '<?php eval('echo $cepXedicaoVo->get' . ucfirst($chave) . '();'); ?>';

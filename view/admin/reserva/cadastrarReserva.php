@@ -104,7 +104,7 @@ if (!empty($_GET)) {
                                     <!-- reserva -->
                                     Hotel Selecionado:<span style="padding-left:20px">
                                         <?php
-                                            $hotelEscolhido = $hotelEscolhido - 1;
+                                        $hotelEscolhido = $hotelEscolhido - 1;
                                         for ($i = 0; $i < count($arrayHotelVo); $i++) {
                                             if ($i == $hotelEscolhido) {
                                                 echo $arrayHotelVo[$i]->getHotelNome();
@@ -178,23 +178,31 @@ if (!empty($_GET)) {
                                             ?>
 
                                         </select><br />
+                                        Data inicial:<br />
+                                        <input type="text" name="itemReservaDataInicial" id="data_inicial" size="10" maxlength="10" value="13/12/2012" class="obrigatorio data" />
+                                        <br />
+                                        Data final:<br />
+                                        <input type="text" name="itemReservaDataFinal" id="data_final" size="10" maxlength="10" value="13/12/2012" class="obrigatorio data" />
+
+                                        <br />
                                 </div>
-                                    <input type="reset" value="Limpar" name="B1" />
-                                    <span style=" padding-left: 10px" />
-                                    <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
-                                    <span style=" padding-left: 10px" />
-                                    <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
+                                <input type="reset" value="Limpar" name="B1" />
+                                <span style=" padding-left: 10px" />
+                                <input type="submit" value="Voltar" name="B2" onClick="this.form.action='index.php'"/>  
+                                <span style=" padding-left: 10px" />
+                                <input type="submit" name="cmdSalvar" value="<?php echo(empty($_GET) ? 'Cadastrar' : 'Alterar'); ?>" />
                             </form>
                             <?php
                         }
                         ?>
-                        </div>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <?php include('../template/rodapeAdmin.php'); ?>
-        </body>
-        <!-- scripts -->
+        <?php include('../template/rodapeAdmin.php'); ?>
+    </body>
+    <!-- scripts -->
         <?php include('../template/js.php'); ?>
+
 </html>

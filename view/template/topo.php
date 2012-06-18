@@ -17,8 +17,7 @@
 		<div class="menuTopo <?php echo $cor_secundaria; ?>">
 			<ul class="content nav">
 				<li><a href="#" title="Home">Home</a></li>
-				<li class="active"><a href="#" title="Perfil">Empresa</a></li>
-				<li><a href="#" title="Interesses">Galeria</a></li>
+				<li class="active"><a href="empresa.php" title="Perfil">Empresa</a></li>
 				<li><a href="contato.php" title="Contato">Contato</a></li>
 			</ul>
 		</div>

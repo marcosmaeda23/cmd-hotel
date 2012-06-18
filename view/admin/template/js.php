@@ -7,3 +7,7 @@
 <script type="text/javascript" src="../../modulos/modulos.js"></script>
 <script type="text/javascript" src="../../_js/funcoes.js"></script>
 <script type="text/javascript" src="../../_js/index.js"></script>
+
+<script type="text/javascript" src="../../_js/date/jquery.js"></script>
+<script type="text/javascript" src="../../_js/date/jquery.click-calendario-1.0.js"></script>		
+<script type="text/javascript" src="../../_js/date/exemplo-calendario.js"></script>

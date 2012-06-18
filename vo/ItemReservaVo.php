@@ -18,7 +18,6 @@ class ItemReservaVo {
     private $itemReservaDataInicial;
     private $itemReservaDataFinal;
     private $itemReservaDataCadastro;
-    private $reservaVo; // objeto
     
     public $itemReservaObrigatorio = array(
         'itemReservaId' => '',
@@ -120,13 +119,6 @@ class ItemReservaVo {
 
     public function setItemReservaDataCadastro($itemReservaDataCadastro) {
         $this->itemReservaDataCadastro = $itemReservaDataCadastro;
-    }
-    public function getReservaVo() {
-        return $this->reservaVo;
-    }
-
-    public function setReservaVo($reservaVo) {
-        $this->reservaVo = $reservaVo;
     }
 }
 ?>

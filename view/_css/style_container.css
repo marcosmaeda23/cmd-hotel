@@ -22,7 +22,7 @@ a{ text-decoration:none;}
 .nav li a {  display: block; padding:8px 25px; color:#fff;}
 .nav li a:hover {  display: block; padding:8px 25px; color:#fff; background-color: 0187DE;}
 
-.middle{float:left; width:100%; padding-top:145px; background-color:#FFF}
+.middle{float:left; width:100%; padding-top:65px; background-color:#FFF}
 .middleConteudo{float:left; width:950px; padding:30px 25px 20px 25px; background-color:#FFF}
 .conteudoMenu {font:24px Verdana, Geneva, sans-serif; color:#006;height: 30px; 
               color: white; font-weight: bold; padding: 15px}
