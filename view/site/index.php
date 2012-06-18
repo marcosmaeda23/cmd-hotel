@@ -48,33 +48,26 @@ include('../admin/template/iniciarDados.php');
                                 <div rel="type">image</div>
                                 <div rel="title">Titulo da Imagem 4</div>
                                 <div rel="description">Descrição da Imagem 4</div>
-                                <div rel="content">../_imagens/hotel_fotos/04.jpg</div>
+                                <div rel="content">../_imagens/hotel_fotos/hotel-04.jpg</div>
+                                <div rel="target_url">#</div>
                                 <div rel="target_window">_blank</div>
                             </div>
                             <div rel="slide">
                                 <div rel="type">image</div>
                                 <div rel="title">Titulo da Imagem 5</div>
                                 <div rel="description">Descrição da Imagem 5</div>
-                                <div rel="content">../_imagens/hotel_fotos/05.jpg</div>
+                                <div rel="content">../_imagens/hotel_fotos/hotel-05.jpg</div>
+                                <div rel="target_url">#</div>
                                 <div rel="target_window">_blank</div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="cf middleConteudo">
-                        <div class="cadastro" style="padding-right:30px">
-                            <div class="conteudoMenu <?php echo $cor_principal; ?>">Realize Sua Reserva</div>
-                            <form action="frmUsuarioinserir.php" method="post" style="border:0; margin:0;" id="cadastro"  class="formDefault"  onSubmit="return valida(this)" enctype="multipart/form-data" >
-
-                                <!-- Datepicker -->
-                                <h2 class="demoHeaders">Data:</h2>
-                                <div id="datepicker"></div>
-                                <div class="cadastro_selecao">
-                                    <input type="submit" name="cmdSalvar" value=" Cadastrar "  onClick="return cadastrar()" >
-                                </div>
-                            </form>
-                        </div>
-                        <div class="fotoInicial">
-                            <img src="../_imagens/hotel_fotos/01.jpg" width="610px" height="350px">
+                            <div rel="slide">
+                                <div rel="type">image</div>
+                                <div rel="title">Titulo da Imagem 6</div>
+                                <div rel="description">Descrição da Imagem 6</div>
+                                <div rel="content">../_imagens/hotel_fotos/hotel-06.jpg</div>
+                                <div rel="target_url">#</div>
+                                <div rel="target_window">_blank</div>
+                            </div>
                         </div>
                     </div>
                     <div class="cf middleConteudo">

@@ -19,11 +19,6 @@ include('../admin/template/iniciarDados.php');
                         <div class="conteudoMenuCompleto <?php echo $cor_principal; ?>">Realize Sua Reserva</div>
                         <div class=".conteudoConteudoCompleto">
                             
-                            <!-- BEGIN Help Center Live Code, Copyright (c) 2005 Help Center Live. All Rights Reserved -->
-<div id="div_initiate" style="position:absolute; z-index:1; top: 40%; left:40%; visibility: hidden;"><a href="javascript:Live.initiate_accept();"><img src="http://localhost:8888/Chat/_hcl/templates/Bliss/images/initiate.gif" border="0"></a><br><a href="javascript:Live.initiate_decline();"><img src="http://localhost:8888/Chat/_hcl/templates/Bliss/images/initiate_close.gif" border="0"></a></div>
-<script type="text/javascript" language="javascript" src="http://localhost:8888/Chat/_hcl/class/js/include.php?live"></script>
-<!-- END Help Center Live Code, Copyright (c) 2005 Help Center Live. All Rights Reserved -->
-
                         </div>
                     </div>
 
